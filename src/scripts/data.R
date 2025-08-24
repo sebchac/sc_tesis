@@ -307,6 +307,12 @@ gdp <- gdp %>%
                    if_else(country == "Venezuela (Bolivarian Republic of)","Venezuela",
                    if_else(country %in% europeanUnion, "European Union", country))))))
 
+# GDP per country
+gdp_yc <- gdp %>%
+  mutate(rgdpe_yc = log(rgdpe),
+         rgdpna_yc = log(rgdpna)) %>%
+  select(country, year, rgdpe_yc, rgdpna_yc) 
+  
 # Creates dummies importsGDP
 gdp$import_dummy_gdp = 0
 for (x in importCountries){
@@ -553,6 +559,7 @@ merge2 <- left_join(merge2, full_prices_annual, by = c("year"))
 merge2 <- left_join(merge2, supplyShocks, by = c("year", "month_num"))
 merge2 <- left_join(merge2, tea, by = c( "year", "month_num"))
 merge2 <- left_join(merge2, gdp, by = c("year"))
+merge2 <- left_join(merge2, gdp_yc, by = c("year", "country"))
 merge2 <- left_join(merge2, tea_annual, by = c("year"))
 merge2 <- left_join(merge2, fertilizers_y, by = c("year"))
 merge2 <- left_join(merge2, data_tas_ymc, by = c("year", "month_num", "country"))
@@ -574,10 +581,21 @@ merge2 <- merge2 %>%
   group_by(year) %>%
   mutate(
     farm_prices_y = sum(farm_prices_yc * share_ymce, na.rm = TRUE),
+    farm_prices_y_mean = mean(farm_prices_yc, na.rm = TRUE),
     tas_y = sum(tas_ym * share_ymce, na.rm = TRUE),
+    tas_y_mean = mean(tas_ymc, na.rm = TRUE),
     gdd_y = sum(gdd_ym),
+    gdd_y_mean = mean(gdd_ymc, na.rm = TRUE),
     hdd_y = sum(hdd_ym),
-    fdd_y = sum(fdd_ym)) %>%
+    hdd_y_mean = mean(hdd_ymc, na.rm = TRUE),
+    fdd_y = sum(fdd_ym),
+    fdd_y_mean = mean(fdd_ymc, na.rm = TRUE)) %>%
+  group_by(year, country) %>%
+  mutate(
+    tas_yc = mean(tas_ymc),
+    gdd_yc = sum(gdd_ymc),
+    hdd_yc = sum(hdd_ymc),
+    fdd_yc = sum(fdd_ymc)) %>%
   ungroup()
 
 # IDs per country

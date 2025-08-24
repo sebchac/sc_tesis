@@ -390,7 +390,7 @@ coeff_mc_1 <- coef(model_mc_1)
    Q_leaders_00 <- leaders$qe_ymc
    
    # Optimiza
-   leaders_opt <- leaders_opt <- find_stackelberg(data_market, coef_demand, leaders$qe_ymc)
+   leaders_opt <- find_stackelberg(data_market, coef_demand, leaders$qe_ymc)
    if (is.null(leaders_opt)) {
      warning("No se pudo encontrar equilibrio Stackelberg")
      return(NULL)
