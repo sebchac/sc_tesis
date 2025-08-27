@@ -419,7 +419,7 @@ coeff_mc_1 <- coef(model_mc_1)
      mutate(
        price = price,
        quantity = ifelse(is.na(opt_quantity), 0, opt_quantity),
-       profit = quantity * (price - mc_ymc_hat),
+       profit = (quantity * (price - mc_ymc_hat) * (60 * 2.20462)) / 100000, # Ajuste por unidad de medida
        type = case_when(
          dummy_leader == 1 ~ "leader",
          dummy_follower == 1 ~ "follower", 
@@ -430,16 +430,16 @@ coeff_mc_1 <- coef(model_mc_1)
    
    
    # Beneficio TOTAL de líderes (suma individual)
-   profit_leaders <- sum(leaders_opt$q_leader * (price - leaders_opt$mc_hat))
+   profit_leaders <- (sum(leaders_opt$q_leader * (price - leaders_opt$mc_hat)) * (60 * 2.20462)) / 100000 # Ajuste por unidad de medida
    
-   profit_followers <- sum(followers_opt$q_follower * (price - followers_opt$mc_hat))
+   profit_followers <- (sum(followers_opt$q_follower * (price - followers_opt$mc_hat)) * (60 * 2.20462)) / 100000 # Ajuste por unidad de medida
    
    # Consumer surplus
    price_intercept <- price_from_demand(0, coef_demand, 
                                         unique(data_market$teaPrices_ym), 
                                         unique(data_market$importGDP_ym),
                                         unique(data_market$ica_lapse))
-   consumer_surplus <- 0.5 * (price_intercept - price) * Q_total
+   consumer_surplus <- ((0.5 * (price_intercept - price) * Q_total) * (60 * 2.20462)) / 100000 # Ajuste por unidad de medida
    
    # Results
    results <- list(
@@ -566,40 +566,21 @@ summary_ym <- all_results_ym %>%
 
 saveRDS(summary_ym, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/out/data/summary_ym.rds")
 
-
-ggplot(all_results_ym, aes(x = date, y = price, color = scenario, group = scenario)) +
-  geom_line() +
-  theme_classic()
-
 # Profit comparison by country
 summary_ymc <- all_results_ymc %>%
   group_by(country, dummy_leader, scenario) %>%
   summarise(
-    sum_profit = sum(profit, na.rm = TRUE),
-    sum_quantity = sum(quantity, na.rm = TRUE),
+    profit = sum(profit, na.rm = TRUE),
+    quantity = sum(quantity, na.rm = TRUE),
+    mc = mean(mc_ymc_hat, na.rm = TRUE), 
     .groups = "drop"
   ) %>%
   pivot_wider(
     id_cols = c(country, dummy_leader),
     names_from = scenario,
-    values_from = c(sum_quantity, sum_profit)
-  ) %>%
-  mutate(
-    diff_cf1_quantity = round((sum_quantity_CF1/sum_quantity_Baseline) - 1, 4),
-    diff_cf1_profit = round((sum_profit_CF1/sum_profit_Baseline) - 1, 4)
+    values_from = c(profit, quantity, mc)
   )
 
 saveRDS(summary_ymc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/out/data/summary_ymc.rds")
 
-# ------------------------------------------------------------------------------
-# [7] Export Results
-# ------------------------------------------------------------------------------
-
-# Save results to CSV
-write.csv(all_results, "counterfactual_results.csv", row.names = FALSE)
-write.csv(results_summary, "counterfactual_summary.csv", row.names = FALSE)
-
-# Save plots
-ggsave("price_dates.png", width = 10, height = 6)
-ggsave("quantity_comparison.png", width = 8, height = 6)
 

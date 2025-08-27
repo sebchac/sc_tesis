@@ -644,8 +644,10 @@ merge2 <- merge2 %>%
 merge2 <- merge2 %>%
   mutate(
     dummy_leader = if_else(
-      country == "Brazil" | country == "Colombia" | country == "Viet Nam" |
-      country == "Indonesia", 1, 0
+      #country == "Indonesia" |
+      country == "Brazil" | 
+      country == "Colombia" | 
+      country == "Viet Nam", 1, 0
     ),
     dummy_follower = if_else(dummy_leader == 1, 0, 1)
   ) %>%
