@@ -20,6 +20,7 @@ library(lubridate)
 library(lfe)
 library(slider) 
 library(nleqslv)
+library(modelsummary)
 
 # Data
 data <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/data/data.rds")
@@ -225,6 +226,24 @@ model_mc_1 <- feols(
 
 summary(model_mc_1)
 
+model_mc_1 <- summary(model_mc_1, se = "cluster")
+
+modelsummary(model_mc_1,
+             title = "Estimación de Costos Marginales",
+             output = "latex",
+             coef_rename = c(
+               "ica_lapse" = "Dummy ICA",
+               "farm_prices_ymc" = "Precio a productor", 
+               "fert_ym" = "Precio fertilizantes",
+               "frosts" = "Eventos de helada",
+               "hdd_ymc" = "Grados-día calor (HDD)",
+               "fdd_ymc" = "Grados-día frío (FDD)"
+             ),
+             stars = TRUE,
+             notes = c("Errores estándar clusterizados por país.",
+                       "Efectos fijos de año y país incluidos."))
+
+
 # Store coefficients
 coeff_mc_1 <- coef(model_mc_1)
 # # Predict
@@ -419,27 +438,28 @@ coeff_mc_1 <- coef(model_mc_1)
      mutate(
        price = price,
        quantity = ifelse(is.na(opt_quantity), 0, opt_quantity),
-       profit = (quantity * (price - mc_ymc_hat) * (60 * 2.20462)) / 100000, # Ajuste por unidad de medida
+       revenue = (quantity * price * 60 * 2.20462) / 100, # Ajuste por unidad de medida (MM USD)
+       profit = (quantity * (price - mc_ymc_hat) * (60 * 2.20462)) / 100, # Ajuste por unidad de medida (MM USD)
        type = case_when(
          dummy_leader == 1 ~ "leader",
          dummy_follower == 1 ~ "follower", 
          TRUE ~ "other"
        )
      ) %>%
-     select(date, country, id, dummy_leader, type, quantity, profit, mc_ymc_hat, price)
+     select(date, country, id, dummy_leader, type, quantity, revenue, profit, mc_ymc_hat, price)
    
    
    # Beneficio TOTAL de líderes (suma individual)
-   profit_leaders <- (sum(leaders_opt$q_leader * (price - leaders_opt$mc_hat)) * (60 * 2.20462)) / 100000 # Ajuste por unidad de medida
+   profit_leaders <- (sum(leaders_opt$q_leader * (price - leaders_opt$mc_hat)) * (60 * 2.20462)) / 100 # Ajuste por unidad de medida
    
-   profit_followers <- (sum(followers_opt$q_follower * (price - followers_opt$mc_hat)) * (60 * 2.20462)) / 100000 # Ajuste por unidad de medida
+   profit_followers <- (sum(followers_opt$q_follower * (price - followers_opt$mc_hat)) * (60 * 2.20462)) / 100 # Ajuste por unidad de medida
    
    # Consumer surplus
    price_intercept <- price_from_demand(0, coef_demand, 
                                         unique(data_market$teaPrices_ym), 
                                         unique(data_market$importGDP_ym),
                                         unique(data_market$ica_lapse))
-   consumer_surplus <- ((0.5 * (price_intercept - price) * Q_total) * (60 * 2.20462)) / 100000 # Ajuste por unidad de medida
+   consumer_surplus <- ((0.5 * (price_intercept - price) * Q_total) * (60 * 2.20462)) / 100 # Ajuste por unidad de medida
    
    # Results
    results <- list(
