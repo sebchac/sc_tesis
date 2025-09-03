@@ -322,7 +322,7 @@ plot5 <- ggplot(aux1 %>%
 ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/figures/plot5.png", 
        plot = plot5, 
        width = 9,
-       height = 6,
+       height = 5,
        units = "cm",
        dpi = 600,
        bg = "white")
@@ -651,7 +651,7 @@ plot3 <- ggplot(data_y, aes(x = fdd_y_mean, y = farm_prices_y_mean)) +
   labs(
     title = NULL,
     x = "Grados-día helada (<10°C)",
-    y = "Precio a productor\n(cents/lb)"
+    y = "Rem. (cents/lb)"
   ) +
   theme_classic() +
   theme(
@@ -769,7 +769,11 @@ aux1 <- results_ymc %>%
 aux2 <- results_ymc %>%
   mutate(
     date = as.Date(date),
-    year = year(date)
+    year = year(date),
+    scenario = case_when(
+      scenario == "Baseline" ~ 0,
+      TRUE ~ 1
+    )
   ) %>%
   filter(year >= 1990) %>%
   group_by(year, country, scenario) %>%
@@ -919,3 +923,199 @@ m3 <- feols(
 summary(m3)
 
 #-------------------------------------------------------------------------------
+# [] Líderes y seguidores - Costos implícitos y remuneraciones
+#-------------------------------------------------------------------------------
+# Efecto desigual en remuneraciones
+data_yc <- data %>%
+  filter(dummy_yc == 1,
+         year >= 1990) %>%
+  mutate(
+    log_qe_yc = log(qe_yc),
+    log_farm_yc = log(farm_prices_yc)
+  )
+
+feols(qe_yc ~ farm_prices_yc * dummy_leader | year, data = data_yc, cluster = ~year)
+feols(log_qe_yc ~ log_farm_yc * dummy_leader | year, data = data_yc, cluster = ~year)
+
+# Efecto desigual en costos estimados
+aux <- results_ymc %>%
+  mutate(
+    date = as.Date(date),
+    year = year(date)
+  ) %>%
+  filter(year >= 1990,
+         scenario == "Baseline") %>%
+  group_by(
+    country, year
+  ) %>%
+  summarise(
+    qe_yc = sum(quantity, na.rm = TRUE),
+    mc_yc = mean(mc_ymc_hat, na.rm = TRUE),
+    dummy_leader = mean(dummy_leader, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    log_qe_yc = log(qe_yc),
+    log_mc_yc = log(mc_yc)
+  )
+
+feols(qe_yc ~ mc_yc * dummy_leader | year, data = aux, cluster = ~year)
+feols(log_qe_yc ~ log_mc_yc * dummy_leader | year, data = aux, cluster = ~year)
+
+
+aux <- results_ymc %>%
+  mutate(
+    date = as.Date(date),
+    year = year(date)
+  ) %>%
+  filter(year >= 1990,
+         scenario == "Baseline") %>%
+  group_by(
+    country, year
+  ) %>%
+  summarise(
+    qe_yc = sum(quantity, na.rm = TRUE),
+    mc_yc = mean(mc_ymc_hat, na.rm = TRUE),
+    dummy_leader = mean(dummy_leader, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    log_qe_yc = log(qe_yc),
+    log_mc_yc = log(mc_yc)
+  )
+
+feols(qe_yc ~ mc_yc * dummy_leader | year, data = aux, cluster = ~year)
+feols(log_qe_yc ~ log_mc_yc * dummy_leader | year, data = aux, cluster = ~year)
+
+# Efecto desigual en costos estimados + cambio climático
+aux <- results_ymc %>%
+  mutate(
+    date = as.Date(date),
+    year = year(date)
+  ) %>%
+  filter(year >= 1990) %>%
+  group_by(
+    country, year, scenario
+  ) %>%
+  summarise(
+    qe_yc = sum(quantity, na.rm = TRUE),
+    mc_yc = mean(mc_ymc_hat, na.rm = TRUE),
+    dummy_leader = mean(dummy_leader, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    log_qe_yc = log(qe_yc),
+    log_mc_yc = log(mc_yc)
+  )
+
+feols(qe_yc ~ mc_yc * dummy_leader * scenario| year, data = aux, cluster = ~year)
+feols(log_qe_yc ~ log_mc_yc * dummy_leader * scenario| year, data = aux, cluster = ~year)
+
+#-------------------------------------------------------------------------------
+# [] Líderes y seguidores - Expr y costos
+#-------------------------------------------------------------------------------
+# Efecto desigual en remuneraciones
+data_yc <- data %>%
+  filter(dummy_yc == 1,
+         year >= 1990) %>%
+  mutate(
+    log_qe_yc = log(qe_yc),
+    log_farm_yc = log(farm_prices_yc)
+  )
+
+feols(farm_prices_yc ~  dummy_leader | year, data = data_yc, cluster = ~year)
+feols(log_farm_yc ~ dummy_leader | year, data = data_yc, cluster = ~year)
+
+# Efecto desigual en costos estimados
+aux <- results_ymc %>%
+  mutate(
+    date = as.Date(date),
+    year = year(date)
+  ) %>%
+  filter(year >= 1990,
+         scenario == "Baseline") %>%
+  group_by(
+    country, year
+  ) %>%
+  summarise(
+    qe_yc = sum(quantity, na.rm = TRUE),
+    mc_yc = mean(mc_ymc_hat, na.rm = TRUE),
+    dummy_leader = mean(dummy_leader, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    log_qe_yc = log(qe_yc),
+    log_mc_yc = log(mc_yc)
+  )
+
+feols(mc_yc ~ dummy_leader | year, data = aux, cluster = ~year)
+feols(log_mc_yc ~ dummy_leader | year, data = aux, cluster = ~year)
+
+
+
+#-------------------------------------------------------------------------------
+# [] HHI
+#-------------------------------------------------------------------------------
+
+data_yc <- results_ymc %>%
+  mutate(
+    date = as.Date(date),
+    year = year(date)
+  ) %>%
+  filter(year >= 1990) %>%
+  group_by(year, country, scenario) %>%
+  summarise(
+    qe_yc = sum(quantity, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  ungroup() %>%
+  filter(scenario == "Baseline") %>%
+  select(-scenario) %>%
+  group_by(year) %>%
+  mutate(
+    qe_y = sum(qe_yc, na.rm = TRUE)
+  ) %>%
+  ungroup() %>%
+  arrange(year, country) %>%
+  mutate(
+    sh_yc = round(qe_yc / qe_y, 2)
+  ) %>%
+  group_by(year) %>%
+  mutate(
+    hhi_y = 10000 * (sum(sh_yc^2, na.rm = TRUE))
+  ) %>%
+  ungroup()
+
+mean(data_yc$hhi_y)
+
+data_yc <- results_ymc %>%
+  mutate(
+    date = as.Date(date),
+    year = year(date)
+  ) %>%
+  filter(year >= 1990) %>%
+  group_by(year, country, scenario) %>%
+  summarise(
+    qe_yc = sum(quantity, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  ungroup() %>%
+  filter(scenario == "CF1") %>%
+  select(-scenario) %>%
+  group_by(year) %>%
+  mutate(
+    qe_y = sum(qe_yc, na.rm = TRUE)
+  ) %>%
+  ungroup() %>%
+  arrange(year, country) %>%
+  mutate(
+    sh_yc = round(qe_yc / qe_y, 2)
+  ) %>%
+  group_by(year) %>%
+  mutate(
+    hhi_y = 10000 * (sum(sh_yc^2, na.rm = TRUE))
+  ) %>%
+  ungroup()
+
+mean(data_yc$hhi_y)
+  
