@@ -8,7 +8,7 @@ library(ncdf4)
 base_path1 <- "/Users/sebastianchacon/Desktop/sc_tesis/src/original_data/"
 base_path2 <- "/Users/sebastianchacon/Desktop/sc_tesis/src/original_data/tasmax"
 base_path3 <- "/Users/sebastianchacon/Desktop/sc_tesis/src/original_data/tasmin"
-output_path <- "/Users/sebastianchacon/Desktop/sc_tesis/bld/out/data/"
+output_path <- "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/"
 
 # Parámetros de umbrales de temperatura
 k1 <- 10; k2 <- 18; k3 <- 26; k4 <- 30

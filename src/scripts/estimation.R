@@ -23,7 +23,7 @@ library(nleqslv)
 library(modelsummary)
 
 # Data
-data <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/data/data.rds")
+data <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data.rds")
 
 data <- data %>%
   filter(year >= 1991 & year <= 2000)
@@ -547,8 +547,8 @@ all_results_ymc <- bind_rows(
 ) %>%
   arrange(date, country, scenario)
 
-saveRDS(all_results_ym, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/out/data/results_ym.rds")
-saveRDS(all_results_ymc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/out/data/results_ymc.rds")
+saveRDS(all_results_ym, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/results_ym.rds")
+saveRDS(all_results_ymc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/results_ymc.rds")
 
 # ------------------------------------------------------------------------------
 # [6] Analyze and Visualize Results
@@ -567,7 +567,7 @@ summary_ym <- all_results_ym %>%
     .groups = "drop"
   )
 
-saveRDS(summary_ym, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/out/data/summary_ym.rds")
+saveRDS(summary_ym, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/summary_ym.rds")
 
 # Profit comparison by country
 summary_ymc <- all_results_ymc %>%
@@ -584,6 +584,6 @@ summary_ymc <- all_results_ymc %>%
     values_from = c(profit, quantity, mc)
   )
 
-saveRDS(summary_ymc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/out/data/summary_ymc.rds")
+saveRDS(summary_ymc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/summary_ymc.rds")
 
 

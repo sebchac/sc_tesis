@@ -32,11 +32,11 @@ red <- "#F5136D"
 beige <- "#F59B13"
 
 # Data
-data <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/data/data.rds")
-results_ym <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/data/results_ym.rds")
-results_ymc <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/data/results_ymc.rds")
-summary_ym <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/data/summary_ym.rds")
-summary_ymc <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/data/summary_ymc.rds")
+data <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data.rds")
+results_ym <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/results_ym.rds")
+results_ymc <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/results_ymc.rds")
+summary_ym <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/summary_ym.rds")
+summary_ymc <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/summary_ymc.rds")
 
 #-------------------------------------------------------------------------------
 # Exportaciones desde 1990 hasta 2019
@@ -72,7 +72,7 @@ plot1 <- ggplot(aux1 %>%
     legend.margin = margin(t = -5, b = 0)
   )
 
-ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/figures/informe/plot1.png", 
+ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/informe/plot1.png", 
        plot = plot1, 
        width = 7,
        height = 5,
@@ -113,7 +113,7 @@ plot2 <- ggplot(aux2 %>%
     legend.margin = margin(t = -5, b = 0)
   )
 
-ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/figures/informe/plot2.png", 
+ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/informe/plot2.png", 
        plot = plot2, 
        width = 7,
        height = 5,
@@ -166,7 +166,7 @@ plot3 <- ggplot(data_yc, aes(factor(year), y = rgdpna_yc, fill = type)) +
     na.value = "red"
   )
 
-ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/figures/informe/plot3.png", 
+ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/informe/plot3.png", 
        plot = plot3, 
        width = 18,
        height = 8,
@@ -207,7 +207,7 @@ plot1 <- ggplot(data_y) +
     legend.margin = margin(t = -5, b = 0)
   )
 
-ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/figures/informe/plot1.png", 
+ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/informe/plot1.png", 
        plot = plot1, 
        width = 7,
        height = 5,
@@ -260,7 +260,7 @@ plot1 <- ggplot(aux1, aes(x = year, y = qe_y,
     legend.margin = margin(t = -5, b = 0)
   )
 
-ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/figures/plot1.png", 
+ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/plot1.png", 
        plot = plot1, 
        width = 7,
        height = 5,
@@ -366,7 +366,7 @@ plot7 <- ggplot(aux1, aes(x = year, y = qe_y,
     legend.margin = margin(t = -5, b = 0)
   )
 
-ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/figures/plot7.png", 
+ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/plot7.png", 
        plot = plot7, 
        width = 7,
        height = 5,
@@ -496,7 +496,7 @@ plot5 <- ggplot(aux1 %>%
     legend.margin = margin(t = -5, b = 0)
   )
 
-ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/figures/plot5.png", 
+ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/plot5.png", 
        plot = plot5, 
        width = 9,
        height = 5,
@@ -552,7 +552,7 @@ plot6 <- ggplot(aux2 %>%
     legend.margin = margin(t = -5, b = 0)
   )
 
-ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/figures/plot6.png", 
+ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/plot6.png", 
        plot = plot6, 
        width = 9,
        height = 6,
@@ -638,7 +638,7 @@ plot8 <- ggplot(aux %>%
     legend.margin = margin(t = -5, b = 0)
   )
 
-ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/figures/plot8.png", 
+ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/plot8.png", 
        plot = plot8, 
        width = 9,
        height = 6,
@@ -687,7 +687,7 @@ plot9 <- ggplot(aux %>%
     legend.margin = margin(t = -5, b = 0)
   )
 
-ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/figures/plot9.png", 
+ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/plot9.png", 
        plot = plot9, 
        width = 9,
        height = 6,
@@ -814,7 +814,7 @@ plot2 <- ggplot(data_y, aes(x = gdd_y_mean, y = farm_prices_y_mean)) +
   )
 
 # Guardar con dimensiones optimizadas para columna estrecha
-ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/figures/plot2.png", 
+ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/plot2.png", 
        plot = plot2, 
        width = 7,        # cm (aprox 0.18 del ancho del A0 vertical)
        height = 5,       # cm - relación 7:5
@@ -840,7 +840,7 @@ plot3 <- ggplot(data_y, aes(x = fdd_y_mean, y = farm_prices_y_mean)) +
     plot.margin = margin(5, 5, 5, 5)
   )
 
-ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/figures/plot3.png", 
+ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/plot3.png", 
        plot = plot3, 
        width = 7,        # Mismo tamaño que plot2 para consistencia
        height = 5,       # Misma altura
@@ -898,7 +898,7 @@ plot4 <- ggplot(data_y, aes(x = fdd_y_mean, y = qe_y)) +
     plot.margin = margin(5, 5, 5, 5)
   )
 
-ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/figures/plot4.png", 
+ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/plot4.png", 
        plot = plot4, 
        width = 7,        # Mismo tamaño que plot4 para consistencia
        height = 5,       # Misma altura

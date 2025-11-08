@@ -61,7 +61,7 @@ filepath_gdd       <- paste(main_dir, filename_gdd, sep = "")
 
 # Output files
 
-main_out <- "/Users/sebastianchacon/Desktop/sc_tesis/bld/out/data/"
+main_out <- "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/"
 
 filepath_psd       <- paste(main_out, "psd_data.rds", sep = "")
 
@@ -839,5 +839,5 @@ merge2 <- merge2 %>%
     fdd_followers_y = mean(fdd_followers_y, na.rm = TRUE)) %>%
   ungroup() 
 
-saveRDS(merge2, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/out/data/data.rds")
+saveRDS(merge2, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data.rds")
 
