@@ -1,0 +1,21 @@
+# Bases de datos grandes
+*.csv
+*.dta
+*.xlsx
+*.xls
+*.rdata
+*.rda
+*.sav
+*.sas7bdat
+*.feather
+*.parquet
+*.h5
+*.hdf5
+
+# Directorios con datos
+data/raw/
+data/processed/
+datasets/
+output/
+results/
+temp/
