@@ -39,6 +39,183 @@ summary_ym <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/data/summ
 summary_ymc <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/data/summary_ymc.rds")
 
 #-------------------------------------------------------------------------------
+# Exportaciones desde 1990 hasta 2019
+#-------------------------------------------------------------------------------
+aux1 <- data %>%
+  filter(dummy_y == 1) %>%
+  select(date, qe_y) %>%
+  mutate(date = as.Date(date),
+         year = year(date)) %>%
+  distinct(year, qe_y) %>%
+  drop_na()
+
+plot1 <- ggplot(aux1 %>%
+                  filter(year >= 1990)) +
+  geom_line(aes(x = year, y = qe_y), 
+            linewidth = 0.7, alpha = 1) +
+  labs(
+    title = NULL,
+    x = NULL,
+    y = "Exp. (mill. 60 kg)",
+    color = NULL
+  ) +
+  theme_classic() +
+  theme(
+    legend.position = "bottom",
+    text = element_text(size = 9),
+    axis.title = element_text(size = 8),
+    axis.title.y = element_text(margin = margin(r = 3)),
+    axis.title.x = element_text(margin = margin(t = 3)),
+    axis.text = element_text(size = 9),
+    plot.margin = margin(5, 5, 5, 5),
+    legend.text = element_text(size = 9),
+    legend.margin = margin(t = -5, b = 0)
+  )
+
+ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/figures/informe/plot1.png", 
+       plot = plot1, 
+       width = 7,
+       height = 5,
+       units = "cm",
+       dpi = 600,
+       bg = "white")
+
+#-------------------------------------------------------------------------------
+# Precio ICIP desde 1990 hasta 2019
+#-------------------------------------------------------------------------------
+aux2 <- data %>%
+  filter(dummy_ym == 1) %>%
+  select(date, price_ym) %>%
+  mutate(date = as.Date(date)) %>%
+  distinct(date, price_ym) %>%
+  drop_na()
+
+plot2 <- ggplot(aux2 %>%
+                  filter(year(date) >= 1990)) +
+  geom_line(aes(x = date, y = price_ym), 
+            linewidth = 0.7, alpha = 1) +
+  labs(
+    title = NULL,
+    x = NULL,
+    y = "ICIP (¢/lb)",
+    color = NULL
+  ) +
+  theme_classic() +
+  theme(
+    legend.position = "bottom",
+    text = element_text(size = 9),
+    axis.title = element_text(size = 8),
+    axis.title.y = element_text(margin = margin(r = 3)),
+    axis.title.x = element_text(margin = margin(t = 3)),
+    axis.text = element_text(size = 9),
+    plot.margin = margin(5, 5, 5, 5),
+    legend.text = element_text(size = 9),
+    legend.margin = margin(t = -5, b = 0)
+  )
+
+ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/figures/informe/plot2.png", 
+       plot = plot2, 
+       width = 7,
+       height = 5,
+       units = "cm",
+       dpi = 600,
+       bg = "white")
+
+#-------------------------------------------------------------------------------
+# Boxplot GDP Exportadores e importadores
+#-------------------------------------------------------------------------------
+
+data_yc <- data %>%
+  filter(dummy_yc == 1, year >= 2002, year <= 2019) %>%
+  mutate(
+    type = case_when(
+      export_dummy == 1 ~ "Exportadores",
+      export_dummy == 0 ~ "Importadores"
+    ))
+
+plot3 <- ggplot(data_yc, aes(factor(year), y = rgdpna_yc, fill = type)) +
+  geom_boxplot(
+    position = position_dodge(0.8),
+    width = 0.7,
+    alpha = 0.8,           # Similar alpha para consistencia
+    size = 0.5,            # Tamaño de línea similar
+    color = "black"        # Borde negro para contraste en grises
+  ) +
+  labs(
+    title = NULL,
+    x = NULL,              # Coincide con tu primer gráfico
+    y = "PIB real ajustado",       # Ajusta según tu variable
+    fill = NULL            # Coincide con tu primer gráfico
+  ) +
+  theme_classic() +        # Mismo tema base
+  theme(
+    legend.position = "bottom",
+    text = element_text(size = 9),
+    axis.title = element_text(size = 8),
+    axis.title.y = element_text(margin = margin(r = 3)),
+    axis.title.x = element_text(margin = margin(t = 3)),
+    axis.text = element_text(size = 9),
+    plot.margin = margin(5, 5, 5, 5),
+    legend.text = element_text(size = 9),
+    legend.margin = margin(t = -5, b = 0)
+  ) +
+  # Escala de grises profesional para papers
+  scale_fill_grey(
+    start = 0.2,    # Gris oscuro
+    end = 0.8,      # Gris claro  
+    na.value = "red"
+  )
+
+ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/figures/informe/plot3.png", 
+       plot = plot3, 
+       width = 18,
+       height = 8,
+       units = "cm",
+       dpi = 600,
+       bg = "white")
+
+#-------------------------------------------------------------------------------
+# Evolución de importaciones
+#-------------------------------------------------------------------------------
+data_y <- data %>%
+  filter(dummy_yc == 1, year >= 2002, year <= 2019) %>%
+  group_by(year) %>%
+  summarise(
+    qi_y = sum(qi_yc, na.rm = T),
+    .groups = "drop"
+  )
+  
+plot1 <- ggplot(data_y) +
+  geom_line(aes(x = year, y = qi_y), 
+            linewidth = 0.7, alpha = 1) +
+  labs(
+    title = NULL,
+    x = NULL,
+    y = "Imp. (mill. 60 kg)",
+    color = NULL
+  ) +
+  theme_classic() +
+  theme(
+    legend.position = "bottom",
+    text = element_text(size = 9),
+    axis.title = element_text(size = 8),
+    axis.title.y = element_text(margin = margin(r = 3)),
+    axis.title.x = element_text(margin = margin(t = 3)),
+    axis.text = element_text(size = 9),
+    plot.margin = margin(5, 5, 5, 5),
+    legend.text = element_text(size = 9),
+    legend.margin = margin(t = -5, b = 0)
+  )
+
+ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/figures/informe/plot1.png", 
+       plot = plot1, 
+       width = 7,
+       height = 5,
+       units = "cm",
+       dpi = 600,
+       bg = "white")
+
+#-------------------------------------------------------------------------------
 # [] Líderes y seguidores - Factual
 #-------------------------------------------------------------------------------
 
@@ -58,10 +235,10 @@ aux1 <- data %>%
   )
 
 plot1 <- ggplot(aux1, aes(x = year, y = qe_y, 
-                 color = factor(dummy_leader,
-                                levels = c(0, 1),
-                                labels = c("Seguidores", "Líderes")), 
-                 group = dummy_leader)) +
+                          color = factor(dummy_leader,
+                                         levels = c(0, 1),
+                                         labels = c("Seguidores", "Líderes")), 
+                          group = dummy_leader)) +
   geom_line(size = 0.2) +
   geom_point(size = 0.3) +
   labs(
@@ -82,7 +259,7 @@ plot1 <- ggplot(aux1, aes(x = year, y = qe_y,
     legend.text = element_text(size = 9),
     legend.margin = margin(t = -5, b = 0)
   )
-  
+
 ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/figures/plot1.png", 
        plot = plot1, 
        width = 7,
@@ -427,7 +604,7 @@ aux <- results_ymc %>%
   mutate(
     date = as.Date(date),
     year = year(date)
-    ) %>%
+  ) %>%
   group_by(year, scenario) %>%
   summarise(
     mc_y = mean(mc_ymc_hat, na.rm = TRUE),
@@ -436,10 +613,10 @@ aux <- results_ymc %>%
 
 plot8 <- ggplot(aux %>%
                   filter(year >= 1990 ), aes(x = year, y = mc_y, 
-                          color = factor(scenario,
-                                         levels = c("Baseline", "CF1"),
-                                         labels = c("Factual", "Contrafactual")), 
-                          group = scenario)) +
+                                             color = factor(scenario,
+                                                            levels = c("Baseline", "CF1"),
+                                                            labels = c("Factual", "Contrafactual")), 
+                                             group = scenario)) +
   geom_line(size = 0.2) +
   geom_point(size = 0.3) +
   labs(
@@ -556,7 +733,7 @@ aux3 <- summary_ymc %>%
 
 world <- ne_countries(scale = "medium", returnclass = "sf") %>%
   left_join(aux3, by = c("name"))
-  
+
 ggplot(world) +
   geom_sf(aes(fill = group_profit), color = "white", size = 0.2) +
   scale_fill_manual(
@@ -565,7 +742,7 @@ ggplot(world) +
       "≤ P25" = "green3",
       "P25-P75" = "yellow2",
       "> P75" = "red3"
-      ),
+    ),
     na.value = "gray90"
   ) 
 
@@ -671,8 +848,13 @@ ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/figures/plot3.png",
        dpi = 600,
        bg = "white")
 
-# Efecto de gdd y fdd en precios
+# Efecto de gdd, hdd y fdd en precios
 ggplot(data_y, aes(x = gdd_y_mean, y = price_y)) +
+  geom_point(size = 3, color = "#2E86AB", alpha = 0.8) +
+  geom_smooth(method = "lm", se = TRUE, color = "#F24236", linetype = "dashed") +
+  theme_classic()
+
+ggplot(data_y, aes(x = hdd_y_mean, y = price_y)) +
   geom_point(size = 3, color = "#2E86AB", alpha = 0.8) +
   geom_smooth(method = "lm", se = TRUE, color = "#F24236", linetype = "dashed") +
   theme_classic()
@@ -682,13 +864,18 @@ ggplot(data_y, aes(x = fdd_y_mean, y = price_y)) +
   geom_smooth(method = "lm", se = TRUE, color = "#F24236", linetype = "dashed") +
   theme_classic()
 
-# Efecto de gdd y fdd en cantidades
-ggplot(data_y, aes(x = gdd_y_mean, y = qe_y)) +
+# Efecto de gdd, hdd y fdd en cantidades
+ggplot(data_y, aes(x = gdd_y, y = qe_y)) +
   geom_point(size = 3, color = "#2E86AB", alpha = 0.8) +
   geom_smooth(method = "lm", se = TRUE, color = "#F24236", linetype = "dashed") +
   theme_classic()
 
-ggplot(data_y, aes(x = fdd_y_mean, y = qe_y)) +
+ggplot(data_y, aes(x = hdd_y, y = qe_y)) +
+  geom_point(size = 3, color = "#2E86AB", alpha = 0.8) +
+  geom_smooth(method = "lm", se = TRUE, color = "#F24236", linetype = "dashed") +
+  theme_classic()
+
+ggplot(data_y, aes(x = fdd_y, y = qe_y)) +
   geom_point(size = 3, color = "#2E86AB", alpha = 0.8) +
   geom_smooth(method = "lm", se = TRUE, color = "#F24236", linetype = "dashed") +
   theme_classic()
@@ -1118,4 +1305,3 @@ data_yc <- results_ymc %>%
   ungroup()
 
 mean(data_yc$hhi_y)
-  

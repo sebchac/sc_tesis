@@ -1,0 +1,31 @@
+\begin{table}[htbp]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\resizebox{\textwidth}{!}{
+\begin{tabular}{l*{6}{c}}
+\toprule
+\hline
+
+                &\multicolumn{1}{c}{}&\multicolumn{1}{c}{OLS}&\multicolumn{2}{c}{}&\multicolumn{1}{c}{IV}&\multicolumn{1}{c}{}                                                       \\
+                &\multicolumn{1}{c}{(1)}&\multicolumn{1}{c}{(2)}&\multicolumn{1}{c}{(3)}&\multicolumn{1}{c}{(4)}&\multicolumn{1}{c}{(5)}&\multicolumn{1}{c}{(6)}\\
+                &\multicolumn{1}{c}{$P^{d}_{t}$ (Coffee Price)}&\multicolumn{1}{c}{$P^{d}_{t}$ (Coffee Price)}&\multicolumn{1}{c}{$P^{d}_{t}$ (Coffee Price)}&\multicolumn{1}{c}{$P^{d}_{t}$ (Coffee Price)}&\multicolumn{1}{c}{$P^{d}_{t}$ (Coffee Price)}&\multicolumn{1}{c}{$P^{d}_{t}$ (Coffee Price)}\\
+\midrule
+\hline
+$Q^{d}_{t}$ (Coffee Exports)&     1.16\sym{*}  &    -4.46\sym{**} &    -7.24\sym{***}&     0.15         &    -3.53         &   -10.15\sym{***}\\
+                &   (0.67)         &   (1.95)         &   (1.64)         &   (0.75)         &   (2.50)         &   (2.76)         \\
+$X_{t}$ (Buyers' GDP) &                  &   216.02\sym{***}&   167.99\sym{***}&                  &   210.56\sym{**} &   251.55\sym{***}\\
+                &                  &  (71.03)         &  (57.53)         &                  &  (90.12)         &  (76.05)         \\
+$Z_{t}$ (Tea Price)   &                  &                  &     1.43\sym{***}&                  &                  &     1.69\sym{***}\\
+                &                  &                  &   (0.26)         &                  &                  &   (0.37)         \\
+Constant        &   138.28\sym{**} & -3246.24\sym{***}& -2437.79\sym{***}&   209.43\sym{***}& -3225.22\sym{**} & -3726.23\sym{***}\\
+                &  (52.52)         &(1113.95)         & (903.81)         &  (63.18)         &(1406.46)         &(1174.44)         \\
+\hline
+\midrule
+Observations    &       55         &       55         &       55         &       55         &       55         &       55         \\
+Mean Elast.     &    2.675         &   -0.695         &   -0.427         &    20.30         &   -0.876         &   -0.305         \\
+F               &                  &                  &                  &    129.4         &    5.783         &    4.613         \\
+\bottomrule
+\hline
+\end{tabular}}
+\caption{Estimación de demanda anual del mercado internacional del café.}
+\label{tab:7_2}
+\end{table}
