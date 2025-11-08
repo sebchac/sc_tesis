@@ -1,0 +1,85 @@
+% se puede agregar la opción [english] para 
+%  memorias o tesis en inglés (borrando el archivo .aux)
+\documentclass{umemoria}[english]
+
+\depto{Departamento de Economía}
+\author{Sebastián Chacón}
+\title{Evaluación del impacto del cambio climático en los bienes agrícolas: el caso del café}
+
+%\memoria{}
+\tesis{Magíster en Economía}
+
+\guia{José Manuel Paz y Miño} 
+
+% puede haber varios profesores co-guía seperados por coma;
+% pero si es una memoria, el profesor co-guía será el primer
+% integrante de la comisión
+%\coguia{Nombre Completo Co-Guía} % incluir en caso de co-guía de *tesis*
+
+%\cotutela{Nombre Institución} % incluir en caso de cotutela
+
+%\comision{Aldo González Tissinetti,Andrés Gómez-Lobo,Paola Bordón}
+
+%\auspicio{Nombre Institución} % incluir en caso de recibir financiamiento
+
+% tiene que ser el año en que se da el examen de título/grado (defensa)
+%\anho{2021} % incluir solo para reemplazar el año actual
+
+\usepackage{lipsum}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{xcolor}
+
+\begin{document}
+
+\frontmatter
+\maketitle
+
+\begin{resumen}
+Esta investigación analiza cuantitativamente el impacto del cambio climático en el mercado internacional del café. Se emplea un modelo de competencia en cantidades \textit{á la Stackelberg} entre países que transan un bien homogéneo, a fin de estimar estructuralmente el mercado, incorporando variaciones en la temperatura óptima para el desarrollo de cafetos como determinantes de los costos marginales de producción. Este enfoque permite estimar escenarios contrafactuales que cuantifican las pérdidas de bienestar social bajo diferentes trayectorias de calentamiento global. [RESULTADOS. AGREGAR EFECTO DIFERENCIADO ENTRE PAÍSES.]
+
+\section*{Abstract}
+
+[TRADUCCIÓN]
+
+\end{resumen}
+
+% opcional: incluir para tesis en inglés;
+%  en este caso hay que tener el resumen y abstract
+%   en ambos idiomas
+%\begin{abstract}
+%\end{abstract}
+
+%\begin{dedicatoria}
+%Una dedicatoria corta.
+%\end{dedicatoria}
+
+%\begin{thanks}
+%\lipsum[1-2]
+%\end{thanks}
+
+%\tableofcontents
+%\listoftables % opcional
+%\listoffigures % opcional
+
+\mainmatter
+
+\input{seccion1.tex}
+\input{seccion2.tex}
+\input{seccion3.tex}
+\input{seccion4.tex}
+\input{seccion5.tex}
+\input{seccion6.tex}
+
+% ver https://www.overleaf.com/learn/latex/Glossaries
+% \input{glosario.tex} % opcional
+
+\nocite{*}
+\bibliographystyle{plain}
+\bibliography{bibliografia}
+
+% opcional ...
+\begin{appendices}
+\input{anexoA.tex}
+\end{appendices}
+\end{document}

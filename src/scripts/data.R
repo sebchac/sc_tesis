@@ -34,6 +34,8 @@ filename_pr_ymc    <- "df_pr_monthly.rds"
 
 filename_tas_gdd   <- "df_tas_daily_indicators_2.rds"
 
+filename_gdd       <- "df_monthly_gdd.rds"
+
 main_dir <- "/Users/sebastianchacon/Desktop/sc_tesis/src/original_data/"
 
 filepath_gdp       <- paste(main_dir, filename_gdp,sep="") 
@@ -54,6 +56,8 @@ filepath_tas_ymc   <- paste(main_dir, filename_tas_ymc, sep = "")
 filepath_pr_ymc    <- paste(main_dir, filename_pr_ymc, sep = "")
 
 filepath_tas_gdd   <- paste(main_dir, filename_tas_gdd, sep = "")
+
+filepath_gdd       <- paste(main_dir, filename_gdd, sep = "")
 
 # Output files
 
@@ -403,25 +407,40 @@ data_tas_ymc <- data_tas_ymc %>%
 # [1.9] GDD
 #-------------------------------------------------------------------------------
 
-data_tas_gdd <- readRDS(filepath_tas_gdd)
+#data_tas_gdd <- readRDS(filepath_tas_gdd)
 
 # We sum both Congos and round
-data_tas_gdd <- data_tas_gdd %>%
-  group_by(year, month_num, country) %>%
-  summarise(across(where(is.numeric), ~ mean(., na.rm = TRUE)), .groups = 'drop') %>%
-  ungroup() %>%
-  group_by(country, year) %>%
-  mutate(
-    gdd_yc = sum(gdd_ymc, na.rm = TRUE),
-    hdd_yc = sum(hdd_ymc, na.rm = TRUE),
-    fdd_yc = sum(fdd_ymc, na.rm = TRUE)
-         ) %>%
-  ungroup()
+#data_tas_gdd <- data_tas_gdd %>%
+#  group_by(year, month_num, country) %>%
+#  summarise(across(where(is.numeric), ~ mean(., na.rm = TRUE)), .groups = 'drop') %>%
+#  ungroup() %>%
+#  group_by(country, year) %>%
+#  mutate(
+#    gdd_yc = sum(gdd_ymc, na.rm = TRUE),
+#    hdd_yc = sum(hdd_ymc, na.rm = TRUE),
+#    fdd_yc = sum(fdd_ymc, na.rm = TRUE)
+#         ) %>%
+#  ungroup()
   # mutate(
   #   gdd_ymc = round(gdd_ymc, 0),
   #   hdd_ymc = round(hdd_ymc, 0),
   #   fdd_ymc = round(fdd_ymc, 0)
   # )
+
+gdd_files <- list.files("/Users/sebastianchacon/Desktop/ObsData/ProcessedData/GDD/",
+                        pattern = "\\.rds$", full.names = TRUE)
+
+gdd_monthly <- bind_rows(lapply(gdd_files, readRDS)) %>%
+  arrange(country, date)
+
+gdd_monthly <- gdd_monthly %>%
+  mutate(country = case_when(
+    country == "Central African Rep." ~ "Central African Republic",
+    country == "Dominican Rep." ~ "Dominican Republic", 
+    country == "Eq. Guinea" ~ "Equatorial Guinea",
+    country == "Vietnam" ~ "Viet Nam",
+    TRUE ~ country
+  ))
 
 #-------------------------------------------------------------------------------
 # [1.10] SOI
@@ -563,7 +582,8 @@ merge2 <- left_join(merge2, gdp_yc, by = c("year", "country"))
 merge2 <- left_join(merge2, tea_annual, by = c("year"))
 merge2 <- left_join(merge2, fertilizers_y, by = c("year"))
 merge2 <- left_join(merge2, data_tas_ymc, by = c("year", "month_num", "country"))
-merge2 <- left_join(merge2, data_tas_gdd, by = c("year", "month_num", "country"))
+#merge2 <- left_join(merge2, data_tas_gdd, by = c("year", "month_num", "country"))
+merge2 <- left_join(merge2, gdd_monthly, by = c("year", "month_num", "country"))
 # merge2 <- left_join(merge2, data_clima_y, by = c("year", "country"))
 # merge2 <- left_join(merge2, data_clima_ym, by = c("year", "month_num","country"))
 merge2 <- left_join(merge2, oni_events, by = c("year", "month_num"))

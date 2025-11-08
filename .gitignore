@@ -11,11 +11,8 @@
 *.parquet
 *.h5
 *.hdf5
+*.nc
 
 # Directorios con datos
-data/raw/
-data/processed/
-datasets/
-output/
-results/
-temp/
+src/original_data/
+bld/out/data/

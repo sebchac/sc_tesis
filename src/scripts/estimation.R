@@ -25,6 +25,9 @@ library(modelsummary)
 # Data
 data <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/out/data/data.rds")
 
+data <- data %>%
+  filter(year >= 1991 & year <= 2000)
+
 # ------------------------------------------------------------------------------
 # [1] Demand estimation
 # ------------------------------------------------------------------------------
@@ -42,7 +45,7 @@ demand_data <- data %>%
 # [1.2.] Demand estimation models
 # [1.2.1.] OLS
 
-ols1 <- lm(price_ym ~ qe_ym + ica_lapse,
+ols1 <- lm(price_ym ~ qe_ym ,
                  data = demand_data)
 # Store coefficients
 coeff_ols1 <- coef(ols1)
@@ -51,7 +54,7 @@ demand_data$q_demand_fitted_ols1 <- predict(ols1)
 demand_data$edemand_ols1 <- (1/coeff_ols1["qe_ym"])*(demand_data$price_ym/demand_data$qe_ym)
 mean_elast_ols1 <- mean(demand_data$edemand_ols1, na.rm = TRUE)
 
-ols2 <- lm(price_ym ~ qe_ym + ica_lapse + importGDP_ym,
+ols2 <- lm(price_ym ~ qe_ym  + importGDP_ym,
               data = demand_data)
 # Store coefficients
 coeff_ols2 <- coef(ols2)
@@ -60,7 +63,7 @@ demand_data$q_demand_fitted_ols2 <- predict(ols2)
 demand_data$edemand_ols2 <- (1/coeff_ols2["qe_ym"])*(demand_data$price_ym/demand_data$qe_ym)
 mean_elast_ols2 <- mean(demand_data$edemand_ols2, na.rm = TRUE)
 
-ols3 <- lm(price_ym ~ qe_ym + ica_lapse + importGDP_ym + teaPrices_ym,
+ols3 <- lm(price_ym ~ qe_ym  + importGDP_ym + teaPrices_ym,
                  data = demand_data)
 # Store coefficients
 coeff_ols3 <- coef(ols3)
@@ -72,8 +75,8 @@ mean_elast_ols3 <- mean(demand_data$edemand_ols3, na.rm = TRUE)
 
 # [1.2.2.] IV
 
-iv1 <- ivreg(price_ym ~ qe_ym + ica_lapse|
-               ica_lapse + farm_prices_ym + 
+iv1 <- ivreg(price_ym ~ qe_ym |
+                farm_prices_ym + 
                hdd_ym + fdd_ym,
                #gdd_ym,
                    data = demand_data)
@@ -84,8 +87,8 @@ demand_data$q_demand_fitted_iv1 <- predict(iv1)
 demand_data$edemand_iv1 <- (1/coeff_iv1["qe_ym"])*(demand_data$price_ym/demand_data$qe_ym)
 mean_elast_iv1 <- mean(demand_data$edemand_iv1, na.rm = TRUE)
 
-iv2 <- ivreg(price_ym ~ qe_ym + ica_lapse + importGDP_ym |
-               ica_lapse + farm_prices_ym + 
+iv2 <- ivreg(price_ym ~ qe_ym  + importGDP_ym |
+                farm_prices_ym + 
                #gdd_ym  +
                hdd_ym + fdd_ym +
                      importGDP_ym,
@@ -97,10 +100,11 @@ demand_data$q_demand_fitted_iv2 <- predict(iv2)
 demand_data$edemand_iv2 <- (1/coeff_iv2["qe_ym"])*(demand_data$price_ym/demand_data$qe_ym)
 mean_elast_iv2 <- mean(demand_data$edemand_iv2, na.rm = TRUE)
 
-iv3 <- ivreg(price_ym ~ qe_ym + ica_lapse + importGDP_ym + teaPrices_ym |
-               ica_lapse + farm_prices_ym + 
+iv3 <- ivreg(price_ym ~ qe_ym  + importGDP_ym + teaPrices_ym |
+                farm_prices_ym + 
                #gdd_ym +
-               hdd_ym + fdd_ym +
+               hdd_ym + 
+               #fdd_ym +
                      importGDP_ym + teaPrices_ym,
                    data = demand_data)
 summary(iv3)
@@ -177,48 +181,27 @@ data_ymc <- data_ymc_0 %>%
          !is.na(country),
          !is.na(year))
 
-data_ymc <- data_ymc %>%
-  mutate(
-    frosts = pmin(1, frost1 + frost2),
-    diseases = pmin(1, disease1 + disease2),
-    events = pmin(1, frost1 + frost2 + disease1 + disease2 + droughts)
-    )
-
-data_ymc <- data_ymc %>%
-  group_by(country) %>%
-  mutate(
-    umbral_gdd = quantile(gdd_ymc, 0.1, na.rm = TRUE),
-    umbral_hdd = quantile(hdd_ymc, 0.9, na.rm = TRUE),
-    umbral_fdd = quantile(fdd_ymc, 0.9, na.rm = TRUE),
-
-    # Identificar eventos que superan el umbral
-    hdd_event = if_else(hdd_ymc > umbral_hdd, 1L, 0L),
-    fdd_event = if_else(fdd_ymc > umbral_fdd, 1L, 0L),
-    gdd_event = if_else(gdd_ymc < umbral_gdd, 1L, 0L),
-
-    # Usar slide_index_dbl para obtener valores numéricos directamente
-    hdd_ymc_id = slide_index_dbl(hdd_event, date, ~any(.x == 1), .after = 23, .complete = TRUE),
-    fdd_ymc_id = slide_index_dbl(fdd_event, date, ~any(.x == 1), .after = 23, .complete = TRUE),
-    gdd_ymc_id = slide_index_dbl(gdd_event, date, ~any(.x == 1), .after = 23, .complete = TRUE)
-  ) %>%
-  ungroup()
-
-data_ymc <- data_ymc %>%
-  filter(!is.na(hdd_ymc_id),
-         !is.na(fdd_ymc_id),
-         !is.na(gdd_ymc_id))
-
 data_ymc <- pdata.frame(
   data_ymc,
   index = c("country", "date")
 )
 
+data_ymc <- data_ymc %>%
+  arrange(country, date) %>%
+  group_by(country) %>%
+  mutate(
+    lag_gdd_ym_12 = lag(gdd_ym, 36),
+    lag_hdd_ym_12 = lag(hdd_ym, 36),
+    lag_fdd_ym_12 = lag(fdd_ym, 36)
+  ) %>%
+  ungroup()
+
 model_mc_1 <- feols(
-  mr_ymc3 ~ ica_lapse + 
+  mr_ymc3 ~
     farm_prices_ymc + fert_ym +
-    frosts +
-    hdd_ym + fdd_ym | year + country,
-    #hdd_ymc + fdd_ymc | year + country,
+    gdd_ym + hdd_ym + fdd_ym | year + country,
+    #lag_gdd_ym_12 + lag_hdd_ym_12 + lag_fdd_ym_12| year + country,
+    #hdd_ymc + fdd_ymc 
     #gdd_ymc_id | year + country,
   data = data_ymc,
   cluster = ~country
@@ -232,10 +215,10 @@ modelsummary(model_mc_1,
              title = "Estimación de Costos Marginales",
              output = "latex",
              coef_rename = c(
-               "ica_lapse" = "Dummy ICA",
+#               "ica_lapse" = "Dummy ICA",
                "farm_prices_ymc" = "Precio a productor", 
                "fert_ym" = "Precio fertilizantes",
-               "frosts" = "Eventos de helada",
+               #"frosts" = "Eventos de helada",
                "hdd_ymc" = "Grados-día calor (HDD)",
                "fdd_ymc" = "Grados-día frío (FDD)"
              ),
@@ -272,10 +255,10 @@ coeff_mc_1 <- coef(model_mc_1)
 # ------------------------------------------------------------------------------
 # Define key functions for counterfactual analysis
  # 1. Price from demand function (inverse demand)
- price_from_demand <- function(Q_total, coef_demand, tea_price, import_gdp, ica_lapse) {
+ price_from_demand <- function(Q_total, coef_demand, tea_price, import_gdp) {
    price <- coef_demand["(Intercept)"] + 
      coef_demand["qe_ym"] * Q_total + 
-     coef_demand["ica_lapse"] * ica_lapse +
+ #    coef_demand["ica_lapse"] * ica_lapse +
      coef_demand["importGDP_ym"] * import_gdp + 
      coef_demand["teaPrices_ym"] * tea_price
    return(price)
@@ -290,8 +273,8 @@ coeff_mc_1 <- coef(model_mc_1)
    # Market price given leader's quantity
    price <- price_from_demand(Q_leaders_total, coef_demand, 
                               data_market$teaPrices_ym[1], 
-                              data_market$importGDP_ym[1],
-                              data_market$ica_lapse[1])
+                              data_market$importGDP_ym[1])#,
+                              #data_market$ica_lapse[1])
    
    # Reaction
    q_follower <- (price - followers$mc_ymc_hat) / ((n_followers + 1) * b)
@@ -320,8 +303,8 @@ coeff_mc_1 <- coef(model_mc_1)
    Q_total <- Q_leaders_total + Q_followers_total
    price <- price_from_demand(Q_total, coef_demand, 
                               data_market$teaPrices_ym[1], 
-                              data_market$importGDP_ym[1],
-                              data_market$ica_lapse[1])
+                              data_market$importGDP_ym[1])#,
+                              #data_market$ica_lapse[1])
    
    # Calcula FOC
    mr_leaders <- price - b * Q_leaders + b * Q_leaders * (n_followers / (n_followers + 1)) - leaders$mc_ymc_hat
@@ -423,8 +406,8 @@ coeff_mc_1 <- coef(model_mc_1)
    
    price <- price_from_demand(Q_total, coef_demand, 
                               unique(data_market$teaPrices_ym), 
-                              unique(data_market$importGDP_ym),
-                              unique(data_market$ica_lapse))
+                              unique(data_market$importGDP_ym))#,
+                              #unique(data_market$ica_lapse))
    
    # Beneficio por país
    profits <- data_market %>%
@@ -457,8 +440,8 @@ coeff_mc_1 <- coef(model_mc_1)
    # Consumer surplus
    price_intercept <- price_from_demand(0, coef_demand, 
                                         unique(data_market$teaPrices_ym), 
-                                        unique(data_market$importGDP_ym),
-                                        unique(data_market$ica_lapse))
+                                        unique(data_market$importGDP_ym))#,
+                                        #unique(data_market$ica_lapse))
    consumer_surplus <- ((0.5 * (price_intercept - price) * Q_total) * (60 * 2.20462)) / 100 # Ajuste por unidad de medida
    
    # Results
@@ -509,7 +492,7 @@ cf1_processed <- map(market_list, function(market) {
   market$mc_ymc_hat <- predict(model_mc_1, 
                                newdata = market %>% mutate(
                                  #disease1 = 0,
-                                 frosts = 0,
+                                 #frosts = 0,
                                  hdd_ym = 0,
                                  fdd_ym = 0
                                  ),
