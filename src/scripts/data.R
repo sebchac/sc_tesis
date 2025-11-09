@@ -1,7 +1,7 @@
 #----------
 # [0] Preliminary
 #----------
-
+{
 # Packages
 
 library(readxl)
@@ -12,6 +12,7 @@ library(ggplot2)
 library(readr)
 library(stringr)
 library(haven)
+library(zoo)
 
 # Input files
 
@@ -28,12 +29,9 @@ filename_isimip_y  <- "df_clima_y.rds"
 filename_isimip_ym <- "df_clima_ym.rds"
 filename_cpi       <- "CPIAUCSL.csv"
 filename_oni       <- "oni.xlsx"
-
 filename_tas_ymc   <- "df_tas_monthly.rds"
 filename_pr_ymc    <- "df_pr_monthly.rds"
-
 filename_tas_gdd   <- "df_tas_daily_indicators_2.rds"
-
 filename_gdd       <- "df_monthly_gdd.rds"
 
 main_dir <- "/Users/sebastianchacon/Desktop/sc_tesis/src/original_data/"
@@ -51,12 +49,9 @@ filepath_isimip_ym <- paste(main_dir, filename_isimip_ym, sep = "")
 filepath_isimip_y  <- paste(main_dir, filename_isimip_y, sep = "")
 filepath_cpi       <- paste(main_dir, filename_cpi, sep = "")
 filepath_oni       <- paste(main_dir, filename_oni, sep = "")
-
 filepath_tas_ymc   <- paste(main_dir, filename_tas_ymc, sep = "")
 filepath_pr_ymc    <- paste(main_dir, filename_pr_ymc, sep = "")
-
 filepath_tas_gdd   <- paste(main_dir, filename_tas_gdd, sep = "")
-
 filepath_gdd       <- paste(main_dir, filename_gdd, sep = "")
 
 # Output files
@@ -92,11 +87,11 @@ create_month <- function(db) {
   
   return(db)
 }
-
+}
 #-------------------------------------------------------------------------------
 ################################### [1] Variables ##############################
 #-------------------------------------------------------------------------------
-
+{
 #-------------------------------------------------------------------------------
 # [1.0] CPI
 #-------------------------------------------------------------------------------
@@ -189,8 +184,6 @@ full_prices_annual <- full_prices %>%
   group_by(year) %>%
   mutate(price_y = mean(price_ym, na.rm = TRUE)) %>%
   distinct(year, price_y)
-
-
 #-------------------------------------------------------------------------------
 # [1.3] Exports (1000 60 kg bags) (1960-2023)
 #-------------------------------------------------------------------------------
@@ -363,29 +356,6 @@ tea <- tea %>%
 #-------------------------------------------------------------------------------
 # [1.8] ISIMIP Data
 #-------------------------------------------------------------------------------
-
-# data_clima_ym <- readRDS(filepath_isimip_ym)
-# data_clima_y <- readRDS(filepath_isimip_y)
-# 
-# data_clima_y <- data_clima_y %>%
-#   group_by(year, country) %>%
-#   summarise(across(where(is.numeric), \(x) mean(x, na.rm = TRUE)), .groups = "drop")
-# 
-# umbral_cf1_min <- quantile(data_clima_ym$tas_ymc_shock_h24_p24, probs = 0.05, na.rm = TRUE)
-# umbral_cf1_max <- quantile(data_clima_ym$tas_ymc_shock_h24_p24, probs = 0.95, na.rm = TRUE)
-# umbral_cf2_min <- quantile(data_clima_ym$tas_ymc_shock_h24_p24, probs = 0.1, na.rm = TRUE)
-# umbral_cf2_max <- quantile(data_clima_ym$tas_ymc_shock_h24_p24, probs = 0.9, na.rm = TRUE)
-# umbral_min <- quantile(data_clima_ym$tas_ymc_shock_h24_p24, probs = 0, na.rm = TRUE)
-# umbral_max <- quantile(data_clima_ym$tas_ymc_shock_h24_p24, probs = 1, na.rm = TRUE)
-# 
-# data_clima_ym <- data_clima_ym %>%
-#   mutate(tas_cf1 = if_else(tas_ymc_shock_h24_p24 < umbral_cf1_min, umbral_cf1_min - 0.5*(umbral_cf1_min - tas_ymc_shock_h24_p24),
-#                            if_else(tas_ymc_shock_h24_p24 > umbral_cf1_max, umbral_cf1_max + 0.5*(tas_ymc_shock_h24_p24 - umbral_cf1_max), tas_ymc_shock_h24_p24)),
-#          tas_cf2 = if_else(tas_ymc_shock_h24_p24 < umbral_cf2_min, umbral_cf2_min,
-#                            if_else(tas_ymc_shock_h24_p24 > umbral_cf2_max, umbral_cf2_max, tas_ymc_shock_h24_p24)),
-#          tas_cf3 = tas_ymc_shock_h24_p24 + 1,
-#          tas_cf4 = tas_ymc_shock_h24_p24 + 2)
-
 data_tas_ymc <- readRDS(filepath_tas_ymc)
 data_pr_ymc <- readRDS(filepath_pr_ymc)
 
@@ -406,27 +376,6 @@ data_tas_ymc <- data_tas_ymc %>%
 #-------------------------------------------------------------------------------
 # [1.9] GDD
 #-------------------------------------------------------------------------------
-
-#data_tas_gdd <- readRDS(filepath_tas_gdd)
-
-# We sum both Congos and round
-#data_tas_gdd <- data_tas_gdd %>%
-#  group_by(year, month_num, country) %>%
-#  summarise(across(where(is.numeric), ~ mean(., na.rm = TRUE)), .groups = 'drop') %>%
-#  ungroup() %>%
-#  group_by(country, year) %>%
-#  mutate(
-#    gdd_yc = sum(gdd_ymc, na.rm = TRUE),
-#    hdd_yc = sum(hdd_ymc, na.rm = TRUE),
-#    fdd_yc = sum(fdd_ymc, na.rm = TRUE)
-#         ) %>%
-#  ungroup()
-  # mutate(
-  #   gdd_ymc = round(gdd_ymc, 0),
-  #   hdd_ymc = round(hdd_ymc, 0),
-  #   fdd_ymc = round(fdd_ymc, 0)
-  # )
-
 gdd_files <- list.files("/Users/sebastianchacon/Desktop/ObsData/ProcessedData/GDD/",
                         pattern = "\\.rds$", full.names = TRUE)
 
@@ -559,64 +508,98 @@ supplyShocks$year = as.integer(supplyShocks$year)
 supplyShocks$date  = NULL
 supplyShocks$trend = NULL
 
-
+}
 #-------------------------------------------------------------------------------
 ################################### [2] DATA ###################################
 #-------------------------------------------------------------------------------
-
 # Merge 1. Exports and imports
-
-merge1 <- full_join(full_export, full_import, by = c("year", "month_num", "country"))
-merge1 <- replace(merge1, is.na(merge1), 0)
+  merge1 <- full_join(full_export, full_import, by = c("year", "month_num", "country"))
+  merge1 <- replace(merge1, is.na(merge1), 0)
 
 # Merge 2. Prices and costs
-merge2 <- left_join(merge1, full_prices, by = c("year", "month_num"))
-merge2 <- left_join(merge2, full_farm_prices, by = c("year", "month_num", "country"))
-merge2 <- left_join(merge2, full_prices_annual, by = c("year"))
+  merge2 <- left_join(merge1, full_prices, by = c("year", "month_num"))
+  merge2 <- left_join(merge2, full_farm_prices, by = c("year", "month_num", "country"))
+  merge2 <- left_join(merge2, full_prices_annual, by = c("year"))
 
 # Merge 3. Other variables
-merge2 <- left_join(merge2, supplyShocks, by = c("year", "month_num"))
-merge2 <- left_join(merge2, tea, by = c( "year", "month_num"))
-merge2 <- left_join(merge2, gdp, by = c("year"))
-merge2 <- left_join(merge2, gdp_yc, by = c("year", "country"))
-merge2 <- left_join(merge2, tea_annual, by = c("year"))
-merge2 <- left_join(merge2, fertilizers_y, by = c("year"))
-merge2 <- left_join(merge2, data_tas_ymc, by = c("year", "month_num", "country"))
-#merge2 <- left_join(merge2, data_tas_gdd, by = c("year", "month_num", "country"))
-merge2 <- left_join(merge2, gdd_monthly, by = c("year", "month_num", "country"))
-# merge2 <- left_join(merge2, data_clima_y, by = c("year", "country"))
-# merge2 <- left_join(merge2, data_clima_ym, by = c("year", "month_num","country"))
-merge2 <- left_join(merge2, oni_events, by = c("year", "month_num"))
-merge2 <- left_join(merge2, fertilizers, by = c("year", "month_num"))
-merge2 <- merge2 %>%
-  mutate(date = as.Date(paste(year, month_num, "01", sep = "-")))
-merge2 <- merge2 %>%
-  group_by(year, month_num) %>%
-  mutate(farm_prices_ym = sum(farm_prices_ymc * share_ymce, na.rm = TRUE),
-         tas_ym = sum(tas_ymc * share_ymce, na.rm = TRUE),
-         gdd_ym = sum(gdd_ymc * share_ymce, na.rm = TRUE),
-         hdd_ym = sum(hdd_ymc * share_ymce, na.rm = TRUE),
-         fdd_ym = sum(fdd_ymc * share_ymce, na.rm = TRUE)) %>%
-  ungroup() %>%
-  group_by(year) %>%
-  mutate(
-    farm_prices_y = sum(farm_prices_yc * share_ymce, na.rm = TRUE),
-    farm_prices_y_mean = mean(farm_prices_yc, na.rm = TRUE),
-    tas_y = sum(tas_ym * share_ymce, na.rm = TRUE),
-    tas_y_mean = mean(tas_ymc, na.rm = TRUE),
-    gdd_y = sum(gdd_ym),
-    gdd_y_mean = mean(gdd_ymc, na.rm = TRUE),
-    hdd_y = sum(hdd_ym),
-    hdd_y_mean = mean(hdd_ymc, na.rm = TRUE),
-    fdd_y = sum(fdd_ym),
-    fdd_y_mean = mean(fdd_ymc, na.rm = TRUE)) %>%
-  group_by(year, country) %>%
-  mutate(
-    tas_yc = mean(tas_ymc),
-    gdd_yc = sum(gdd_ymc),
-    hdd_yc = sum(hdd_ymc),
-    fdd_yc = sum(fdd_ymc)) %>%
-  ungroup()
+  merge2 <- left_join(merge2, supplyShocks, by = c("year", "month_num"))
+  merge2 <- left_join(merge2, tea, by = c( "year", "month_num"))
+  merge2 <- left_join(merge2, gdp, by = c("year"))
+  merge2 <- left_join(merge2, gdp_yc, by = c("year", "country"))
+  merge2 <- left_join(merge2, tea_annual, by = c("year"))
+  merge2 <- left_join(merge2, fertilizers_y, by = c("year"))
+  merge2 <- left_join(merge2, data_tas_ymc, by = c("year", "month_num", "country"))
+  #merge2 <- left_join(merge2, data_tas_gdd, by = c("year", "month_num", "country"))
+  merge2 <- left_join(merge2, gdd_monthly, by = c("year", "month_num", "country"))
+  # merge2 <- left_join(merge2, data_clima_y, by = c("year", "country"))
+  # merge2 <- left_join(merge2, data_clima_ym, by = c("year", "month_num","country"))
+  merge2 <- left_join(merge2, oni_events, by = c("year", "month_num"))
+  merge2 <- left_join(merge2, fertilizers, by = c("year", "month_num"))
+  merge2 <- merge2 %>%
+    mutate(date = as.Date(paste(year, month_num, "01", sep = "-")))
+  merge2 <- merge2 %>%
+    group_by(year, month_num) %>%
+    mutate(
+      farm_prices_ym = sum(farm_prices_ymc * share_ymce, na.rm = TRUE),
+      tas_ym = sum(tas_ymc * share_ymce, na.rm = TRUE),
+      gdd_ym = sum(gdd_ymc * share_ymce, na.rm = TRUE),
+      hdd_ym = sum(hdd_ymc * share_ymce, na.rm = TRUE),
+      fdd_ym = sum(fdd_ymc * share_ymce, na.rm = TRUE)) %>%
+    ungroup() %>%
+    group_by(year) %>%
+    mutate(
+      farm_prices_y = sum(farm_prices_yc * share_ymce, na.rm = TRUE),
+      farm_prices_y_mean = mean(farm_prices_yc, na.rm = TRUE),
+      tas_y = sum(tas_ym * share_ymce, na.rm = TRUE),
+      tas_y_mean = mean(tas_ymc, na.rm = TRUE),
+      gdd_y = sum(gdd_ym),
+      gdd_y_mean = mean(gdd_ymc, na.rm = TRUE),
+      hdd_y = sum(hdd_ym),
+      hdd_y_mean = mean(hdd_ymc, na.rm = TRUE),
+      fdd_y = sum(fdd_ym),
+      fdd_y_mean = mean(fdd_ymc, na.rm = TRUE)) %>%
+    group_by(year, country) %>%
+    mutate(
+      tas_yc = mean(tas_ymc),
+      gdd_yc = sum(gdd_ymc),
+      hdd_yc = sum(hdd_ymc),
+      fdd_yc = sum(fdd_ymc)) %>%
+    ungroup()
+
+# 3-year variables
+  merge2 <- merge2 %>%
+    arrange(country, year, month_num) %>%
+    group_by(country) %>%
+    ungroup() %>%
+    mutate(
+      3year = paste0(
+        year - ((year - 1) %% 3),
+        "-",
+        year - ((year - 1) %% 3) + 2
+      ),
+      3year_id = as.integer((year - 1) / 3) + 1
+    ) %>%
+    group_by(country, 3year) %>%
+    mutate(
+      qe_3yc_mean = mean(qe_yc, na.rm = TRUE),
+      tas_3yc_mean = mean(tas_yc, na.rm = TRUE),
+      gdd_3yc = sum(gdd_yc, na.rm = TRUE),
+      hdd_3yc = sum(hdd_yc, na.rm = TRUE),
+      fdd_3yc = sum(fdd_yc, na.rm = TRUE),
+      farm_prices_3yc = mean(farm_prices_yc, na.rm = TRUE),
+      share_3yce = mean(share_yce, na.rm = TRUE)
+    ) %>%
+    ungroup() %>%
+    group_by(3year) %>%
+    mutate(
+      price_3y = mean(price_y, na.rm = TRUE),
+      qe_3y = mean(qe_y, na.rm = TRUE),
+      importGDP_3y = mean(importGDP_y, na.rm = TRUE),
+      teaPrices_3y = mean(teaPrices_y, na.rm = TRUE),
+      gdd_3y = sum(gdd_3yc * share_3yce, na.rm = TRUE),
+      hdd_3y = sum(hdd_3yc * share_3yce, na.rm = TRUE),
+      fdd_3y = sum(fdd_3yc * share_3yce, na.rm = TRUE)
+    )
 
 # IDs per country
 
