@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 # [0] Preliminary
 # ------------------------------------------------------------------------------
-
+{
 # Packages
 library(dplyr)
 library(tidyr)
@@ -37,22 +37,25 @@ results_ym <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/results_
 results_ymc <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/results_ymc.rds")
 summary_ym <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/summary_ym.rds")
 summary_ymc <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/summary_ymc.rds")
-
+}
 #-------------------------------------------------------------------------------
 # Exportaciones desde 1990 hasta 2019
 #-------------------------------------------------------------------------------
 aux1 <- data %>%
   filter(dummy_y == 1) %>%
   select(date, qe_y) %>%
-  mutate(date = as.Date(date),
-         year = year(date)) %>%
+  mutate(
+    date = as.Date(date),
+    year = year(date)) %>%
   distinct(year, qe_y) %>%
   drop_na()
 
-plot1 <- ggplot(aux1 %>%
-                  filter(year >= 1990)) +
-  geom_line(aes(x = year, y = qe_y), 
-            linewidth = 0.7, alpha = 1) +
+plot1 <- ggplot(
+  aux1 %>% filter(year >= 1990)) +
+  geom_line(
+    aes(x = year, y = qe_y),
+    linewidth = 0.7, alpha = 1
+  ) +
   labs(
     title = NULL,
     x = NULL,
@@ -72,13 +75,13 @@ plot1 <- ggplot(aux1 %>%
     legend.margin = margin(t = -5, b = 0)
   )
 
-ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/informe/plot1.png", 
-       plot = plot1, 
-       width = 7,
-       height = 5,
-       units = "cm",
-       dpi = 600,
-       bg = "white")
+ggsave("/Users/sebastianchacon/Desktop/sc_tesis/paper/figures/plot1.png",
+      plot = plot1,
+      width = 7,
+      height = 5,
+      units = "cm",
+      dpi = 600,
+      bg = "white")
 
 #-------------------------------------------------------------------------------
 # Precio ICIP desde 1990 hasta 2019
@@ -90,10 +93,12 @@ aux2 <- data %>%
   distinct(date, price_ym) %>%
   drop_na()
 
-plot2 <- ggplot(aux2 %>%
-                  filter(year(date) >= 1990)) +
-  geom_line(aes(x = date, y = price_ym), 
-            linewidth = 0.7, alpha = 1) +
+plot2 <- ggplot(
+  aux2 %>%
+    filter(year(date) >= 1990)) +
+  geom_line(aes(x = date, y = price_ym),
+            linewidth = 0.7, alpha = 1
+  ) +
   labs(
     title = NULL,
     x = NULL,
@@ -113,13 +118,13 @@ plot2 <- ggplot(aux2 %>%
     legend.margin = margin(t = -5, b = 0)
   )
 
-ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/informe/plot2.png", 
-       plot = plot2, 
-       width = 7,
-       height = 5,
-       units = "cm",
-       dpi = 600,
-       bg = "white")
+ggsave("/Users/sebastianchacon/Desktop/sc_tesis/paper/figures/plot2.png",
+      plot = plot2,
+      width = 7,
+      height = 5,
+      units = "cm",
+      dpi = 600,
+      bg = "white")
 
 #-------------------------------------------------------------------------------
 # Boxplot GDP Exportadores e importadores
@@ -166,27 +171,27 @@ plot3 <- ggplot(data_yc, aes(factor(year), y = rgdpna_yc, fill = type)) +
     na.value = "red"
   )
 
-ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/informe/plot3.png", 
-       plot = plot3, 
-       width = 18,
-       height = 8,
-       units = "cm",
-       dpi = 600,
-       bg = "white")
+ggsave("/Users/sebastianchacon/Desktop/sc_tesis/paper/figures/plot3.png", 
+      plot = plot3, 
+      width = 18,
+      height = 8,
+      units = "cm",
+      dpi = 600,
+      bg = "white")
 
 #-------------------------------------------------------------------------------
-# Evolución de importaciones
+# Evolución de importaciones 2002 hasta 2019
 #-------------------------------------------------------------------------------
 data_y <- data %>%
   filter(dummy_yc == 1, year >= 2002, year <= 2019) %>%
   group_by(year) %>%
   summarise(
-    qi_y = sum(qi_yc, na.rm = T),
+    qi_y = sum(qi_yc, na.rm = TRUE),
     .groups = "drop"
   )
-  
+
 plot1 <- ggplot(data_y) +
-  geom_line(aes(x = year, y = qi_y), 
+  geom_line(aes(x = year, y = qi_y),
             linewidth = 0.7, alpha = 1) +
   labs(
     title = NULL,
@@ -207,13 +212,13 @@ plot1 <- ggplot(data_y) +
     legend.margin = margin(t = -5, b = 0)
   )
 
-ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/informe/plot1.png", 
-       plot = plot1, 
-       width = 7,
-       height = 5,
-       units = "cm",
-       dpi = 600,
-       bg = "white")
+ggsave("/Users/sebastianchacon/Desktop/sc_tesis/paper/figures/plot4.png", 
+      plot = plot1, 
+      width = 7,
+      height = 5,
+      units = "cm",
+      dpi = 600,
+      bg = "white")
 
 #-------------------------------------------------------------------------------
 # [] Líderes y seguidores - Factual

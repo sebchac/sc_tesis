@@ -823,4 +823,3 @@ merge2 <- merge2 %>%
   ungroup() 
 
 saveRDS(merge2, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data.rds")
-
