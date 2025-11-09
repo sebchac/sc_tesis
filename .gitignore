@@ -16,3 +16,7 @@
 # Directorios con datos
 src/original_data/
 bld/out/data/
+
+# Scripts específicos
+src/scripts/estimation_y_aux.R
+src/scripts/stats_aux.R

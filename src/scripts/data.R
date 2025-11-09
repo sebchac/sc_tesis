@@ -546,60 +546,25 @@ supplyShocks$trend = NULL
       hdd_ym = sum(hdd_ymc * share_ymce, na.rm = TRUE),
       fdd_ym = sum(fdd_ymc * share_ymce, na.rm = TRUE)) %>%
     ungroup() %>%
-    group_by(year) %>%
-    mutate(
-      farm_prices_y = sum(farm_prices_yc * share_ymce, na.rm = TRUE),
-      farm_prices_y_mean = mean(farm_prices_yc, na.rm = TRUE),
-      tas_y = sum(tas_ym * share_ymce, na.rm = TRUE),
-      tas_y_mean = mean(tas_ymc, na.rm = TRUE),
-      gdd_y = sum(gdd_ym),
-      gdd_y_mean = mean(gdd_ymc, na.rm = TRUE),
-      hdd_y = sum(hdd_ym),
-      hdd_y_mean = mean(hdd_ymc, na.rm = TRUE),
-      fdd_y = sum(fdd_ym),
-      fdd_y_mean = mean(fdd_ymc, na.rm = TRUE)) %>%
     group_by(year, country) %>%
     mutate(
       tas_yc = mean(tas_ymc),
       gdd_yc = sum(gdd_ymc),
       hdd_yc = sum(hdd_ymc),
       fdd_yc = sum(fdd_ymc)) %>%
-    ungroup()
-
-# 3-year variables
-  merge2 <- merge2 %>%
-    arrange(country, year, month_num) %>%
-    group_by(country) %>%
     ungroup() %>%
+    group_by(year) %>%
     mutate(
-      3year = paste0(
-        year - ((year - 1) %% 3),
-        "-",
-        year - ((year - 1) %% 3) + 2
-      ),
-      3year_id = as.integer((year - 1) / 3) + 1
-    ) %>%
-    group_by(country, 3year) %>%
-    mutate(
-      qe_3yc_mean = mean(qe_yc, na.rm = TRUE),
-      tas_3yc_mean = mean(tas_yc, na.rm = TRUE),
-      gdd_3yc = sum(gdd_yc, na.rm = TRUE),
-      hdd_3yc = sum(hdd_yc, na.rm = TRUE),
-      fdd_3yc = sum(fdd_yc, na.rm = TRUE),
-      farm_prices_3yc = mean(farm_prices_yc, na.rm = TRUE),
-      share_3yce = mean(share_yce, na.rm = TRUE)
-    ) %>%
-    ungroup() %>%
-    group_by(3year) %>%
-    mutate(
-      price_3y = mean(price_y, na.rm = TRUE),
-      qe_3y = mean(qe_y, na.rm = TRUE),
-      importGDP_3y = mean(importGDP_y, na.rm = TRUE),
-      teaPrices_3y = mean(teaPrices_y, na.rm = TRUE),
-      gdd_3y = sum(gdd_3yc * share_3yce, na.rm = TRUE),
-      hdd_3y = sum(hdd_3yc * share_3yce, na.rm = TRUE),
-      fdd_3y = sum(fdd_3yc * share_3yce, na.rm = TRUE)
-    )
+      farm_prices_y = sum(farm_prices_yc * share_yce, na.rm = TRUE),
+      farm_prices_y_mean = mean(farm_prices_yc, na.rm = TRUE),
+      tas_y = sum(tas_yc * share_yce, na.rm = TRUE),
+      tas_y_mean = mean(tas_yc, na.rm = TRUE),
+      gdd_y = sum(gdd_yc * share_yce),
+      gdd_y_mean = mean(gdd_yc, na.rm = TRUE),
+      hdd_y = sum(hdd_yc * share_yce),
+      hdd_y_mean = mean(hdd_yc, na.rm = TRUE),
+      fdd_y = sum(fdd_yc * share_yce),
+      fdd_y_mean = mean(fdd_yc, na.rm = TRUE))
 
 # IDs per country
 

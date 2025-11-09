@@ -25,8 +25,8 @@ library(modelsummary)
 # Data
   data <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data.rds")
 
-  data <- data %>%
-    filter(year >= 1991)
+  #data <- data %>%
+  #  filter(year >= 1990)
 # ------------------------------------------------------------------------------
 # [1] Demand estimation
 # ------------------------------------------------------------------------------
@@ -96,12 +96,12 @@ library(modelsummary)
     demand_data$edemand_iv2 <- (1/coeff_iv2["qe_ym"])*(demand_data$price_ym/demand_data$qe_ym)
     mean_elast_iv2 <- mean(demand_data$edemand_iv2, na.rm = TRUE)
 
-  iv3 <- ivreg(price_ym ~ qe_ym  + importGDP_ym + teaPrices_ym |
-          farm_prices_ym + 
-          #gdd_ym +
+  iv3 <- ivreg(price_ym ~ qe_ym  + importGDP_ym + teaPrices_ym + ica_lapse|
+          #farm_prices_ym + 
+          gdd_ym +
           hdd_ym + 
           #fdd_ym +
-          importGDP_ym + teaPrices_ym,
+          importGDP_ym + teaPrices_ym + ica_lapse,
           data = demand_data)
   summary(iv3)
   # Store coefficients
@@ -172,49 +172,69 @@ stargazer(ols1, ols2, ols3, iv1, iv2, iv3,
     data_ymc,
     index = c("country", "date")
   )
-
-  data_ymc <- data_ymc %>%
-    arrange(country, date) %>%
-    group_by(country) %>%
-    mutate(
-      lag_gdd_ym_12 = lag(gdd_ym, 36),
-      lag_hdd_ym_12 = lag(hdd_ym, 36),
-      lag_fdd_ym_12 = lag(fdd_ym, 36)
-    ) %>%
-    ungroup()
-
-  model_mc_1 <- feols(
+  
+# [3.1.] Only one stage
+  mc_fe <- feols(
     mr_ymc3 ~
-      farm_prices_ymc + fert_ym +
-      gdd_ym + hdd_ym + fdd_ym | year + country,
-      #lag_gdd_ym_12 + lag_hdd_ym_12 + lag_fdd_ym_12| year + country,
-      #hdd_ymc + fdd_ymc 
-      #gdd_ymc_id | year + country,
-      data = data_ymc,
-      cluster = ~country
-    )
+      farm_prices_ymc +
+      fert_ym +
+      hdd_ym + 
+      fdd_ym | year + country,
+    data = data_ymc,
+    cluster = ~country
+  )
+  
+  summary(mc_fe)
+  
+# [3.2.] Two stages 
 
-  summary(model_mc_1)
+  mc_iv <- ivreg(
+    mr_ymc3 ~ 
+      farm_prices_ymc  + 
+      fert_ym |
+      fert_ym + 
+      hdd_ym +
+      fdd_ym +
+      factor(country) + 
+      factor(year),
+    data = data_ymc)
+  
+  summary(mc_iv, diagnostics = TRUE)
+  
+  mc_iv_1s <- lm(
+    farm_prices_ymc ~ 
+      hdd_ym + 
+      fdd_ym + 
+      fert_ym +
+      factor(country) + 
+      factor(year),
+    data = data_ymc)
+  
+  summary(mc_iv_1s, diagnostics = TRUE)
 
-  model_mc_1 <- summary(model_mc_1, se = "cluster")
-
-  modelsummary(model_mc_1,
-      title = "Estimación de Costos Marginales",
-      output = "latex",
-      coef_rename = c(
-        "farm_prices_ymc" = "Precio a productor", 
-        "fert_ym" = "Precio fertilizantes",
+  #modelsummary(model_mc_1,
+  #    title = "Estimación de Costos Marginales",
+  #    output = "latex",
+  #    coef_rename = c(
+  #      "farm_prices_ymc" = "Precio a productor", 
+  #      "fert_ym" = "Precio fertilizantes",
         #"frosts" = "Eventos de helada",
-        "hdd_ymc" = "Grados-día calor (HDD)",
-        "fdd_ymc" = "Grados-día frío (FDD)"
-        ),
-      stars = TRUE,
-      notes = c("Errores estándar clusterizados por país.",
-                "Efectos fijos de año y país incluidos."))
-  # Store coefficients
-    coeff_mc_1 <- coef(model_mc_1)
-  # Predict
-    data_ymc$mc_ymc_hat <- predict(model_mc_1)
+  #      "hdd_ymc" = "Grados-día calor (HDD)",
+  #      "fdd_ymc" = "Grados-día frío (FDD)"
+  #      ),
+  #    stars = TRUE,
+  #    notes = c("Errores estándar clusterizados por país.",
+  #              "Efectos fijos de año y país incluidos."))
+  
+  # Store coefficients FE
+    coeff_mc_1 <- coef(mc_fe)
+  # Predict FE
+    data_ymc$mc_ymc_hat_1 <- predict(mc_fe)
+    
+  # Store coefficients IV 
+    coeff_mc_2 <- coef(mc_iv)
+  # Predict IV
+    data_ymc$mc_ymc_hat_2 <- predict(mc_iv)  
 
 
 saveRDS(data_ymc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_cf_ym.rds")

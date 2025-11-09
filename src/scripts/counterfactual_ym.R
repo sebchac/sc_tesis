@@ -23,10 +23,7 @@ library(nleqslv)
 library(modelsummary)
 
 # Data
-  data <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data.rds")
-
-  data <- data %>%
-    filter(year >= 1991)
+  data <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_cf_ym.rds")
 
 # ------------------------------------------------------------------------------
 # [4] Counterfactual Analysis (Stackelberg Model)
@@ -34,11 +31,12 @@ library(modelsummary)
 {
 # Define key functions for counterfactual analysis
   # 1. Price from demand function (inverse demand)
-    price_from_demand <- function(Q_total, coef_demand, tea_price, import_gdp) {
+    price_from_demand <- function(Q_total, coef_demand, tea_price, import_gdp, ica_lapse) {
       price <- coef_demand["(Intercept)"] + 
       coef_demand["qe_ym"] * Q_total + 
       coef_demand["importGDP_ym"] * import_gdp + 
-      coef_demand["teaPrices_ym"] * tea_price
+      coef_demand["teaPrices_ym"] * tea_price +
+      coef_demand["ica_lapse"] * ica_lapse
       return(price)
       }
   # 2. Follower reaction function (Cournot)
@@ -49,16 +47,16 @@ library(modelsummary)
     # Market price given leader's quantity
       price <- price_from_demand(Q_leaders_total, coef_demand, 
                             data_market$teaPrices_ym[1], 
-                            data_market$importGDP_ym[1])#,
-                            #data_market$ica_lapse[1])
+                            data_market$importGDP_ym[1],
+                            data_market$ica_lapse[1])
     # Reaction
-      q_follower <- (price - followers$mc_ymc_hat) / ((n_followers + 1) * b)
+      q_follower <- (price - followers$mc_ymc_hat_1) / ((n_followers + 1) * b)
       Q_followers_total <- sum(q_follower)
       return(data.frame(
         id = followers$id, 
         q_follower = q_follower, 
         Q_followers_total = Q_followers_total, 
-        mc_hat = followers$mc_ymc_hat))
+        mc_hat = followers$mc_ymc_hat_1))
         }
   # 3. Leader optimization function
     leader_optim <- function(Q_leaders, data_market, coef_demand) {
@@ -75,13 +73,14 @@ library(modelsummary)
       price <- price_from_demand(
         Q_total, coef_demand, 
         data_market$teaPrices_ym[1], 
-        data_market$importGDP_ym[1])
+        data_market$importGDP_ym[1],
+        data_market$ica_lapse[1])
     # Calcula FOC
-      mr_leaders <- price - b * Q_leaders + b * Q_leaders * (n_followers / (n_followers + 1)) - leaders$mc_ymc_hat
+      mr_leaders <- price - b * Q_leaders + b * Q_leaders * (n_followers / (n_followers + 1)) - leaders$mc_ymc_hat_1
     return(data.frame(
       q_leader = Q_leaders,
       id = leaders$id,
-      mc_hat = leaders$mc_ymc_hat,
+      mc_hat = leaders$mc_ymc_hat_1,
       price = price,
       q_total = Q_total,
       foc_leader = mr_leaders
@@ -153,7 +152,8 @@ library(modelsummary)
       price <- price_from_demand(
         Q_total, coef_demand, 
         unique(data_market$teaPrices_ym), 
-        unique(data_market$importGDP_ym))
+        unique(data_market$importGDP_ym),
+        unique(data_market$ica_lapse))
     # Beneficio por país
       profits <- data_market %>%
         left_join(
@@ -167,12 +167,12 @@ library(modelsummary)
           price = price,
           quantity = ifelse(is.na(opt_quantity), 0, opt_quantity),
           revenue = (quantity * price * 60 * 2.20462) / 100, # Ajuste por unidad de medida (MM USD)
-          profit = (quantity * (price - mc_ymc_hat) * (60 * 2.20462)) / 100, # Ajuste por unidad de medida (MM USD)
+          profit = (quantity * (price - mc_ymc_hat_1) * (60 * 2.20462)) / 100, # Ajuste por unidad de medida (MM USD)
           type = case_when(
             dummy_leader == 1 ~ "leader",
             dummy_follower == 1 ~ "follower", 
             TRUE ~ "other")) %>%
-        select(date, country, id, dummy_leader, type, quantity, revenue, profit, mc_ymc_hat, price)
+        select(date, country, id, dummy_leader, type, quantity, revenue, profit, mc_ymc_hat_1, price)
     # Beneficio TOTAL de líderes (suma individual)
       profit_leaders <- (sum(leaders_opt$q_leader * (price - leaders_opt$mc_hat)) * (60 * 2.20462)) / 100 # Ajuste por unidad de medida
       profit_followers <- (sum(followers_opt$q_follower * (price - followers_opt$mc_hat)) * (60 * 2.20462)) / 100 # Ajuste por unidad de medida
@@ -180,7 +180,8 @@ library(modelsummary)
       price_intercept <- price_from_demand(
         0, coef_demand, 
         unique(data_market$teaPrices_ym), 
-        unique(data_market$importGDP_ym))
+        unique(data_market$importGDP_ym),
+        unique(data_market$ica_lapse[1]))
       consumer_surplus <- ((0.5 * (price_intercept - price) * Q_total) * (60 * 2.20462)) / 100 # Ajuste por unidad de medida
     # Results
       results <- list(
@@ -225,7 +226,7 @@ baseline_results_ymc <- map_dfr(baseline_results, ~ .x$country_profits, .id = "m
 # Run counterfactual scenarios
 # Scenario 1
 cf1_processed <- map(market_list, function(market) {
-  market$mc_ymc_hat <- predict(
+  market$mc_ymc_hat_1 <- predict(
     model_mc_1, 
     newdata = market %>% mutate(
       #disease1 = 0,
@@ -245,7 +246,7 @@ cf1_results_ymc <- map_dfr(cf1_processed, ~ .x$country_profits, .id = "market_id
 
 # # Scenario 2
 # cf2_results <- map_dfr(market_list, function(market) {
-#   market$mc_ymc_hat <- predict(model_mc_1,
+#   market$mc_ymc_hat_1 <- predict(model_mc_1,
 #                                newdata = market %>% mutate(
 #                                  disease1 = 0,
 #                                  frost1 = 0,
@@ -260,7 +261,7 @@ cf1_results_ymc <- map_dfr(cf1_processed, ~ .x$country_profits, .id = "market_id
 # 
 # # Scenario 3
 # cf3_results <- map_dfr(market_list, function(market) {
-#   market$mc_ymc_hat <- predict(model_mc_1,
+#   market$mc_ymc_hat_1 <- predict(model_mc_1,
 #                                newdata = market %>% mutate(
 #                                  disease1 = 0,
 #                                  frost1 = 0,
@@ -313,7 +314,7 @@ summary_ymc <- all_results_ymc %>%
   summarise(
     profit = sum(profit, na.rm = TRUE),
     quantity = sum(quantity, na.rm = TRUE),
-    mc = mean(mc_ymc_hat, na.rm = TRUE), 
+    mc = mean(mc_ymc_hat_1, na.rm = TRUE), 
     .groups = "drop"
     ) %>%
   pivot_wider(
