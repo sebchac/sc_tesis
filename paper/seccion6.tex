@@ -10,7 +10,7 @@ La ecuación de demanda agregada busca capturar las principales fuerzas económi
  
 La variable dependiente $Q_{t}$ refleja la cantidad total demandada en el mercado, mientras que $P_{t}$ representa el índice global de precios. Por otro lado, la inclusión de $X_{t}$, el Producto Interno Bruto (PIB) de los países importadores, permite medir la sensibilidad del consumo frente a cambios en el poder adquisitivo de este grupo.
 
-Se incluye el precio del té ($Z_{t}$) en la estimación, reconociendo que, aunque no son perfectos sustitutos, existen márgenes de sustitución en mercados clave que pueden influir en la demanda de café, especialmente en períodos de altos precios. 
+Se incluye también el precio del té ($Z_{t}$) en la estimación, reconociendo que, aunque no son perfectos sustitutos, existen márgenes de sustitución que pueden influir en la demanda de café, especialmente en períodos de altos precios. 
 
 Para controlar por el período en que el mercado estuvo cartelizado, se incorpora una variable dicotómica que toma el valor 1 desde enero de 1990 ($ICA_{t}$). Por su parte, el término error ($u^{d}_{t}$) recoge factores no observables, como cambios en las preferencias de consumo o efectos estacionales no modelados explícitamente.
 
@@ -20,25 +20,23 @@ Esta especificación sigue el enfoque de los trabajos seminales de [KARL PERLOFF
     P_{t} = \frac{1}{\alpha^{d}_{1}} \left[ Q_{t} - ( \alpha^{d}_{0} + \alpha^{d}_{2}X{t} + \alpha^{d}_{3}Z{t} + \alpha^{d}_{4} ICA_{t} + u^{d}_{t} ) \right]
 \end{equation}
 
-Naturalmente, la identificación causal de la relación entre la cantidad demandada y el índice global de precios requiere abordar el problema de endogeneidad mediante la aproximación de variables instrumentales. En esta investigación, se seleccionan tres instrumentos, por su relación con las variaciones exógenas en la oferta global del café, lo que permitiría que satisfagan los requisitos de relevancia y exogeneidad. Más adelante, ambas variables serán fundamentales para la estimación de los costos marginales implícitos y la construcción de escenarios contrafactuales, dado su vínculo estructural con los determinantes de la oferta.
+Naturalmente, la identificación causal de la relación entre la cantidad demandada y el índice global de precios requiere abordar el problema de endogeneidad mediante la aproximación de variables instrumentales. En esta investigación, se selecciona la variable \textit{HDD} por su relación con las variaciones exógenas en la oferta global del café, lo que permitiría que satisfaga los requisitos de relevancia y exogeneidad. Más adelante, esta variable serán fundamental para la estimación de los costos marginales implícitos y la construcción de escenarios contrafactuales, dado su vínculo con los determinantes de la oferta.
 
-El primer instrumento corresponde a las remuneraciones recibidas por los agricultores en los países exportadores. Estos precios reflejan costos de producción locales, asociados principalmente a la fuerza de trabajo doméstica. Se presume, en todo caso, que estos precios están parcialmente aislados de choques de demanda global. Para obtener una medida agregada, se calcula un promedio ponderado mensual en base a la participación histórica de cada país en las exportaciones mundiales. Esta construcción permite que el instrumento capture adecuadamente la estructura de costos subyacente en el mercado internacional.
+Explicada en detalle en \textit{supra}, esta variable cuantifica, para cada mes, la exposición a condiciones de temperatura adversas para el cultivo del café. Para esta estimación, se agrega la variable a nivel global mediante ponderaciones basadas en la participación de mercado histórica de cada exportador.
 
-El segundo y el tercer instrumento corresponden a las variables \textit{HDD} y \textit{FDD}\footnote{Los resultados no cambian si, en lugar de incorporar HDD y FDD como instrumentos, se utiliza la variable GDD.}, revisadas en la sección anterior. Estas variables cuantifican, para cada mes, la exposición a condiciones de temperatura adversas para el cultivo del café. Al igual que con los precios agrícolas, cada variable se agrega a nivel global mediante ponderaciones basadas en la participación de mercado histórica de cada exportador.
-
-Se espera que, por la relación de estas variables con la oferta del grano del café, satisfagan con éxito las condiciones de exogeneidad y relevancia que exige el uso de variables instrumentales. En este sentido, las pruebas de sobreidentificación (Hansen J) y los diagnósticos de debilidad instrumental (estadístico F de Cragg-Donald) confirman su adecuación empírica.
+Se espera que, por la relación de esta variable con la oferta del grano del café, satisfaga con éxito las condiciones de exogeneidad y relevancia que exige el uso de variables instrumentales. Como se verá, las pruebas de sobreidentificación (Hansen J) y los diagnósticos de debilidad instrumental (estadístico F de Cragg-Donald) confirman su adecuación empírica.
 
 La \ref{tab:7_1} presenta los resultados de la estimación de demanda a nivel mensual, tomando información desde 1965 hasta 2019. En todas las especificaciones se controla por el período de cartelización del mercado. Los modelos 1, 2 y 3 solo consideran variables de control, mientras que los modelos 4, 5 y 6 incluyen las variables instrumentales discutidas en esta sección.
 
-Se obtienen resultados similares al trabajo de Igami (ver anexo XXX) aunque con algunos matices, posiblemente explicados por la diferencia en el horizonte temporal (1965-2019 en este trabajo, versus 1990-2006 en el trabajo de Igami) o por el control para el período de cartelización. En particular, este trabajo presenta un impacto similar de la cantidad exportada, mientras que los efectos del ingreso y del bien sustituto son mayores.
+Se obtienen resultados similares al trabajo de Igami (ver anexo XXX) aunque con algunos matices, posiblemente explicados por la diferencia en el horizonte temporal \footnote{Las estimaciones de demanda agregada de este trabajo abarca un extenso período desde 1965 hasta 2019, mientras que Igami toma un horizonte más acotado, desde 1990 hasta 2006.} o por el control para el período de cartelización. En particular, este trabajo presenta un impacto similar de la cantidad exportada, mientras que los efectos del ingreso y del bien sustituto son mayores.
 
-En concreto, por cada aumento de un millón de bolsas de 60 kg de café, el precio cae en 294,5 centavos de dólar, cercano a los 292,7 obtenidos por Igami. Asimismo, la elasticidad-precio de la demanda estimada para este trabajo es equivalente al resultado obtenido en 2015 (0,15), indicando una demanda inelástica, pese a las fluctuaciones de precio.
+En concreto, por cada aumento de un millón de bolsas de 60 kg de café, el precio cae en 215 centavos de dólar, relativamente cercano a los 293 obtenidos por Igami. Asimismo, la elasticidad-precio de la demanda estimada para este trabajo está en un rango aceptable, indicando una demanda inelástica, pese a las fluctuaciones de precio\footnote{Igami obtiene una elasticidad-precio de la demanda de 0,15. Por su parte, otros trabajos han obtenido resultados de 0,2, al igual que en este caso. Ver, por ejemplo, \cite{bates1997open}.}. Esta demanda inelástica, en conjunto con la existencia de choques climáticos importantes, es consistente con la explicación estándar para la variación de los precios de los bienes agrícolas (\cite{deaton1992behaviour}, \cite{prebisch1959}, \cite{singer1950}).
 
 \input{tables/tabla7_1}
 
 [Sobre los instrumentos]
 
-Una vez estimada la ecuación de demanda, recuperar el coeficiente $\hat{\alpha}^{d}_{1}$ permite estimar los costos marginales de cada país ($c{i,t}$), siguiendo las ecuaciones [CITAR ECUACIONES].
+Una vez estimada la ecuación de demanda, recuperar el coeficiente $\hat{\alpha}^{d}_{1}$ permite estimar los costos marginales de cada país ($c{i,t}$), siguiendo las ecuaciones (5) y (6).
 
 \section*{6.2. Estimación de costos marginales}
 
@@ -46,27 +44,28 @@ La estimación del impacto del cambio climático sobre los costos marginales del
 
 \begin{equation}
     c_{i,t} = \alpha^{o}_{0} + 
-\alpha^{o}_{1}R_{i,t} + 
-\alpha^{o}_{2}F_{t} +
-\alpha^{o}_{3}ICA_{t} +
-\alpha^{o}_{4}W_{t} +
-\alpha^{o}_{5}HDD_{t} +
-\alpha^{o}_{6}FDD_{t} +
+\alpha^{o}_{1}F_{t} +
+\alpha^{o}_{2}HDD_{t} +
+\alpha^{o}_{3}FDD_{t} +
+\alpha^{o}_{4}ICA_{t} +
 \phi_{i}+\phi_{t}+u^{o}_{i,t}
 \end{equation} 
 
-donde $\phi_{i}$ es un efecto fijo por país, $\phi_{t}$ es un efecto fijo por año y $u^{o}_{i,t}$ es el término error.
+donde $F_{t}$ es el índice de precios de fertilizantes calculado por el Banco Mundial, $HDD_{t}$ es la acumulación de calor, explicada \textit{supra}, $FDD_{t}$ es la acumulación de frío extremo, también explicada, $ICA_{t}$ es una variable dicotómica para el período de cartelización, $\phi_{i}$ es un efecto fijo por país, $\phi_{t}$ es un efecto fijo por año y $u^{o}_{i,t}$ es el término error.
 
-La tabla [TABLA] resume los resultados para la especificación utilizada. [DETALLE RESULTADOS]
+La tabla [TABLA] resume los resultados para la especificación utilizada. Se observa que el impacto de las variables asociadas a la acumulación de temperaturas extremas es bastante relevante. En particular, la variable $FDD$ indica un efecto de 74 centavos de dólar sobre los costos marginales, mientras que $HDD$ tendría un efecto menor, de 12 centavos. En ambos casos, la significancia es máxima. Por otro lado, el ajuste $R^{2}$ indica que el modelo explica gran parte de la variación del error. 
 
-[RESULTADOS POR GRUPO]
+\input{tables/table_costs.tex}
+
+Por otro lado, si separamos la muestra a fin de observar específicamente el efecto de estas variables climáticas sobre países lídere y seguidores, se observa que el impacto es notablemente mayor para el segundo grupo. Así, como se desarrollará con detalle en el análisis de los resultados contrafactuales, el impacto del cambio climático afectaría más a aquellos países que actúan como seguidores del mercado. En el caso de la acumulación de frío, el efecto sería un 24\% más importante para el grupo de seguidores; mientras que la diferencia en la acumulación de calor asciende hasta un 38\% aproximadamente.
+
+\input{tables/table_leaders_followers.tex}
 
 \section*{6.3. Escenarios contrafactuales}
 
 Uno de los principales objetivos de esta investigación es la estimación de escenarios contrafactuales en el mercado internacional del café. En particular, interesa analizar el cambio en la trayectoria de precios y cantidades comercializadas una vez que se reduce el estrés térmico, modificando las variables climáticas relevantes en tal sentido. Luego, a partir de estos resultados, es posible calcular el efecto en el bienestar social, así como diferencias entre grupos de exportadores. Esta última distinción permitiría explorar si acaso el estrés térmico amplifica las diferencias estructurales entre países líderes y seguidores.
 
-A partir de los resultados obtenidos hasta ahora, ha sido posible identificar qué factores influyen en la determinación de la demanda. Al mismo tiempo, se ha estimado con detalle el impacto del estrés térmico sobre los costos marginales implícitos del modelo. Con esta información, la construcción de un escenario contrafactual es directa al reducir al mínimo la exposición a temperaturas extremas --capturada por las variables $HDD$ y $FDD$-- y computar el sistema de ecuaciones que resuelve el equilibrio de mercado.
-
+A partir de los resultados obtenidos hasta ahora, ha sido posible identificar la sensibilidad de la demanda ante los choques de precios, así como los costos marginales de los países exportadores. Al mismo tiempo, se ha estimado con detalle el impacto del estrés térmico sobre estos costos, lo que permite la construcción de un escenario contrafactual que modifique la acumulación de temperaturas extremas.
 La tabla [TABLA] presenta los resultados para un escenario en que los países exportadores de grano verde de café no habrían experimentado exposiciones prolongadas a temperaturas extremas.
 
 Se observa [COMPLETAR]

@@ -150,15 +150,15 @@ process_period <- function(year_start, year_end, coffee_mask, country_cells, cel
             TRUE ~ 0
           ),
           hdd = case_when(
-            tmin >= k4 ~ 1,
-            tmin < k4 & tmax >= k4 ~ 1 - (k4 - tmin)/(tmax - tmin),
+            tmin > k4 ~ 1,
+            tmin < k4 & tmax > k4 ~ 1 - (k4 - tmin)/(tmax - tmin),
             tmax < k4 ~ 0,
             TRUE ~ 0
           ),
           fdd = case_when(
             tmin > k1 ~ 0,
-            tmin <= k1 & tmax > k1 ~ (k1 - tmin)/(tmax - tmin),
-            tmax <= k1 ~ 1,
+            tmin < k1 & tmax > k1 ~ (k1 - tmin)/(tmax - tmin),
+            tmax < k1 ~ 1,
             TRUE ~ 0
           )
         ) %>%

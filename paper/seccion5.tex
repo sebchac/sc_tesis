@@ -2,7 +2,7 @@
 
 El modelo que motiva la estimación se basa en un esquema de competencia secuencial en cantidades (\textit{á la Stackelberg}) aplicado al mercado internacional del café, donde los países exportadores interactúan estratégicamente en su toma de decisiones de producción. Esta estructura captura la asimetría entre naciones con diferencias notables de participación de mercado, generando dinámicas de dependencia estratégica en la competencia.
 
-El grano verde de café es considerado como un bien homogéneo, a pesar de las diferencias entre especies (principalmente Arábica y Robusta) y categorías comerciales (café de altura o estándar). Esta aproximación se fundamente en razones teóricas, empíricas e históricas.
+El grano verde de café es considerado un bien homogéneo, a pesar de las diferencias entre especies (principalmente Arábica y Robusta) y categorías comerciales (café de altura o estándar). Esta aproximación se fundamente en razones teóricas, empíricas e históricas.
 
 Primero, el tratamiento del café como un bien homogéneo es coherente con el índice de precios utilizado comúnmente en el mercado, el cual sintetiza las distintas calidades disponibles. El I-CIP opera como una referencia global, y se calcula a través de una ponderación de las principales variedades, en base a su participación relativa en el comercio mundial [DETALLES, CITA]. Este mecanismo genera una señal de precio unificada que influye en las decisiones de producción y exportación, independientemente de las particularidades de cada tipo de grano.
 
@@ -14,7 +14,7 @@ Este esquema respalda la percepción del café como un bien homogéneo en el com
 
 Ahora bien, un mercado de competencia en cantidades puede tener diferentes aproximaciones. En este caso, un supuesto importante para la estimación es imponer al mercado una estructura de competencia \textit{á la Stackelberg}. Dos razones justifican esta aplicación.
 
-Por un lado, como fue señalado \textit{supra}, el 50\% de la oferta del mercado está concentrado en tres países: Brazil, Colombia y Viet Nam. Esta participación se ha mantenido relativamente estable en las últimas tres décadas. Esta predominancia histórica no es solamente cuantitativa, sino que se traduce en una capacidad real de influencia sobre las condiciones del mercado. Los grandes exportadores disponen de ventajas estructurales --como economías de escala e infraestructura logística desarrollada-- que les permite actuar como \textit{líderes} del mercado. En la competencia secuencial, se asume que los países líderes tienen un poder de mercado mayor, lo que les permitiría tomar decisiones estratégicas antes que los países seguidores.
+Por un lado, como fue señalado \textit{supra}, el 50\% de la oferta del mercado está concentrado en tres países: Brazsl, Colombia y Viet Nam. Esta participación se ha mantenido relativamente estable en las últimas tres décadas. Esta predominancia histórica no es solamente cuantitativa, sino que se traduce en una capacidad real de influencia sobre las condiciones del mercado. Los grandes exportadores disponen de ventajas estructurales --como economías de escala e infraestructura logística desarrollada-- que les permite actuar como \textit{líderes} del mercado. En la competencia secuencial, se asume que los países líderes tienen un poder de mercado mayor, lo que les permitiría tomar decisiones estratégicas antes que los países seguidores.
 
 Por otro lado, la elección del modelo de competencia secuencial tiene implicancias metodológicas directas. Por ejemplo, en el caso de una competencia \textit{á la Cournot}, donde todos los actores deciden sus cantidades de forma simultánea, las funciones de reacción tenderían a homogeneizar artificialmente el comportamiento de los países, independientemente de su tamaño o influencia efectiva. Al considerar funciones de reacción homogéneas, se trasladarían las importantes diferencias de exportaciones entre países a los respectivos costos marginales implícitos, probablemente sobrestimando la heterogeneidad efectiva entre los oferentes. En ese sentido, el modelo secuencial incorpora explícitamente la jerarquía del mercado al diferenciar entre líderes y seguidores, lo que permite capturar con mayor precisión cómo las decisiones de los grandes exportadores condicionan las opciones disponibles para los productores menores.
 
@@ -40,12 +40,12 @@ $$ q_{i}^{s}=\frac{P-c_{i}^{s}}{B} = \frac{A-B \cdot \bar{Q}^{l}-B\cdot Q^{s}_{-
 Luego, por la simetría entre los seguidores, es posible agregar el resultado, de manera que $Q^{s}_{-i} = (n-m-1)\cdot q^{s}_{i}$. Así:
 
 \begin{equation}
-    q^{s}_{i}(\bar{Q}^{l}) = \frac{A-B\cdot \bar{Q}^{l}-c_{i}}{(n-m-1)\cdot B}
+    q^{s}_{i}(\bar{Q}^{l}) = \frac{A-B\cdot \bar{Q}^{l}-c_{i}}{(n-m+1)\cdot B}
 \end{equation}
 
 Por su parte, los líderes resuelven el problema de optimización por inducción hacia atrás, incorporando la mejor respuesta de los seguidores:
 
-$$  max_{q_{i}^{l} \ge 0}: \pi^{l}(q_{i}^{l}) = (A-B(Q^{l}_{-i}+ \textcolor{blue}{\left(\frac{n-m}{(n-m-1)\cdot B}\right)\cdot (A-B(q^{l}_{i}+Q^{l}_{-i})-c_{i})} + q^{l}_{i})- c_{i})\cdot q_{i}^{l} $$
+$$  max_{q_{i}^{l} \ge 0}: \pi^{l}(q_{i}^{l}) = (A-B(Q^{l}_{-i}+ \textcolor{blue}{\left(\frac{n-m}{(n-m+1)\cdot B}\right)\cdot (A-B(q^{l}_{i}+Q^{l}_{-i})-c_{i})} + q^{l}_{i})- c_{i})\cdot q_{i}^{l} $$
 
 $$ \frac{\partial \pi^{l}}{\partial q^{l}_{i}} = 0 \iff q^{l}_{i} = \frac{A-B\cdot Q^{l}_{-i} - c_{i}}{2B}$$
 
@@ -60,10 +60,10 @@ $$ q^{l}_{i} = \frac{A-B\cdot (m-1) \cdot q^{l}_{i} - c_{i}}{2B} $$
 Así, de sustituir (3) en (2), se obtiene que:
 
 \begin{equation}
-    q^{s}_{i} = \frac{A-c_{i}}{(m+1)(n-m-1)B}
+    q^{s}_{i} = \frac{A-c_{i}}{(m+1)(n-m+1)B}
 \end{equation}
 
-Es directo ver cómo las funciones de reacción difieren entre países líderes y seguidores. En el caso de estos últimos, las cantidades óptimas que resuelven la interacción estratégica se ven penalizadas por el facto $(n-m-1)$, es decir, la brecha aumenta cuanto menor sea la cantidad de líderes, o cuanto más se incremente la diferencia $n-m$. 
+Es directo ver cómo las funciones de reacción difieren entre países líderes y seguidores. En el caso de estos últimos, las cantidades óptimas que resuelven la interacción estratégica se ven penalizadas por el factor $(n-m+1)$, es decir, la brecha aumenta cuanto menor sea la cantidad de líderes, o cuanto más se incremente la diferencia $n-m$. 
 
 Enseguida, al reordenar las condiciones de primer orden, es posible obtener una expresión implícita para los costos marginales, los que posteriormente serán modelados en función de variables observables.
 
@@ -77,10 +77,10 @@ Para los países seguidores, el costo marginal se despeja como la suma del preci
      c_{i}^{l} = P + \left( \frac{1}{m+1}\right) \cdot \frac{\partial P}{\partial q_{i}^{l}}\cdot q_{i}^{l}
 \end{equation}
 
-El proceso de estimación procede en dos etapas. Primero, se computan estos costos marginales implícitos para cada país, utilizando datos observados de precios y cantidades, y estimaciones de la función de demanda. Luego, estos valores se modelan como funciones de variables determinantes, que incluyen costos y factores climáticas. Esta especificación permite cuantificar de qué manera variaciones en estos parámetros afectan la competitividad relativa de cada productor.
+El proceso de estimación del impacto del cambio climático en el mercado internacional del café procede en tres grandes etapas. Primero, la estimación de la demanda agregada para cada período permite extraer la elasticidad-precio de la demanda y, de esa manera, construir los costos marginales implícitos del modelo para cada país, siguiendo las ecuaciones (5) y (6), y utilizando datos observados de precios y cantidades. Luego, estos valores se modelan como funciones de variables determinantes, que incluyen costos y factores climáticas. Esta especificación (7) permite cuantificar de qué manera variaciones en estos parámetros afectan la competitividad relativa de cada productor. En particular, interesa el efecto de la acumulación de calor (\textit{HDD}), explicada en la sección anterior.
 
 Por último, para evaluar escenarios contrafactuales, el modelo resuelve un sistema de ecuaciones simultáneas que incorpora: \textbf{(i)} las funciones de reacción de todos los países, tanto líderes como seguidores; \textbf{(ii)} la condición de equilibrio de mercado que iguala oferta total y demanda; y \textbf{(iii)} las relaciones estimadas entre costos marginales y sus determinantes.
 
 La solución de este sistema, bajo diferentes condiciones climáticas, permite simular diversos escenarios de interés. De esta manera, el modelo permite evaluar el resultado de un contexto global con condiciones climáticas desfavorables para la productividad del café, así como el impacto sobre el equilibrio de mercado, en cuanto al índice de precios global y las exportaciones de cada país. Todo esto, manteniendo la estructura jerárquica del mercado y la interacción estratégica entre los grupos de países exportadores.
 
-Finalmente, este enfoque proporciona un marco robusto para cuantificar los efectos distributivos de choques climáticos, tanto entre grupos de países como dentro de cada grupo, mediante variaciones en los costos marginales y excedentes económicos a nivel agregado y por cada país. Entre exportadores, se observan impactos diferentes según su posición estratégica (líderes versus seguidores) y vulnerabilidad geográfica, proyectando cambios en su competitividad relativa. Para los importadores, se distinguen efectos según su capacidad de absorber alzas de precios.
+De esta manera, el enfoque estructural proporciona un marco robusto para cuantificar los efectos distributivos de choques climáticos, tanto entre grupos de países como dentro de cada grupo, mediante variaciones en los costos marginales y excedentes económicos a nivel agregado y por cada país.

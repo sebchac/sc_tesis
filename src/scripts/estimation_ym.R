@@ -21,6 +21,12 @@ library(lfe)
 library(slider) 
 library(nleqslv)
 library(modelsummary)
+library(moments)
+
+ruta_proyecto <- "/Users/sebastianchacon/Desktop/sc_tesis/"
+ruta_paper <- paste0(ruta_proyecto, "paper/")
+ruta_tables <- paste0(ruta_paper, "tables/")
+ruta_figures <- paste0(ruta_paper, "figures/")
 
 # Data
   data <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data.rds")
@@ -30,7 +36,7 @@ library(modelsummary)
 # ------------------------------------------------------------------------------
 # [1] Demand estimation
 # ------------------------------------------------------------------------------
-{
+
 # [1.1.] Data for demand estimation
   # Filters
   demand_data <- data %>%
@@ -98,7 +104,7 @@ library(modelsummary)
 
   iv3 <- ivreg(price_ym ~ qe_ym  + importGDP_ym + teaPrices_ym + ica_lapse|
           #farm_prices_ym + 
-          gdd_ym +
+          #gdd_ym +
           hdd_ym + 
           #fdd_ym +
           importGDP_ym + teaPrices_ym + ica_lapse,
@@ -134,7 +140,7 @@ stargazer(ols1, ols2, ols3, iv1, iv2, iv3,
                 "*p<0.1; **p<0.05; ***p<0.01"),
       #notes.append = TRUE,
       type = "latex")
-}
+
 # ------------------------------------------------------------------------------
 # [2] Implicit marginal costs
 # ------------------------------------------------------------------------------
@@ -177,15 +183,86 @@ stargazer(ols1, ols2, ols3, iv1, iv2, iv3,
   mc_fe <- feols(
     mr_ymc3 ~
 #      farm_prices_ymc +
+      ica_lapse +
       fert_ym +
-      hdd_ym| year + country,
+      fdd_ym +
+      hdd_ym | year + country,
     data = data_ymc,
     cluster = ~country
   )
   
   summary(mc_fe)
   
-# [3.2.] Only one stage and Cournot
+  etable(mc_fe,
+         title = "Estimación de Costos Marginales Implícitos",
+         # depvar = "Costo Marginal (mr_ymc3)",  # ¡QUITAR ESTO!
+         depvar = FALSE,  # O simplemente omitirlo
+         dict = c(mr_ymc3 = "Costo Marginal (mr_ymc3)",  # Nombre de la variable dependiente aquí
+                  ica_lapse = "ICA Lapse",
+                  fert_ym = "Fertilizantes",
+                  fdd_ym = "Días Fríos",
+                  hdd_ym = "Días Calor"),
+         order = c("ica_lapse", "fert_ym", "fdd_ym", "hdd_ym"),
+         fitstat = c("n", "r2", "wr2"),
+         cluster = ~country,
+         se.below = TRUE,
+         tex = TRUE,
+         file = "/Users/sebastianchacon/Desktop/sc_tesis/paper/tables/table_costs.tex")
+  
+  # Only one stage and Stackelberg for leaders
+  data_leader <- data_ymc %>% filter(dummy_leader == 1)
+  
+  mc_fe_l <- feols(
+    mr_ymc3 ~
+      #      farm_prices_ymc +
+      ica_lapse +
+      fert_ym +
+      fdd_ym +
+      hdd_ym | year + country,
+    data = data_leader,
+    cluster = ~country
+  )
+  
+  summary(mc_fe_l)
+  
+  # Only one stage and Stackelberg for followers
+  data_follower <- data_ymc %>% filter(dummy_leader == 0)
+  
+  mc_fe_f <- feols(
+    mr_ymc3 ~
+      #      farm_prices_ymc +
+      ica_lapse +
+      fert_ym +
+      fdd_ym +
+      hdd_ym | year + country,
+    data = data_follower,
+    cluster = ~country
+  )
+  
+  summary(mc_fe_f)
+  
+  etable(mc_fe_l, mc_fe_f,
+         title = "Estimación de Costos Marginales: Líderes vs. Seguidores",
+         depvar = FALSE,
+         headers = c("Líderes", "Seguidores"),
+         dict = c(mr_ymc3 = "Costo Marginal",
+                  ica_lapse = "ICA Lapse",
+                  fert_ym = "Precio Fertilizantes",
+                  fdd_ym = "Días Fríos (FDD)",
+                  hdd_ym = "Días Calor (HDD)"),
+         order = c("ica_lapse", "fert_ym", "fdd_ym", "hdd_ym"),
+         fitstat = c("n", "r2", "wr2"),
+         se.below = TRUE,
+         digits = 3,
+         digits.stats = 3,
+         signif.code = c("***" = 0.01, "**" = 0.05, "*" = 0.1),  # ← CORREGIDO
+         cluster = ~country,
+         tex = TRUE,
+         file = "/Users/sebastianchacon/Desktop/sc_tesis/paper/tables/table_leaders_followers.tex",
+         style.tex = style.tex("aer"),
+         notes = "Errores estándar agrupados a nivel de país entre paréntesis. Efectos fijos de año y país incluidos en todas las especificaciones.")
+
+  # [3.2.] Only one stage and Cournot
   mc_fe_cournot <- feols(
     mr_ymc ~
       #      farm_prices_ymc +
