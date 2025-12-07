@@ -1,7 +1,7 @@
 # ------------------------------------------------------------------------------
 # [0] Preliminary
 # ------------------------------------------------------------------------------
-{
+
 # Packages
 library(dplyr)
 library(tidyr)
@@ -32,13 +32,16 @@ blue <- "#136DF5"
 red <- "#F5136D"
 beige <- "#F59B13"
 
+# Rutas
+fig_path <- "/Users/sebastianchacon/Desktop/sc_tesis/paper/figures/"
+
 # Data
 data <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data.rds")
 results_ym <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/results_ym.rds")
 results_ymc <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/results_ymc.rds")
 summary_ym <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/summary_ym.rds")
 summary_ymc <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/summary_ymc.rds")
-}
+
 #-------------------------------------------------------------------------------
 # Exportaciones desde 1990 hasta 2019
 #-------------------------------------------------------------------------------
@@ -76,7 +79,8 @@ plot1 <- ggplot(
     legend.margin = margin(t = -5, b = 0)
   )
 
-ggsave("/Users/sebastianchacon/Desktop/sc_tesis/paper/figures/plot1.png",
+ggsave(
+      filename = paste0(fig_path, "plot1.png"),
       plot = plot1,
       width = 7,
       height = 5,
