@@ -31,8 +31,6 @@ ruta_figures <- paste0(ruta_paper, "figures/")
 # Data
   data <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data.rds")
 
-  #data <- data %>%
-  #  filter(year >= 1990)
 # ------------------------------------------------------------------------------
 # [1] Demand estimation
 # ------------------------------------------------------------------------------
@@ -104,7 +102,7 @@ ruta_figures <- paste0(ruta_paper, "figures/")
 
   iv3 <- ivreg(price_ym ~ qe_ym  + importGDP_ym + teaPrices_ym + ica_lapse|
           #farm_prices_ym + 
-          #gdd_ym +
+          gdd_ym +
           hdd_ym + 
           #fdd_ym +
           importGDP_ym + teaPrices_ym + ica_lapse,
@@ -125,26 +123,31 @@ ruta_figures <- paste0(ruta_paper, "figures/")
   cov_iv2 <- vcovHC(iv2, method = "arellano", cluster = "year", type = "HC3")
   cov_iv3 <- vcovHC(iv3, method = "arellano", cluster = "year", type = "HC3")
 
-stargazer(ols1, ols2, ols3, iv1, iv2, iv3,
-      se = list(sqrt(diag(cov_ols1)), sqrt(diag(cov_ols2)), sqrt(diag(cov_ols3)),
-                    sqrt(diag(cov_iv1)), sqrt(diag(cov_iv2)), sqrt(diag(cov_iv3))),
-      title = "Estimaciones de la Demanda Mundial de Café",
-      #align = TRUE,
-      dep.var.labels = "Precio (price_ym)",
-      column.labels = c("OLS1", "OLS2", "OLS3", "IV1", "IV2", "IV3"),
-      covariate.labels = c("$Q_{t}$ (Exportaciones de café)", "$ICA$ ($0/1$)", 
-                            "$X_{t}$ (PIB de importadores)", "$Z_{t}$ (Precio del té)", 
-                            "Constante"),
-      #omit.stat = c("f", "ser"),
-      notes = c("Errores estándar robustos clusterizados por año entre paréntesis.",
-                "*p<0.1; **p<0.05; ***p<0.01"),
-      #notes.append = TRUE,
-      type = "latex")
+  models <- list(
+    "(1) MCO" = ols1,
+    "(2) MCO" = ols2, 
+    "(3) MCO" = ols3,
+    "(4) VI" = iv1,
+    "(5) VI" = iv2,
+    "(6) VI" = iv3
+  )
+  
+  vcov_list <- list(
+    cov_ols1, cov_ols2, cov_ols3,
+    cov_iv1, cov_iv2, cov_iv3
+  )
 
+  modelsummary(
+    models,
+    vcov = vcov_list,
+    output = paste0(ruta_tables, "demand_ym.tex"),
+    title = "Estimaciones de la Demanda Mundial de Café",
+    stars = TRUE
+  )
 # ------------------------------------------------------------------------------
 # [2] Implicit marginal costs
 # ------------------------------------------------------------------------------
-{
+
 # [2.1.] Data for marginal costs
   aux <- demand_data %>%
     select(year, month_num, q_demand_fitted_iv3, edemand_iv3)
@@ -160,7 +163,7 @@ stargazer(ols1, ols2, ols3, iv1, iv2, iv3,
       mr_ymc2 = price_ym * (1 + share_ymce/mean_elast_iv3),
     # Stackelberg
       mr_ymc3 = (price_ym + coeff_iv3["qe_ym"] * qe_ymc * (1 / (1 + n_follower_ym))) * dummy_leader + (price_ym + coeff_iv3["qe_ym"] * qe_ymc) * dummy_follower)
-}
+
 # ------------------------------------------------------------------------------
 # [3] Marginal cost estimation
 # ------------------------------------------------------------------------------
@@ -207,7 +210,7 @@ stargazer(ols1, ols2, ols3, iv1, iv2, iv3,
          cluster = ~country,
          se.below = TRUE,
          tex = TRUE,
-         file = "/Users/sebastianchacon/Desktop/sc_tesis/paper/tables/table_costs.tex")
+         file = paste0(ruta_tables,"table_costs.tex"))
   
   # Only one stage and Stackelberg for leaders
   data_leader <- data_ymc %>% filter(dummy_leader == 1)
@@ -258,7 +261,7 @@ stargazer(ols1, ols2, ols3, iv1, iv2, iv3,
          signif.code = c("***" = 0.01, "**" = 0.05, "*" = 0.1),  # ← CORREGIDO
          cluster = ~country,
          tex = TRUE,
-         file = "/Users/sebastianchacon/Desktop/sc_tesis/paper/tables/table_leaders_followers.tex",
+         file = paste0(ruta_tables, "table_leaders_followers.tex"),
          style.tex = style.tex("aer"),
          notes = "Errores estándar agrupados a nivel de país entre paréntesis. Efectos fijos de año y país incluidos en todas las especificaciones.")
 
@@ -631,13 +634,13 @@ saveRDS(data_ymc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_
   
   # Combine all results
   all_results_ym <- bind_rows(
-    baseline_results_ym, cf0_results_ym,
+    cf0_results_ym,
     cf1_results_ym
   ) %>%
     arrange(date, scenario)
   
   all_results_ymc <- bind_rows(
-    baseline_results_ymc, cf0_results_ymc,
+    cf0_results_ymc,
     cf1_results_ymc
   ) %>%
     arrange(date, country, scenario)
@@ -650,7 +653,7 @@ saveRDS(data_ymc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_
 # ------------------------------------------------------------------------------
 
   # Summary statistics by scenario
-  summary_ym <- all_results_ym %>%
+  summary <- all_results_ym %>%
     group_by(scenario) %>%
     summarise(
       avg_price = mean(price, na.rm = TRUE),
@@ -662,10 +665,10 @@ saveRDS(data_ymc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_
       .groups = "drop"
     )
   
-  saveRDS(summary_ym, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/summary_ym.rds")
+  saveRDS(summary_ym, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/summary.rds")
   
   # Profit comparison by country
-  summary_ymc <- all_results_ymc %>%
+  summary_c <- all_results_ymc %>%
     group_by(country, dummy_leader, scenario) %>%
     summarise(
       profit = sum(profit, na.rm = TRUE),
@@ -679,5 +682,5 @@ saveRDS(data_ymc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_
       values_from = c(profit, quantity, mc)
     )
   
-  saveRDS(summary_ymc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/summary_ymc.rds")
+  saveRDS(summary_ymc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/summary_c.rds")
 

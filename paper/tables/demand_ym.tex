@@ -1,0 +1,35 @@
+\begin{table}
+\centering
+\begin{talltblr}[         %% tabularray outer open
+caption={Estimaciones de la Demanda Mundial de Café},
+note{}={+ p \num{< 0.1}, * p \num{< 0.05}, ** p \num{< 0.01}, *** p \num{< 0.001}},
+]                     %% tabularray outer close
+{                     %% tabularray inner open
+colspec={Q[]Q[]Q[]Q[]Q[]Q[]Q[]},
+column{2-7}={}{halign=c,},
+column{1}={}{halign=l,},
+hline{12}={1-7}{solid, black, 0.05em},
+}                     %% tabularray inner close
+\toprule
+& (1) MCO & (2) MCO & (3) MCO & (4) VI & (5) VI & (6) VI \\ \midrule %% TinyTableHeader
+(Intercept) & \num{626.861}*** & \num{652.467}*** & \num{203.172}*** & \num{934.050}*** & \num{1694.328}*** & \num{490.106}*** \\
+& (\num{25.475}) & (\num{54.582}) & (\num{29.953}) & (\num{58.883}) & (\num{125.988}) & (\num{100.279}) \\
+qe\_ym & \num{-61.187}*** & \num{-70.441}*** & \num{-117.791}*** & \num{-109.399}*** & \num{-408.388}*** & \num{-215.063}*** \\
+& (\num{3.449}) & (\num{14.650}) & (\num{9.926}) & (\num{9.012}) & (\num{38.702}) & (\num{41.648}) \\
+importGDP\_ym &  & \num{26.616} & \num{332.381}*** &  & \num{913.541}*** & \num{726.893}*** \\
+&  & (\num{34.566}) & (\num{34.765}) &  & (\num{98.322}) & (\num{125.760}) \\
+teaPrices\_ym &  &  & \num{0.973}*** &  &  & \num{0.875}*** \\
+&  &  & (\num{0.072}) &  &  & (\num{0.071}) \\
+ica\_lapse &  &  &  &  &  & \num{-224.104}*** \\
+&  &  &  &  &  & (\num{18.131}) \\
+Num.Obs. & \num{658} & \num{658} & \num{658} & \num{658} & \num{658} & \num{658} \\
+R2 & \num{0.384} & \num{0.385} & \num{0.673} & \num{0.146} & \num{-0.641} & \num{0.696} \\
+R2 Adj. & \num{0.383} & \num{0.383} & \num{0.671} & \num{0.144} & \num{-0.646} & \num{0.694} \\
+AIC & \num{8271.6} & \num{8272.7} & \num{7859.5} & \num{8486.9} & \num{8918.5} & \num{7813.1} \\
+BIC & \num{8285.0} & \num{8290.6} & \num{7881.9} & \num{8500.4} & \num{8936.5} & \num{7840.0} \\
+Log.Lik. & \num{-4132.783} & \num{-4132.332} & \num{-3924.738} &  &  &  \\
+RMSE & \num{129.27} & \num{129.18} & \num{94.23} & \num{152.25} & \num{211.02} & \num{90.83} \\
+Std.Errors & Custom & Custom & Custom & Custom & Custom & Custom \\
+\bottomrule
+\end{talltblr}
+\end{table}
