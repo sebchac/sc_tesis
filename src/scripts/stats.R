@@ -47,87 +47,23 @@ summary_c <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/summary_c
 df_tas_monthly <- readRDS("~/Desktop/ObsData/ProcessedData/df_tas_monthly.rds")
 
 #-------------------------------------------------------------------------------
-# Intento de temperatura por países
+# [VF] Evolución de exposición al óptimo, al calor y al frío
 #-------------------------------------------------------------------------------
-aux_01 <- data %>%
-  distinct(country)
-
-aux_02 <- df_tas_monthly %>%
-  distinct(country)
-
-aux1 <- data %>%
-  group_by(country) %>%
-  summarize(
-    qe_total = sum(qe_ymc, na.rm = TRUE),
-    qi_total = sum(qi_ymc, na.rm = TRUE),
-    .groups = 'drop'
-  ) %>%
-  mutate(
-    net_export_dummy = ifelse(qe_total > qi_total, 1, 0),
-    balance_neto = qe_total - qi_total
-  ) %>%
-  distinct(country, net_export_dummy)
-
-aux2 <- df_tas_monthly %>%
-  left_join(aux1, by = "country") %>%
-  mutate(net_export_dummy = ifelse(is.na(net_export_dummy), 0, net_export_dummy)) %>%
-  mutate(
-    date = make_date(year, month_num, day = 1)
-  ) %>%
-  group_by(date, net_export_dummy) %>%
-  summarize(
-    tas_ym = mean(tas, na.rm = TRUE),
-    n_country = n_distinct(country),
-    .groups = 'drop'
-  )
-
-
-
-aux2 <- data %>%
-  filter(export_dummy == 1) %>%
-  group_by(date) %>%
-  summarize(tas_ym_exp = mean(tas_ymc, na.rm = TRUE), .groups = 'drop')
-
-aux3 <- aux1 %>%
-  left_join(aux2, by = "date") %>%
-  filter(year(date) > 1990 & year(date) < 2020)
-
-ggplot(aux3, aes(x = date)) +
-  geom_line(aes(y = tas_ym), 
-            color = "gray60", 
-            linewidth = 0.7, 
-            alpha = 0.8) +
-  geom_line(aes(y = tas_ym_exp), 
-            color = "black", 
-            linewidth = 0.7, 
-            alpha = 1) +
-  labs(
-    title = NULL,
-    x = NULL,
-    y = "Temperatura promedio (°C)"
-  ) +
-  theme_classic() +
-  theme(
-    text = element_text(size = 9),
-    axis.title = element_text(size = 8),
-    axis.title.y = element_text(margin = margin(r = 3)),
-    axis.title.x = element_text(margin = margin(t = 3)),
-    axis.text = element_text(size = 9),
-    plot.margin = margin(5, 5, 5, 5)
-  )
-
-
 aux <- data %>%
-  group_by(date, export_dummy) %>%
-  summarize(tas_ym_exp = mean(tas_ymc, na.rm = TRUE), .groups = 'drop')
+  filter(dummy_y == 1) %>%
+  distinct(year, gdd_y_mean, hdd_y_mean, fdd_y_mean) %>%
+  drop_na()
 
-ggplot(aux, aes(x = year_month, y = temperatura, color = grupo)) +
-  geom_line(linewidth = 0.7, alpha = 0.8) +
-  scale_color_manual(values = c("Exportadores" = "black", "Otros países" = "gray60")) +
+plot02_01 <- ggplot(
+  aux) +
+  geom_line(
+    aes(x = year, y = gdd_y_mean),
+    linewidth = 0.7, alpha = 1
+  ) +
   labs(
     title = NULL,
     x = NULL,
-    y = "Temperatura promedio (°C)",
+    y = "Días",
     color = NULL
   ) +
   theme_classic() +
@@ -143,8 +79,85 @@ ggplot(aux, aes(x = year_month, y = temperatura, color = grupo)) +
     legend.margin = margin(t = -5, b = 0)
   )
 
+plot02_02 <- ggplot(
+  aux) +
+  geom_line(
+    aes(x = year, y = hdd_y_mean),
+    linewidth = 0.7, alpha = 1
+  ) +
+  labs(
+    title = NULL,
+    x = NULL,
+    y = "Días",
+    color = NULL
+  ) +
+  theme_classic() +
+  theme(
+    legend.position = "bottom",
+    text = element_text(size = 9),
+    axis.title = element_text(size = 8),
+    axis.title.y = element_text(margin = margin(r = 3)),
+    axis.title.x = element_text(margin = margin(t = 3)),
+    axis.text = element_text(size = 9),
+    plot.margin = margin(5, 5, 5, 5),
+    legend.text = element_text(size = 9),
+    legend.margin = margin(t = -5, b = 0)
+  )
+
+plot02_03 <- ggplot(
+  aux) +
+  geom_line(
+    aes(x = year, y = fdd_y_mean),
+    linewidth = 0.7, alpha = 1
+  ) +
+  labs(
+    title = NULL,
+    x = NULL,
+    y = "Días",
+    color = NULL
+  ) +
+  theme_classic() +
+  theme(
+    legend.position = "bottom",
+    text = element_text(size = 9),
+    axis.title = element_text(size = 8),
+    axis.title.y = element_text(margin = margin(r = 3)),
+    axis.title.x = element_text(margin = margin(t = 3)),
+    axis.text = element_text(size = 9),
+    plot.margin = margin(5, 5, 5, 5),
+    legend.text = element_text(size = 9),
+    legend.margin = margin(t = -5, b = 0)
+  )
+
+ggsave(
+  filename = paste0(fig_path, "plot02_01.png"),
+  plot = plot02_01,
+  width = 7,
+  height = 5,
+  units = "cm",
+  dpi = 600,
+  bg = "white")
+
+ggsave(
+  filename = paste0(fig_path, "plot02_02.png"),
+  plot = plot02_02,
+  width = 7,
+  height = 5,
+  units = "cm",
+  dpi = 600,
+  bg = "white")
+
+ggsave(
+  filename = paste0(fig_path, "plot02_03.png"),
+  plot = plot02_03,
+  width = 7,
+  height = 5,
+  units = "cm",
+  dpi = 600,
+  bg = "white")
+
 #-------------------------------------------------------------------------------
-# Exportaciones desde 1990 hasta 2019
+# [VF] Exportaciones desde 1990 hasta 2019
 #-------------------------------------------------------------------------------
 aux1 <- data %>%
   filter(dummy_y == 1) %>%
@@ -190,7 +203,7 @@ ggsave(
       bg = "white")
 
 #-------------------------------------------------------------------------------
-# Precio ICIP desde 1990 hasta 2019
+# [VF] Precio ICIP desde 1990 hasta 2019
 #-------------------------------------------------------------------------------
 aux2 <- data %>%
   filter(dummy_ym == 1) %>%
@@ -233,7 +246,7 @@ ggsave("/Users/sebastianchacon/Desktop/sc_tesis/paper/figures/plot2.png",
       bg = "white")
 
 #-------------------------------------------------------------------------------
-# Boxplot GDP Exportadores e importadores
+# [VF] Boxplot GDP Exportadores e importadores
 #-------------------------------------------------------------------------------
 
 data_yc <- data %>%
@@ -286,7 +299,7 @@ ggsave("/Users/sebastianchacon/Desktop/sc_tesis/paper/figures/plot3.png",
       bg = "white")
 
 #-------------------------------------------------------------------------------
-# Evolución de importaciones 2002 hasta 2019
+# [] Evolución de importaciones 2002 hasta 2019
 #-------------------------------------------------------------------------------
 data_y <- data %>%
   filter(dummy_yc == 1, year >= 2002, year <= 2019) %>%
@@ -327,7 +340,7 @@ ggsave("/Users/sebastianchacon/Desktop/sc_tesis/paper/figures/plot4.png",
       bg = "white")
 
 #-------------------------------------------------------------------------------
-# Evolución de GDD, HDD, FDD
+# [] Evolución de GDD, HDD, FDD
 #-------------------------------------------------------------------------------
 # GDD
 aux <- data %>%
@@ -512,7 +525,7 @@ ggplot(world_data) +
 
 
 #-------------------------------------------------------------------------------
-# [] Líderes y seguidores - Factual
+# [VF] Líderes y seguidores - Factual
 #-------------------------------------------------------------------------------
 
 # Cantidades
@@ -530,13 +543,15 @@ aux1 <- data %>%
     .groups = "drop"
   )
 
-plot1 <- ggplot(aux1, aes(x = year, y = qe_y, 
-                          color = factor(dummy_leader,
-                                         levels = c(0, 1),
-                                         labels = c("Seguidores", "Líderes")), 
-                          group = dummy_leader)) +
-  geom_line(size = 0.2) +
-  geom_point(size = 0.3) +
+plot02_04 <- ggplot(aux1, aes(x = year, y = qe_y, 
+                              color = factor(dummy_leader,
+                                             levels = c(0, 1),
+                                             labels = c("Seguidores", "Líderes")), 
+                              group = dummy_leader)) +
+  geom_line(linewidth = 0.7, alpha = 1) +
+  # Especificar colores manualmente
+  scale_color_manual(values = c("Seguidores" = "gray60", 
+                                "Líderes" = "black")) +
   labs(
     title = NULL,
     x = NULL,
@@ -556,13 +571,14 @@ plot1 <- ggplot(aux1, aes(x = year, y = qe_y,
     legend.margin = margin(t = -5, b = 0)
   )
 
-ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/plot1.png", 
-       plot = plot1, 
-       width = 7,
-       height = 5,
-       units = "cm",
-       dpi = 600,
-       bg = "white")
+ggsave(
+  filename = paste0(fig_path, "plot02_04.png"),
+  plot = plot02_04,
+  width = 7,
+  height = 5,
+  units = "cm",
+  dpi = 600,
+  bg = "white")
 
 # Farm prices
 
@@ -1088,111 +1104,23 @@ data_c <- data %>%
 #-------------------------------------------------------------------------------
 # [] Efecto de GDD y FDD
 #-------------------------------------------------------------------------------
-# Efecto de gdd y fdd en farm prices
 data_y <- data %>%
-  filter(dummy_y == 1, year >= 1965, year <= 2019)
-
-plot2 <- ggplot(data_y, aes(x = gdd_y_mean, y = farm_prices_y_mean)) +
-  geom_point(size = 0.3, color = "#2E86AB", alpha = 1) +  # Puntos más pequeños
-  geom_smooth(method = "lm", se = TRUE, color = "#F24236", linetype = "dashed", linewidth = 0.3) +
-  labs(
-    title = NULL,
-    x = "Grados-día crecimiento (18-26°C)",
-    y = "Rem. (cents/lb)"
-  ) +
-  theme_classic() +
-  theme(
-    text = element_text(size = 10),           # Texto general más pequeño
-    axis.title = element_text(size = 9),      # Títulos de ejes más pequeños
-    axis.title.y = element_text(margin = margin(r = 3)),  # Menos espacio
-    axis.text = element_text(size = 8),       # Texto de ejes más pequeño
-    plot.margin = margin(5, 5, 5, 5)          # Márgenes mínimos
-  )
-
-# Guardar con dimensiones optimizadas para columna estrecha
-ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/plot2.png", 
-       plot = plot2, 
-       width = 7,        # cm (aprox 0.18 del ancho del A0 vertical)
-       height = 5,       # cm - relación 7:5
-       units = "cm",
-       dpi = 600,        # Mayor resolución para impresión nítida
-       bg = "white")
-
-plot3 <- ggplot(data_y, aes(x = fdd_y_mean, y = farm_prices_y_mean)) +
-  geom_point(size = 0.3, color = "#2E86AB", alpha = 1) +
-  geom_smooth(method = "lm", se = TRUE, color = "#F24236", linetype = "dashed", linewidth = 0.3) +
-  labs(
-    title = NULL,
-    x = "Grados-día helada (<10°C)",
-    y = "Rem. (cents/lb)"
-  ) +
-  theme_classic() +
-  theme(
-    text = element_text(size = 10),
-    axis.title = element_text(size = 9),
-    axis.title.y = element_text(margin = margin(r = 3)),
-    axis.title.x = element_text(margin = margin(t = 3)),
-    axis.text = element_text(size = 8),
-    plot.margin = margin(5, 5, 5, 5)
-  )
-
-ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/plot3.png", 
-       plot = plot3, 
-       width = 7,        # Mismo tamaño que plot2 para consistencia
-       height = 5,       # Misma altura
-       units = "cm",
-       dpi = 600,
-       bg = "white")
+  filter(dummy_y == 1, 
+         export_dummy == 1,
+         year >= 1965, year <= 2019)
 
 # Efecto de gdd, hdd y fdd en precios
-ggplot(data_y, aes(x = gdd_y_mean, y = price_y)) +
-  geom_point(size = 3, color = "#2E86AB", alpha = 0.8) +
-  geom_smooth(method = "lm", se = TRUE, color = "#F24236", linetype = "dashed") +
-  theme_classic()
 
-ggplot(data_y, aes(x = hdd_y_mean, y = price_y)) +
-  geom_point(size = 3, color = "#2E86AB", alpha = 0.8) +
-  geom_smooth(method = "lm", se = TRUE, color = "#F24236", linetype = "dashed") +
-  theme_classic()
-
-ggplot(data_y, aes(x = fdd_y_mean, y = price_y)) +
+ggplot(data_y, aes(x = tas_y_mean, y = price_y)) +
   geom_point(size = 3, color = "#2E86AB", alpha = 0.8) +
   geom_smooth(method = "lm", se = TRUE, color = "#F24236", linetype = "dashed") +
   theme_classic()
 
 # Efecto de gdd, hdd y fdd en cantidades
-ggplot(data_y, aes(x = gdd_y, y = qe_y)) +
+ggplot(data_y, aes(x = hdd_y_mean, y = qe_y)) +
   geom_point(size = 3, color = "#2E86AB", alpha = 0.8) +
   geom_smooth(method = "lm", se = TRUE, color = "#F24236", linetype = "dashed") +
   theme_classic()
-
-ggplot(data_y, aes(x = hdd_y, y = qe_y)) +
-  geom_point(size = 3, color = "#2E86AB", alpha = 0.8) +
-  geom_smooth(method = "lm", se = TRUE, color = "#F24236", linetype = "dashed") +
-  theme_classic()
-
-ggplot(data_y, aes(x = fdd_y, y = qe_y)) +
-  geom_point(size = 3, color = "#2E86AB", alpha = 0.8) +
-  geom_smooth(method = "lm", se = TRUE, color = "#F24236", linetype = "dashed") +
-  theme_classic()
-
-plot4 <- ggplot(data_y, aes(x = fdd_y_mean, y = qe_y)) +
-  geom_point(size = 1, color = "#2E86AB", alpha = 0.8) +
-  geom_smooth(method = "lm", se = TRUE, color = "#F24236", linetype = "dashed", linewidth = 0.8) +
-  labs(
-    title = NULL,
-    x = "Grados-día helada (<10°C)",
-    y = "Exp. (mill. 60kg)"
-  ) +
-  theme_classic() +
-  theme(
-    text = element_text(size = 10),
-    axis.title = element_text(size = 9),
-    axis.title.y = element_text(margin = margin(r = 3)),
-    axis.title.x = element_text(margin = margin(t = 3)),
-    axis.text = element_text(size = 8),
-    plot.margin = margin(5, 5, 5, 5)
-  )
 
 ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/plot4.png", 
        plot = plot4, 
