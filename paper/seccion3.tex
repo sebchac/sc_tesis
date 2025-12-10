@@ -2,9 +2,9 @@
 
 El café forma parte del conjunto de bienes agrícolas o \textit{soft commodities}, una categoría que incluye productos como el arroz, el maíz y la soya, los que comparten un conjunto de características que definen su comportamiento en los mercados globales.
 
-Primero, se trata de productos con baja sustituibilidad, dado que cada uno cumple funciones específicas en la dieta y el consumo, tanto a nivel individual como industria [CITAR]. Segundo, estos productos presentan una alta volatilidad de precios, la que se manifiesta en fluctuaciones de corto plazo, a pesar de presentar ciclos de precios en el mediano y largo plazo [CITAR]. Tercero, los bienes agrícolas cuentan con largos ciclos de producción, lo que dificulta una rápida respuesta ante los cambios del mercado. Esto se suma, además, a una alta susceptibilidad a choques climáticos, como sequías, heladas o precipitaciones inusuales; en resumen, condiciones climáticas adversas [CITAR]. En conjunto, todas estas características hacen que el mercado del café, al igual que el de otros \textit{soft commodities}, esté sujeto a dinámicas complejas de ajuste y riesgo, la que se puede ver afectada por el avance del cambio climático.
+Primero, se trata de productos con baja sustituibilidad, dado que cada uno cumple funciones específicas en la dieta y el consumo, tanto a nivel individual como industria [CITAR]. Segundo, estos productos presentan una alta volatilidad de precios, la que se manifiesta en fluctuaciones de corto plazo, a pesar de presentar ciclos de precios en el mediano y largo plazo [CITAR]. Tercero, los bienes agrícolas cuentan con largos ciclos de producción, lo que dificulta una rápida respuesta ante los cambios del mercado. Esto se suma, además, a una alta susceptibilidad a choques climáticos, como sequías, heladas o precipitaciones inusuales [CITAR]. En conjunto, todas estas características hacen que el mercado del café, al igual que el de otros \textit{soft commodities}, esté sujeto a dinámicas complejas de ajuste y riesgo, la que se puede ver afectada por el avance del cambio climático.
 
-Lo anterior tiene dos implicancias sumamente relevantes para esta investigación. Por un lado, reafirma la relevancia de estimar el impacto del cambio climático --en este caso, representado por el estrés térmico-- sobre la comercialización del café, por ser un factor que afecta directamente a la producción de este bien. Por otro lado, dado que el café comparte características con otros bienes, el modelo de estimación utilizado puede servir como guía para el análisis de otros bienes agrícolas.
+Lo anterior tiene dos implicancias sumamente relevantes para esta investigación. Por un lado, reafirma la relevancia de estimar el impacto del cambio climático --en este caso, representado por el estrés térmico-- sobre la comercialización del café, por ser un factor que afecta directamente a la producción de este bien. Por otro lado, dado que el café comparte características con otros \textit{soft commodities}, el modelo de estimación utilizado puede servir como guía para el análisis de otros bienes agrícolas.
 
 En las últimas décadas, el comercio internacional del grano verde de café ha experimentado un crecimiento sostenido. Entre 1990 y 2019, las exportaciones globales de este grano aumentaron en un 59\%, pasando de 73.2 millones a 116.3 millones de sacos de 60 kilogramos. En este mismo período, el precio internacional del café en bolsa del bien ha aumentado en un 41\%, desde 71.5 hasta los 100.5 centavos de dólar por libra. Estas cifras son reflejo de la expansión de la demanda global y de la materialización de ciertas restricciones estructurales que presionan los precios al alza.
 
@@ -14,14 +14,14 @@ En las últimas décadas, el comercio internacional del grano verde de café ha 
         \centering
         \caption{Exportaciones mundiales de café}
         \includegraphics[width=\linewidth]{figures/plot1.png}
-        \label{fig:plot1}
+        \label{fig:plot03_01}
     \end{minipage}
     \hfill
     \begin{minipage}[t]{0.45\textwidth}
         \centering
         \caption{Precio internacional del café}
         \includegraphics[width=\linewidth]{figures/plot2.png}
-        \label{fig:plot2}
+        \label{fig:plot03_02}
     \end{minipage}
 \end{figure}
 
@@ -29,13 +29,20 @@ A pesar de esta dinámica, la estructura del mercado se ha mantenido relativamen
 
 En resumen, se configura un patrón estructural en la economía del café. En palabras de Igami (2015): \textit{el mercado internacional del café está formado por los países desarrollados (como importadores) y los países en desarrollo (como exportadores)}. Esto se observa, por ejemplo, al comparar el Producto Interno Bruto (PIB) de cada grupo y su evolución en el tiempo. De forma consistente, los países importadores presentan un PIB mayor.
 
-\begin{center}
+\begin{figure}
+    \centering
+    \caption{}
     \includegraphics[scale = 0.9]{figures/plot3.png}
-\end{center}
+    \label{fig:plot03_03}
+\end{figure}
 
-Pero no solo existe una diferencia a nivel de ingresos, sino también con relación a la vulnerabilidad frente al cambio climático y sus consecuencias. El Índice de la Iniciativa Global de Adaptación de la Universidad de Notre Dame (ND-GAIN, por sus siglas en inglés) pondera cerca de 40 elementos económicos, políticos, ambientales y sociales, a fin de estimar el grado de preparación de un país frente al cambio climático (\cite{gain2024}). Nuevamente, la diferencia es relevante entre grupos. Siguiendo la interpretación del índice, los países importadores estarían mejor preparados frente a las consecuencias negativas del cambio climático. Esto reafirma la apreciación de Igami y refuerza la importancia de cuantificar el impacto climático sobre el mercado internacional del café y su distribución entre grupos de países.
+Pero no solo existe una diferencia a nivel de ingresos, sino también con relación a la vulnerabilidad frente al cambio climático y sus consecuencias. El Índice de la Iniciativa Global de Adaptación de la Universidad de Notre Dame (ND-GAIN, por sus siglas en inglés) pondera cerca de 40 elementos económicos, políticos, ambientales y sociales, a fin de estimar el grado de preparación de un país frente al cambio climático (CITAR). Nuevamente, la diferencia es relevante entre grupos. Siguiendo la interpretación del índice, los países importadores estarían mejor preparados frente a las consecuencias negativas del cambio climático. Esto reafirma la apreciación de Igami y refuerza la importancia de cuantificar el impacto climático sobre el mercado internacional del café y su distribución entre grupos de países.
 
-[NDGAIN DE EXPORTADORES / IMPORTADORES]
+\begin{figure}
+    \centering
+    \caption{}
+    \label{fig:plot03_04}
+\end{figure}
 
 En el plano institucional, el mercado internacional del café está representado por la Organización Internacional del Café (ICO, por sus siglas en inglés), un organismo intergubernamental que reúne a países exportadores e importadores desde su fundación en 1963. Esta organización actualmente representa a aproximadamente el 93\% de la producción mundial y al 63\% del consumo global, constituyéndose como el principal foro de coordinación y diálogo entre los actores estatales vinculados al comercio del café [CITAR].
 
@@ -53,11 +60,11 @@ Las condiciones ideales para el cultivo y desarrollo del café Arabica se encuen
 
 Por su parte, el café de especie Robusta tiene su origen en los bajos bosques de África central, específicamente en la cuenca del río Congo, extendiéndose hasta regiones cercanas al lago Victoria y Uganda. A diferencia de la especie Arabica, la familia Robusta prospera en climas cálidos y húmedos, con temperaturas medias anuales entre 23°C y 26°C, una baja variabilidad térmica estacional y una precipitación abundante (superior a los 2.000 mm anuales) que se distribuye a lo largo de 9 a 10 meses en el año. Sin embargo, temperaturas muy altas, en especial si van acompañadas de un aire seco, pueden resultar perjudiciales. Asimismo, esta especie no resiste temperaturas inferiores a 6°C ni exposiciones prolongadas a valores cercanos a los 15°C.
 
-El modelo utilizado en esta investigación, y que será explicado en detalle en la [SECCIÓN 4], considera la transacción de un sólo bien homogéneo, sin perjuicio de las variedades previamente señaladas. Esta aproximación surge de la manera en que la industria ha sido gestionada históricamente y de la modelación típica en la literatura académica. Sin embargo, la incorporación de las diferencias entre las variedades de cada grano de café permitiría una mejor identificación del impacto del estrés térmico, pues agregaría mayor precisión al distinguir entre las condiciones ambientales que favorecen el desarrollo de cada cultivo.
+El modelo utilizado en esta investigación, y que será explicado en detalle en la sección 5, considera la transacción de un sólo bien homogéneo, sin perjuicio de las variedades previamente señaladas. Esta aproximación surge de la manera en que la industria ha sido gestionada históricamente y de la modelación típica en la literatura académica. Sin embargo, la incorporación de las diferencias entre las variedades de cada grano de café permitiría una mejor identificación del impacto del estrés térmico, pues agregaría mayor precisión al distinguir entre las condiciones ambientales que favorecen el desarrollo de cada cultivo.
 
-\textcolor{blue}{Una de las principales razones para esta consideración radica en la gestión y operación de organismos internacionales, y otros acuerdos históricos. La ICO, por ejemplo, calcula un índice global de precios del café que pondera la relevancia de cada especie para generar un precio agregado que afecta a todo el mercado, con independencia del tipo de grano comercializado. También se debe tener presente que el Acuerdo Internacional del Café (ICA), que consistía en la repartición de cuotas de exportación entre los países de la ICO y que estuvo vigente entre 1965 y 1989, funcionaba en base a este índice agregado, lo que se traduce en un entendimiento del café como un bien homogéneo.}
+Una de las principales razones para esta consideración radica en la gestión y operación de organismos internacionales, y otros acuerdos históricos. La ICO, por ejemplo, calcula un índice global de precios del café que pondera la relevancia de cada especie para generar un precio agregado que afecta a todo el mercado, con independencia del tipo de grano comercializado. También se debe tener presente que el Acuerdo Internacional del Café (ICA), que consistía en la repartición de cuotas de exportación entre los países de la ICO y que estuvo vigente entre 1965 y 1989, funcionaba en base a este índice agregado, lo que se traduce en un entendimiento del café como un bien homogéneo.
 
-\textcolor{blue}{Adicionalmente, la literatura académica ha caracterizado los granos de café como bienes homogéneos a fin de ser coherente con su dinámica y con el funcionamiento del cartel recién mencionado. Este supuesto simplifica el análisis económico y facilita la medición del poder de mercado entre países. Al modelar el café como un producto homogéneo, los investigadores pueden centrarse en aspectos macro como las elasticidades de la oferta y la demanda, o los efectos de los choques externos en el precio y el volumen comercializado; esta investigación se apoya en aquella ventaja para la estimación estructural del mercado.}
+Adicionalmente, la literatura académica ha caracterizado los granos de café como bienes homogéneos a fin de ser coherente con su dinámica y con el funcionamiento del cartel recién mencionado. Este supuesto simplifica el análisis económico y facilita la medición del poder de mercado entre países. Al modelar el café como un producto homogéneo, los investigadores pueden centrarse en aspectos macro como las elasticidades de la oferta y la demanda, o los efectos de los choques externos en el precio y el volumen comercializado; esta investigación se apoya en aquella ventaja para la estimación estructural del mercado.
 
 Por último, a pesar de las diferencias inherentes a cada categoría, persisten similitudes importantes para todos los granos de café, desde su cadena de producción hasta su exportación como granos verdes. Además, enfrentan vulnerabilidades compartidas ante choques exógenos a nivel macro, cambios regulatorios y condiciones climáticas adversas.
 
@@ -71,11 +78,9 @@ Por último, la trilla y el tostado conforman la etapa final de la producción d
 
 Ambas especies pueden ser exportadas como grano verde, pero existen diferencias en el destino y el uso. El café Arabica, por ejemplo, representa la mayoría del café de especialidad, orientado a consumidores exigentes en mercados desarrollados, mientras que el café Robusta se utiliza principalmente para cafés instantáneos o mezclas, debido a su sabor más fuerte y menor acidez. 
 
-[AGREGAR CITA DE PAPER QUE EXPLICA QUE LA DEMANDA CONSIDERA MEZCLAS. BIENES COMPLEMENTARIOS]
-
 \section*{3.2. Productores y exportadores}
 
-La oferta del grano de café está determinada principalmente por un grupo de aproximadamente [52] países productores, de los cuaales, Brasil, Viet Nam y Colombia concentran alrededor del [XX\% producción]. Así, la producción está concentrada en zonas tropicales con condiciones particulares de altitud, temperatura y precipitación. Esta característica vuelve al mercado susceptible a choques climáticos y a riesgos de oferta importantes que pueden tener repercusiones sobre los precios y la estabilidad comercial del sector.
+La oferta del grano de café está determinada principalmente por un grupo de aproximadamente [52] países productores, de los cuaales, Brasil, Viet Nam y Colombia concentran alrededor del [50\% producción]. Así, la producción está concentrada en zonas tropicales con condiciones particulares de altitud, temperatura y precipitación. Esta característica vuelve al mercado susceptible a choques climáticos y a riesgos de oferta importantes que pueden tener repercusiones sobre los precios y la estabilidad comercial del sector.
 
 Adicionalmente, la producción presenta un importante grado de rigidez en el corto plazo, producto de los largos ciclos de cultivo y la limitada capacidad de reacción frente a las fluctuaciones del mercado. Desde su plantación, el cafeto tarda entre 2,5 a 4 años hasta su primera cosecha, lo que impide ajustes rápidos ante las pronunciadas variaciones en los precios internacionales, los choques de demanda o los cambios en las políticas comerciales. Esta rigidez se ve agravada por el creciente impacto del cambio climático, que altera los patrones históricos de temperatura y precipitación, afecta la floración y maduración de los cafetos, y facilita la propagación de plagas. Estas circunstancias obligan a los productores a adaptarse bajo condiciones de alta incertidumbre y, en muchos casos, con recursos limitados.
 
@@ -83,9 +88,9 @@ En cuanto al comercio internacional, la mayor parte del café se exporta en su e
 
 \section*{3.3. Importadores}
 
-La demanda de café también está concentrada en alrededor de [50] países. [DATOS DE IMPORTACIONES].
+La demanda de café también está concentrada en alrededor de [50] países. [Desarrollar].
 
-Los países importadores no solo se diferencian por el volumen que compran, sino también por sus preferencias de consumo y exigencias regulatorias. Estas preferencias impactan directamente en las decisiones de los exportadores, quienes adaptan su producción y procesamiento a los estándares del mercado de destino.  [EJEMPLO DE LA RECIENTE REGULACION EUROPEA]
+Los países importadores no solo se diferencian por el volumen que compran, sino también por sus preferencias de consumo y exigencias regulatorias. Estas preferencias impactan directamente en las decisiones de los exportadores, quienes adaptan su producción y procesamiento a los estándares del mercado de destino.  [Regulación europea]
 
 Desde una perspectiva estructural, los países importadores ocupan una posición importante dentro de la cadena global del café, no solo porque determinan el consumo, sino también porque poseen las capacidades tecnológicas y comerciales para capturar gran parte del valor agregado. Como la infraestructura para el tostado, empaque y distribución minorista se encuentra en estos países desarrollados, las empresas locales pueden apropiarse de márgenes superiores a los que obtienen los países productores [CITAR].
 
@@ -99,7 +104,7 @@ En esta materia, probablemente el hito más importante fue el Acuerdo Internacio
 
 A pesar de sus logros, la ICA enfrentó rigideces, como la falta de un sistema para reajustar las cuotas según los precios o la imposibilidad de ajustar independientemente los distintos tipos de café [CITAR]. Además, generó un mercado negro, ajeno a las cuotas, en el que el café se vendía a precios bajos [CITAR].
 
-Tras el colapso del ICA, la estructura de poder en la cadena de valor del café ha evolucionado hacia un sistema impulsado por los compradores [CITAR]. Grandes empresas transnacionales, como los tostadores y minoristas, han consolidado su control sobre los últimos eslabones de la cadena, obteniendo mayores márgenes [CITAR]. Por otro lado, la aparición de Vietnam como segundo mayor exportador mundial (superando a Colombia) en la década de 1990, tras programas impulsados por el gobierno local, añadió una significativa presión a la baja sobre los precios globales\footnote{Vietnam, al igual que otros productores asiáticos --como Tailandia-- no tenían una historia de cooperación en el ICA y eran reacios a unirse a los esfuerzos de retención del café.}. Pese a eso, la concentración del mercado ha evolucionado hacia [PENDIENTE], alcanzando valores propios de una industria [PENDIENTE]. Esto, sumado a la alta participación que alcanza un grupo reducido de países en las exportaciones --y que se ha mantenido en el tiempo--, reafirma la configuración de un mercado  oligopólico que enfrenta un fuerte poder de contrapeso por parte de los países importadores.
+Tras el colapso del ICA, la estructura de poder en la cadena de valor del café ha evolucionado hacia un sistema impulsado por los compradores [CITAR]. Grandes empresas transnacionales, como los tostadores y minoristas, han consolidado su control sobre los últimos eslabones de la cadena, obteniendo mayores márgenes [CITAR]. Por otro lado, la aparición de Viet Nam como segundo mayor exportador mundial (superando a Colombia) en la década de 1990, tras programas impulsados por el gobierno local, añadió una significativa presión a la baja sobre los precios globales\footnote{Viet Nam, al igual que otros productores asiáticos --como Tailandia-- no tenían una historia de cooperación en el ICA y eran reacios a unirse a los esfuerzos de retención del café.}. Pese a eso, la concentración del mercado ha evolucionado hacia [PENDIENTE], alcanzando valores propios de una industria [PENDIENTE]. Esto, sumado a la alta participación que alcanza un grupo reducido de países en las exportaciones --y que se ha mantenido en el tiempo--, reafirma la configuración de un mercado  oligopólico que enfrenta un fuerte poder de contrapeso por parte de los países importadores.
 
 [ALGO SOBRE EL C1, C2, C3 + TABLA]
 
