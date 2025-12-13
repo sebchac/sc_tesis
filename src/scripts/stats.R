@@ -36,6 +36,10 @@ beige <- "#F59B13"
 # Rutas
 fig_path <- "/Users/sebastianchacon/Desktop/sc_tesis/paper/figures/"
 tab_path <- "/Users/sebastianchacon/Desktop/sc_tesis/paper/tables/"
+filename_psdcoffee <- "psd_coffee.csv" 
+main_dir <- "/Users/sebastianchacon/Desktop/sc_tesis/src/original_data/"
+filepath_psdcoffee <- paste(main_dir, filename_psdcoffee,sep="") 
+
 
 # Data
 data <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data.rds")
@@ -297,6 +301,63 @@ ggsave("/Users/sebastianchacon/Desktop/sc_tesis/paper/figures/plot3.png",
       units = "cm",
       dpi = 600,
       bg = "white")
+
+#-------------------------------------------------------------------------------
+# [VF] Boxplot de ND-GAIN
+#-------------------------------------------------------------------------------
+data_yc <- data %>%
+  filter(dummy_yc == 1, year >= 2002, year <= 2019) %>%
+  mutate(
+    type = case_when(
+      export_dummy == 1 ~ "Exportadores",
+      export_dummy == 0 ~ "Importadores"
+    ),
+    group = case_when(
+      dummy_leader == 1 ~ "Líderes",
+      dummy_leader == 0 ~ "Seguidores"
+    ))
+
+plot03_09 <- ggplot(data_yc, aes(factor(year), y = ndgain_yc, fill = type)) +
+  geom_boxplot(
+    position = position_dodge(0.8),
+    width = 0.7,
+    alpha = 0.8,           # Similar alpha para consistencia
+    size = 0.5,            # Tamaño de línea similar
+    color = "black"        # Borde negro para contraste en grises
+  ) +
+  labs(
+    title = NULL,
+    x = NULL,              # Coincide con tu primer gráfico
+    y = "ND-GAIN",       # Ajusta según tu variable
+    fill = NULL            # Coincide con tu primer gráfico
+  ) +
+  theme_classic() +        # Mismo tema base
+  theme(
+    legend.position = "bottom",
+    text = element_text(size = 9),
+    axis.title = element_text(size = 8),
+    axis.title.y = element_text(margin = margin(r = 3)),
+    axis.title.x = element_text(margin = margin(t = 3)),
+    axis.text = element_text(size = 9),
+    plot.margin = margin(5, 5, 5, 5),
+    legend.text = element_text(size = 9),
+    legend.margin = margin(t = -5, b = 0)
+  ) +
+  # Escala de grises profesional para papers
+  scale_fill_grey(
+    start = 0.2,    # Gris oscuro
+    end = 0.8,      # Gris claro  
+    na.value = "red"
+  )
+
+ggsave(paste0(fig_path, "plot03_09.png"), 
+       plot = plot03_09, 
+       width = 18,
+       height = 8,
+       units = "cm",
+       dpi = 600,
+       bg = "white")
+
 
 #-------------------------------------------------------------------------------
 # [] Evolución de importaciones 2002 hasta 2019
@@ -715,23 +776,23 @@ aux1 <- data %>%
   select(date, price_ym) %>%
   mutate(date = as.Date(date)) %>%
   left_join(results_ym %>% 
-              filter(scenario == "Baseline") %>%
+              filter(scenario == "CF0") %>%
               mutate(date = as.Date(date)), by = c("date")) %>%
   distinct(date, price, price_ym) %>%
   rename(price_ym_estimated = price) %>%
   drop_na()
 
-ggplot(aux1) +
-  geom_line(aes(x = date, y = price_ym, color = "Precio Observado"), 
+plot_0601 <- ggplot(aux1) +
+  geom_line(aes(x = date, y = price_ym, color = "Obs."), 
             linewidth = 0.8, alpha = 0.8) +
-  geom_line(aes(x = date, y = price_ym_estimated, color = "Precio Estimado"), 
+  geom_line(aes(x = date, y = price_ym_estimated, color = "Est."), 
             linewidth = 0.8, alpha = 0.8, linetype = "dashed") +
   scale_color_manual(
     name = NULL,
-    values = c("Precio Observado" = "red3", "Precio Estimado" = "blue3")
+    values = c("Obs." = "gray40", "Est." = "black")
   ) +
   scale_x_date(
-    date_breaks = "5 years",
+    date_breaks = "10 years",
     date_labels = "%Y",
     expand = c(0.02, 0.02)
   ) +
@@ -739,16 +800,25 @@ ggplot(aux1) +
     labels = scales::dollar_format(prefix = "", suffix = "¢")
   ) +
   labs(
-    title = "Comparación: Precio Observado vs. Precio Estimado",
+    title = NULL,
     x = NULL,
     y = "US cents/lb"
   ) +
   theme_classic() +
   theme(
-    legend.position = "bottom",
+    legend.position = "right",
     plot.title = element_text(face = "bold", hjust = 0.5),
     axis.text.x = element_text(angle = 45, hjust = 1)
   )
+
+ggsave(
+  filename = paste0(fig_path, "plot_0601.png"),
+  plot = plot_0601,
+  width = 12,
+  height = 7,
+  units = "cm",
+  dpi = 600,
+  bg = "white")
 
 #-------------------------------------------------------------------------------
 # [] Fit de precios y mc estimados
@@ -817,7 +887,7 @@ ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/plot5.png",
        bg = "white")
 
 #-------------------------------------------------------------------------------
-# [] Fit de cantidades
+# [VF] Fit de cantidades
 #-------------------------------------------------------------------------------
 aux2 <- data %>%
   filter(dummy_y == 1) %>%
@@ -825,7 +895,7 @@ aux2 <- data %>%
   mutate(date = as.Date(date),
          year = year(date)) %>%
   left_join(results_ym %>% 
-              filter(scenario == "Baseline") %>%
+              filter(scenario == "CF0") %>%
               mutate(date = as.Date(date),
                      year = year(date)) %>%
               group_by(year) %>%
@@ -835,16 +905,15 @@ aux2 <- data %>%
   distinct(year, qe_y, qe_y_estimated) %>%
   drop_na()
 
-plot6 <- ggplot(aux2 %>%
-                  filter(year >= 1990)) +
+plot_0602 <- ggplot(aux2) +
   geom_line(aes(x = year, y = qe_y, color = "Obs."), 
             linewidth = 0.5, alpha = 1) +
   geom_line(aes(x = year, y = qe_y_estimated, color = "Est."), 
             linewidth = 0.5, alpha = 1, linetype = "dashed") +
-  #scale_color_manual(
-  #  name = NULL,
-  #  values = c("Obs." = "black", "Est." = "blue2")
-  #) +
+  scale_color_manual(
+    name = NULL,
+    values = c("Obs." = "gray40", "Est." = "black")
+  ) +
   labs(
     title = NULL,
     x = NULL,
@@ -853,7 +922,7 @@ plot6 <- ggplot(aux2 %>%
   ) +
   theme_classic() +
   theme(
-    legend.position = "bottom",
+    legend.position = "right",
     text = element_text(size = 10),
     axis.title = element_text(size = 9),
     axis.title.y = element_text(margin = margin(r = 3)),
@@ -864,10 +933,10 @@ plot6 <- ggplot(aux2 %>%
     legend.margin = margin(t = -5, b = 0)
   )
 
-ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/plot6.png", 
-       plot = plot6, 
+ggsave(paste0(fig_path, "plot_0602.png"), 
+       plot = plot_0602, 
        width = 9,
-       height = 6,
+       height = 7,
        units = "cm",
        dpi = 600,
        bg = "white")

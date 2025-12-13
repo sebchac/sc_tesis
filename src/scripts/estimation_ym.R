@@ -22,6 +22,7 @@ library(slider)
 library(nleqslv)
 library(modelsummary)
 library(moments)
+library(kableExtra)
 
 ruta_proyecto <- "/Users/sebastianchacon/Desktop/sc_tesis/"
 ruta_paper <- paste0(ruta_proyecto, "paper/")
@@ -361,6 +362,28 @@ ruta_figures <- paste0(ruta_paper, "figures/")
     coeff_mc_c <- coef(mc_fe_cournot)
   # Predict FE Cournot
     data_ymc$mc_ymc_hat_c <- predict(mc_fe_cournot)
+
+  # Predict CF1
+    data_ymc$mc_ymc_hat_s_cf1 <- predict(
+      mc_fe, 
+      newdata = data_ymc %>% mutate(
+        hdd_ym = 0.75*hdd_ym,
+        fdd_ym = 0.75*fdd_ym
+      ))
+  # Predict CF2
+    data_ymc$mc_ymc_hat_s_cf2 <- predict(
+      mc_fe, 
+      newdata = data_ymc %>% mutate(
+        hdd_ym = 0.5*hdd_ym,
+        fdd_ym = 0.5*fdd_ym
+      ))
+  # Predict CF3
+    data_ymc$mc_ymc_hat_s_cf3 <- predict(
+      mc_fe, 
+      newdata = data_ymc %>% mutate(
+        hdd_ym = 0,
+        fdd_ym = 0
+      ))
     
   # # Store coefficients IV 
   #   coeff_mc_2 <- coef(mc_iv)
@@ -561,14 +584,7 @@ saveRDS(data_ymc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_
     group_by(date) %>%
     group_split()
   
-  # Run baseline scenario
-  baseline_results <- map(market_list, ~simulate_market(.x, coeff_iv3))
-  baseline_results_ym <- map_dfr(baseline_results, ~.x$market_summary, .id = "market_id") %>% 
-    mutate(scenario = "Baseline")
-  baseline_results_ymc <- map_dfr(baseline_results, ~ .x$country_profits, .id = "market_id") %>% 
-    mutate(scenario = "Baseline")
-  
-  # Run counterfactual scenarios
+  # Baseline
   cf0_processed <- map(market_list, function(market) {
     market$mc_ymc_hat_s <- predict(
       mc_fe, 
@@ -576,17 +592,22 @@ saveRDS(data_ymc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_
       fixef = FALSE)
     simulate_market(market, coeff_iv3)
   }) 
-  
-  # Scenario 1
+
+  # Scenario 1: 10% reduction
   cf1_processed <- map(market_list, function(market) {
-    market$mc_ymc_hat_s <- predict(
-      mc_fe, 
-      newdata = market %>% mutate(
-        #disease1 = 0,
-        #frosts = 0,
-        hdd_ym = 0
-      ),
-      fixef = FALSE)
+    market$mc_ymc_hat_s <- market$mc_ymc_hat_s_cf1 
+    simulate_market(market, coeff_iv3)
+  })
+  
+  # Scenario 2: 50% reduction
+  cf2_processed <- map(market_list, function(market) {
+    market$mc_ymc_hat_s <- market$mc_ymc_hat_s_cf2
+    simulate_market(market, coeff_iv3)
+  })
+  
+  # Scenario 3: full reduction
+  cf3_processed <- map(market_list, function(market) {
+    market$mc_ymc_hat_s <- market$mc_ymc_hat_s_cf3
     simulate_market(market, coeff_iv3)
   }) 
   
@@ -602,6 +623,18 @@ saveRDS(data_ymc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_
   
   cf1_results_ymc <- map_dfr(cf1_processed, ~ .x$country_profits, .id = "market_id") %>% 
     mutate(scenario = "CF1")
+  
+  cf2_results_ym <- map_dfr(cf2_processed, ~.x$market_summary, .id = "market_id") %>% 
+    mutate(scenario = "CF2")
+  
+  cf2_results_ymc <- map_dfr(cf2_processed, ~ .x$country_profits, .id = "market_id") %>% 
+    mutate(scenario = "CF2")
+  
+  cf3_results_ym <- map_dfr(cf3_processed, ~.x$market_summary, .id = "market_id") %>% 
+    mutate(scenario = "CF3")
+  
+  cf3_results_ymc <- map_dfr(cf3_processed, ~ .x$country_profits, .id = "market_id") %>% 
+    mutate(scenario = "CF3")
   
   # # Scenario 2
   # cf2_results <- map_dfr(market_list, function(market) {
@@ -635,13 +668,17 @@ saveRDS(data_ymc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_
   # Combine all results
   all_results_ym <- bind_rows(
     cf0_results_ym,
-    cf1_results_ym
+    cf1_results_ym,
+    cf2_results_ym,
+    cf3_results_ym
   ) %>%
     arrange(date, scenario)
   
   all_results_ymc <- bind_rows(
     cf0_results_ymc,
-    cf1_results_ymc
+    cf1_results_ymc,
+    cf2_results_ymc,
+    cf3_results_ymc
   ) %>%
     arrange(date, country, scenario)
   
@@ -665,7 +702,10 @@ saveRDS(data_ymc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_
       .groups = "drop"
     )
   
-  saveRDS(summary_ym, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/summary.rds")
+  saveRDS(summary, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/summary.rds")
+  
+  # Guardar en ruta_figures
+  writeLines(tabla_tex, paste0(ruta_figures, "tabla.tex"))
   
   # Profit comparison by country
   summary_c <- all_results_ymc %>%
@@ -682,5 +722,5 @@ saveRDS(data_ymc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_
       values_from = c(profit, quantity, mc)
     )
   
-  saveRDS(summary_ymc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/summary_c.rds")
+  saveRDS(summary_c, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/summary_c.rds")
 

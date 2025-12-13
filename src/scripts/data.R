@@ -91,7 +91,7 @@ create_month <- function(db) {
 #-------------------------------------------------------------------------------
 ################################### [1] Variables ##############################
 #-------------------------------------------------------------------------------
-{
+
 #-------------------------------------------------------------------------------
 # [1.0] CPI
 #-------------------------------------------------------------------------------
@@ -157,6 +157,9 @@ europeanUnion <- c("Belgium","Bulgaria","Czech Republic","Denmark","Germany","Es
 # Import Countries with European Union
 importCountriesGDP <- c(importCountries,europeanUnion)
 importCountriesGDP <- subset(importCountriesGDP, importCountriesGDP != "European Union")
+
+allCountries <- c(psd_coffee %>% ungroup() %>% distinct(country) %>% pull(country), europeanUnion)
+allCountries <- subset(allCountries, allCountries != "European Union")
 
 saveRDS(psd_coffee, filepath_psd)
 
@@ -508,7 +511,32 @@ supplyShocks$year = as.integer(supplyShocks$year)
 supplyShocks$date  = NULL
 supplyShocks$trend = NULL
 
-}
+
+
+#-------------------------------------------------------------------------------
+# [1.13] ND GAIN
+#-------------------------------------------------------------------------------
+ndgain <- read_csv(filepath_ndgain) 
+
+ndgain_data <- ndgain %>%
+  select(-ISO3) %>%
+  pivot_longer(cols = 2:30, names_to = "year", values_to = "ndgain_yc") %>%
+  rename(country = Name) %>%
+  mutate(
+    country = case_when(
+      country == "Bolivia, Plurinational State of" ~ "Bolivia",
+      country == "Cote d'Ivoire" ~ "Côte d'Ivoire",
+      country == "Tanzania, United Republic of" ~ "Tanzania",
+      country == "Venezuela, Bolivarian Republic o" ~ "Venezuela",
+      country == "Lao People's Democratic Republic" ~ "Laos",
+      country == "Korea, Republic of" ~ "Korea, South",
+      country == "Russian Federation" ~ "Russia",
+      country == "Macedonia" ~ "North Macedonia",
+      country == "Iran, Islamic Republic of" ~ "Iran",
+      TRUE ~ country
+    ),
+    year = as.numeric(year)
+  )
 #-------------------------------------------------------------------------------
 ################################### [2] DATA ###################################
 #-------------------------------------------------------------------------------
@@ -526,6 +554,7 @@ supplyShocks$trend = NULL
   merge2 <- left_join(merge2, tea, by = c( "year", "month_num"))
   merge2 <- left_join(merge2, gdp, by = c("year"))
   merge2 <- left_join(merge2, gdp_yc, by = c("year", "country"))
+  merge2 <- left_join(merge2, ndgain_data, by = c("year", "country"))
   merge2 <- left_join(merge2, tea_annual, by = c("year"))
   merge2 <- left_join(merge2, fertilizers_y, by = c("year"))
   merge2 <- left_join(merge2, data_tas_ymc, by = c("year", "month_num", "country"))
