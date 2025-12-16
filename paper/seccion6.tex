@@ -57,10 +57,10 @@ La [TABLA] resume los resultados para la especificación utilizada. Se observa q
 
 Por otro lado, si separamos la muestra a fin de observar específicamente el efecto de estas variables climáticas sobre países lídere y seguidores, se observa que el impacto es notablemente mayor para el segundo grupo. Así, como se desarrollará con detalle en el análisis de los resultados contrafactuales, el impacto del cambio climático afectaría más a aquellos países que actúan como seguidores del mercado. En el caso de la acumulación de frío, el efecto sería un 24\% más importante para el grupo de seguidores; mientras que la diferencia en la acumulación de calor asciende hasta un 38\% aproximadamente.
 
-\input{tables/table_costs.tex}
+\input{tables/t6_01.tex}
 
 \section*{6.3. Ajuste del modelo y escenarios contrafactuales}
-A partir de los resultados obtenido hasta ahora, es posible identificar la sensibilidad de la demanda ante los choques de precios y computar los costos marginales del sistema. Junto con la interacción estratégica de los agentes, es posible estimar el escenario factual, y revisar así el ajuste del modelo a los datos observados.
+A partir de los resultados obtenido hasta ahora, es posible identificar la sensibilidad de la demanda ante los choques de precios y computar los costos marginales del sistema. Junto con la interacción estratégica de los agentes, es directo estimar el escenario factual, y revisar así el ajuste del modelo a los datos observados.
 
 Las [FIGURAS] muestran el ajuste de la estimación para el precio y las cantidades observadas. Es directo ver que la estimación estructural permite identificar buena parte de la evolución de ambas series. En promedio, la diferencia entre los valores observados y la predicción del modelo es de un 4\% para el precio y de un 0,9\% para las exportaciones.
 
@@ -82,11 +82,30 @@ Ahora bien, uno de los principales objetivos de esta investigación es la estima
 
 Las [TABLAS] presentan los resultados para diferentes escenarios contrafactuales, bajo reducciones en la exposición a temperaturas extremas. El primer caso (Contrafactual 1) se obtiene de reducir en un 25\% la exposición mensual de cada país, tanto a temperaturas altas (sobre 30°C) como a temperaturas bajas prolongadas (bajo 10°C). El segundo caso (Contrafactual 2) se obtiene luego de reducir en un 50\% la exposición. El último escenario (Contrafactual 3) es aquel que no presenta exposición a temperaturas extremas.
 
-Se observa [COMPLETAR]
+La [TABLA] muestra que, en general, las reducciones en la exposición tiene consecuencias importantes sobre el precio y las cantidades exportadas, aunque la magnitud de tal efecto pareciera no ser tan alta. Así, las reducciones van de un 1,2\% a un 4,9\% en el caso del precio y de un 0,2\% a un 0,8\% para las exportaciones, de manera que la exposición afectaría más al índice global del \textit{soft commodity} que a las decisiones de exportación de los agentes. Esto es muy importante, pues el mecanismo mediante el cual el estrés térmico afecta al mercado internacional del café no es evidente; los resultados sugieren que la volatilidad del precio y su susceptibilidad a choques climáticos es clave.
+
+Por otro lado, la [TABLA] presenta los resultados en términos de bienestar, para los diferentes grupos de interés en el sistema. Como se puede observar, quienes pierden mayor excedente, en promedio, son los líderes del mercado; el impacto va de un 0,6\% en un escenario con 25\% de reducción del estrés térmico, a un 2,3\% en un escenario sin estrés térmico. Enseguida, el grupo de importadores presenta un impacto que va del 0,4\% a un 1,7\%; luego, los seguidores registran un impacto del 0,2\% a un 1\% en su excedente.
+
+Con todo, se debe tener presenta que lo anterior solo refleja el impacto de reducir la exposición sobre el excedente de cada grupo, a nivel agregado, mas no permite identificar si existen diferentes mecanismos a través de los cuales el estrés térmico materializa su efecto. 
 
 \input{tables/t6_results.tex}
 
 \input{tables/t6_surplus.tex}
+
+Con el objetivo de identificar con mayor detalle si existen diferencias en el impacto del estrés térmico sobre los líderes y seguidores del sistema, se plantea la siguiente regresión sobre variables dicotómicas:
+
+\begin{equation}
+    \centering
+    $ x_{i,t} = \beta_{1} Contrafactual + \beta_{2} Líderes + \beta_{3} Contrafactual \times Líderes + e_{i,t} $
+\end{equation}
+
+donde $\hat{x}_{i,t}$ es la variable de interés, que puede referirse a los costos ($\hat{c}_{i,t}$), exportaciones ($q_{i,t}$) o beneficios ($\pi_{i,t}$). Por otro lado, $Contrafactual$ y $Líderes$ son variables dicotómicas que toman el valor 1 si corresponde al escenario contrafactual o a líderes, respectivamente. El coeficiente de interés para este análisis es aquel asociado a la intersección de las variables explicativas anteriores, pues refleja si existe un efecto diferencial entre escenarios por el solo hecho de pertenecer a un determinado grupo exportador.
+
+Los resultados muestran que este efecto diferencial existe y es significativo estadísticamente, de manera que, para todas las variables analizadas, el estrés térmico sí afecta las diferencias estructurales ya presentes en el mercado. 
+
+Primero, en cuanto a los costos marginales del sistema, se puede observar que el escenario contrafactual efectivamente reduce los costos marginales de ambos grupos. El efecto es equivalente a [XXXX], sobre una variable que toma un valor promedio de [XXXX]. Luego, los costos serían, en promedio, mayores para los líderes del mercado [Revisar esto]. Por último, se observa un efecto diferencial negativo, es decir, el escenario contrafactual implica una mayor reducción del costo marginal para los grandes exportadores.
+
+Segundo, los resultados sobre las cantidades exportadas reafirman la idea de que el escenario contrafactual no implica mayores cambios. Por otro lado, en promedio, los países líderes exportan más que los seguidores del sistema. El efecto diferencial, aunque pequeño, existe y es significativo, y va en la dirección del contrafactual.
 
 \input{tables/t6_profits_cf.tex}
 

@@ -769,7 +769,7 @@ ggplot(aux1, aes(x = year, y = revenue_y,
   geom_point(size = 3)
 
 #-------------------------------------------------------------------------------
-# [] Fit de precios
+# [VF] Fit de precios
 #-------------------------------------------------------------------------------
 aux1 <- data %>%
   filter(dummy_ym == 1) %>%
@@ -1200,28 +1200,13 @@ ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/plot4.png",
        bg = "white")
 
 #-------------------------------------------------------------------------------
-# [] Boxplot GDP
-#-------------------------------------------------------------------------------
-
-data_yc <- data %>%
-  filter(dummy_yc == 1, year >= 2002, year <= 2019) %>%
-  mutate(
-    type = case_when(
-      export_dummy == 1 ~ "Exporting",
-      export_dummy == 0 ~ "Importing"
-    ))
-
-ggplot(data_yc, aes(factor(year), y = rgdpna_yc, fill = type)) +
-  geom_boxplot(position = position_dodge(0.8),
-               width = 0.7)
-
-#-------------------------------------------------------------------------------
 # [] Regresiones. Efecto de cambio climático diferenciado por grupo
 #-------------------------------------------------------------------------------
 
 # Por mes-país
 
 aux <- results_ymc %>%
+  filter(scenario == "CF0" | scenario == "CF3") %>%
   mutate(
     date = as.Date(date),
     year = year(date)
@@ -1244,10 +1229,10 @@ feols(pr_yc ~ scenario * dummy_leader | year, data = aux, cluster = ~year)
 feols(qe_yc ~ scenario * dummy_leader | year, data = aux, cluster = ~year)
 feols(mc_yc ~ scenario * dummy_leader | year, data = aux, cluster = ~year)
 
-
 # Por año-país
 
 aux <- results_ymc %>%
+  filter(scenario == "CF0" | scenario == "CF3") %>%
   mutate(
     date = as.Date(date),
     year = year(date)

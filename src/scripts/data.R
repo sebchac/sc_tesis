@@ -133,7 +133,10 @@ psd_coffee <- psd_coffee %>%
 # We sum both Congos
 psd_coffee <- psd_coffee %>%
   group_by(year, country, operation, id) %>%
-  summarise( value = sum(value))
+  summarise(
+    value = sum(value),
+    .groups = 'drop') %>%
+  ungroup()
 
 # These are just lists of countries
 # All export countries
@@ -148,6 +151,28 @@ importCountries <- psd_coffee %>%
   filter(id=="058") %>%
   distinct(country) %>%
   pull(country)
+# All net export / import countries
+netExportCountries <- psd_coffee %>%
+  group_by(country, id) %>%
+  summarise(
+    total = sum(value, na.rm = TRUE),
+    .groups = 'drop'
+  ) %>%
+  pivot_wider(
+   names_from = id,
+   values_from = total,
+   values_fill = 0,
+   names_prefix = "id_"
+  ) %>%
+  mutate(
+    balance = id_090 - id_058,
+    net_export_dummy = case_when(
+      balance > 0 ~ 1,
+      balance < 0 ~ 0,
+      balance == 0 ~ NA
+    )
+  ) %>%
+  arrange(net_export_dummy, country)
 # European Union
 europeanUnion <- c("Belgium","Bulgaria","Czech Republic","Denmark","Germany","Estonia",
                    "Ireland","Greece","Spain","France","Croatia","Italy","Cyprus",
@@ -303,9 +328,15 @@ gdp <- gdp %>%
   mutate(across(where(is.numeric), ~ replace_na(., 0))) %>%
   mutate(country = if_else(country == "Iran (Islamic Republic of)","Iran",
                    if_else(country == "Republic of Korea","Korea, South",
-                   if_else(country == "Russian Federation", "Russian",
+                   if_else(country == "Russian Federation", "Russia",
                    if_else(country == "Venezuela (Bolivarian Republic of)","Venezuela",
-                   if_else(country %in% europeanUnion, "European Union", country))))))
+                   if_else(country == "Bolivia (Plurinational State of)","Bolivia",
+                   if_else(country == "Lao People's DR","Laos",
+                   if_else(country == "U.R. of Tanzania: Mainland","Tanzania",
+                   if_else(country %in% europeanUnion, "European Union", country)))))))))
+
+aux <- gdp %>% distinct(country) %>% pull(country)
+aux <- allCountries[!allCountries %in% aux]
 
 # GDP per country
 gdp_yc <- gdp %>%
@@ -550,6 +581,7 @@ ndgain_data <- ndgain %>%
   merge2 <- left_join(merge2, full_prices_annual, by = c("year"))
 
 # Merge 3. Other variables
+  merge2 <- left_join(merge2, netExportCountries %>% select(country, net_export_dummy), by = c("country"))
   merge2 <- left_join(merge2, supplyShocks, by = c("year", "month_num"))
   merge2 <- left_join(merge2, tea, by = c( "year", "month_num"))
   merge2 <- left_join(merge2, gdp, by = c("year"))
@@ -681,11 +713,11 @@ aux2 <- merge2 %>%
          gdd_colombia_y = gdd_yc) %>%
   distinct(year, month_num, gdd_colombia_ym, gdd_colombia_y)
 
-aux3 <- merge2 %>%
-  filter(country == "Indonesia") %>%
-  mutate(gdd_indonesia_ym = gdd_ymc,
-         gdd_indonesia_y = gdd_yc) %>%
-  distinct(year, month_num, gdd_indonesia_ym, gdd_indonesia_y)
+# aux3 <- merge2 %>%
+#   filter(country == "Indonesia") %>%
+#   mutate(gdd_indonesia_ym = gdd_ymc,
+#          gdd_indonesia_y = gdd_yc) %>%
+#   distinct(year, month_num, gdd_indonesia_ym, gdd_indonesia_y)
 
 aux4 <- merge2 %>%
   filter(country == "Viet Nam") %>%
@@ -696,12 +728,16 @@ aux4 <- merge2 %>%
 merge2 <- merge2 %>%
   left_join(aux1, by = c("year", "month_num")) %>%
   left_join(aux2, by = c("year", "month_num")) %>%
-  left_join(aux3, by = c("year", "month_num")) %>%
+  # left_join(aux3, by = c("year", "month_num")) %>%
   left_join(aux4, by = c("year", "month_num"))
 
 merge2 <- merge2 %>%
   mutate(
-    is_leader = country %in% c("Brazil", "Colombia", "Indonesia", "Viet Nam"),
+    is_leader = country %in% c(
+      "Brazil", 
+      "Colombia", 
+      # "Indonesia", 
+      "Viet Nam"),
     gdd_leaders_ym = ifelse(is_leader, gdd_ymc, NA),
     gdd_leaders_y = ifelse(is_leader, gdd_yc, NA),
     gdd_followers_ym = ifelse(!is_leader, gdd_ymc, NA),
@@ -732,11 +768,11 @@ aux2 <- merge2 %>%
          hdd_colombia_y = hdd_yc) %>%
   distinct(year, month_num, hdd_colombia_ym, hdd_colombia_y)
 
-aux3 <- merge2 %>%
-  filter(country == "Indonesia") %>%
-  mutate(hdd_indonesia_ym = hdd_ymc,
-         hdd_indonesia_y = hdd_yc) %>%
-  distinct(year, month_num, hdd_indonesia_ym, hdd_indonesia_y)
+# aux3 <- merge2 %>%
+#   filter(country == "Indonesia") %>%
+#   mutate(hdd_indonesia_ym = hdd_ymc,
+#          hdd_indonesia_y = hdd_yc) %>%
+#   distinct(year, month_num, hdd_indonesia_ym, hdd_indonesia_y)
 
 aux4 <- merge2 %>%
   filter(country == "Viet Nam") %>%
@@ -747,12 +783,16 @@ aux4 <- merge2 %>%
 merge2 <- merge2 %>%
   left_join(aux1, by = c("year", "month_num")) %>%
   left_join(aux2, by = c("year", "month_num")) %>%
-  left_join(aux3, by = c("year", "month_num")) %>%
+  # left_join(aux3, by = c("year", "month_num")) %>%
   left_join(aux4, by = c("year", "month_num"))
 
 merge2 <- merge2 %>%
   mutate(
-    is_leader = country %in% c("Brazil", "Colombia", "Indonesia", "Viet Nam"),
+    is_leader = country %in% c(
+      "Brazil", 
+      "Colombia", 
+      # "Indonesia", 
+      "Viet Nam"),
     hdd_leaders_ym = ifelse(is_leader, hdd_ymc, NA),
     hdd_leaders_y = ifelse(is_leader, hdd_yc, NA),
     hdd_followers_ym = ifelse(!is_leader, hdd_ymc, NA),
@@ -783,11 +823,11 @@ aux2 <- merge2 %>%
          fdd_colombia_y = fdd_yc) %>%
   distinct(year, month_num, fdd_colombia_ym, fdd_colombia_y)
 
-aux3 <- merge2 %>%
-  filter(country == "Indonesia") %>%
-  mutate(fdd_indonesia_ym = fdd_ymc,
-         fdd_indonesia_y = fdd_yc) %>%
-  distinct(year, month_num, fdd_indonesia_ym, fdd_indonesia_y)
+# aux3 <- merge2 %>%
+#   filter(country == "Indonesia") %>%
+#   mutate(fdd_indonesia_ym = fdd_ymc,
+#          fdd_indonesia_y = fdd_yc) %>%
+#   distinct(year, month_num, fdd_indonesia_ym, fdd_indonesia_y)
 
 aux4 <- merge2 %>%
   filter(country == "Viet Nam") %>%
@@ -798,12 +838,16 @@ aux4 <- merge2 %>%
 merge2 <- merge2 %>%
   left_join(aux1, by = c("year", "month_num")) %>%
   left_join(aux2, by = c("year", "month_num")) %>%
-  left_join(aux3, by = c("year", "month_num")) %>%
+  # left_join(aux3, by = c("year", "month_num")) %>%
   left_join(aux4, by = c("year", "month_num"))
 
 merge2 <- merge2 %>%
   mutate(
-    is_leader = country %in% c("Brazil", "Colombia", "Indonesia", "Viet Nam"),
+    is_leader = country %in% c(
+      "Brazil", 
+      "Colombia", 
+      # "Indonesia", 
+      "Viet Nam"),
     fdd_leaders_ym = ifelse(is_leader, fdd_ymc, NA),
     fdd_leaders_y = ifelse(is_leader, fdd_yc, NA),
     fdd_followers_ym = ifelse(!is_leader, fdd_ymc, NA),
