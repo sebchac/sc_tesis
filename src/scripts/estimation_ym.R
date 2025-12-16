@@ -42,7 +42,7 @@ ruta_figures <- paste0(ruta_paper, "figures/")
     filter(dummy_ym == 1) %>%
     select(date, year, month_num, price_ym, qe_ym, importGDP_ym, teaPrices_ym, farm_prices_ym,
       tas_ym, oni_value, fert_ym, gdd_ym, hdd_ym, fdd_ym, gdd_ym_mean, hdd_ym_mean, fdd_ym_mean,
-      gdd_brazil_ym, gdd_colombia_ym, gdd_indonesia_ym, gdd_vietnam_ym, gdd_leaders_ym,
+      gdd_brazil_ym, gdd_colombia_ym, gdd_vietnam_ym, gdd_leaders_ym,
       disease1, disease2, frost1, frost2, droughts, ica_lapse) %>%
     drop_na()
 
@@ -123,28 +123,7 @@ ruta_figures <- paste0(ruta_paper, "figures/")
   cov_iv1 <- vcovHC(iv1, method = "arellano", cluster = "year", type = "HC3")
   cov_iv2 <- vcovHC(iv2, method = "arellano", cluster = "year", type = "HC3")
   cov_iv3 <- vcovHC(iv3, method = "arellano", cluster = "year", type = "HC3")
-
-  models <- list(
-    "(1) MCO" = ols1,
-    "(2) MCO" = ols2, 
-    "(3) MCO" = ols3,
-    "(4) VI" = iv1,
-    "(5) VI" = iv2,
-    "(6) VI" = iv3
-  )
   
-  vcov_list <- list(
-    cov_ols1, cov_ols2, cov_ols3,
-    cov_iv1, cov_iv2, cov_iv3
-  )
-
-  modelsummary(
-    models,
-    vcov = vcov_list,
-    output = paste0(ruta_tables, "demand_ym.tex"),
-    title = "Estimaciones de la Demanda Mundial de Café",
-    stars = TRUE
-  )
 # ------------------------------------------------------------------------------
 # [2] Implicit marginal costs
 # ------------------------------------------------------------------------------
@@ -156,7 +135,7 @@ ruta_figures <- paste0(ruta_paper, "figures/")
   data_ymc_0 <- left_join(data, aux, by = c("year", "month_num"))
 
   data_ymc_0 <- data_ymc_0 %>%
-    filter(export_dummy == 1) %>%
+    filter(net_export_dummy == 1) %>%
     mutate(
       # Cournot
       mr_ymc = price_ym + coeff_iv3["qe_ym"] * qe_ymc,
@@ -271,7 +250,8 @@ ruta_figures <- paste0(ruta_paper, "figures/")
     mr_ymc ~
       #      farm_prices_ymc +
       fert_ym +
-      hdd_ym| year + country,
+      hdd_ym +
+      fdd_ym | year + country,
     data = data_ymc,
     cluster = ~country
   )
