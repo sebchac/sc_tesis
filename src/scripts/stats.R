@@ -401,162 +401,35 @@ ggsave("/Users/sebastianchacon/Desktop/sc_tesis/paper/figures/plot4.png",
       bg = "white")
 
 #-------------------------------------------------------------------------------
-# [] Evolución de GDD, HDD, FDD
-#-------------------------------------------------------------------------------
-# GDD
-aux <- data %>%
-  filter(dummy_y == 1, year <= 2019)
-
-ggplot(aux) +
-  geom_line(aes(x = year, y = gdd_y_mean),
-            linewidth = 0.7, alpha = 1) +
-  labs(
-    title = NULL,
-    x = NULL,
-    y = "Growing Degree Days in a month",
-    color = NULL
-  ) +
-  theme_classic() +
-  theme(
-    legend.position = "bottom",
-    text = element_text(size = 9),
-    axis.title = element_text(size = 8),
-    axis.title.y = element_text(margin = margin(r = 3)),
-    axis.title.x = element_text(margin = margin(t = 3)),
-    axis.text = element_text(size = 9),
-    plot.margin = margin(5, 5, 5, 5),
-    legend.text = element_text(size = 9),
-    legend.margin = margin(t = -5, b = 0)
-  )
-
-# HDD
-ggplot(aux) +
-  geom_line(aes(x = year, y = hdd_y_mean),
-            linewidth = 0.7, alpha = 1) +
-  labs(
-    title = NULL,
-    x = NULL,
-    y = "Heat Degree Days in a month",
-    color = NULL
-  ) +
-  theme_classic() +
-  theme(
-    legend.position = "bottom",
-    text = element_text(size = 9),
-    axis.title = element_text(size = 8),
-    axis.title.y = element_text(margin = margin(r = 3)),
-    axis.title.x = element_text(margin = margin(t = 3)),
-    axis.text = element_text(size = 9),
-    plot.margin = margin(5, 5, 5, 5),
-    legend.text = element_text(size = 9),
-    legend.margin = margin(t = -5, b = 0)
-  )
-
-# FDD
-ggplot(aux) +
-  geom_line(aes(x = year, y = fdd_y_mean),
-            linewidth = 0.7, alpha = 1) +
-  labs(
-    title = NULL,
-    x = NULL,
-    y = "Frost Degree Days in a month",
-    color = NULL
-  ) +
-  theme_classic() +
-  theme(
-    legend.position = "bottom",
-    text = element_text(size = 9),
-    axis.title = element_text(size = 8),
-    axis.title.y = element_text(margin = margin(r = 3)),
-    axis.title.x = element_text(margin = margin(t = 3)),
-    axis.text = element_text(size = 9),
-    plot.margin = margin(5, 5, 5, 5),
-    legend.text = element_text(size = 9),
-    legend.margin = margin(t = -5, b = 0)
-  )
-
-#-------------------------------------------------------------------------------
 # Países más afectados por GDD, HDD, FDD
 #-------------------------------------------------------------------------------
-# GDD
+clima_dataset <- readRDS("~/Desktop/sc_tesis/bld/data/df_gdd_complete_1961_2020.rds")
 
-aux <- data %>%
-  filter(
-    dummy_yc == 1,
-    year %in% c(1991, 2019)
+clima_yc <- clima_dataset %>%
+  group_by(country, year) %>%
+  summarise(
+    hdd_yc = sum(hdd_ymc, na.rm = TRUE),
+    .groups = 'drop'
   ) %>%
-  distinct(country, year, gdd_yc) %>%
-  pivot_wider(
-    names_from = year, 
-    values_from = gdd_yc,
-    names_prefix = "gdd_"
-  ) %>%
-  mutate(
-    change_gdd_yc = gdd_2019 - gdd_1991,
-    change_gdd_pct = ((gdd_2019 - gdd_1991) / gdd_1991) * 100
-  ) %>%
-  filter(!is.na(change_gdd_yc))
-
-world <- ne_countries(scale = "medium", returnclass = "sf")
-
-world_data <- world %>%
-  left_join(aux, by = c("name" = "country")) 
-
-ggplot(world_data) +
-  geom_sf(aes(fill = change_gdd_yc), color = "white", linewidth = 0.1) +
-  scale_fill_viridis(
-    name = "Cambio en GDD\n(1991-2019)",
-    option = "plasma",
-    na.value = "grey90",
-    n.breaks = 8,  # Más intervalos en la leyenda
-    breaks = scales::breaks_extended(n = 8)  # 8 breaks equidistantes
-  ) +
-  labs(
-    title = "Cambio en Grados Día de Crecimiento (GDD) entre 1991-2019",
-    subtitle = "Países productores de café",
-    caption = "Fuente: Tus datos"
-  ) +
-  theme_minimal() +
-  theme(
-    legend.position = "right",
-    axis.text = element_blank(),
-    axis.ticks = element_blank(),
-    plot.background = element_rect(fill = "white", color = NA),
-    plot.margin = margin(2, 2, 2, 2, "cm"),
-    panel.grid.major = element_line(color = "grey80", linewidth = 0.5),
-    panel.grid.minor = element_line(color = "grey90", linewidth = 0.25),
-    plot.title = element_text(size = 16, face = "bold"),
-    plot.subtitle = element_text(size = 12),
-    legend.title = element_text(size = 11),
-    legend.text = element_text(size = 10)
-  )
-
-# HDD
-
-aux <- data %>%
-  filter(
-    dummy_yc == 1,
-    year %in% c(1991, 2019)
-  ) %>%
-  distinct(country, year, hdd_yc) %>%
+  ungroup() %>%
+  filter(year %in% c(1980, 2019)) %>%
   pivot_wider(
     names_from = year, 
     values_from = hdd_yc,
     names_prefix = "hdd_"
   ) %>%
   mutate(
-    change_hdd_yc = hdd_2019 - hdd_1991,
-    change_hdd_pct = ((hdd_2019 - hdd_1991) / hdd_1991) * 100
+    delta_hdd_yc = hdd_2019 - hdd_1980
   ) %>%
-  filter(!is.na(change_hdd_yc))
+  filter(!is.na(delta_hdd_yc))
 
 world <- ne_countries(scale = "medium", returnclass = "sf")
 
 world_data <- world %>%
-  left_join(aux, by = c("name" = "country")) 
+  left_join(clima_yc, by = c("name" = "country")) 
 
 ggplot(world_data) +
-  geom_sf(aes(fill = change_hdd_yc), color = "white", linewidth = 0.1) +
+  geom_sf(aes(fill = delta_hdd_yc), color = "white", linewidth = 0.1) +
   scale_fill_viridis(
     name = "Cambio en HDD\n(1991-2019)",
     option = "plasma",
@@ -697,78 +570,6 @@ ggplot(aux1, aes(x = year, y = profits_group_r,
   geom_line(size = 1.2) +
   geom_point(size = 3)
 #-------------------------------------------------------------------------------
-# [] Líderes y seguidores - contrafactual
-#-------------------------------------------------------------------------------
-
-# Cantidades
-
-aux1 <- results_ymc %>%
-  mutate(
-    date = as.Date(date),
-    year = year(date)
-  ) %>%
-  group_by(year, dummy_leader) %>%
-  summarise(
-    qe_y = sum(quantity, na.rm = TRUE),
-    .groups = "drop"
-  )
-
-plot7 <- ggplot(aux1, aes(x = year, y = qe_y, 
-                          color = factor(dummy_leader,
-                                         levels = c(0, 1),
-                                         labels = c("Seguidores", "Líderes")), 
-                          group = dummy_leader)) +
-  geom_line(size = 0.8) +
-  geom_point(size = 1) +
-  labs(
-    title = NULL,
-    x = NULL,
-    y = "mill. 60 kg.",
-    color = NULL
-  ) +
-  theme_classic() +
-  theme(
-    legend.position = "bottom",
-    text = element_text(size = 10),
-    axis.title = element_text(size = 9),
-    axis.title.y = element_text(margin = margin(r = 3)),
-    axis.title.x = element_text(margin = margin(t = 3)),
-    axis.text = element_text(size = 8),
-    plot.margin = margin(5, 5, 5, 5),
-    legend.text = element_text(size = 9),
-    legend.margin = margin(t = -5, b = 0)
-  )
-
-ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/plot7.png", 
-       plot = plot7, 
-       width = 7,
-       height = 5,
-       units = "cm",
-       dpi = 600,
-       bg = "white")
-
-# Revenues
-aux1 <- results_ymc %>%
-  filter(scenario == "CF1") %>%
-  mutate(
-    date = as.Date(date),
-    year = year(date)
-  ) %>%
-  filter(year >= 1990) %>%
-  group_by(year, dummy_leader) %>%
-  summarise(
-    revenue_y = sum(revenue, na.rm = TRUE),
-    .groups = "drop"
-  ) %>%
-  ungroup()
-
-
-ggplot(aux1, aes(x = year, y = revenue_y, 
-                 color = as.factor(dummy_leader), group = as.factor(dummy_leader))) +
-  geom_line(size = 1.2) +
-  geom_point(size = 3)
-
-#-------------------------------------------------------------------------------
 # [VF] Fit de precios
 #-------------------------------------------------------------------------------
 aux1 <- data %>%
@@ -819,72 +620,6 @@ ggsave(
   units = "cm",
   dpi = 600,
   bg = "white")
-
-#-------------------------------------------------------------------------------
-# [] Fit de precios y mc estimados
-#-------------------------------------------------------------------------------
-aux1 <- data %>%
-  filter(dummy_ym == 1) %>%
-  select(date, price_ym) %>%
-  mutate(date = as.Date(date)) %>%
-  left_join(results_ym %>% 
-              filter(scenario == "Baseline") %>%
-              mutate(date = as.Date(date)), by = c("date")) %>%
-  left_join(results_ymc %>%
-              filter(scenario == "Baseline") %>%
-              mutate(date = as.Date(date)) %>%
-              group_by(date) %>%
-              summarise(
-                mc_ym = mean(mc_ymc_hat_1, na.rm = TRUE),
-                .groups = "drop"
-              ), by = c("date")) %>%
-  distinct(date, price, price_ym, mc_ym) %>%
-  rename(price_ym_estimated = price) %>%
-  drop_na()
-
-plot5 <- ggplot(aux1 %>%
-                  filter(year(date) >= 1990)) +
-  geom_line(aes(x = date, y = price_ym, color = "Precio obs."), 
-            linewidth = 0.3, alpha = 1) +
-  geom_line(aes(x = date, y = price_ym_estimated, color = "Precio est."), 
-            linewidth = 0.3, alpha = 1, linetype = "dashed") +
-  geom_line(aes(x = date, y = mc_ym, color = "Costo est."), 
-            linewidth = 0.3, alpha = 1, linetype = "dashed") +
-  #scale_color_manual(
-  #  name = NULL,
-  #  values = c("Precio obs." = "black", "Precio est." = "blue2", 
-  #             "Costo est." = "red2")
-  #) +
-  scale_x_date(
-    date_breaks = "5 years",
-    date_labels = "%Y"
-  ) +
-  labs(
-    title = NULL,
-    x = NULL,
-    y = "cents/lb",
-    color = NULL
-  ) +
-  theme_classic() +
-  theme(
-    legend.position = "bottom",
-    text = element_text(size = 10),
-    axis.title = element_text(size = 9),
-    axis.title.y = element_text(margin = margin(r = 3)),
-    axis.title.x = element_text(margin = margin(t = 3)),
-    axis.text = element_text(size = 8),
-    plot.margin = margin(5, 5, 5, 5),
-    legend.text = element_text(size = 9),
-    legend.margin = margin(t = -5, b = 0)
-  )
-
-ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/plot5.png", 
-       plot = plot5, 
-       width = 9,
-       height = 5,
-       units = "cm",
-       dpi = 600,
-       bg = "white")
 
 #-------------------------------------------------------------------------------
 # [VF] Fit de cantidades
@@ -1242,71 +977,3 @@ feols(profit ~ scenario * dummy_leader | year, data = aux, cluster = ~year)
 feols(quantity ~ scenario * dummy_leader | year, data = aux, cluster = ~year)
 feols(mc_ymc_hat_s ~ scenario * dummy_leader | year, data = aux, cluster = ~year)
 
-#-------------------------------------------------------------------------------
-# [] HHI
-#-------------------------------------------------------------------------------
-# Factual
-data_yc <- results_ymc %>%
-  mutate(
-    date = as.Date(date),
-    year = year(date)
-  ) %>%
-  #filter(year >= 1990) %>%
-  group_by(year, country, scenario) %>%
-  summarise(
-    qe_yc = sum(quantity, na.rm = TRUE),
-    .groups = "drop"
-  ) %>%
-  ungroup() %>%
-  filter(scenario == "CF0") %>%
-  select(-scenario) %>%
-  group_by(year) %>%
-  mutate(
-    qe_y = sum(qe_yc, na.rm = TRUE)
-  ) %>%
-  ungroup() %>%
-  arrange(year, country) %>%
-  mutate(
-    sh_yc = round(qe_yc / qe_y, 2)
-  ) %>%
-  group_by(year) %>%
-  mutate(
-    hhi_y = 10000 * (sum(sh_yc^2, na.rm = TRUE))
-  ) %>%
-  ungroup()
-
-hhi_y_cf0 <- data_yc %>%
-  distinct(year, hhi_y)
-  
-# Contrafactual
-data_yc <- results_ymc %>%
-  mutate(
-    date = as.Date(date),
-    year = year(date)
-  ) %>%
-  filter(year >= 1990) %>%
-  group_by(year, country, scenario) %>%
-  summarise(
-    qe_yc = sum(quantity, na.rm = TRUE),
-    .groups = "drop"
-  ) %>%
-  ungroup() %>%
-  filter(scenario == "CF1") %>%
-  select(-scenario) %>%
-  group_by(year) %>%
-  mutate(
-    qe_y = sum(qe_yc, na.rm = TRUE)
-  ) %>%
-  ungroup() %>%
-  arrange(year, country) %>%
-  mutate(
-    sh_yc = round(qe_yc / qe_y, 2)
-  ) %>%
-  group_by(year) %>%
-  mutate(
-    hhi_y = 10000 * (sum(sh_yc^2, na.rm = TRUE))
-  ) %>%
-  ungroup()
-
-hhi_y_cf1 <- data_yc %>%
-  distinct(year, hhi_y)

@@ -173,6 +173,17 @@ netExportCountries <- psd_coffee %>%
     )
   ) %>%
   arrange(net_export_dummy, country)
+# Export coverage
+cov_export <- psd_coffee %>%
+  left_join(netExportCountries %>% select(country, net_export_dummy), by = c("country")) %>%
+  filter(net_export_dummy == 1) %>%
+  group_by(country) %>%
+  summarise(
+    n_obs = n_distinct(year),
+    year_first = min(year, na.rm = TRUE),
+    year_last = max(year, na.rm = TRUE),
+    .groups = 'drop'
+  )
 # European Union
 europeanUnion <- c("Belgium","Bulgaria","Czech Republic","Denmark","Germany","Estonia",
                    "Ireland","Greece","Spain","France","Croatia","Italy","Cyprus",
@@ -390,16 +401,16 @@ tea <- tea %>%
 #-------------------------------------------------------------------------------
 # [1.8] ISIMIP Data
 #-------------------------------------------------------------------------------
-data_tas_ymc <- readRDS(filepath_tas_ymc)
-data_pr_ymc <- readRDS(filepath_pr_ymc)
-
-# We sum both Congos
-data_tas_ymc <- data_tas_ymc %>%
-  rename(tas_ymc = tas) %>%
-  group_by(year, month_num, country) %>%
-  summarise(across(where(is.numeric), ~ mean(., na.rm = TRUE)), .groups = 'drop') %>%
-  ungroup() %>%
-  arrange(country, year, month_num)
+# data_tas_ymc <- readRDS(filepath_tas_ymc)
+# data_pr_ymc <- readRDS(filepath_pr_ymc)
+# 
+# # We sum both Congos
+# data_tas_ymc <- data_tas_ymc %>%
+#   rename(tas_ymc = tas) %>%
+#   group_by(year, month_num, country) %>%
+#   summarise(across(where(is.numeric), ~ mean(., na.rm = TRUE)), .groups = 'drop') %>%
+#   ungroup() %>%
+#   arrange(country, year, month_num)
 
 # data_clima_y <- data_clima_y %>%
 #   group_by(year, country) %>%
@@ -424,6 +435,11 @@ gdd_monthly <- gdd_monthly %>%
     country == "Vietnam" ~ "Viet Nam",
     TRUE ~ country
   ))
+
+gdd_monthly <- gdd_monthly %>%
+  mutate(
+    tas_ymc = (tmin_ymc + tmax_ymc) / 2
+  )
 
 #-------------------------------------------------------------------------------
 # [1.10] SOI
@@ -589,7 +605,7 @@ ndgain_data <- ndgain %>%
   merge2 <- left_join(merge2, ndgain_data, by = c("year", "country"))
   merge2 <- left_join(merge2, tea_annual, by = c("year"))
   merge2 <- left_join(merge2, fertilizers_y, by = c("year"))
-  merge2 <- left_join(merge2, data_tas_ymc, by = c("year", "month_num", "country"))
+  # merge2 <- left_join(merge2, data_tas_ymc, by = c("year", "month_num", "country"))
   #merge2 <- left_join(merge2, data_tas_gdd, by = c("year", "month_num", "country"))
   merge2 <- left_join(merge2, gdd_monthly, by = c("year", "month_num", "country"))
   # merge2 <- left_join(merge2, data_clima_y, by = c("year", "country"))
@@ -603,10 +619,14 @@ ndgain_data <- ndgain %>%
     mutate(
       farm_prices_ym = sum(farm_prices_ymc * share_ymce, na.rm = TRUE),
       tas_ym = sum(tas_ymc * share_ymce, na.rm = TRUE),
+      tmin_ym = sum(tmin_ymc * share_ymce, na.rm = TRUE),
+      tmax_ym = sum(tmax_ymc * share_ymce, na.rm = TRUE),
       gdd_ym = sum(gdd_ymc * share_ymce, na.rm = TRUE),
       hdd_ym = sum(hdd_ymc * share_ymce, na.rm = TRUE),
       fdd_ym = sum(fdd_ymc * share_ymce, na.rm = TRUE),
       tas_ym_mean = mean(tas_ymc, na.rm = TRUE),
+      tmin_ym_mean = mean(tmin_ymc, na.rm = TRUE),
+      tmax_ym_mean = mean(tmax_ymc, na.rm = TRUE),
       gdd_ym_mean = mean(gdd_ymc, na.rm = TRUE),
       hdd_ym_mean = mean(hdd_ymc, na.rm = TRUE),
       fdd_ym_mean = mean(fdd_ymc, na.rm = TRUE)) %>%
@@ -616,7 +636,9 @@ ndgain_data <- ndgain %>%
       tas_yc = mean(tas_ymc),
       gdd_yc = sum(gdd_ymc),
       hdd_yc = sum(hdd_ymc),
-      fdd_yc = sum(fdd_ymc)) %>%
+      fdd_yc = sum(fdd_ymc),
+      tmin_yc = min(tmin_ymc),
+      tmax_yc = max(tmax_ymc)) %>%
     ungroup() %>%
     group_by(year) %>%
     mutate(
@@ -629,7 +651,12 @@ ndgain_data <- ndgain %>%
       hdd_y = sum(hdd_yc * share_yce, na.rm = TRUE),
       hdd_y_mean = mean(hdd_yc, na.rm = TRUE),
       fdd_y = sum(fdd_yc * share_yce, na.rm = TRUE),
-      fdd_y_mean = mean(fdd_yc, na.rm = TRUE))
+      fdd_y_mean = mean(fdd_yc, na.rm = TRUE),
+      tmin_y = sum(tmin_yc * share_yce, na.rm = TRUE),
+      tmin_y_mean = mean(tmin_yc, na.rm = TRUE),
+      tmax_y = sum(tmax_yc * share_yce, na.rm = TRUE),
+      tmax_y_mean = mean(tmax_yc, na.rm = TRUE)
+        )
 
 # IDs per country
 

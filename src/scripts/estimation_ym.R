@@ -41,11 +41,15 @@ ruta_figures <- paste0(ruta_paper, "figures/")
   demand_data <- data %>%
     filter(dummy_ym == 1) %>%
     select(date, year, month_num, price_ym, qe_ym, importGDP_ym, teaPrices_ym, farm_prices_ym,
-      tas_ym, oni_value, fert_ym, gdd_ym, hdd_ym, fdd_ym, gdd_ym_mean, hdd_ym_mean, fdd_ym_mean,
+      tas_ym, tas_ym_mean, tmin_ym, tmin_ym_mean, tmax_ym, tmax_ym_mean, oni_value, fert_ym, 
+      gdd_ym, hdd_ym, fdd_ym, gdd_ym_mean, hdd_ym_mean, fdd_ym_mean,
       gdd_brazil_ym, gdd_colombia_ym, gdd_vietnam_ym, gdd_leaders_ym,
+      hdd_brazil_ym, hdd_colombia_ym, hdd_vietnam_ym, hdd_leaders_ym,
+      fdd_brazil_ym, fdd_colombia_ym, fdd_vietnam_ym, fdd_leaders_ym,
       disease1, disease2, frost1, frost2, droughts, ica_lapse) %>%
-    drop_na()
-
+    drop_na() %>%
+    mutate(trend = year - min(year) + 1)
+  
 # [1.2.] Demand estimation models
 # [1.2.1.] OLS
   ols1 <- lm(price_ym ~ qe_ym , 
@@ -79,7 +83,6 @@ ruta_figures <- paste0(ruta_paper, "figures/")
   iv1 <- ivreg(price_ym ~ qe_ym |
           farm_prices_ym + 
           hdd_ym + fdd_ym,
-          #gdd_ym,
           data = demand_data)
   # Store coefficients
     coeff_iv1 <- coef(iv1)
@@ -90,7 +93,7 @@ ruta_figures <- paste0(ruta_paper, "figures/")
 
   iv2 <- ivreg(price_ym ~ qe_ym  + importGDP_ym |
           farm_prices_ym + 
-          #gdd_ym  +
+          gdd_ym  +
           hdd_ym + fdd_ym +
           importGDP_ym,
           data = demand_data)
@@ -101,16 +104,14 @@ ruta_figures <- paste0(ruta_paper, "figures/")
     demand_data$edemand_iv2 <- (1/coeff_iv2["qe_ym"])*(demand_data$price_ym/demand_data$qe_ym)
     mean_elast_iv2 <- mean(demand_data$edemand_iv2, na.rm = TRUE)
 
-  iv3 <- ivreg(price_ym ~ qe_ym  + importGDP_ym + teaPrices_ym + ica_lapse|
-          #farm_prices_ym + 
-          gdd_ym +
-          hdd_ym + 
-          #fdd_ym +
-          importGDP_ym + teaPrices_ym + ica_lapse,
+  iv3 <- ivreg(price_ym ~ qe_ym  + importGDP_ym + teaPrices_ym + trend |
+          hdd_ym_mean + fdd_ym_mean + tas_ym +
+          importGDP_ym + teaPrices_ym + trend,
           data = demand_data)
   summary(iv3)
   # Store coefficients
     coeff_iv3 <- coef(iv3)
+    beta <- coeff_iv3["qe_ym"] / 12
   # Predict and elasticity
     demand_data$q_demand_fitted_iv3 <- predict(iv3)
     demand_data$edemand_iv3 <- (1/coeff_iv3["qe_ym"])*(demand_data$price_ym/demand_data$qe_ym)
@@ -130,121 +131,92 @@ ruta_figures <- paste0(ruta_paper, "figures/")
 
 # [2.1.] Data for marginal costs
   aux <- demand_data %>%
-    select(year, month_num, q_demand_fitted_iv3, edemand_iv3)
+    select(year, month_num, q_demand_fitted_iv3, edemand_iv3) %>%
+    mutate(year = as.double(year))
 
-  data_ymc_0 <- left_join(data, aux, by = c("year", "month_num"))
+  data_ymc_0 <- left_join(data %>% mutate(year = as.double(year)), aux, by = c("year", "month_num"))
 
-  data_ymc_0 <- data_ymc_0 %>%
-    filter(net_export_dummy == 1) %>%
+  data_yc <- data_ymc_0 %>%
+    filter(dummy_yc == 1, net_export_dummy == 1) %>%
     mutate(
       # Cournot
-      mr_ymc = price_ym + coeff_iv3["qe_ym"] * qe_ymc,
-      # Weighted (Cournot)
-      mr_ymc2 = price_ym * (1 + share_ymce/mean_elast_iv3),
+      mr_yc = price_y + beta * qe_yc,
     # Stackelberg
-      mr_ymc3 = (price_ym + coeff_iv3["qe_ym"] * qe_ymc * (1 / (1 + n_follower_ym))) * dummy_leader + (price_ym + coeff_iv3["qe_ym"] * qe_ymc) * dummy_follower)
+      mr_yc3 = (price_y + beta * qe_yc * (1 / (1 + n_follower_y))) * dummy_leader + (price_y + beta * qe_yc) * dummy_follower)
 
 # ------------------------------------------------------------------------------
 # [3] Marginal cost estimation
 # ------------------------------------------------------------------------------
 
-  data_ymc <- data_ymc_0 %>%
-    filter(!is.na(mr_ymc3),
-      !is.na(farm_prices_ymc),
-      !is.na(fert_ym),
-      !is.na(gdd_ymc),
-      !is.na(importGDP_ym),
+  data_yc <- data_yc %>%
+    filter(!is.na(mr_yc3),
+      !is.na(fert_y),
+      !is.na(gdd_yc),
+      !is.na(importGDP_y),
       !is.na(country),
       !is.na(year))
 
-  data_ymc <- pdata.frame(
-    data_ymc,
-    index = c("country", "date")
+  data_yc <- pdata.frame(
+    data_yc,
+    index = c("country", "year")
   )
   
 # [3.1.] Only one stage and Stackelberg
   mc_fe <- feols(
-    mr_ymc3 ~
-#      farm_prices_ymc +
+    mr_yc3 ~
+      #farm_prices_yc +
       ica_lapse +
-      fert_ym +
-      fdd_ym +
-      hdd_ym | year + country,
-    data = data_ymc,
+      fert_y +
+      hdd_y_mean + fdd_y_mean | country,
+    data = data_yc,
     cluster = ~country
   )
   
   summary(mc_fe)
   
-  etable(mc_fe,
-         title = "Estimación de Costos Marginales Implícitos",
-         # depvar = "Costo Marginal (mr_ymc3)",  # ¡QUITAR ESTO!
-         depvar = FALSE,  # O simplemente omitirlo
-         dict = c(mr_ymc3 = "Costo Marginal (mr_ymc3)",  # Nombre de la variable dependiente aquí
-                  ica_lapse = "ICA Lapse",
-                  fert_ym = "Fertilizantes",
-                  fdd_ym = "Días Fríos",
-                  hdd_ym = "Días Calor"),
-         order = c("ica_lapse", "fert_ym", "fdd_ym", "hdd_ym"),
-         fitstat = c("n", "r2", "wr2"),
-         cluster = ~country,
-         se.below = TRUE,
-         tex = TRUE,
-         file = paste0(ruta_tables,"table_costs.tex"))
+  mc_fe_2 <- ivreg(mr_yc3 ~ farm_prices_y + ica_lapse + fert_y |
+                    fdd_y_mean + hdd_y_mean +
+                    ica_lapse + fert_y,
+                  data = data_yc %>% 
+                    mutate(
+                           fdd_y_mean = fdd_y_mean / 7,
+                           hdd_y_mean = hdd_y_mean / 7))
+  
+  summary(mc_fe_2)
+  
   
   # Only one stage and Stackelberg for leaders
-  data_leader <- data_ymc %>% filter(dummy_leader == 1)
+  data_leader <- data_yc %>% filter(dummy_leader == 1)
   
   mc_fe_l <- feols(
-    mr_ymc3 ~
-      #      farm_prices_ymc +
+    mr_yc3 ~
+      #farm_prices_yc +
+      trend + 
       ica_lapse +
-      fert_ym +
-      fdd_ym +
-      hdd_ym | year + country,
-    data = data_leader,
+      fert_y +
+      tas_y_mean | country,
+    data = data_leader %>% mutate(trend = year - min(year),  tas_y_mean = (tmin_y_mean + tmax_y_mean) / 2),
     cluster = ~country
   )
   
   summary(mc_fe_l)
   
   # Only one stage and Stackelberg for followers
-  data_follower <- data_ymc %>% filter(dummy_leader == 0)
+  data_follower <- data_yc %>% filter(dummy_leader == 0)
   
   mc_fe_f <- feols(
-    mr_ymc3 ~
-      #      farm_prices_ymc +
+    mr_yc3 ~
+      #farm_prices_yc +
+      trend + 
       ica_lapse +
-      fert_ym +
-      fdd_ym +
-      hdd_ym | year + country,
-    data = data_follower,
+      fert_y +
+      tas_y_mean | country,
+    data = data_follower %>% mutate(trend = year - min(year),  tas_y_mean = (tmin_y_mean + tmax_y_mean) / 2),
     cluster = ~country
   )
   
   summary(mc_fe_f)
   
-  etable(mc_fe_l, mc_fe_f,
-         title = "Estimación de Costos Marginales: Líderes vs. Seguidores",
-         depvar = FALSE,
-         headers = c("Líderes", "Seguidores"),
-         dict = c(mr_ymc3 = "Costo Marginal",
-                  ica_lapse = "ICA Lapse",
-                  fert_ym = "Precio Fertilizantes",
-                  fdd_ym = "Días Fríos (FDD)",
-                  hdd_ym = "Días Calor (HDD)"),
-         order = c("ica_lapse", "fert_ym", "fdd_ym", "hdd_ym"),
-         fitstat = c("n", "r2", "wr2"),
-         se.below = TRUE,
-         digits = 3,
-         digits.stats = 3,
-         signif.code = c("***" = 0.01, "**" = 0.05, "*" = 0.1),  # ← CORREGIDO
-         cluster = ~country,
-         tex = TRUE,
-         file = paste0(ruta_tables, "table_leaders_followers.tex"),
-         style.tex = style.tex("aer"),
-         notes = "Errores estándar agrupados a nivel de país entre paréntesis. Efectos fijos de año y país incluidos en todas las especificaciones.")
-
   # [3.2.] Only one stage and Cournot
   mc_fe_cournot <- feols(
     mr_ymc ~
@@ -336,33 +308,30 @@ ruta_figures <- paste0(ruta_paper, "figures/")
   # Store coefficients FE
     coeff_mc_s <- coef(mc_fe)
   # Predict FE
-    data_ymc$mc_ymc_hat_s <- predict(mc_fe)
+    data_yc$mc_yc_hat_s <- predict(mc_fe)
     
   # Store coefficients FE Cournot
     coeff_mc_c <- coef(mc_fe_cournot)
   # Predict FE Cournot
-    data_ymc$mc_ymc_hat_c <- predict(mc_fe_cournot)
+    data_yc$mc_yc_hat_c <- predict(mc_fe_cournot)
 
   # Predict CF1
-    data_ymc$mc_ymc_hat_s_cf1 <- predict(
+    data_yc$mc_yc_hat_s_cf1 <- predict(
       mc_fe, 
-      newdata = data_ymc %>% mutate(
-        hdd_ym = 0.75*hdd_ym,
-        fdd_ym = 0.75*fdd_ym
+      newdata = data_yc %>% mutate(
+        tas_y_mean = tas_y_mean - 1
       ))
   # Predict CF2
-    data_ymc$mc_ymc_hat_s_cf2 <- predict(
+    data_yc$mc_yc_hat_s_cf2 <- predict(
       mc_fe, 
-      newdata = data_ymc %>% mutate(
-        hdd_ym = 0.5*hdd_ym,
-        fdd_ym = 0.5*fdd_ym
+      newdata = data_yc %>% mutate(
+        tas_y_mean = tas_y_mean - 1.5
       ))
   # Predict CF3
-    data_ymc$mc_ymc_hat_s_cf3 <- predict(
+    data_yc$mc_yc_hat_s_cf3 <- predict(
       mc_fe, 
-      newdata = data_ymc %>% mutate(
-        hdd_ym = 0,
-        fdd_ym = 0
+      newdata = data_yc %>% mutate(
+        tas_y_mean = tas_y_mean - 2
       ))
     
   # # Store coefficients IV 
@@ -371,7 +340,7 @@ ruta_figures <- paste0(ruta_paper, "figures/")
   #   data_ymc$mc_ymc_hat_s <- predict(mc_iv)  
 
 
-saveRDS(data_ymc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_cf_ym.rds")
+saveRDS(data_yc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_cf_y.rds")
 
 # ------------------------------------------------------------------------------
 # [4] Counterfactual Analysis (Stackelberg Model)
@@ -379,24 +348,22 @@ saveRDS(data_ymc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_
 
   # Define key functions for counterfactual analysis
   # 1. Price from demand function (inverse demand)
-  price_from_demand <- function(Q_total, coef_demand, tea_price, import_gdp, ica_lapse) {
+  price_from_demand <- function(Q_total, coef_demand, tea_price, import_gdp) {
     price <- coef_demand["(Intercept)"] + 
       coef_demand["qe_ym"] * Q_total + 
       coef_demand["importGDP_ym"] * import_gdp + 
-      coef_demand["teaPrices_ym"] * tea_price +
-      coef_demand["ica_lapse"] * ica_lapse
+      coef_demand["teaPrices_ym"] * tea_price
     return(price)
   }
   # 2. Follower reaction function (Cournot)
   follower_reaction <- function(data_market, Q_leaders_total, coef_demand) {
     followers <- data_market %>% filter(dummy_follower == 1)
     n_followers <- nrow(followers)
-    b <- -coef_demand["qe_ym"]  # Slope of demand curve
+    b <- -coef_demand["qe_ym"] / 12  # Slope of demand curve
     # Market price given leader's quantity
     price <- price_from_demand(Q_leaders_total, coef_demand, 
                                data_market$teaPrices_ym[1], 
-                               data_market$importGDP_ym[1],
-                               data_market$ica_lapse[1])
+                               data_market$importGDP_ym[1])
     # Reaction
     q_follower <- (price - followers$mc_ymc_hat_s) / ((n_followers + 1) * b)
     Q_followers_total <- sum(q_follower)
@@ -554,14 +521,14 @@ saveRDS(data_ymc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_
 # ------------------------------------------------------------------------------
 
   # Prepare data for counterfactuals
-  data_ymc <- data_ymc %>%
-    group_by(date) %>%
+  data_yc <- data_yc %>%
+    group_by(year) %>%
     filter(sum(dummy_leader) > 0) %>%  # Keep only markets with leaders
     ungroup()
   
   # Split data by market (time period)
-  market_list <- data_ymc %>%
-    group_by(date) %>%
+  market_list <- data_yc %>%
+    group_by(year) %>%
     group_split()
   
   # Baseline
@@ -685,7 +652,7 @@ saveRDS(data_ymc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_
   saveRDS(summary, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/summary.rds")
   
   # Guardar en ruta_figures
-  writeLines(tabla_tex, paste0(ruta_figures, "tabla.tex"))
+  #writeLines(tabla_tex, paste0(ruta_figures, "tabla.tex"))
   
   # Profit comparison by country
   summary_c <- all_results_ymc %>%
