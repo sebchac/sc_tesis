@@ -41,15 +41,17 @@ ruta_figures <- paste0(ruta_paper, "figures/")
   demand_data <- data %>%
     filter(dummy_ym == 1) %>%
     select(date, year, month_num, price_ym, qe_ym, importGDP_ym, teaPrices_ym, farm_prices_ym,
-      tas_ym, tas_ym_mean, tmin_ym, tmin_ym_mean, tmax_ym, tmax_ym_mean, oni_value, fert_ym, 
+      tas_yme, tas_yme_mean, tas_ymi_mean, tmin_yme, tmin_yme_mean, tmin_ymi_mean, tmax_yme, 
+      tmax_yme_mean, tmax_ymi_mean, oni_value, fert_ym,
+      pr_yme, pr_yme_mean, pr_ymi_mean,
       gdd_ym, hdd_ym, fdd_ym, gdd_ym_mean, hdd_ym_mean, fdd_ym_mean,
       gdd_brazil_ym, gdd_colombia_ym, gdd_vietnam_ym, gdd_leaders_ym,
       hdd_brazil_ym, hdd_colombia_ym, hdd_vietnam_ym, hdd_leaders_ym,
       fdd_brazil_ym, fdd_colombia_ym, fdd_vietnam_ym, fdd_leaders_ym,
       disease1, disease2, frost1, frost2, droughts, ica_lapse) %>%
-    drop_na() %>%
-    mutate(trend = year - min(year) + 1)
+    mutate(trend = year - min(year))
   
+
 # [1.2.] Demand estimation models
 # [1.2.1.] OLS
   ols1 <- lm(price_ym ~ qe_ym , 
@@ -105,7 +107,7 @@ ruta_figures <- paste0(ruta_paper, "figures/")
     mean_elast_iv2 <- mean(demand_data$edemand_iv2, na.rm = TRUE)
 
   iv3 <- ivreg(price_ym ~ qe_ym  + importGDP_ym + teaPrices_ym + trend |
-          hdd_ym_mean + fdd_ym_mean + tas_ym +
+           #tas_yme + ica_lapse +
           importGDP_ym + teaPrices_ym + trend,
           data = demand_data)
   summary(iv3)
@@ -164,23 +166,28 @@ ruta_figures <- paste0(ruta_paper, "figures/")
 # [3.1.] Only one stage and Stackelberg
   mc_fe <- feols(
     mr_yc3 ~
-      #farm_prices_yc +
+      #trend +
       ica_lapse +
       fert_y +
-      hdd_y_mean + fdd_y_mean | country,
+      tas_y_mean + fdd_y_mean + hdd_y_mean 
+       | country, # con fdd_y_mean y hdd_y_mean da coeficientes negativos
     data = data_yc,
     cluster = ~country
   )
   
   summary(mc_fe)
   
-  mc_fe_2 <- ivreg(mr_yc3 ~ farm_prices_y + ica_lapse + fert_y |
+  # el problema de agregar farm prices con IV es que el coeficiente es muy pequeño
+  mc_fe_2 <- ivreg(mr_yc3 ~ farm_prices_y_mean + ica_lapse + fert_y |
                     fdd_y_mean + hdd_y_mean +
+                    #fdd_yc + hdd_yc +
+                    tas_y_mean +
+                    #gdd_y_mean +
                     ica_lapse + fert_y,
                   data = data_yc %>% 
                     mutate(
-                           fdd_y_mean = fdd_y_mean / 7,
-                           hdd_y_mean = hdd_y_mean / 7))
+                           fdd_y_mean = fdd_y_mean * 7,
+                           hdd_y_mean = hdd_y_mean * 7))
   
   summary(mc_fe_2)
   
