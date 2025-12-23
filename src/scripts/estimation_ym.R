@@ -23,6 +23,7 @@ library(nleqslv)
 library(modelsummary)
 library(moments)
 library(kableExtra)
+library(splines)
 
 ruta_proyecto <- "/Users/sebastianchacon/Desktop/sc_tesis/"
 ruta_paper <- paste0(ruta_proyecto, "paper/")
@@ -45,17 +46,19 @@ ruta_figures <- paste0(ruta_paper, "figures/")
       tmax_yme_mean, tmax_ymi_mean, oni_value, fert_ym,
       pr_yme, pr_yme_mean, pr_ymi_mean,
       gdd_ym, hdd_ym, fdd_ym, gdd_ym_mean, hdd_ym_mean, fdd_ym_mean,
-      gdd_brazil_ym, gdd_colombia_ym, gdd_vietnam_ym, gdd_leaders_ym,
-      hdd_brazil_ym, hdd_colombia_ym, hdd_vietnam_ym, hdd_leaders_ym,
-      fdd_brazil_ym, fdd_colombia_ym, fdd_vietnam_ym, fdd_leaders_ym,
+      gdd_brazil_ym, gdd_colombia_ym, gdd_vietnam_ym, gdd_leaders_ym, gdd_followers_ym,
+      hdd_brazil_ym, hdd_colombia_ym, hdd_vietnam_ym, hdd_leaders_ym, hdd_followers_ym,
+      fdd_brazil_ym, fdd_colombia_ym, fdd_vietnam_ym, fdd_leaders_ym, fdd_followers_ym,
       disease1, disease2, frost1, frost2, droughts, ica_lapse) %>%
-    mutate(trend = year - min(year))
-  
+    mutate(trend = year - min(year),
+           trend5y = floor((year - min(year)) / 5)) %>%
+    drop_na()
 
 # [1.2.] Demand estimation models
 # [1.2.1.] OLS
   ols1 <- lm(price_ym ~ qe_ym , 
           data = demand_data)
+  summary(ols1)
   # Store coefficients
     coeff_ols1 <- coef(ols1)
   # Predict and elasticity
@@ -83,8 +86,7 @@ ruta_figures <- paste0(ruta_paper, "figures/")
 
 # [1.2.2.] IV
   iv1 <- ivreg(price_ym ~ qe_ym |
-          farm_prices_ym + 
-          hdd_ym + fdd_ym,
+          tas_yme + pr_yme + gdd_ym + hdd_ym + fdd_ym,
           data = demand_data)
   # Store coefficients
     coeff_iv1 <- coef(iv1)
@@ -92,13 +94,13 @@ ruta_figures <- paste0(ruta_paper, "figures/")
     demand_data$q_demand_fitted_iv1 <- predict(iv1)
     demand_data$edemand_iv1 <- (1/coeff_iv1["qe_ym"])*(demand_data$price_ym/demand_data$qe_ym)
     mean_elast_iv1 <- mean(demand_data$edemand_iv1, na.rm = TRUE)
+    summary(iv1)
 
   iv2 <- ivreg(price_ym ~ qe_ym  + importGDP_ym |
-          farm_prices_ym + 
-          gdd_ym  +
-          hdd_ym + fdd_ym +
+          tas_yme + pr_yme + gdd_ym + hdd_ym + fdd_ym +
           importGDP_ym,
           data = demand_data)
+  summary(iv2)
   # Store coefficients
     coeff_iv2 <- coef(iv2)
   # Predict and elasticity
@@ -107,7 +109,7 @@ ruta_figures <- paste0(ruta_paper, "figures/")
     mean_elast_iv2 <- mean(demand_data$edemand_iv2, na.rm = TRUE)
 
   iv3 <- ivreg(price_ym ~ qe_ym  + importGDP_ym + teaPrices_ym + trend |
-           #tas_yme + ica_lapse +
+          tas_yme + pr_yme + gdd_ym + hdd_ym + fdd_ym +
           importGDP_ym + teaPrices_ym + trend,
           data = demand_data)
   summary(iv3)
@@ -133,10 +135,10 @@ ruta_figures <- paste0(ruta_paper, "figures/")
 
 # [2.1.] Data for marginal costs
   aux <- demand_data %>%
-    select(year, month_num, q_demand_fitted_iv3, edemand_iv3) %>%
+    select(year, month_num, q_demand_fitted_iv3, edemand_iv3, trend, trend5y) %>%
     mutate(year = as.double(year))
 
-  data_ymc_0 <- left_join(data %>% mutate(year = as.double(year)), aux, by = c("year", "month_num"))
+  data_ymc_0 <- left_join(data %>% select(-trend) %>% mutate(year = as.double(year)), aux, by = c("year", "month_num"))
 
   data_yc <- data_ymc_0 %>%
     filter(dummy_yc == 1, net_export_dummy == 1) %>%
@@ -166,31 +168,34 @@ ruta_figures <- paste0(ruta_paper, "figures/")
 # [3.1.] Only one stage and Stackelberg
   mc_fe <- feols(
     mr_yc3 ~
-      #trend +
+      trend +
       ica_lapse +
       fert_y +
-      tas_y_mean + fdd_y_mean + hdd_y_mean 
-       | country, # con fdd_y_mean y hdd_y_mean da coeficientes negativos
+      lag(hdd_y) + I(lag(hdd_y)^2) +
+      lag(fdd_y) + I(lag(fdd_y)^2)
+    | country,
     data = data_yc,
     cluster = ~country
   )
   
   summary(mc_fe)
   
-  # el problema de agregar farm prices con IV es que el coeficiente es muy pequeño
-  mc_fe_2 <- ivreg(mr_yc3 ~ farm_prices_y_mean + ica_lapse + fert_y |
-                    fdd_y_mean + hdd_y_mean +
-                    #fdd_yc + hdd_yc +
-                    tas_y_mean +
-                    #gdd_y_mean +
-                    ica_lapse + fert_y,
-                  data = data_yc %>% 
-                    mutate(
-                           fdd_y_mean = fdd_y_mean * 7,
-                           hdd_y_mean = hdd_y_mean * 7))
+  mc_fe <- feols(
+    mr_yc3 ~
+      trend +
+      ica_lapse +
+      fert_y +
+      lag(tas_ye) +
+      lag(pr_ye) +
+      lag(hdd_y) + I(lag(hdd_y)^2) +
+      lag(fdd_y) + I(lag(fdd_y)^2)
+    | country,
+    data = data_yc,
+    cluster = ~country
+  )
   
-  summary(mc_fe_2)
-  
+  summary(mc_fe)
+
   
   # Only one stage and Stackelberg for leaders
   data_leader <- data_yc %>% filter(dummy_leader == 1)

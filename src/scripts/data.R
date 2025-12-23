@@ -449,7 +449,7 @@ gdd_export <- gdd_monthly %>%
 gdd_import <- gdd_monthly %>%
   filter(country %in% netImportCountries_list)
 
-k1 <- 6; k2 <- 18; k3 <- 26; k4 <- 30
+k1 <- 15; k2 <- 18; k3 <- 26; k4 <- 30
 
 gdd_import <- gdd_import %>%
   mutate(
@@ -461,33 +461,33 @@ gdd_import <- gdd_import %>%
 gdd_export <- gdd_export %>%
   mutate(
     tas_ymc = (tmin_ymc + tmax_ymc) / 2,
-    # gdd_ymc = pmax(pmin(tas_ymc, k4), k2) - k2,
-    # fdd_ymc = pmax(k1 - tmin_ymc, 0),
-    # hdd_ymc = pmax(tmax_ymc - k4, 0)
-    gdd_ymc = case_when(
-      tmax_ymc < k2 ~ 0,
-      tmin_ymc < k2 & tmax_ymc >= k2 & tmax_ymc < k3 ~ 1 - (k2 - tmin_ymc)/(tmax_ymc - tmin_ymc),
-      tmin_ymc < k2 & tmax_ymc >= k3 ~ (k3 - k2)/(tmax_ymc - tmin_ymc),
-      tmin_ymc >= k2 & tmax_ymc < k3 ~ 1,
-      tmin_ymc >= k2 & tmin_ymc < k3 & tmax_ymc >= k3 ~ (k3 - tmin_ymc)/(tmax_ymc - tmin_ymc),
-      tmin_ymc > k3 ~ 0,
-      TRUE ~ 0
-    ),
-    hdd_ymc = case_when(
-      tmin_ymc > k4 ~ 1,
-      tmin_ymc < k4 & tmax_ymc > k4 ~ 1 - (k4 - tmin_ymc)/(tmax_ymc - tmin_ymc),
-      tmax_ymc < k4 ~ 0,
-      TRUE ~ 0
-    ),
-    fdd_ymc = case_when(
-      tmin_ymc > k1 ~ 0,
-      tmin_ymc < k1 & tmax_ymc > k1 ~ (k1 - tmin_ymc)/(tmax_ymc - tmin_ymc),
-      tmax_ymc < k1 ~ 1,
-      TRUE ~ 0
-    ),
-    gdd_ymc = gdd_ymc * 30,
-    hdd_ymc = hdd_ymc * 30,
-    fdd_ymc = fdd_ymc * 30
+    gdd_ymc = pmax(pmin(tas_ymc, k4), k2) - k2,
+    fdd_ymc = pmax(k1 - tmin_ymc, 0),
+    hdd_ymc = pmax(tmax_ymc - k4, 0)
+    # gdd_ymc = case_when(
+    #   tmax_ymc < k2 ~ 0,
+    #   tmin_ymc < k2 & tmax_ymc >= k2 & tmax_ymc < k3 ~ 1 - (k2 - tmin_ymc)/(tmax_ymc - tmin_ymc),
+    #   tmin_ymc < k2 & tmax_ymc >= k3 ~ (k3 - k2)/(tmax_ymc - tmin_ymc),
+    #   tmin_ymc >= k2 & tmax_ymc < k3 ~ 1,
+    #   tmin_ymc >= k2 & tmin_ymc < k3 & tmax_ymc >= k3 ~ (k3 - tmin_ymc)/(tmax_ymc - tmin_ymc),
+    #   tmin_ymc > k3 ~ 0,
+    #   TRUE ~ 0
+    # ),
+    # hdd_ymc = case_when(
+    #   tmin_ymc > k4 ~ 1,
+    #   tmin_ymc < k4 & tmax_ymc > k4 ~ 1 - (k4 - tmin_ymc)/(tmax_ymc - tmin_ymc),
+    #   tmax_ymc < k4 ~ 0,
+    #   TRUE ~ 0
+    # ),
+    # fdd_ymc = case_when(
+    #   tmin_ymc > k1 ~ 0,
+    #   tmin_ymc < k1 & tmax_ymc > k1 ~ (k1 - tmin_ymc)/(tmax_ymc - tmin_ymc),
+    #   tmax_ymc < k1 ~ 1,
+    #   TRUE ~ 0
+    # ),
+    # gdd_ymc = gdd_ymc * 30,
+    # hdd_ymc = hdd_ymc * 30,
+    # fdd_ymc = fdd_ymc * 30
   ) %>%
   group_by(country) %>%
   mutate(
@@ -513,7 +513,8 @@ pr_monthly <- pr_monthly %>%
     country == "Eq. Guinea" ~ "Equatorial Guinea",
     country == "Vietnam" ~ "Viet Nam",
     TRUE ~ country
-  ))
+  )) %>%
+  select(-date)
 
 pr_export <- pr_monthly %>%
   filter(country %in% netExportCountries_list) %>%
@@ -709,7 +710,7 @@ ndgain_data <- ndgain %>%
       gdd_ym = sum(gdd_ymc * share_ymce, na.rm = TRUE),
       hdd_ym = sum(hdd_ymc * share_ymce, na.rm = TRUE),
       fdd_ym = sum(fdd_ymc * share_ymce, na.rm = TRUE),
-      pr_yme = sum(pr_ymce * share_ymce, na.em = TRUE),
+      pr_yme = sum(pr_ymce * share_ymce, na.rm = TRUE),
       farm_prices_ym_mean = mean(farm_prices_ymc, na.rm = TRUE),
       tas_yme_mean = mean(tas_ymce, na.rm = TRUE),
       tmin_yme_mean = mean(tmin_ymce, na.rm = TRUE),
