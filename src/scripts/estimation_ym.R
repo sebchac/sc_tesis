@@ -148,6 +148,34 @@ ruta_figures <- paste0(ruta_paper, "figures/")
     # Stackelberg
       mr_yc3 = (price_y + beta * qe_yc * (1 / (1 + n_follower_y))) * dummy_leader + (price_y + beta * qe_yc) * dummy_follower)
 
+  # Correlation
+  
+  cor_vars_yc <- data_yc %>%
+    select(tas_yce, pr_yce, gdd_yc, hdd_yc, fdd_yc) %>%
+    na.omit()
+  
+  cor(cor_vars_yc)
+  
+  cor_vars_y <- data_yc %>%
+    filter(dummy_y == 1) %>%
+    select(tas_ye, pr_ye, gdd_y, hdd_y, fdd_y) %>%
+    na.omit()
+  
+  cor(cor_vars_y)
+  
+  cor_vars_ym <- data_ymc_0 %>%
+    filter(dummy_ym == 1) %>%
+    select(tas_yme, pr_yme, gdd_ym, hdd_ym, fdd_ym) %>%
+    na.omit()
+  
+  cor(cor_vars_ym)
+  
+  cor_vars_ymc <- data_ymc_0 %>%
+    select(tas_ymce, pr_ymce, gdd_ymc, hdd_ymc, fdd_ymc) %>%
+    na.omit()
+  
+  cor(cor_vars_ymc)
+  
 # ------------------------------------------------------------------------------
 # [3] Marginal cost estimation
 # ------------------------------------------------------------------------------
@@ -171,6 +199,7 @@ ruta_figures <- paste0(ruta_paper, "figures/")
       trend +
       ica_lapse +
       fert_y +
+      #lag(gdd_y) + I(lag(gdd_y)^2) +
       lag(hdd_y) + I(lag(hdd_y)^2) +
       lag(fdd_y) + I(lag(fdd_y)^2)
     | country,
@@ -179,23 +208,6 @@ ruta_figures <- paste0(ruta_paper, "figures/")
   )
   
   summary(mc_fe)
-  
-  mc_fe <- feols(
-    mr_yc3 ~
-      trend +
-      ica_lapse +
-      fert_y +
-      lag(tas_ye) +
-      lag(pr_ye) +
-      lag(hdd_y) + I(lag(hdd_y)^2) +
-      lag(fdd_y) + I(lag(fdd_y)^2)
-    | country,
-    data = data_yc,
-    cluster = ~country
-  )
-  
-  summary(mc_fe)
-
   
   # Only one stage and Stackelberg for leaders
   data_leader <- data_yc %>% filter(dummy_leader == 1)

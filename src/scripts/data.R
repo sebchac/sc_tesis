@@ -463,7 +463,7 @@ gdd_export <- gdd_export %>%
     tas_ymc = (tmin_ymc + tmax_ymc) / 2,
     gdd_ymc = pmax(pmin(tas_ymc, k4), k2) - k2,
     fdd_ymc = pmax(k1 - tmin_ymc, 0),
-    hdd_ymc = pmax(tmax_ymc - k4, 0)
+    hdd_ymc = pmax(tas_ymc - k4, 0)
     # gdd_ymc = case_when(
     #   tmax_ymc < k2 ~ 0,
     #   tmin_ymc < k2 & tmax_ymc >= k2 & tmax_ymc < k3 ~ 1 - (k2 - tmin_ymc)/(tmax_ymc - tmin_ymc),
