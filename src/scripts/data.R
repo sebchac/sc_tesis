@@ -449,7 +449,7 @@ gdd_export <- gdd_monthly %>%
 gdd_import <- gdd_monthly %>%
   filter(country %in% netImportCountries_list)
 
-k1 <- 15; k2 <- 18; k3 <- 26; k4 <- 30
+k1 <- 10; k2 <- 18; k3 <- 26; k4 <- 30
 
 gdd_import <- gdd_import %>%
   mutate(
@@ -459,46 +459,69 @@ gdd_import <- gdd_import %>%
   rename(tmax_ymci = tmax_ymc, tmin_ymci = tmin_ymc, tas_ymci = tas_ymc)
 
 gdd_export <- gdd_export %>%
+  rename(optExp_ymc = gdd_ymc,
+         heatExp_ymc = hdd_ymc,
+         frostExp_ymc = fdd_ymc) %>%
   mutate(
     tas_ymc = (tmin_ymc + tmax_ymc) / 2,
+    range_ymce = tmax_ymc - tmin_ymc,
     gdd_ymc = pmax(pmin(tas_ymc, k4), k2) - k2,
     fdd_ymc = pmax(k1 - tmin_ymc, 0),
-    hdd_ymc = pmax(tas_ymc - k4, 0)
-    # gdd_ymc = case_when(
-    #   tmax_ymc < k2 ~ 0,
-    #   tmin_ymc < k2 & tmax_ymc >= k2 & tmax_ymc < k3 ~ 1 - (k2 - tmin_ymc)/(tmax_ymc - tmin_ymc),
-    #   tmin_ymc < k2 & tmax_ymc >= k3 ~ (k3 - k2)/(tmax_ymc - tmin_ymc),
-    #   tmin_ymc >= k2 & tmax_ymc < k3 ~ 1,
-    #   tmin_ymc >= k2 & tmin_ymc < k3 & tmax_ymc >= k3 ~ (k3 - tmin_ymc)/(tmax_ymc - tmin_ymc),
-    #   tmin_ymc > k3 ~ 0,
-    #   TRUE ~ 0
-    # ),
-    # hdd_ymc = case_when(
-    #   tmin_ymc > k4 ~ 1,
-    #   tmin_ymc < k4 & tmax_ymc > k4 ~ 1 - (k4 - tmin_ymc)/(tmax_ymc - tmin_ymc),
-    #   tmax_ymc < k4 ~ 0,
-    #   TRUE ~ 0
-    # ),
-    # fdd_ymc = case_when(
-    #   tmin_ymc > k1 ~ 0,
-    #   tmin_ymc < k1 & tmax_ymc > k1 ~ (k1 - tmin_ymc)/(tmax_ymc - tmin_ymc),
-    #   tmax_ymc < k1 ~ 1,
-    #   TRUE ~ 0
-    # ),
-    # gdd_ymc = gdd_ymc * 30,
-    # hdd_ymc = hdd_ymc * 30,
-    # fdd_ymc = fdd_ymc * 30
+     hdd_ymc = pmax(tas_ymc - k4, 0)
   ) %>%
-  group_by(country) %>%
-  mutate(
-    frost_ymc = as.numeric(fdd_ymc > quantile(fdd_ymc, 0.90, na.rm = TRUE)),
-    heat_ymc = as.numeric(hdd_ymc > quantile(hdd_ymc, 0.90, na.rm = TRUE))
-  ) %>%
-  ungroup() %>%
-  select(country, year, month_num, tmax_ymc, tmin_ymc, tas_ymc, gdd_ymc, hdd_ymc, fdd_ymc) %>%
+  select(country, year, month_num, tmax_ymc, tmin_ymc, tas_ymc, gdd_ymc, hdd_ymc, fdd_ymc, range_ymce,
+         optExp_ymc, heatExp_ymc, frostExp_ymc) %>%
   rename(
     tmax_ymce = tmax_ymc, tmin_ymce = tmin_ymc, tas_ymce = tas_ymc
   )
+
+gdd_export_ym <- gdd_export %>%
+  group_by(year, month_num) %>%
+  summarise(
+    tmax_yme_mean = mean(tmax_ymce, na.rm = TRUE),
+    tmin_yme_mean = mean(tmin_ymce, na.rm = TRUE),
+    tas_yme_mean = mean(tas_ymce, na.rm = TRUE),
+    optExp_ym_mean = mean(optExp_ymc, na.rm = TRUE),
+    heatExp_ym_mean = mean(heatExp_ymc, na.rm = TRUE),
+    frostExp_ym_mean = mean(frostExp_ymc, na.rm = TRUE),
+    gdd_ym_mean = mean(gdd_ymc, na.rm = TRUE),
+    hdd_ym_mean = mean(hdd_ymc, na.rm = TRUE),
+    fdd_ym_mean = mean(fdd_ymc, na.rm = TRUE),
+    .groups = 'drop'
+  ) %>%
+  ungroup()
+
+gdd_export_yc <- gdd_export %>%
+  group_by(year, country) %>%
+  summarise(
+    tmax_yce = mean(tmax_ymce, na.rm = TRUE),
+    tmin_yce = mean(tmin_ymce, na.rm = TRUE),
+    tas_yce = mean(tas_ymce, na.rm = TRUE),
+    optExp_yc = sum(optExp_ymc, na.rm = TRUE),
+    heatExp_yc = sum(heatExp_ymc, na.rm = TRUE),
+    frostExp_yc = sum(frostExp_ymc, na.rm = TRUE),
+    gdd_yc = sum(gdd_ymc, na.rm = TRUE),
+    hdd_yc = sum(hdd_ymc, na.rm = TRUE),
+    fdd_yc = sum(fdd_ymc, na.rm = TRUE),
+    .groups = 'drop'
+  ) %>%
+  ungroup()
+
+gdd_export_y <- gdd_export_yc %>%
+  group_by(year) %>%
+  summarise(
+    tmax_ye_mean = mean(tmax_yce, na.rm = TRUE),
+    tmin_ye_mean = mean(tmin_yce, na.rm = TRUE),
+    tas_ye_mean = mean(tas_yce, na.rm = TRUE),
+    optExp_y_mean = mean(optExp_yc, na.rm = TRUE),
+    heatExp_y_mean = mean(heatExp_yc, na.rm = TRUE),
+    frostExp_y_mean = mean(frostExp_yc, na.rm = TRUE),
+    gdd_y_mean = mean(gdd_yc, na.rm = TRUE),
+    hdd_y_mean = mean(hdd_yc, na.rm = TRUE),
+    fdd_y_mean = mean(fdd_yc, na.rm = TRUE),
+    .groups = 'drop'
+  ) %>%
+  ungroup()
 
 #-------------------------------------------------------------------------------
 # [1.10] PR
@@ -691,6 +714,10 @@ ndgain_data <- ndgain %>%
   # merge2 <- left_join(merge2, data_tas_ymc, by = c("year", "month_num", "country"))
   #merge2 <- left_join(merge2, data_tas_gdd, by = c("year", "month_num", "country"))
   merge2 <- left_join(merge2, gdd_export, by = c("year", "month_num", "country"))
+  merge2 <- left_join(merge2, gdd_export_ym, by = c("year", "month_num"))
+  merge2 <- left_join(merge2, gdd_export_yc, by = c("year", "country"))
+  merge2 <- left_join(merge2, gdd_export_y, by = c("year"))
+  
   merge2 <- left_join(merge2, gdd_import, by = c("year", "month_num", "country"))
   merge2 <- left_join(merge2, pr_export, by = c("year", "month_num", "country"))
   merge2 <- left_join(merge2, pr_import, by = c("year", "month_num", "country"))
@@ -712,57 +739,46 @@ ndgain_data <- ndgain %>%
       fdd_ym = sum(fdd_ymc * share_ymce, na.rm = TRUE),
       pr_yme = sum(pr_ymce * share_ymce, na.rm = TRUE),
       farm_prices_ym_mean = mean(farm_prices_ymc, na.rm = TRUE),
-      tas_yme_mean = mean(tas_ymce, na.rm = TRUE),
-      tmin_yme_mean = mean(tmin_ymce, na.rm = TRUE),
-      tmax_yme_mean = mean(tmax_ymce, na.rm = TRUE),
-      gdd_ym_mean = mean(gdd_ymc, na.rm = TRUE),
-      hdd_ym_mean = mean(hdd_ymc, na.rm = TRUE),
-      fdd_ym_mean = mean(fdd_ymc, na.rm = TRUE),
       pr_yme_mean = mean(pr_ymce, na.rm = TRUE),
-      
       tas_ymi_mean = mean(tas_ymci, na.rm = TRUE),
       tmin_ymi_mean = mean(tmin_ymci, na.rm = TRUE),
       tmax_ymi_mean = mean(tmax_ymci, na.rm = TRUE),
-      pr_ymi_mean = mean(pr_ymci, na.rm = TRUE)) %>%
+      pr_ymi_mean = mean(pr_ymci, na.rm = TRUE),
+      optExp_ym = sum(optExp_ymc * share_ymce, na.rm = TRUE),
+      heatExp_ym = sum(heatExp_ymc * share_ymce, na.rm = TRUE),
+      frostExp_ym = sum(frostExp_ymc * share_ymce, na.rm = TRUE)) %>%
     ungroup() %>%
     group_by(year, country) %>%
     mutate(
       farm_prices_yc = mean(farm_prices_ymc, na.rm = TRUE),
       tas_yce = mean(tas_ymce, na.rm = TRUE),
       tas_yci = mean(tas_ymci, na.rm = TRUE),
-      gdd_yc = sum(gdd_ymc, na.rm = TRUE),
-      hdd_yc = sum(hdd_ymc, na.rm = TRUE),
-      fdd_yc = sum(fdd_ymc, na.rm = TRUE),
       pr_yce = sum(pr_ymce, na.rm = TRUE),
       pr_yci = sum(pr_ymci, na.rm = TRUE),
-      tmin_yce = min(tmin_ymce, na.rm = TRUE),
-      tmax_yce = max(tmax_ymce, na.rm = TRUE),
-      tmin_yci = min(tmin_ymci, na.rm = TRUE),
-      tmax_yci = max(tmax_ymci, na.rm = TRUE)) %>%
+      tmin_yci = mean(tmin_ymci, na.rm = TRUE),
+      tmax_yci = mean(tmax_ymci, na.rm = TRUE)) %>%
     ungroup() %>%
     group_by(year) %>%
     mutate(
       farm_prices_y = sum(farm_prices_yc * share_yce, na.rm = TRUE),
       farm_prices_y_mean = mean(farm_prices_yc, na.rm = TRUE),
       tas_ye = sum(tas_yce * share_yce, na.rm = TRUE),
-      tas_ye_mean = mean(tas_yce, na.rm = TRUE),
       tas_yi_mean = mean(tas_yci, na.rm = TRUE),
       gdd_y = sum(gdd_yc * share_yce, na.rm = TRUE),
-      gdd_y_mean = mean(gdd_yc, na.rm = TRUE),
       hdd_y = sum(hdd_yc * share_yce, na.rm = TRUE),
-      hdd_y_mean = mean(hdd_yc, na.rm = TRUE),
       fdd_y = sum(fdd_yc * share_yce, na.rm = TRUE),
-      fdd_y_mean = mean(fdd_yc, na.rm = TRUE),
       pr_ye = sum(pr_yce * share_yce, na.rm = TRUE),
       pr_ye_mean = mean(pr_yce, na.rm = TRUE),
       pr_yi_mean = mean(pr_yci, na.rm = TRUE),
       tmin_ye = sum(tmin_yce * share_yce, na.rm = TRUE),
-      tmin_ye_mean = mean(tmin_yce, na.rm = TRUE),
       tmin_yi_mean = mean(tmin_yci, na.rm = TRUE),
       tmax_ye = sum(tmax_yce * share_yce, na.rm = TRUE),
-      tmax_ye_mean = mean(tmax_yce, na.rm = TRUE),
-      tmax_yi_mean = mean(tmax_yci, na.rm = TRUE)
-        )
+      tmax_yi_mean = mean(tmax_yci, na.rm = TRUE),
+      optExp_y = sum(optExp_yc * share_yce, na.rm = TRUE),
+      heatExp_y = sum(heatExp_yc * share_yce, na.rm = TRUE),
+      frostExp_y = sum(frostExp_yc * share_yce, na.rm = TRUE)
+        ) %>%
+      ungroup()
 
 # IDs per country
 

@@ -43,8 +43,8 @@ filepath_psdcoffee <- paste(main_dir, filename_psdcoffee,sep="")
 
 # Data
 data <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data.rds")
-results_ym <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/results_ym.rds")
-results_ymc <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/results_ymc.rds")
+results_y <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/results_y.rds")
+results_yc <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/results_yc.rds")
 summary <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/summary.rds")
 summary_c <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/summary_c.rds")
 
@@ -54,14 +54,14 @@ df_tas_monthly <- readRDS("~/Desktop/ObsData/ProcessedData/df_tas_monthly.rds")
 # [VF] Evolución de exposición al óptimo, al calor y al frío
 #-------------------------------------------------------------------------------
 aux <- data %>%
-  filter(dummy_y == 1) %>%
-  distinct(year, gdd_y_mean, hdd_y_mean, fdd_y_mean) %>%
+  filter(dummy_y == 1, year >= 1965, year <= 2019) %>%
+  distinct(year, optExp_y_mean, heatExp_y_mean, frostExp_y_mean) %>%
   drop_na()
 
 plot02_01 <- ggplot(
   aux) +
   geom_line(
-    aes(x = year, y = gdd_y_mean),
+    aes(x = year, y = optExp_y_mean),
     linewidth = 0.7, alpha = 1
   ) +
   labs(
@@ -86,7 +86,7 @@ plot02_01 <- ggplot(
 plot02_02 <- ggplot(
   aux) +
   geom_line(
-    aes(x = year, y = hdd_y_mean),
+    aes(x = year, y = heatExp_y_mean),
     linewidth = 0.7, alpha = 1
   ) +
   labs(
@@ -111,7 +111,7 @@ plot02_02 <- ggplot(
 plot02_03 <- ggplot(
   aux) +
   geom_line(
-    aes(x = year, y = fdd_y_mean),
+    aes(x = year, y = frostExp_y_mean),
     linewidth = 0.7, alpha = 1
   ) +
   labs(
@@ -173,7 +173,7 @@ aux1 <- data %>%
   drop_na()
 
 plot1 <- ggplot(
-  aux1 %>% filter(year >= 1990)) +
+  aux1) +
   geom_line(
     aes(x = year, y = qe_y),
     linewidth = 0.7, alpha = 1
@@ -217,8 +217,7 @@ aux2 <- data %>%
   drop_na()
 
 plot2 <- ggplot(
-  aux2 %>%
-    filter(year(date) >= 1990)) +
+  aux2) +
   geom_line(aes(x = date, y = price_ym),
             linewidth = 0.7, alpha = 1
   ) +
@@ -545,7 +544,7 @@ mean(aux2$farm_prices_y[aux2$dummy_leader == 1])
 mean(aux2$farm_prices_y[aux2$dummy_leader == 0])
 
 # Profits
-aux1 <- results_ymc %>%
+aux1 <- results_yc %>%
   filter(scenario == "Baseline") %>%
   mutate(
     date = as.Date(date),
@@ -573,20 +572,20 @@ ggplot(aux1, aes(x = year, y = profits_group_r,
 # [VF] Fit de precios
 #-------------------------------------------------------------------------------
 aux1 <- data %>%
-  filter(dummy_ym == 1) %>%
-  select(date, price_ym) %>%
+  filter(dummy_y == 1) %>%
+  select(date, price_y) %>%
   mutate(date = as.Date(date)) %>%
-  left_join(results_ym %>% 
+  left_join(results_y %>% 
               filter(scenario == "CF0") %>%
               mutate(date = as.Date(date)), by = c("date")) %>%
-  distinct(date, price, price_ym) %>%
-  rename(price_ym_estimated = price) %>%
+  distinct(date, price, price_y) %>%
+  rename(price_y_estimated = price) %>%
   drop_na()
 
 plot_0601 <- ggplot(aux1) +
-  geom_line(aes(x = date, y = price_ym, color = "Obs."), 
+  geom_line(aes(x = date, y = price_y, color = "Obs."), 
             linewidth = 0.8, alpha = 0.8) +
-  geom_line(aes(x = date, y = price_ym_estimated, color = "Est."), 
+  geom_line(aes(x = date, y = price_y_estimated, color = "Est."), 
             linewidth = 0.8, alpha = 0.8, linetype = "dashed") +
   scale_color_manual(
     name = NULL,
@@ -629,7 +628,7 @@ aux2 <- data %>%
   select(date, qe_y) %>%
   mutate(date = as.Date(date),
          year = year(date)) %>%
-  left_join(results_ym %>% 
+  left_join(results_y %>% 
               filter(scenario == "CF0") %>%
               mutate(date = as.Date(date),
                      year = year(date)) %>%
@@ -649,6 +648,7 @@ plot_0602 <- ggplot(aux2) +
     name = NULL,
     values = c("Obs." = "gray40", "Est." = "black")
   ) +
+  coord_cartesian(ylim = c(0, 300)) +
   labs(
     title = NULL,
     x = NULL,
@@ -940,7 +940,7 @@ ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/plot4.png",
 
 # Por mes-país
 
-aux <- results_ymc %>%
+aux <- results_yc %>%
   filter(scenario == "CF0" | scenario == "CF3") %>%
   mutate(
     date = as.Date(date),
@@ -950,10 +950,11 @@ aux <- results_ymc %>%
     year, country, scenario
   ) %>%
   mutate(
+    scenario = if_else(scenario == "CF0", 0, 1),
     qe_yc = sum(quantity, na.rm = TRUE),
     re_yc = sum(revenue, na.rm = TRUE),
     pr_yc = sum(profit, na.rm = TRUE),
-    mc_yc = sum(mc_ymc_hat_s, na.rm = TRUE)
+    mc_yc = sum(mc_yc_hat_s, na.rm = TRUE)
     ) %>%
   ungroup() %>%
   distinct(
