@@ -18,7 +18,7 @@ library(purrr)
 library(ggplot2)
 library(lubridate)
 library(lfe)
-library(slider) 
+library(slider)
 library(nleqslv)
 library(modelsummary)
 library(moments)
@@ -671,7 +671,7 @@ saveRDS(data_yc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_c
       total_surplus = sum(total_surplus, na.rm = TRUE),
       .groups = "drop"
     )
-  
+
   saveRDS(summary, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/summary.rds")
   
   # Guardar en ruta_figures
