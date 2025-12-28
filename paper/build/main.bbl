@@ -17,6 +17,17 @@ Adrien Bilal and Diego~R. K{\"a}nzig.
 \newblock {\em Working Paper}, November 2024.
 \newblock Stanford University and Northwestern University.
 
+\bibitem{bresnahan1989empirical}
+Timothy~F. Bresnahan.
+\newblock Empirical studies of industries with market power.
+\newblock {\em Handbook of Industrial Organization}, II:1011--1057, 1989.
+\newblock Chapter 17.
+
+\bibitem{burke2016adaptation}
+Marshall Burke and Kyle Emerick.
+\newblock Adaptation to climate change: Evidence from us agriculture.
+\newblock {\em American Economic Journal: Economic Policy}, 8(3):106--140, 2016.
+
 \bibitem{chen2021response}
 Shuai Chen and Binlei Gong.
 \newblock Response and adaptation of agriculture to climate change: Evidence from china.
@@ -47,6 +58,11 @@ Robert~C. Feenstra, Robert Inklaar, and Marcel~P. Timmer.
 \newblock The next generation of the penn world table.
 \newblock {\em American Economic Review}, 105(10):3150--3182, 2015.
 
+\bibitem{figari2025climate}
+Sebastian Figari.
+\newblock Climate change response: Input adjustment in agriculture.
+\newblock {\em Journal of Development Economics}, 175:103472, 2025.
+
 \bibitem{FisherEtAl2012}
 A.~C. Fisher, W.~M. Hanemann, M.~J. Roberts, and W.~Schlenker.
 \newblock The economic impacts of climate change: Evidence from agricultural output and random fluctuations in weather: Comment.
@@ -63,6 +79,11 @@ Christopher~L. Gilbert.
 {Global Adaptation Initiative}.
 \newblock Technical report: {ND GAIN} country index 2024, 2024.
 
+\bibitem{gouel2018nutrition}
+Christophe Gouel and Houssein Guimbard.
+\newblock Nutrition transition and the structure of global food demand.
+\newblock {\em American Journal of Agricultural Economics}, 100(3):1--21, 2018.
+
 \bibitem{igami2015market}
 Mitsuru Igami.
 \newblock Market power in i nternational commodity trade: The case of c offee.
@@ -77,6 +98,16 @@ International Food Policy~Research Institute.
 \newblock Climate change and coffee.
 \newblock Report ICC 103-6 Rev. 1, International Coffee Organization, London, England, December 2009.
 \newblock 103rd Session, 23--25 September 2009.
+
+\bibitem{oic1998enso}
+{International Coffee Organization}.
+\newblock The "el niño southern oscillation event (enso)" and its impact on coffee production, April 1998.
+\newblock Document presented to the Executive Board/International Coffee Council, 18–22 May 1998.
+
+\bibitem{ICO2024}
+{International Coffee Organization}.
+\newblock Beyond coffee: Towards a circular coffee economy, 2024.
+\newblock Coffee Development Report 2022-23.
 
 \bibitem{isimip2024}
 ISIMIP.
@@ -108,10 +139,20 @@ T.~K. Mideksa and S.~Kallbekken.
 \newblock The impact of climate change on the electricity market: A review.
 \newblock {\em Energy Policy}, 38(7):3579--3585, 2010.
 
+\bibitem{mundlak2001production}
+Yair Mundlak.
+\newblock Production and supply.
+\newblock In Bruce~L. Gardner and Gordon~C. Rausser, editors, {\em Handbook of Agricultural Economics}, volume~1A, pages 3--85. Elsevier Science, Amsterdam, London, and New York, 2001.
+
 \bibitem{nakamura2010accounting}
 Emi Nakamura and Dawit Zerom.
 \newblock Accounting for incomplete pass-through.
 \newblock {\em The review of economic studies}, 77(3):1192--1230, 2010.
+
+\bibitem{oic2013cincuenta}
+{Organización Internacional del Café}.
+\newblock La organización internacional del café de 1963 a 2013: 50 años sirviendo a la comunidad cafetera mundial, 2013.
+\newblock Preparado por Pablo Dubois a petición del Director Ejecutivo Robério Oliveira Silva.
 
 \bibitem{prebisch1959}
 Raul Prebisch.
@@ -123,9 +164,24 @@ Michael~J. Roberts and Wolfram Schlenker.
 \newblock Identifying supply and demand elasticities of agricultural commodities: Implications for the us ethanol mandate.
 \newblock {\em American Economic Review}, 103(6):2265--2295, 2013.
 
+\bibitem{schlenker2009nonlinear}
+Wolfram Schlenker and Michael~J. Roberts.
+\newblock Nonlinear temperature effects indicate severe damages to u.s. crop yields under climate change.
+\newblock {\em Proceedings of the National Academy of Sciences}, 106(37):15594--15598, 2009.
+
 \bibitem{singer1950}
 H~Singer.
 \newblock U.s. foreign investment in underdeveloped areas: The distribution of gains between investing and borrowing countries.
 \newblock {\em American Economic Review}, (40):473--485, 1950.
+
+\bibitem{slade1995empirical}
+Margaret~E. Slade.
+\newblock Empirical games: The oligopoly case.
+\newblock {\em The Canadian Journal of Economics / Revue canadienne d'Economique}, 28(2):368--402, 1995.
+
+\bibitem{Zhang2022}
+Wei Zhang, Sayed Saghaian, and Michael Reed.
+\newblock Influences of power structure evolution on coffee commodity markets: Insights from price discovery and volatility spillovers.
+\newblock {\em Sustainability}, 14(22):15268, 2022.
 
 \end{thebibliography}
