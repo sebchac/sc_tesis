@@ -1,6 +1,4 @@
-% se puede agregar la opción [english] para 
-%  memorias o tesis en inglés (borrando el archivo .aux)
-\documentclass{umemoria}[english]
+\documentclass[english]{umemoria}
 
 \depto{Departamento de Economía}
 \author{Sebastián Chacón}
@@ -29,6 +27,7 @@
 \usepackage{float}
 \usepackage{hyperref}
 \usepackage{xcolor}
+\usepackage{booktabs}
 
 \begin{document}
 
@@ -77,10 +76,9 @@
 
 \nocite{*}
 \bibliographystyle{plain}
-\bibliography{bibliografia.bib}
+\bibliography{bibliografia}
 
 % opcional ...
-\begin{appendices}
-\input{anexoA.tex}
-\end{appendices}
+%\begin{appendices}
+%\end{appendices}
 \end{document}

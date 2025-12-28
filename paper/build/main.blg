@@ -1,0 +1,53 @@
+This is BibTeX, Version 0.99d (TeX Live 2024)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: build/main.aux
+The style file: plain.bst
+Database file #1: bibliografia.bib
+Warning--entry type for "isimip2024" isn't style-file defined
+--line 141 of file bibliografia.bib
+Warning--entry type for "mapspam_2020" isn't style-file defined
+--line 165 of file bibliografia.bib
+Warning--there's a number but no volume in prebisch1959
+Warning--there's a number but no volume in singer1950
+You've used 25 entries,
+            2118 wiz_defined-function locations,
+            671 strings with 8419 characters,
+and the built_in function-call counts, 7530 in all, are:
+= -- 761
+> -- 301
+< -- 3
++ -- 127
+- -- 94
+* -- 540
+:= -- 1284
+add.period$ -- 78
+call.type$ -- 25
+change.case$ -- 121
+chr.to.int$ -- 0
+cite$ -- 27
+duplicate$ -- 257
+empty$ -- 614
+format.name$ -- 94
+if$ -- 1538
+int.to.chr$ -- 0
+int.to.str$ -- 25
+missing$ -- 20
+newline$ -- 131
+num.names$ -- 50
+pop$ -- 97
+preamble$ -- 1
+purify$ -- 97
+quote$ -- 0
+skip$ -- 177
+stack$ -- 0
+substring$ -- 553
+swap$ -- 25
+text.length$ -- 3
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 98
+warning$ -- 2
+while$ -- 79
+width$ -- 27
+write$ -- 281
+(There were 4 warnings)
