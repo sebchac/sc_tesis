@@ -5,64 +5,61 @@
 La ecuación de demanda agregada busca capturar las principales fuerzas económicas que determinan el precio y las cantidades comercialziadas en el mercado internacional del café:
 
 \begin{equation}
-    Q_{t} = \alpha^{d}_{0} + \alpha^{d}_{1}P_{t} + \alpha^{d}_{2}X_{t} + \alpha^{d}_{3}Z{t} + \alpha^{d}_{4} ICA_{t} + u^{d}_{t}
+    Q_{t} = \alpha^{d}_{0} + \alpha^{d}_{1}P_{t} + \alpha^{d}_{2}X_{t} + \alpha^{d}_{3}Z{t} + u^{d}_{t}
 \end{equation}
 
 La variable dependiente $Q_{t}$ refleja la cantidad total demandada en el mercado, mientras que $P_{t}$ representa el índice global de precios. Por otro lado, la inclusión de $X_{t}$, el Producto Interno Bruto (PIB) de los países importadores, permite medir la sensibilidad del consumo frente a cambios en el poder adquisitivo de este grupo.
 
 Se incluye también el precio del té ($Z_{t}$) en la estimación, reconociendo que, aunque no son perfectos sustitutos, existen márgenes de sustitución que pueden influir en la demanda de café, especialmente en períodos de altos precios. 
 
-Para controlar por el período en que el mercado estuvo cartelizado, se incorpora una variable dicotómica que toma el valor 1 desde enero de 1990 ($ICA_{t}$). Por su parte, el término error ($u^{d}_{t}$) recoge factores no observables, como cambios en las preferencias de consumo o efectos estacionales no modelados explícitamente.
+Por su parte, el término error ($u^{d}_{t}$) recoge factores no observables, como cambios en las preferencias de consumo o efectos estacionales no modelados explícitamente.
 
-Esta especificación sigue el enfoque de los trabajos seminales de [KARL PERLOFF] e [IGAMI]. Al mantener esta estructura, los resultados obtenidos permiten comparaciones directas con los hallazgos de esos estudios, facilitando la evaluación de consistencia en las elasticidades-precio estimadas y su evolución temporal. Así también, para resolver el problema de agregación temporal entre variables mensuales y anuales, se adopta la forma funcional de la demanda inversa:
+Esta especificación sigue el enfoque de trabajos seminales en la estimación estructural de este mercado (\cite{karp1993dynamic} \cite{igami2015market}). Al mantener esta estructura, los resultados obtenidos permiten comparaciones directas con los hallazgos de esos estudios, facilitando la evaluación de consistencia en las elasticidades-precio estimadas y su evolución temporal. Así también, para resolver el problema de agregación temporal entre variables mensuales y anuales, se adopta la forma funcional de la demanda inversa:
 
 \begin{equation}
-    P_{t} = \frac{1}{\alpha^{d}_{1}} \left[ Q_{t} - ( \alpha^{d}_{0} + \alpha^{d}_{2}X{t} + \alpha^{d}_{3}Z{t} + \alpha^{d}_{4} ICA_{t} + u^{d}_{t} ) \right]
+    P_{t} = \frac{1}{\alpha^{d}_{1}} \left[ Q_{t} - ( \alpha^{d}_{0} + \alpha^{d}_{2}X{t} + \alpha^{d}_{3}Z{t} + u^{d}_{t} ) \right]
 \end{equation}
 
-Naturalmente, la identificación causal de la relación entre la cantidad demandada y el índice global de precios requiere abordar el problema de endogeneidad mediante la aproximación de variables instrumentales. En esta investigación, se selecciona la variable \textit{HDD} por su relación con las variaciones exógenas en la oferta global del café, lo que permitiría que satisfaga los requisitos de relevancia y exogeneidad. Más adelante, esta variable serán fundamental para la estimación de los costos marginales implícitos y la construcción de escenarios contrafactuales, dado su vínculo con los determinantes de la oferta.
+Naturalmente, la identificación causal de la relación entre la cantidad demandada y el índice global de precios requiere abordar el problema de endogeneidad mediante la aproximación de variables instrumentales. En esta investigación, se seleccionan las variables de temperatura promedio de los países exportadores, así como la acumulación promedio de calor óptimo en los mismos (\textit{GDD}). En ambos casos, se utiliza un promedio ponderado por la participación de cada país en las exportaciones mundiales.
 
-Explicada en detalle en \textit{supra}, esta variable cuantifica, para cada mes, la exposición a condiciones de temperatura adversas para el cultivo del café. Para esta estimación, se agrega la variable a nivel global mediante ponderaciones basadas en la participación de mercado histórica de cada exportador.
+Se espera que, por la relación de estas variables con la oferta del grano del café, satisfagan con éxito las condiciones de exogeneidad y relevancia que exige el uso de variables instrumentales. Como se verá, las pruebas de sobreidentificación (Hansen J) y los diagnósticos de debilidad instrumental (estadístico F de Cragg-Donald) confirman su adecuación empírica.
 
-Se espera que, por la relación de esta variable con la oferta del grano del café, satisfaga con éxito las condiciones de exogeneidad y relevancia que exige el uso de variables instrumentales. Como se verá, las pruebas de sobreidentificación (Hansen J) y los diagnósticos de debilidad instrumental (estadístico F de Cragg-Donald) confirman su adecuación empírica.
+La Tabla N°\ref{tab:estimacion_demanda} presenta los resultados de la estimación de demanda a nivel mensual, tomando información desde 1965 hasta 2019. Los modelos 1, 2 y 3 solo consideran variables de control, mientras que los modelos 4, 5 y 6 incluyen las variables instrumentales discutidas en esta sección.
 
-La \ref{tab:7_1} presenta los resultados de la estimación de demanda a nivel mensual, tomando información desde 1965 hasta 2019. En todas las especificaciones se controla por el período de cartelización del mercado. Los modelos 1, 2 y 3 solo consideran variables de control, mientras que los modelos 4, 5 y 6 incluyen las variables instrumentales discutidas en esta sección.
-
-Se obtienen resultados similares al trabajo de Igami (ver anexo XXX) aunque con algunos matices, posiblemente explicados por la diferencia en el horizonte temporal \footnote{Las estimaciones de demanda agregada de este trabajo abarca un extenso período desde 1965 hasta 2019, mientras que Igami toma un horizonte más acotado, desde 1990 hasta 2006.} o por el control para el período de cartelización. En particular, este trabajo presenta un impacto similar de la cantidad exportada, mientras que los efectos del ingreso y del bien sustituto son mayores.
+Se obtienen resultados similares al trabajo de Igami (\cite{igami2015market}) aunque con algunos matices, posiblemente explicados por la diferencia en el horizonte temporal \footnote{Las estimaciones de demanda agregada de este trabajo abarca un extenso período desde 1965 hasta 2019, mientras que Igami toma un horizonte más acotado, desde 1965 hasta 2006.} o por el control para el período de cartelización.
 
 En concreto, por cada aumento de un millón de bolsas de 60 kg de café, el precio cae en 215 centavos de dólar, relativamente cercano a los 293 obtenidos por Igami. Asimismo, la elasticidad-precio de la demanda estimada para este trabajo está en un rango aceptable, indicando una demanda inelástica, pese a las fluctuaciones de precio\footnote{Igami obtiene una elasticidad-precio de la demanda de 0,15. Por su parte, otros trabajos han obtenido resultados de 0,2, al igual que en este caso. Ver, por ejemplo, \cite{bates1997open}.}. Esta demanda inelástica, en conjunto con la existencia de choques climáticos importantes, es consistente con la explicación estándar para la variación de los precios de los bienes agrícolas (\cite{deaton1992behaviour}, \cite{prebisch1959}, \cite{singer1950}).
 
-\input{tables/tabla7_1}
+\input{tables/estimacion_demanda}
 
-[Sobre los instrumentos]
-
-Una vez estimada la ecuación de demanda, recuperar el coeficiente $\hat{\alpha}^{d}_{1}$ permite estimar los costos marginales de cada país ($c{i,t}$), siguiendo las ecuaciones (5) y (6).
+Una vez estimada la ecuación de demanda, recuperar el coeficiente $\hat{\alpha}^{d}_{1}$ permite estimar los costos marginales de cada país ($c_{i,t}$), siguiendo las ecuaciones \eqref{eq:c_seguidor} y \eqref{eq:c_lider}.
 
 \section*{6.2. Estimación de costos marginales}
 
-La estimación del impacto del cambio climático sobre los costos marginales del modelo se lleva a cabo en dos etapas. Primero, se computan los costos marginales implícitos de la estimación de demanda siguiendo las ecuaciones (5) y (6). Luego, se estima el efecto de los factores de costo y choques climáticos siguiendo la siguiente especificación:
+La estimación del impacto del cambio climático sobre los costos marginales del modelo se lleva a cabo en dos etapas. Primero, se computan los costos marginales implícitos de la estimación de demanda siguiendo las ecuaciones \eqref{eq:c_seguidor} y \eqref{eq:c_lider}. Luego, se estima el efecto de los factores de costo y choques climáticos siguiendo la siguiente especificación:
 
 \begin{equation}
     c_{i,t} = \alpha^{o}_{0} + 
-\alpha^{o}_{1}F_{t} +
-\alpha^{o}_{2}HDD_{t} +
-\alpha^{o}_{3}FDD_{t} +
-\alpha^{o}_{4}ICA_{t} +
-\phi_{i}+\phi_{t}+u^{o}_{i,t}
+\alpha^{o}_{1}C_{t} +
+\alpha^{o}_{2}F_{t} +
+\alpha^{o}_{3}HDD_{t-1} +
+\alpha^{o}_{4}FDD_{t-1} +
+\phi_{i}+u^{o}_{i,t}
 \end{equation} 
 
-donde $F_{t}$ es el índice de precios de fertilizantes calculado por el Banco Mundial, $HDD_{t}$ es la acumulación de calor, explicada \textit{supra}, $FDD_{t}$ es la acumulación de frío extremo, también explicada, $ICA_{t}$ es una variable dicotómica para el período de cartelización, $\phi_{i}$ es un efecto fijo por país, $\phi_{t}$ es un efecto fijo por año y $u^{o}_{i,t}$ es el término error.
+donde $C_{t}$ es una variable de tendencia para identificar un ciclo de producción de 5 años, que es el tiempo en que tarda en madurar un cafeto, $F_{t}$ es el índice de precios de fertilizantes calculado por el Banco Mundial, $HDD_{t-1}$ es la acumulación de calor en el año anterior, explicada \textit{supra}, $FDD_{t-1}$ es la acumulación de frío extremo en el año anterior, también explicada, $\phi_{i}$ es un efecto fijo por país, y $u^{o}_{i,t}$ es el término error.
 
-La [TABLA] resume los resultados para la especificación utilizada. Se observa que el impacto de las variables asociadas a la acumulación de temperaturas extremas es bastante relevante. En particular, la variable $FDD$ indica un efecto de 74 centavos de dólar sobre los costos marginales, mientras que $HDD$ tendría un efecto menor, de 12 centavos. En ambos casos, la significancia es máxima. Por otro lado, el ajuste $R^{2}$ indica que el modelo explica gran parte de la variación del error. 
+Siguiendo el razonamiento de Figari (\cite{figari2025climate}), si los cambios en las variables climáticas son asignados aleatoriamente entre países, no sería necesario utilizar controles adicionales, y el coeficiente estimado tendría una interpretación causal. De hecho, de introducir controles que varíen con el tiempo y que puedan ser endógenos, como la adopción de nuevas tecnologías, se podría obtener un resultado sesgado, llevando a una situación de malos controles (\cite{angrist2009mostly} \cite{hsiang2016}). La Tabla N°\ref{tab:estimacion_costos} resume los resultados para la especificación utilizada. Se observa que el impacto de las variables asociadas a la acumulación de temperaturas extremas es bastante relevante. En particular, la variable $FDD$ indica un efecto de 74 centavos de dólar sobre los costos marginales, mientras que $HDD$ tendría un efecto menor, de 12 centavos. En ambos casos, la significancia es máxima. 
 
-Por otro lado, si separamos la muestra a fin de observar específicamente el efecto de estas variables climáticas sobre países lídere y seguidores, se observa que el impacto es notablemente mayor para el segundo grupo. Así, como se desarrollará con detalle en el análisis de los resultados contrafactuales, el impacto del cambio climático afectaría más a aquellos países que actúan como seguidores del mercado. En el caso de la acumulación de frío, el efecto sería un 24\% más importante para el grupo de seguidores; mientras que la diferencia en la acumulación de calor asciende hasta un 38\% aproximadamente.
+Por otro lado, si separamos la muestra a fin de observar específicamente el efecto de estas variables climáticas sobre países líderes y seguidores, se observa que el impacto es notablemente mayor para el segundo grupo. Así, como se desarrollará con detalle en el análisis de los resultados contrafactuales, el impacto del cambio climático afectaría más a aquellos países que actúan como seguidores del mercado. En el caso de la acumulación de frío, el efecto sería un 24\% más importante para el grupo de seguidores; mientras que la diferencia en la acumulación de calor asciende hasta un 38\% aproximadamente.
 
-\input{tables/t6_01.tex}
+\input{tables/estimacion_costos}
 
 \section*{6.3. Ajuste del modelo y escenarios contrafactuales}
-A partir de los resultados obtenido hasta ahora, es posible identificar la sensibilidad de la demanda ante los choques de precios y computar los costos marginales del sistema. Junto con la interacción estratégica de los agentes, es directo estimar el escenario factual, y revisar así el ajuste del modelo a los datos observados.
 
-Las [FIGURAS] muestran el ajuste de la estimación para el precio y las cantidades observadas. Es directo ver que la estimación estructural permite identificar buena parte de la evolución de ambas series. En promedio, la diferencia entre los valores observados y la predicción del modelo es de un 4\% para el precio y de un 0,9\% para las exportaciones.
+A partir de los resultados obtenidos hasta ahora, es posible identificar la sensibilidad de la demanda ante los choques de precios y computar los costos marginales del sistema. Junto con la interacción estratégica de los agentes, es directo estimar el escenario factual, y revisar así el ajuste del modelo a los datos observados.
+
+Las Figuras N°\ref{fig:plot06_01} y N°\ref{fig:plot06_02} muestran el ajuste de la estimación para el precio y las cantidades observadas. La estimación estructural permite identificar buena parte de la evolución de ambas series, aunque con diferencia entre precios y cantidades, probablemente explicada por la frecuencia utilizada.
 
 \begin{figure}[H]
     \centering
@@ -80,11 +77,11 @@ Las [FIGURAS] muestran el ajuste de la estimación para el precio y las cantidad
 
 Ahora bien, uno de los principales objetivos de esta investigación es la estimación de escenarios contrafactuales en el mercado internacional del café. En particular, interesa analizar el cambio en la trayectoria de precios y cantidades comercializadas una vez que se reduce el estrés térmico, modificando las variables climáticas relevantes en tal sentido. Luego, a partir de estos resultados, es posible calcular el efecto en el bienestar social, así como diferencias entre grupos de exportadores. Esta última distinción permitiría explorar si acaso el estrés térmico amplifica las diferencias estructurales entre países líderes y seguidores.
 
-Las [TABLAS] presentan los resultados para diferentes escenarios contrafactuales, bajo reducciones en la exposición a temperaturas extremas. El primer caso (Contrafactual 1) se obtiene de reducir en un 25\% la exposición mensual de cada país, tanto a temperaturas altas (sobre 30°C) como a temperaturas bajas prolongadas (bajo 10°C). El segundo caso (Contrafactual 2) se obtiene luego de reducir en un 50\% la exposición. El último escenario (Contrafactual 3) es aquel que no presenta exposición a temperaturas extremas.
+Las Tablas N°\ref{tab:t6_results} y N°\ref{tab:t6_surplus} presentan los resultados para diferentes escenarios contrafactuales, bajo reducciones en la acumulación de temperaturas extremas. El primer caso (Contrafactual 1) se obtiene de reducir en un 25\% el estrés térmico, refiriéndose a acumulaciones tanto de temperaturas altas (sobre 30°C) como de temperaturas bajas (bajo 10°C). El segundo caso (Contrafactual 2) se obtiene luego de reducir en un 50\% el estrés térmico. El último escenario (Contrafactual 3) es aquel que no presenta acumulación de temperaturas extremas.
 
-La [TABLA] muestra que, en general, las reducciones en la exposición tiene consecuencias importantes sobre el precio y las cantidades exportadas, aunque la magnitud de tal efecto pareciera no ser tan alta. Así, las reducciones van de un 1,2\% a un 4,9\% en el caso del precio y de un 0,2\% a un 0,8\% para las exportaciones, de manera que la exposición afectaría más al índice global del \textit{soft commodity} que a las decisiones de exportación de los agentes. Esto es muy importante, pues el mecanismo mediante el cual el estrés térmico afecta al mercado internacional del café no es evidente; los resultados sugieren que la volatilidad del precio y su susceptibilidad a choques climáticos es clave.
+La Tabla N°\ref{tab:t6_results} muestra que, en general, las reducciones en el estrés térmico tiene consecuencias importantes sobre el precio y las cantidades exportadas, aunque la magnitud de tal efecto pareciera no ser tan alta. Así, las reducciones van de un 1,2\% a un 4,9\% en el caso del precio y de un 0,2\% a un 0,8\% para las exportaciones, de manera que la exposición afectaría más al índice global del \textit{soft commodity} que a las decisiones de exportación de los agentes. Esto es muy importante, pues el mecanismo mediante el cual el estrés térmico afecta al mercado internacional del café no es evidente; los resultados sugieren que la volatilidad del precio y su susceptibilidad a choques climáticos es clave.
 
-Por otro lado, la [TABLA] presenta los resultados en términos de bienestar, para los diferentes grupos de interés en el sistema. Como se puede observar, quienes pierden mayor excedente, en promedio, son los líderes del mercado; el impacto va de un 0,6\% en un escenario con 25\% de reducción del estrés térmico, a un 2,3\% en un escenario sin estrés térmico. Enseguida, el grupo de importadores presenta un impacto que va del 0,4\% a un 1,7\%; luego, los seguidores registran un impacto del 0,2\% a un 1\% en su excedente.
+Por otro lado, la Tabla N°\ref{tab:t6_surplus} presenta los resultados en términos de bienestar, para los diferentes grupos de interés en el sistema. Como se puede observar, quienes pierden mayor excedente, en promedio, son los líderes del mercado; el impacto va de un 0,6\% en un escenario con 25\% de reducción del estrés térmico, a un 2,3\% en un escenario sin estrés térmico. Enseguida, el grupo de importadores presenta un impacto que va del 0,4\% a un 1,7\%; luego, los seguidores registran un impacto del 0,2\% a un 1\% en su excedente.
 
 Con todo, se debe tener presenta que lo anterior solo refleja el impacto de reducir la exposición sobre el excedente de cada grupo, a nivel agregado, mas no permite identificar si existen diferentes mecanismos a través de los cuales el estrés térmico materializa su efecto. 
 

@@ -1,5 +1,10 @@
 \begin{thebibliography}{10}
 
+\bibitem{angrist2009mostly}
+Joshua~D Angrist and J{\"o}rn-Steffen Pischke.
+\newblock {\em Mostly harmless econometrics: An empiricist's companion}.
+\newblock Princeton university press, 2009.
+
 \bibitem{bates1997open}
 Robert~H. Bates.
 \newblock {\em Open-Economy Politics: The Political Economy of the World Coffee Trade}.
@@ -89,6 +94,16 @@ Thomas Hodges.
 \newblock {\em Predicting Crop Phenology}.
 \newblock CRC Press, Boca Raton, FL, 1991.
 
+\bibitem{hsiang2016}
+Solomon Hsiang.
+\newblock Climate econometrics.
+\newblock {\em Annual Review of Resource Economics}, 8:22.1--22.33, 2016.
+
+\bibitem{huck2001}
+Steffen Huck, Kai~A. Konrad, and Wieland M{\"u}ller.
+\newblock Big fish eat small fish: on merger in {Stackelberg} markets.
+\newblock {\em Economics Letters}, 73(2):213--217, 2001.
+
 \bibitem{DVN/SWPENT_2024}
 International Food Policy Research~Institute (IFPRI).
 \newblock {Global Spatially-Disaggregated Crop Production Statistics Data for 2020 Version 2.0}, 2024.
@@ -117,6 +132,10 @@ International Food Policy~Research Institute.
 {International Coffee Organization}.
 \newblock Beyond coffee: Towards a circular coffee economy, 2024.
 \newblock Coffee Development Report 2022-23.
+
+\bibitem{ICIP2024}
+{International Coffee Organization}.
+\newblock Ico composite and group indicator prices: Share of markets and group weightings. calendar year averages: 2021 to 2023, September 2024.
 
 \bibitem{isimip2024}
 ISIMIP.

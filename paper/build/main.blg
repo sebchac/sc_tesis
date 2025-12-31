@@ -1,0 +1,63 @@
+This is BibTeX, Version 0.99d (TeX Live 2024)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: build/main.aux
+The style file: plain.bst
+Database file #1: bibliografia.bib
+Warning--entry type for "DVN/SWPENT_2024" isn't style-file defined
+--line 107 of file bibliografia.bib
+Warning--entry type for "ICIP2024" isn't style-file defined
+--line 208 of file bibliografia.bib
+Warning--entry type for "ICO2024" isn't style-file defined
+--line 232 of file bibliografia.bib
+Warning--entry type for "isimip2024" isn't style-file defined
+--line 250 of file bibliografia.bib
+Warning--entry type for "mapspam_2020" isn't style-file defined
+--line 284 of file bibliografia.bib
+Warning--entry type for "oic1998enso" isn't style-file defined
+--line 373 of file bibliografia.bib
+Warning--entry type for "oic2013cincuenta" isn't style-file defined
+--line 383 of file bibliografia.bib
+Warning--there's a number but no volume in prebisch1959
+Warning--there's a number but no volume in singer1950
+You've used 45 entries,
+            2118 wiz_defined-function locations,
+            802 strings with 11938 characters,
+and the built_in function-call counts, 13086 in all, are:
+= -- 1311
+> -- 501
+< -- 6
++ -- 209
+- -- 154
+* -- 886
+:= -- 2217
+add.period$ -- 138
+call.type$ -- 45
+change.case$ -- 207
+chr.to.int$ -- 0
+cite$ -- 47
+duplicate$ -- 467
+empty$ -- 1112
+format.name$ -- 154
+if$ -- 2705
+int.to.chr$ -- 0
+int.to.str$ -- 45
+missing$ -- 37
+newline$ -- 230
+num.names$ -- 92
+pop$ -- 200
+preamble$ -- 1
+purify$ -- 166
+quote$ -- 0
+skip$ -- 326
+stack$ -- 0
+substring$ -- 917
+swap$ -- 51
+text.length$ -- 6
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 172
+warning$ -- 2
+while$ -- 139
+width$ -- 47
+write$ -- 496
+(There were 9 warnings)

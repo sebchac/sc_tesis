@@ -49,51 +49,39 @@ Las bases anteriores se complementan fuertemente, y es que la granularidad en la
 
 En una primera etapa del procesamiento de datos, se juntan ambas bases para obtener la evolución diaria de temperaturas mínimas y máximas dentro de cada grilla de 10 km x 10 km de un país específico. Luego, se toma el promedio simple de estas grillas para determinar una observación diaria por país, desde 1965 hasta 2019\footnote{Otra alternativa es ponderar por el área de cultivo --medido en hectáreas-- dentro de cada grilla. Sin embargo, dado que la base de cultivos es equivalente a una foto en el tiempo, una ponderación estaría omitiendo posibles cambios en las zonas de cultivo en el tiempo, por lo que se prefiere utilizar un promedio simple.}.
 
-La segunda etapa toma el insumo intermedio generado y calcula tanto la acumulación de estrés térmico como el tiempo de exposición que sufren los cultivos a temperaturas extremas, definidas por umbrales en grados centígrados. Así, en base a los antecedentes revisados en la sección anterior, se considera exposición a temperaturas bajas a aquellas bajo los 10°C; por su parte, se definen como temperaturas en extremo altas a aquellas sobre los 30°C.
+La segunda etapa toma el insumo intermedio generado y calcula tanto la acumulación de estrés térmico como el tiempo de exposición que sufren los cultivos a temperaturas extremas, definidas por umbrales en grados centígrados. Así, en base a los antecedentes revisados en la sección anterior, se considera exposición a temperaturas bajas a aquellas bajo los 10°C ($k_{1}$); por su parte, se definen como temperaturas en extremo altas a aquellas sobre los 30°C ($k_{4}$). Por otro lado, se define el rango de temperaturas óptimas entre los 18°C ($k_{2}$) y los 26°C ($k_{3}$).
 
-La literatura científica relativa al efecto de la temperatura sobre los cultivos de bienes agrícolas propone la construcción de \textit{Growing Degree Days} (\cite{hodges1991} \cite{mcmaster1997} \cite{DeschenesGreenstone2007}), definidos como la acumulación de calor durante la fase de crecimiento. En la misma línea, los \textit{Frost Degree Days} y los \textit{Heating Degree Days} se refieren a la acumulación de temperaturas en extremo bajas o altas. La construcción es sencilla, y sigue las siguientes fórmulas:
+La primera variable relevante para el análisis es la acumulación de estrés térmico. La literatura científica relativa al efecto de la temperatura sobre los cultivos de bienes agrícolas propone la construcción de \textit{Growing Degree Days} (\cite{hodges1991} \cite{mcmaster1997} \cite{DeschenesGreenstone2007}), definidos como la acumulación de calor durante la fase de crecimiento. En la misma línea, los \textit{Frost Degree Days} y los \textit{Heating Degree Days} se refieren a la acumulación de temperaturas en extremo bajas o altas. La construcción es sencilla, y sigue las siguientes fórmulas:
 
 \begin{equation}
-    GDD_{t} = \text{máx}\{\text{mín}\{\frac{T_{\text{máx}} + T_{\text{mín}}}{2}, k_{4}\} , k_{2}\} - k_{2}
+    GDD = \text{máx}\{\text{mín}\{\frac{t_{\text{máx}} + t_{\text{mín}}}{2}, k_{4}\} , k_{2}\} - k_{2}
 \end{equation}
 
 \begin{equation}
-    FDD_{t} = \text{máx}\left{k_{1} - T_{\text{mín}}, 0\right}
+    FDD = \text{máx}\{k_{1} - t_{\text{mín}}, 0\}
 \end{equation}
 
 \begin{equation}
-    HDD_{t} = \text{máx}\left{\frac{T_{\text{máx}} + T_{\text{mín}}}{2} - k_{4}, 0\right}
+    HDD = \text{máx}\{\frac{t_{\text{máx}} + t_{\text{mín}}}{2} - k_{4}, 0\}
 \end{equation}
 
-En primer lugar, es posible medir la acumulación de grados centígrados dentro de cierto rango de temperaturas óptimas para los cultivos si se asume que la temperatura sigue una trayectoria diaria similar a una función sinusoidal [CITAR]. Otros trabajos adoptan aproximaciones en base a la diferencia entre la temperatura diaria promedio y un umbral de base sobre el cual el desarrollo de los cultivos alcanza condiciones óptimas [CITAR], encontrando leves diferencias cuando los datos contienen mucho ruido [CITAR].
+La segunda variable es la exposición a temperaturas extremas. La metodología propuesta en este trabajo considera que la temperatura evoluciona en el día siguiendo una trayectoria similar a una función triangular, comenzando y terminando con un valor mínimo, y presentando una temperatura máxima en el vértice superior. Aunque sencilla, esta aproximación permite obtener un valor directo para la fracción del día en que se alcanza un nivel de temperatura específico. Así, para un umbral determinado $k_{i}$, con $i \in \{1, 2, 3, 4\}$, y considerando las temperaturas mínima y máxima de cada día ($t_{\text{mín}}$ y $t_{\text{máx}}$, respectivamente, con $t_{\text{mín}} < t_{\text{máx}}$), se tiene tres escenarios posibles, presentados en la Figura N°[]:
 
-Esta investigación propone otra alternativa, a fin de capturar esencialmente el tiempo de exposición a temperaturas extremas. En la Figura N°[] es posible comparar las metodologías revisadas para una evoluciaón de la temperatura diaria similar a una función triangular. Mientras que, en el Panel A, se captura la acumulación de calor en grados centígrados por día, el Panel B muestra la fracción del día en que los cultivos están expuestos a temperaturas sobre cierto umbral.
+\begin{itemize}
+    \item $t_{\text{máx}} \leq k_{i}$: en este caso, la trayectoria diaria de la temperatura está siempre por debajo del umbral. Por lo tanto, si el objetivo es medir la fracción del día en que determinada zona geográfica estuvo expuesta a temperaturas en extremo bajas ($k_{1}$), entonces la variable en construcción debe tomar un valor igual a 1 en este caso. Por otro lado, si el objetivo es capturar la exposición a temperaturas en extremo altas ($k_{4}$), entonces la variable toma un valor igual a 0.
+    
+    \item $t_{\text{mín}}  < k_{i} < t_{\text{máx}}$: en este caso intermedio, la temperatura cruza el umbral en su trayectoria, lo que implica que la exposición a temperaturas en extremo altas o bajas solo cubre una fracción del día. Se puede demostrar que, si el objetivo es medir la exposición a temperaturas bajas, la variable toma un valor equivalente a $\frac{k_{1} - t_{\text{mín}}}{t_{\text{máx}} - t_{\text{mín}}}$. En cambio, si lo que busca es cuantificar la exposición a temperaturas altas, entonces la variable toma el valor $1 - \frac{k_{4} - t_{\text{mín}}}{t_{\text{máx}} - t_{\text{mín}}}$.
+    
+    \item $t_{\text{mín}} \geq k_{i}$: este escenario es la contraparte del primero. La variable en cuestión puede tomar un valor igual a 1 o 0 según si se busca capturar la exposición a temperaturas altas o bajas.
+    
+\end{itemize}
 
-\begin{figure}
+\begin{figure}[H]
     \centering
     \caption{}
     \label{plot04_01}
 \end{figure}
 
-En adelante, la metodología propuesta considera que la temperatura evoluciona en el día siguiendo una función triangular, comenzando y terminando con un valor mínimo, y presentando una temperatura máxima en el vértice superior. Aunque sencilla, esta aproximación permite obtener un valor directo para la fracción del día en que se alcanza un nivel de temperatura específico. Así, para un determinado umbral de temperatura $K$, y temperaturas mínima y máxima ($t_{min}$ y $t_{max}$, respectivamente, con $t_{min} < t_{max}$), se tienen tres escenarios posibles, presentados en la Figura N°[]:
-
-\begin{itemize}
-    \item $t_{max} \leq K$: en este caso, la trayectoria diaria de la temperatura está siempre por debajo del umbral. Por lo tanto, si el objetivo es medir la fracción del día en que determinada zona geográfica estuvo expuesta a temperaturas en extremo bajas ($K = 10$), entonces la variable en construcción debe tomar un valor igual a 1 en este caso. Por otro lado, si el objetivo es capturar la exposición a temperaturas en extremo altas ($K = 30$), entonces la variable toma un valor igual a 0.
-    
-    \item $t_{min}  < K < t_{max}$: en este caso intermedio, la temperatura cruza el umbral en su trayectoria, lo que implica que la exposición a temperaturas en extremo altas o bajas solo cubre una fracción del día. Se puede demostrar que, si el objetivo es medir la exposición a temperaturas bajas, la variable toma un valor equivalente a $\frac{K - t_{min}}{t_{max} - t_{min}}$. En cambio, si lo que busca es cuantificar la exposición a temperaturas altas, entonces la variable toma el valor $1 - \frac{K - t_{min}}{t_{max} - t_{min}}$.
-    
-    \item $t_{min} \geq K$: este escenario es la contraparte del primero. La variable en cuestión puede tomar un valor igual a 1 o 0 según si se busca capturar la exposición a temperaturas altas ($K = 30$) o bajas ($K = 10$).
-    
-\end{itemize}
-
-\begin{figure}
-    \centering
-    \caption{}
-    \label{plot04_02}
-\end{figure}
-
 La siguiente tabla resume la información estadística de cada variable mencionada.
-
-[TABLA]
 
 \input{tables/tabla4_1}

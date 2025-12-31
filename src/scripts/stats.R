@@ -27,12 +27,6 @@ library(stringr)
 library(viridis)
 library(kableExtra)
 
-# Colours
-green  <- "#13F59A"
-blue <- "#136DF5"
-red <- "#F5136D"
-beige <- "#F59B13"
-
 # Rutas
 fig_path <- "/Users/sebastianchacon/Desktop/sc_tesis/paper/figures/"
 tab_path <- "/Users/sebastianchacon/Desktop/sc_tesis/paper/tables/"
@@ -48,20 +42,22 @@ results_yc <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/results_
 summary <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/summary.rds")
 summary_c <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/summary_c.rds")
 
-df_tas_monthly <- readRDS("~/Desktop/ObsData/ProcessedData/df_tas_monthly.rds")
-
 #-------------------------------------------------------------------------------
 # [VF] Evolución de exposición al óptimo, al calor y al frío
 #-------------------------------------------------------------------------------
 aux <- data %>%
   filter(dummy_y == 1, year >= 1965, year <= 2019) %>%
-  distinct(year, optExp_y_mean, heatExp_y_mean, frostExp_y_mean) %>%
+  distinct(year, optExp_y_mean, heatExp_y_mean, frostExp_y_mean,
+           gdd_y_mean, gdd_y, hdd_y_mean, hdd_y, fdd_y_mean, fdd_y) %>%
   drop_na()
 
 plot02_01 <- ggplot(
   aux) +
   geom_line(
-    aes(x = year, y = optExp_y_mean),
+    aes(
+      x = year, 
+      y = optExp_y_mean
+        ),
     linewidth = 0.7, alpha = 1
   ) +
   labs(
@@ -161,7 +157,7 @@ ggsave(
   bg = "white")
 
 #-------------------------------------------------------------------------------
-# [VF] Exportaciones desde 1990 hasta 2019
+# [VF] Exportaciones desde 1960 hasta 2019
 #-------------------------------------------------------------------------------
 aux1 <- data %>%
   filter(dummy_y == 1) %>%
@@ -198,7 +194,7 @@ plot1 <- ggplot(
   )
 
 ggsave(
-      filename = paste0(fig_path, "plot1.png"),
+      filename = paste0(fig_path, "export1960.png"),
       plot = plot1,
       width = 7,
       height = 5,
@@ -207,7 +203,7 @@ ggsave(
       bg = "white")
 
 #-------------------------------------------------------------------------------
-# [VF] Precio ICIP desde 1990 hasta 2019
+# [VF] Precio ICIP desde 1960 hasta 2019
 #-------------------------------------------------------------------------------
 aux2 <- data %>%
   filter(dummy_ym == 1) %>%
@@ -240,7 +236,7 @@ plot2 <- ggplot(
     legend.margin = margin(t = -5, b = 0)
   )
 
-ggsave("/Users/sebastianchacon/Desktop/sc_tesis/paper/figures/plot2.png",
+ggsave("/Users/sebastianchacon/Desktop/sc_tesis/paper/figures/icip1960.png",
       plot = plot2,
       width = 7,
       height = 5,
@@ -365,7 +361,7 @@ data_y <- data %>%
   filter(dummy_yc == 1, year >= 2002, year <= 2019) %>%
   group_by(year) %>%
   summarise(
-    qi_y = sum(qi_yc, na.rm = TRUE),
+    qi_y = sum(qi_yc, na.rm = TRUE)/1000,
     .groups = "drop"
   )
 
@@ -391,7 +387,7 @@ plot4 <- ggplot(data_y) +
     legend.margin = margin(t = -5, b = 0)
   )
 
-ggsave("/Users/sebastianchacon/Desktop/sc_tesis/paper/figures/plot4.png", 
+ggsave("/Users/sebastianchacon/Desktop/sc_tesis/paper/figures/import2002.png", 
       plot = plot4, 
       width = 7,
       height = 5,
@@ -680,15 +676,15 @@ ggsave(paste0(fig_path, "plot_0602.png"),
 # [] Precios mensuales estimados (contrafactual)
 #-------------------------------------------------------------------------------
 
-results_ym <- results_ym %>%
+aux <- results_y %>%
   mutate(
     scenario = if_else(
-      scenario == "Baseline", "Base", "Contrafactual"
+      scenario == "CF0", "CF1"
     ),
     date = as.Date(date)
   )
 
-ggplot(results_ym, aes(x = date, y = price, color = scenario, group = scenario)) +
+ggplot(aux, aes(x = date, y = price, color = scenario, group = scenario)) +
   geom_line(
     linewidth = 0.8,
     alpha = 0.8) +

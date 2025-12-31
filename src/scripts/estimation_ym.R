@@ -50,6 +50,9 @@ ruta_figures <- paste0(ruta_paper, "figures/")
       gdd_brazil_ym, gdd_colombia_ym, gdd_vietnam_ym, gdd_leaders_ym, gdd_followers_ym,
       hdd_brazil_ym, hdd_colombia_ym, hdd_vietnam_ym, hdd_leaders_ym, hdd_followers_ym,
       fdd_brazil_ym, fdd_colombia_ym, fdd_vietnam_ym, fdd_leaders_ym, fdd_followers_ym,
+      optExp_ym_mean, optExp_ym,
+      heatExp_ym_mean, heatExp_ym,
+      frostExp_ym_mean, frostExp_ym,
       disease1, disease2, frost1, frost2, droughts, ica_lapse) %>%
     mutate(trend = floor(year - min(year)),
            trend2 = trend^2,
@@ -59,7 +62,8 @@ ruta_figures <- paste0(ruta_paper, "figures/")
     drop_na()
   
   cor(demand_data %>% select(qe_ym, tas_yme, pr_yme, gdd_ym, hdd_ym, fdd_ym))
-
+  cor(demand_data %>% select(qe_ym, tas_yme, pr_yme, optExp_ym_mean, heatExp_ym_mean, frostExp_ym_mean))
+  
 # [1.2.] Demand estimation models
 # [1.2.1.] OLS
   ols1 <- lm(price_ym ~ qe_ym , 
@@ -116,9 +120,11 @@ ruta_figures <- paste0(ruta_paper, "figures/")
 
   iv3 <- ivreg(price_ym ~ qe_ym  + importGDP_ym + teaPrices_ym |
           tas_yme + gdd_ym +
+          #optExp_ym + heatExp_ym + frostExp_ym +
           importGDP_ym + teaPrices_ym,
           data = demand_data)
   summary(iv3)
+  
   # Store coefficients
     coeff_iv3 <- coef(iv3)
     beta <- coeff_iv3["qe_ym"] / 12
@@ -197,6 +203,8 @@ ruta_figures <- paste0(ruta_paper, "figures/")
       lag(fdd_y_mean) #+
       #lag(hdd_yc) +
       #lag(fdd_yc)
+      #lag(heatExp_y) +
+      #lag(frostExp_y)
     | country,
     data = data_yc,
     cluster = ~country
