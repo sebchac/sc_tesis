@@ -84,6 +84,15 @@ Christophe Gouel and Houssein Guimbard.
 \newblock Nutrition transition and the structure of global food demand.
 \newblock {\em American Journal of Agricultural Economics}, 100(3):1--21, 2018.
 
+\bibitem{hodges1991}
+Thomas Hodges.
+\newblock {\em Predicting Crop Phenology}.
+\newblock CRC Press, Boca Raton, FL, 1991.
+
+\bibitem{DVN/SWPENT_2024}
+International Food Policy Research~Institute (IFPRI).
+\newblock {Global Spatially-Disaggregated Crop Production Statistics Data for 2020 Version 2.0}, 2024.
+
 \bibitem{igami2015market}
 Mitsuru Igami.
 \newblock Market power in i nternational commodity trade: The case of c offee.
@@ -118,10 +127,20 @@ Larry~S. Karp and Jeffrey~M. Perloff.
 \newblock A dynamic model of oligopoly in the coffee export market.
 \newblock {\em American Journal of Agricultural Economics}, 75(2):448--457, May 1993.
 
+\bibitem{krivonos2004impact}
+Ekaterina Krivonos.
+\newblock The impact of coffee market reforms on producer prices and price transmission.
+\newblock Policy Research Working Paper 3358, World Bank, July 2004.
+
 \bibitem{maurice2011unraveling}
 Noemie~Eliana Maurice and Junior Davis.
 \newblock Unravelling the underlying causes of price volatility in world coffee and cocoa commodity markets.
 \newblock Technical Report~1, UNCTAD Special Unit on Commodities, September 2011.
+
+\bibitem{mcmaster1997}
+Gregory~S. McMaster and W.~W. Wilhelm.
+\newblock Growing degree-days: One equation, two interpretations.
+\newblock {\em Agricultural and Forest Meteorology}, 87(4):291--300, 1997.
 
 \bibitem{mehta2008responding}
 Aashish Mehta and Jean-Paul Chavas.
@@ -178,6 +197,11 @@ H~Singer.
 Margaret~E. Slade.
 \newblock Empirical games: The oligopoly case.
 \newblock {\em The Canadian Journal of Economics / Revue canadienne d'Economique}, 28(2):368--402, 1995.
+
+\bibitem{talbot2004grounds}
+John~M. Talbot.
+\newblock {\em Grounds for Agreement: The Political Economy of the Coffee Commodity Chain}.
+\newblock Rowman \& Littlefield Publishers, Inc., Lanham, Boulder, New York, Toronto, Oxford, 2004.
 
 \bibitem{Zhang2022}
 Wei Zhang, Sayed Saghaian, and Michael Reed.
