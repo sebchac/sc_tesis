@@ -1125,6 +1125,30 @@ Talbot, J\BPBI M.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+{Uni{\'o}n Europea}%
+}{%
+{Uni{\'o}n Europea}%
+}{%
+{\protect \APACyear {2023}}%
+}]{%
+UnionEuropea2023}
+\APACinsertmetastar {%
+UnionEuropea2023}%
+\begin{APACrefauthors}%
+{Uni{\'o}n Europea}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2023}{5}{}.
+\newblock
+\APACrefbtitle {Reglamento (UE) 2023/1115 del Parlamento Europeo y del Consejo, de 31 de mayo de 2023, relativo a la comercializaci{\'o}n en el mercado de la Uni{\'o}n y a la exportaci{\'o}n desde la Uni{\'o}n de determinadas materias primas y productos b{\'a}sicos asociados a la deforestaci{\'o}n y la degradaci{\'o}n forestal, y por el que se deroga el Reglamento (UE) n.º 995/2010.} {Reglamento (ue) 2023/1115 del parlamento europeo y del consejo, de 31 de mayo de 2023, relativo a la comercializaci{\'o}n en el mercado de la uni{\'o}n y a la exportaci{\'o}n desde la uni{\'o}n de determinadas materias primas y productos b{\'a}sicos asociados a la deforestaci{\'o}n y la degradaci{\'o}n forestal, y por el que se deroga el reglamento (ue) n.º 995/2010.}
+\newblock
+\APAChowpublished {Diario Oficial de la Uni{\'o}n Europea, L 150, 206-247}.
+\newblock
+\begin{APACrefURL} [{2026-01-02}]\url{https://eur-lex.europa.eu/eli/reg/2023/1115/oj} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Zhang%
 , Saghaian%
 \BCBL {}\ \BBA {} Reed%

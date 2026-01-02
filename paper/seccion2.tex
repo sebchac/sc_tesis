@@ -4,23 +4,7 @@
 
 La principal hipótesis revisada en esta investigación es que el cambio climático --y, en particular, el estrés térmico-- tiene un efecto importante sobre el mercado internacional del café, el que se diferencia para líderes y seguidores y amplifica las desigualdades estructurales del sistema. A continuación, se presenta la evidencia que motiva esta discusión.
 
-La [Figura 1] muestra la evolución mensual de la temperatura promedio, desde 1965 hasta 2019, distinguiendo entre las zonas específicas dedicadas a la producción de café y el promedio mundial. Se observa un diferencial relevante y significativo para la temperatura en los países cafetaleros, siendo ésta más elevada por estar en la franja ecuatorial. Sin embargo, tal y como muestra la [Figura N°2], esta diferencia no es significativa entre grupos de países exportadores.
-
-\begin{figure}[H]
-    \centering
-    \begin{minipage}[t]{0.45\textwidth}
-        \centering
-        \caption{}
-        \label{fig:plot02_01}
-    \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.45\textwidth}
-        \centering
-        \caption{}
-        \label{fig:plot02_02}
-    \end{minipage}
-\end{figure}
-Ahora bien, para efectos de medir el impacto del estrés térmico sobre el mercado, la variable relevante para el análisis es la exposición a temperaturas extremas en las zonas cafetaleras. La construcción de esta variable es explicada con detalle en la sección [4], y la Figura N°\ref{fig:plot02_01} presenta su evolución en el tiempo. Se observa, por un lado, que la exposición a un rango óptimo de temperaturas (entre 18°C y 26°C) ha disminuido en el tiempo, mientras que la exposición al calor (temperaturas sobre los 30°C) ha aumentado.
+Para efectos de medir el impacto del estrés térmico sobre el mercado, la variable relevante para el análisis es la exposición a temperaturas óptimas y extremas para el crecimiento de los cultivos en las zonas cafetaleras. La construcción de estas variables se explica con detalle en la sección [4], y las Figuras N°\ref{fig:plot02_03} y N°\ref{fig:plot02_04} presentan su evolución en el tiempo. Se observa, por un lado, que la exposición a un rango óptimo de temperaturas (entre 18°C y 26°C) ha disminuido en el tiempo, mientras que la exposición al calor (temperaturas sobre los 30°C) ha aumentado.
 
 \begin{figure}[H]
     \centering
@@ -39,7 +23,7 @@ Ahora bien, para efectos de medir el impacto del estrés térmico sobre el merca
     \end{minipage}
 \end{figure}
 
-Por otro lado, si bien las exportaciones de café aumentan en cada año, se observa una diferencia importante entre la evolución de países líderes y seguidores. En resumen, mientras que en la segunda mitad del siglo XIX los países líderes concentraban el XX\% del mercado, hoy alcanzan el XX\%. La Figura N°\ref{fig:plot02_05} refleja esta importante diferencia en la tendencia de cada grupo exportador.
+Por otro lado, si bien las exportaciones de café aumentan en cada año, se observa una diferencia importante entre la evolución de países líderes y seguidores. En resumen, mientras que a inicios de 1960 las exportaciones estaban en el rango de $[20-25]$ bolsas de 60 kg (la medida estándar de este \textit{soft commodity}), para 2019 los países líderes del mercado (Brasil, Colombia, Viet Nam) exportaban más de 70 bolsas de 60 kg, y los países seguidores, en conjunto, 40 bolsas. La Figura N°\ref{fig:plot02_05} refleja esta importante diferencia en la tendencia de cada grupo exportador.
 
 \begin{figure}[H]
     \centering
@@ -48,37 +32,7 @@ Por otro lado, si bien las exportaciones de café aumentan en cada año, se obse
     \label{fig:plot02_05}
 \end{figure}
 
-Por último, y volviendo a la hipótesis principal, se observa una correlación negativa entre el aumento del estrés térmico y las exportaciones globales Figura N°\ref{fig:plot02_06}. Además, esta correlación es más pronunciada para los países seguidores (Figura N°\ref{fig:plot02_07}). Lo mismo se observa para el precio del café (Figuras N°\ref{fig:plot02_08} y \ref{fig:plot02_09}).
-
-\begin{figure}[H]
-    \centering
-    \begin{minipage}[t]{0.45\textwidth}
-        \centering
-        \caption{}
-        \label{fig:plot02_06}
-    \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.45\textwidth}
-        \centering
-        \caption{}
-        \label{fig:plot02_07}
-    \end{minipage}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \begin{minipage}[t]{0.45\textwidth}
-        \centering
-        \caption{}
-        \label{fig:plot02_08}
-    \end{minipage}
-    \hfill
-    \begin{minipage}[t]{0.45\textwidth}
-        \centering
-        \caption{}
-        \label{fig:plot02_09}
-    \end{minipage}
-\end{figure}
+Por último, y volviendo a la hipótesis principal, la relación observada entre las exportaciones y los indicadores de estrés térmico dificulta la comprensión del impacto del cambio climático. En resumen, debido a que tanto las exportaciones como la exposición al estrés térmico de los cultivos han aumentdo en el tiempo (ver Figuras N°\ref{fig:plot02_04} y N°\ref{fig:plot02_05}), una regresión simple mostraría una asociación espuria entre ambas variables, similar a lo observado por Bilal \& Känzig \citeyearpar{bilal2024macroeconomic} para la temperatura y el Producto Interno Bruto (PIB) mundial.
 
 \section*{2.2. Literatura relevante}
 
@@ -94,11 +48,11 @@ Con todo, un enfoque estructural para este problema ofrece ventajas importantes 
 
 Así, la presente investigación utiliza una estimación estructural para cuantificar el efecto del cambio climático sobre el mercado del café, específicamente a través de un modelo de competencia secuencial en cantidades, estableciendo jerarquías entre los países exportadores de cara a la comercialización de un bien homogéneo. Adicionalmente, la aproximación estructural al problema de estimación de impacto del cambio climático permite simular escenarios contrafactuales, a fin de evaluar el impacto en el bienestar social y la distribución entre oferentes y demandantes.
 
-En cualquier caso, se debe tener en consideración que este no es el primer trabajo que estima el mercado internacional del café de forma estructural. Karp y Perloff \citep{karp1993dynamic} desarrollaron un modelo dinámico de oligopolio para estudiar si los dos mayores exportadores de café de la época, Brazil y Colombia, operaban como tomadores de precios, oligopolistas, o como partes de un equilibrio de colusión tácita. Sus resultados indicaron un comportamiento relativamente competitivo, similar a lo encontrado por Bettendorf y Verboren \citep{bettendorf2000incomplete}, cuyo objetivo de análisis fue estimar el traspaso del precio global al precio de retail en Países Bajos; y por Gilbert \citep{gilbert2007}, quien encontró un aumento de la intensidad competitiva en el mercado de comercio internacional del café y en el mercado de retail del mismo bien.
+En cualquier caso, se debe tener en consideración que este no es el primer trabajo que estima el mercado internacional del café de forma estructural. Karp y Perloff \citeyearpar{karp1993dynamic} desarrollaron un modelo dinámico de oligopolio para estudiar si los dos mayores exportadores de café de la época, Brazil y Colombia, operaban como tomadores de precios, oligopolistas, o como partes de un equilibrio de colusión tácita. Sus resultados indicaron un comportamiento relativamente competitivo, similar a lo encontrado por Bettendorf y Verboren \citeyearpar{bettendorf2000incomplete}, cuyo objetivo de análisis fue estimar el traspaso del precio global al precio de retail en Países Bajos; y por Gilbert \citeyearpar{gilbert2007}, quien encontró un aumento de la intensidad competitiva en el mercado de comercio internacional del café y en el mercado de retail del mismo bien.
 
-Otros trabajos han utilizado estimaciones estructurales del café y otros bienes agrícolas para cuantificar el efecto de choques exógenos. Este es el caso de Roberts y Schlenker \citep{roberts2013}, quienes utilizaron desvíos en la tendencia del rendimiento de los cultivos de bienes agrícolas -bajo el supuesto de que estos desvíos son explicados por choques climáticos exógenos- para medir el impacto del Mandato de Etanol de Estados Unidos, que exigía que alrededor del 5\% de la producción mundial de calorías de maíz, trigo, arroz y soja se destine a la producción de etanol. Como resultado, estimaron que los precios mundiales de los alimentos aumentarían en torno a un 30\% y que el excedente mundial del consumo de alimentos disminuiría en 155 mil millones de dólares anuales.
+Otros trabajos han utilizado estimaciones estructurales del café y otros bienes agrícolas para cuantificar el efecto de choques exógenos. Este es el caso de Roberts y Schlenker \citeyearpar{roberts2013}, quienes utilizaron desvíos en la tendencia del rendimiento de los cultivos de bienes agrícolas -bajo el supuesto de que estos desvíos son explicados por choques climáticos exógenos- para medir el impacto del Mandato de Etanol de Estados Unidos, que exigía que alrededor del 5\% de la producción mundial de calorías de maíz, trigo, arroz y soja se destine a la producción de etanol. Como resultado, estimaron que los precios mundiales de los alimentos aumentarían en torno a un 30\% y que el excedente mundial del consumo de alimentos disminuiría en 155 mil millones de dólares anuales.
 
-En esa misma línea, el trabajo de Igami \citep{igami2015market} constituye otro importante ejemplo, cuyo modelo oligopólico es utilizado para cuantificar el perjuicio generado por la cartelización de los países miembros de la ICO entre 1965 y 1989 sobre el bienestar social del mercado.
+En esa misma línea, el trabajo de Igami \citeyearpar{igami2015market} constituye otro importante ejemplo, cuyo modelo oligopólico es utilizado para cuantificar el perjuicio generado por la cartelización de los países miembros de la ICO entre 1965 y 1989 sobre el bienestar social del mercado.
 
 Por último, los trabajos de Mehta y Chavas \citeyearpar{mehta2008responding}, Maurice y Davis \citeyearpar{maurice2011unraveling}, Covindassamy, Robe y Wallen \citeyearpar{covindassamy2017sugar}, y Lanna, Mattos y Sylvia \citeyearpar{silveira2017reaction}, entre otros, estudian la incertidumbre en las series temporales de los precios de bienes agrícolas como el café, a fin de explicar las razones detrás de su volatilidad.
 

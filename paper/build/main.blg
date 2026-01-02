@@ -13,9 +13,9 @@ Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: bibliografia.bib
 Warning--entry type for "DVN/SWPENT_2024" isn't style-file defined
---line 107 of file bibliografia.bib
+--line 108 of file bibliografia.bib
 Warning--entry type for "ICIP2024" isn't style-file defined
---line 208 of file bibliografia.bib
+--line 209 of file bibliografia.bib
 Warning--entry type for "ICO2024" isn't style-file defined
 --line 232 of file bibliografia.bib
 Warning--entry type for "isimip2024" isn't style-file defined
@@ -25,48 +25,48 @@ Warning--entry type for "mapspam_2020" isn't style-file defined
 Warning--entry type for "oic1998enso" isn't style-file defined
 --line 373 of file bibliografia.bib
 Warning--entry type for "oic2013cincuenta" isn't style-file defined
---line 383 of file bibliografia.bib
+--line 384 of file bibliografia.bib
 apacite.bst [2013/07/21 v6.03 APA bibliography style]
 Warning--No address in maurice2011unraveling
-You've used 45 entries,
+You've used 46 entries,
             6951 wiz_defined-function locations,
-            1606 strings with 19633 characters,
-and the built_in function-call counts, 86527 in all, are:
-= -- 10950
-> -- 648
-< -- 4172
-+ -- 4125
-- -- 105
-* -- 5514
-:= -- 15934
-add.period$ -- 192
-call.type$ -- 45
-change.case$ -- 796
+            1613 strings with 20163 characters,
+and the built_in function-call counts, 90528 in all, are:
+= -- 11413
+> -- 658
+< -- 4526
++ -- 4465
+- -- 109
+* -- 5836
+:= -- 17012
+add.period$ -- 197
+call.type$ -- 46
+change.case$ -- 815
 chr.to.int$ -- 0
-cite$ -- 91
-duplicate$ -- 2086
-empty$ -- 3368
-format.name$ -- 931
-if$ -- 16610
+cite$ -- 93
+duplicate$ -- 2118
+empty$ -- 3439
+format.name$ -- 945
+if$ -- 17188
 int.to.chr$ -- 0
-int.to.str$ -- 139
+int.to.str$ -- 142
 missing$ -- 0
-newline$ -- 1155
-num.names$ -- 362
-pop$ -- 1276
+newline$ -- 1179
+num.names$ -- 370
+pop$ -- 1345
 preamble$ -- 1
-purify$ -- 194
+purify$ -- 200
 quote$ -- 0
-skip$ -- 5914
+skip$ -- 6036
 stack$ -- 0
-substring$ -- 4633
-swap$ -- 1240
-text.length$ -- 183
+substring$ -- 4977
+swap$ -- 1254
+text.length$ -- 188
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 4168
+type$ -- 4248
 warning$ -- 1
-while$ -- 334
+while$ -- 341
 width$ -- 0
-write$ -- 1359
+write$ -- 1385
 (There were 8 warnings)
