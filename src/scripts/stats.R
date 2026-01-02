@@ -212,6 +212,12 @@ aux2 <- data %>%
   distinct(date, price_ym) %>%
   drop_na()
 
+aux2_y <- data %>%
+  filter(dummy_y == 1) %>%
+  select(year, price_y) %>%
+  distinct(year, price_y) %>%
+  drop_na()
+
 plot2 <- ggplot(
   aux2) +
   geom_line(aes(x = date, y = price_ym),
@@ -471,6 +477,14 @@ aux1 <- data %>%
     qe_y = sum(qe_yc, na.rm = TRUE),
     .groups = "drop"
   )
+
+aux2 <- aux1 %>%
+  filter(year == 2019) %>%
+  group_by(dummy_leader) %>%
+  summarise(
+    qe = sum(qe_y, na.rm = TRUE)
+  ) %>%
+  ungroup()
 
 plot02_04 <- ggplot(aux1, aes(x = year, y = qe_y, 
                               color = factor(dummy_leader,
@@ -911,13 +925,13 @@ data_y <- data %>%
 
 # Efecto de gdd, hdd y fdd en precios
 
-ggplot(data_y, aes(x = tas_y_mean, y = price_y)) +
+ggplot(data_y, aes(x = tas_ye, y = price_y)) +
   geom_point(size = 3, color = "#2E86AB", alpha = 0.8) +
   geom_smooth(method = "lm", se = TRUE, color = "#F24236", linetype = "dashed") +
   theme_classic()
 
 # Efecto de gdd, hdd y fdd en cantidades
-ggplot(data_y, aes(x = hdd_y_mean, y = qe_y)) +
+ggplot(data_y, aes(x = fdd_y_mean, y = qe_y)) +
   geom_point(size = 3, color = "#2E86AB", alpha = 0.8) +
   geom_smooth(method = "lm", se = TRUE, color = "#F24236", linetype = "dashed") +
   theme_classic()
@@ -973,4 +987,115 @@ aux <- results_ymc %>%
 feols(profit ~ scenario * dummy_leader | year, data = aux, cluster = ~year)
 feols(quantity ~ scenario * dummy_leader | year, data = aux, cluster = ~year)
 feols(mc_ymc_hat_s ~ scenario * dummy_leader | year, data = aux, cluster = ~year)
+
+
+#-------------------------------------------------------------------------------
+# [] Evolución de HHI, C3, Lerner 
+#-------------------------------------------------------------------------------
+# HHI
+aux <- data %>%
+  filter(
+    dummy_yc == 1, 
+    export_dummy == 1,
+    year >= 1990,
+    year <= 2019) %>%
+  select(year, country, qe_yc, qe_y) %>%
+  arrange(year, country) %>%
+  mutate(
+    sh_yc = round(qe_yc / qe_y, 4),
+    sh2_yc = sh_yc^2
+    ) %>%
+  group_by(year) %>%
+  summarise(
+    hhi_y = round(sum(sh2_yc, na.rm = TRUE) * 10000, 0),
+    .groups = 'drop'
+  ) %>%
+  ungroup()
+  
+plot_030401 <- ggplot(
+  aux) +
+  geom_line(
+    aes(x = year, y = hhi_y),
+    linewidth = 0.7, alpha = 1
+  ) +
+  labs(
+    title = NULL,
+    x = NULL,
+    y = NULL,
+    color = NULL
+  ) +
+  theme_classic() +
+  theme(
+    legend.position = "bottom",
+    text = element_text(size = 9),
+    axis.title = element_text(size = 8),
+    axis.title.y = element_text(margin = margin(r = 3)),
+    axis.title.x = element_text(margin = margin(t = 3)),
+    axis.text = element_text(size = 9),
+    plot.margin = margin(5, 5, 5, 5),
+    legend.text = element_text(size = 9),
+    legend.margin = margin(t = -5, b = 0)
+  )
+
+ggsave(
+  filename = paste0(fig_path, "hhi.png"),
+  plot = plot_030401,
+  width = 7.5,
+  height = 5,
+  units = "cm",
+  dpi = 600,
+  bg = "white")
+
+# C3
+aux <- data %>%
+  filter(
+    dummy_yc == 1, 
+    country %in% c("Brazil", "Colombia", "Viet Nam"),
+    year >= 1990,
+    year <= 2019) %>%
+  select(year, country, qe_yc, qe_y) %>%
+  arrange(year, country) %>%
+  group_by(year) %>%
+  mutate(
+    qe_leaders_y = sum(qe_yc, na.rm = TRUE),
+    sh_leaders_y = round(qe_leaders_y / qe_y, 2)
+  ) %>%
+  ungroup() %>%
+  distinct(year, sh_leaders_y)
+
+plot_030402 <- ggplot(
+  aux) +
+  geom_line(
+    aes(x = year, y = sh_leaders_y),
+    linewidth = 0.7, alpha = 1
+  ) +
+  labs(
+    title = NULL,
+    x = NULL,
+    y = NULL,
+    color = NULL
+  ) +
+  theme_classic() +
+  theme(
+    legend.position = "bottom",
+    text = element_text(size = 9),
+    axis.title = element_text(size = 8),
+    axis.title.y = element_text(margin = margin(r = 3)),
+    axis.title.x = element_text(margin = margin(t = 3)),
+    axis.text = element_text(size = 9),
+    plot.margin = margin(5, 5, 5, 5),
+    legend.text = element_text(size = 9),
+    legend.margin = margin(t = -5, b = 0)
+  )
+
+ggsave(
+  filename = paste0(fig_path, "c3.png"),
+  plot = plot_030402,
+  width = 7.5,
+  height = 5,
+  units = "cm",
+  dpi = 600,
+  bg = "white")
+
+
 
