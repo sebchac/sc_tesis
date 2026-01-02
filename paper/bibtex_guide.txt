@@ -1,0 +1,160 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% GUÍA DE REFERENCIAS BIBTEX PARA FORMATO APA
+%% Coloca esto al inicio de tu archivo .bib como referencia
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% CAMPOS COMUNES A TODOS LOS TIPOS:
+%% - author: obligatorio (formato: Apellido1, Nombre1 and Apellido2, Nombre2)
+%% - title: obligatorio
+%% - year: obligatorio
+%% - doi: OPCIONAL pero muy recomendado (apacite lo formatea automáticamente)
+%% - url: OPCIONAL (usar solo si no hay DOI o para recursos web)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% @ARTICLE - Artículos de revista académica
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% OBLIGATORIOS: author, title, journal, year, volume, pages
+%% OPCIONALES: number, doi, url, publisher
+
+% @article{clave2020,
+%   author    = {Apellido1, Nombre1 and Apellido2, Nombre2},
+%   title     = {Título del artículo},
+%   journal   = {Nombre de la Revista},
+%   year      = {2020},
+%   volume    = {10},
+%   number    = {2},
+%   pages     = {100--150},
+%   doi       = {10.1234/ejemplo},
+%   url       = {https://doi.org/10.1234/ejemplo},
+%   publisher = {Editorial}
+% }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% @BOOK - Libros completos
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% OBLIGATORIOS: author, title, year, publisher
+%% OPCIONALES: address, edition, isbn, url
+
+% @book{clave2020,
+%   author    = {Apellido, Nombre},
+%   title     = {Título del Libro},
+%   year      = {2020},
+%   publisher = {Editorial},
+%   address   = {Ciudad, País},
+%   edition   = {2},
+%   isbn      = {978-1234567890}
+% }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% @INCOLLECTION - Capítulos de libros editados (ej: Handbooks)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% OBLIGATORIOS: author, title, booktitle, editor, year, publisher, pages
+%% OPCIONALES: chapter, address, volume
+
+% @incollection{clave2020,
+%   author    = {Apellido, Nombre},
+%   title     = {Título del capítulo},
+%   booktitle = {Título del Libro},
+%   editor    = {Editor, Nombre},
+%   year      = {2020},
+%   publisher = {Editorial},
+%   pages     = {100--150},
+%   chapter   = {5},
+%   address   = {Ciudad},
+%   volume    = {1}
+% }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% @TECHREPORT - Working papers, informes técnicos, discussion papers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% OBLIGATORIOS: author, title, institution, year
+%% OPCIONALES: type, number, address, month, url
+
+% @techreport{clave2024,
+%   author      = {Apellido, Nombre},
+%   title       = {Título del working paper},
+%   institution = {Universidad o Institución},
+%   year        = {2024},
+%   type        = {Working Paper},
+%   number      = {123},
+%   address     = {Ciudad},
+%   month       = {January},
+%   url         = {https://ejemplo.com}
+% }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% @UNPUBLISHED - Documentos no publicados
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% OBLIGATORIOS: author, title, note
+%% OPCIONALES: year, month
+
+% @unpublished{clave2024,
+%   author = {Apellido, Nombre},
+%   title  = {Título del documento},
+%   year   = {2024},
+%   note   = {Manuscrito no publicado}
+% }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% @MISC - Otros tipos (páginas web, datasets, etc.)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% OBLIGATORIOS: author (o organization), title
+%% OPCIONALES: year, howpublished, url, note
+
+% @misc{clave2024,
+%   author       = {Apellido, Nombre},
+%   title        = {Título del recurso},
+%   year         = {2024},
+%   howpublished = {Página web},
+%   url          = {https://ejemplo.com},
+%   note         = {Accedido: 1 de enero de 2024}
+% }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% @DATA o @DATASET - Conjuntos de datos
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% OBLIGATORIOS: author, title, year, publisher
+%% OPCIONALES: version, doi, url
+
+% @data{clave2024,
+%   author    = {{Nombre de la Organización}},
+%   title     = {Nombre del Dataset},
+%   year      = {2024},
+%   publisher = {Repositorio},
+%   version   = {V2.0},
+%   doi       = {10.1234/ejemplo},
+%   url       = {https://doi.org/10.1234/ejemplo}
+% }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% NOTAS IMPORTANTES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% MÚLTIPLES AUTORES:
+%% Usar "and" para separar autores (NO comas entre autores)
+%% Ejemplo: author = {Smith, John and Doe, Jane and García, María}
+
+%% ORGANIZACIONES COMO AUTOR:
+%% Usar dobles llaves para evitar que se trate como nombre de persona
+%% Ejemplo: author = {{International Coffee Organization}}
+
+%% CARACTERES ESPECIALES:
+%% Con UTF-8 (recomendado): author = {Pérez, José}
+%% Con escapes LaTeX: author = {P{\'e}rez, Jos{\'e}}
+
+%% DOI vs URL:
+%% - DOI es OPCIONAL pero muy recomendado (formato estándar, permanente)
+%% - Si hay DOI, no es necesario incluir URL
+%% - URL solo si no hay DOI o para recursos exclusivamente web
+%% - apacite formatea automáticamente los DOI como enlaces
+
+%% RANGOS DE PÁGINAS:
+%% Usar doble guión: pages = {100--150} (NO usar guión simple)
+
+%% CAMPOS QUE NO SE MUESTRAN EN APA:
+%% - abstract: apacite no lo incluye en la bibliografía
+%% - keywords: solo para gestión personal de referencias
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% FIN DE LA GUÍA
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

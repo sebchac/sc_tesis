@@ -1,230 +1,1155 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{}
 
-\bibitem{angrist2009mostly}
-Joshua~D Angrist and J{\"o}rn-Steffen Pischke.
-\newblock {\em Mostly harmless econometrics: An empiricist's companion}.
-\newblock Princeton university press, 2009.
+\bibitem [\protect \citeauthoryear {%
+Angrist%
+\ \BBA {} Pischke%
+}{%
+Angrist%
+\ \BBA {} Pischke%
+}{%
+{\protect \APACyear {2009}}%
+}]{%
+angrist2009mostly}
+\APACinsertmetastar {%
+angrist2009mostly}%
+\begin{APACrefauthors}%
+Angrist, J\BPBI D.%
+\BCBT {}\ \BBA {} Pischke, J\BHBI S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2009}.
+\newblock
+\APACrefbtitle {Mostly harmless econometrics: An empiricist's companion} {Mostly harmless econometrics: An empiricist's companion}.
+\newblock
+\APACaddressPublisher{}{Princeton university press}.
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{bates1997open}
-Robert~H. Bates.
-\newblock {\em Open-Economy Politics: The Political Economy of the World Coffee Trade}.
-\newblock Princeton University Press, Princeton, NJ, 1997.
+\bibitem [\protect \citeauthoryear {%
+Bates%
+}{%
+Bates%
+}{%
+{\protect \APACyear {1997}}%
+}]{%
+bates1997open}
+\APACinsertmetastar {%
+bates1997open}%
+\begin{APACrefauthors}%
+Bates, R\BPBI H.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{1997}.
+\newblock
+\APACrefbtitle {Open-Economy Politics: The Political Economy of the World Coffee Trade} {Open-economy politics: The political economy of the world coffee trade}.
+\newblock
+\APACaddressPublisher{Princeton, NJ}{Princeton University Press}.
+\newblock
+\begin{APACrefURL} \url{https://press.princeton.edu/books/paperback/9780691005195/open-economy-politics} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{bettendorf2000incomplete}
-L.~Bettendorf and F.~Verboven.
-\newblock Incomplete transmission of coffee bean prices: evidence from the netherlands.
-\newblock {\em European Review of Agricultural Economics}, 27(1):1--16, 2000.
-\newblock Received April 1998, final version received October 1999.
+\bibitem [\protect \citeauthoryear {%
+Bettendorf%
+\ \BBA {} Verboven%
+}{%
+Bettendorf%
+\ \BBA {} Verboven%
+}{%
+{\protect \APACyear {2000}}%
+}]{%
+bettendorf2000incomplete}
+\APACinsertmetastar {%
+bettendorf2000incomplete}%
+\begin{APACrefauthors}%
+Bettendorf, L.%
+\BCBT {}\ \BBA {} Verboven, F.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2000}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Incomplete transmission of coffee bean prices: evidence from The Netherlands} {Incomplete transmission of coffee bean prices: evidence from the netherlands}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{European Review of Agricultural Economics}{27}{1}{1--16}.
+\newblock
+\begin{APACrefURL} \url{https://doi.org/10.1093/erae/27.1.1} \end{APACrefURL}
+\newblock
+\APACrefnote{Received April 1998, final version received October 1999}
+\newblock
+\begin{APACrefDOI} \doi{10.1093/erae/27.1.1} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{bilal2024macroeconomic}
-Adrien Bilal and Diego~R. K{\"a}nzig.
-\newblock The macroeconomic impact of climate change: Global vs. local temperature.
-\newblock {\em Working Paper}, November 2024.
-\newblock Stanford University and Northwestern University.
+\bibitem [\protect \citeauthoryear {%
+Bilal%
+\ \BBA {} K{\"a}nzig%
+}{%
+Bilal%
+\ \BBA {} K{\"a}nzig%
+}{%
+{\protect \APACyear {2024}}%
+}]{%
+bilal2024macroeconomic}
+\APACinsertmetastar {%
+bilal2024macroeconomic}%
+\begin{APACrefauthors}%
+Bilal, A.%
+\BCBT {}\ \BBA {} K{\"a}nzig, D\BPBI R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2024}{November}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The Macroeconomic Impact of Climate Change: Global vs. Local Temperature} {The macroeconomic impact of climate change: Global vs. local temperature}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Working Paper}{}{}{}.
+\newblock
+\begin{APACrefURL} \url{https://www.sites.google.com/site/adrienbilal} \end{APACrefURL}
+\newblock
+\APACrefnote{Stanford University and Northwestern University}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{bresnahan1989empirical}
-Timothy~F. Bresnahan.
-\newblock Empirical studies of industries with market power.
-\newblock {\em Handbook of Industrial Organization}, II:1011--1057, 1989.
-\newblock Chapter 17.
+\bibitem [\protect \citeauthoryear {%
+Bresnahan%
+}{%
+Bresnahan%
+}{%
+{\protect \APACyear {1989}}%
+}]{%
+bresnahan1989empirical}
+\APACinsertmetastar {%
+bresnahan1989empirical}%
+\begin{APACrefauthors}%
+Bresnahan, T\BPBI F.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1989}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Empirical Studies of Industries with Market Power} {Empirical studies of industries with market power}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Handbook of Industrial Organization}{II}{}{1011-1057}.
+\newblock
+\APACrefnote{Chapter 17}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{burke2016adaptation}
-Marshall Burke and Kyle Emerick.
-\newblock Adaptation to climate change: Evidence from us agriculture.
-\newblock {\em American Economic Journal: Economic Policy}, 8(3):106--140, 2016.
+\bibitem [\protect \citeauthoryear {%
+Burke%
+\ \BBA {} Emerick%
+}{%
+Burke%
+\ \BBA {} Emerick%
+}{%
+{\protect \APACyear {2016}}%
+}]{%
+burke2016adaptation}
+\APACinsertmetastar {%
+burke2016adaptation}%
+\begin{APACrefauthors}%
+Burke, M.%
+\BCBT {}\ \BBA {} Emerick, K.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2016}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Adaptation to Climate Change: Evidence from US Agriculture} {Adaptation to climate change: Evidence from us agriculture}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{American Economic Journal: Economic Policy}{8}{3}{106--140}.
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{chen2021response}
-Shuai Chen and Binlei Gong.
-\newblock Response and adaptation of agriculture to climate change: Evidence from china.
-\newblock {\em Journal of Development Economics}, 148:102557, 2021.
+\bibitem [\protect \citeauthoryear {%
+Chen%
+\ \BBA {} Gong%
+}{%
+Chen%
+\ \BBA {} Gong%
+}{%
+{\protect \APACyear {2021}}%
+}]{%
+chen2021response}
+\APACinsertmetastar {%
+chen2021response}%
+\begin{APACrefauthors}%
+Chen, S.%
+\BCBT {}\ \BBA {} Gong, B.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2021}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Response and adaptation of agriculture to climate change: Evidence from China} {Response and adaptation of agriculture to climate change: Evidence from china}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Development Economics}{148}{}{102557}.
+\newblock
+\begin{APACrefURL} \url{https://doi.org/10.1016/j.jdeveco.2020.102557} \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.jdeveco.2020.102557} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{covindassamy2017sugar}
-Gen{\`e}vre Covindassamy, Michel~A Robe, and Jonathan Wallen.
-\newblock Sugar with your coffee? fundamentals, financials, and softs price uncertainty.
-\newblock {\em Journal of Futures Markets}, 37(8):744--765, 2017.
+\bibitem [\protect \citeauthoryear {%
+Covindassamy%
+, Robe%
+\BCBL {}\ \BBA {} Wallen%
+}{%
+Covindassamy%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2017}}%
+}]{%
+covindassamy2017sugar}
+\APACinsertmetastar {%
+covindassamy2017sugar}%
+\begin{APACrefauthors}%
+Covindassamy, G.%
+, Robe, M\BPBI A.%
+\BCBL {}\ \BBA {} Wallen, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Sugar with your coffee? Fundamentals, financials, and softs price uncertainty} {Sugar with your coffee? fundamentals, financials, and softs price uncertainty}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Futures Markets}{37}{8}{744--765}.
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{silveira2017reaction}
-Rodrigo Lanna~F da~Silveira, Fabio~L Mattos, and Maria Sylvia~M Saes.
-\newblock The reaction of coffee futures price volatility to crop reports.
-\newblock {\em Emerging Markets Finance \& Trade}, 53(10):2361--2374, 2017.
+\bibitem [\protect \citeauthoryear {%
+da Silveira%
+, Mattos%
+\BCBL {}\ \BBA {} Saes%
+}{%
+da Silveira%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2017}}%
+}]{%
+silveira2017reaction}
+\APACinsertmetastar {%
+silveira2017reaction}%
+\begin{APACrefauthors}%
+da Silveira, R\BPBI L\BPBI F.%
+, Mattos, F\BPBI L.%
+\BCBL {}\ \BBA {} Saes, M\BPBI S\BPBI M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2017}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The reaction of coffee futures price volatility to crop reports} {The reaction of coffee futures price volatility to crop reports}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Emerging Markets Finance \& Trade}{53}{10}{2361--2374}.
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{deaton1992behaviour}
-Angus Deaton and Guy Laroque.
-\newblock On the behaviour of commodity prices.
-\newblock {\em Review of Economic Studies}, 59(1):1--23, 1992.
+\bibitem [\protect \citeauthoryear {%
+Deaton%
+\ \BBA {} Laroque%
+}{%
+Deaton%
+\ \BBA {} Laroque%
+}{%
+{\protect \APACyear {1992}}%
+}]{%
+deaton1992behaviour}
+\APACinsertmetastar {%
+deaton1992behaviour}%
+\begin{APACrefauthors}%
+Deaton, A.%
+\BCBT {}\ \BBA {} Laroque, G.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1992}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {On the Behaviour of Commodity Prices} {On the behaviour of commodity prices}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Review of Economic Studies}{59}{1}{1-23}.
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{DeschenesGreenstone2007}
-O.~Deschênes and M.~Greenstone.
-\newblock The economic impacts of climate change: Evidence from agricultural output and random fluctuations in weather.
-\newblock {\em American Economic Review}, 97(1):354--385, 2007.
+\bibitem [\protect \citeauthoryear {%
+Deschênes%
+\ \BBA {} Greenstone%
+}{%
+Deschênes%
+\ \BBA {} Greenstone%
+}{%
+{\protect \APACyear {2007}}%
+}]{%
+DeschenesGreenstone2007}
+\APACinsertmetastar {%
+DeschenesGreenstone2007}%
+\begin{APACrefauthors}%
+Deschênes, O.%
+\BCBT {}\ \BBA {} Greenstone, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2007}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The economic impacts of climate change: Evidence from agricultural output and random fluctuations in weather} {The economic impacts of climate change: Evidence from agricultural output and random fluctuations in weather}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{American Economic Review}{97}{1}{354--385}.
+\newblock
+\begin{APACrefURL} \url{https://doi.org/10.1257/aer.97.1.354} \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1257/aer.97.1.354} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{Feenstra2015}
-Robert~C. Feenstra, Robert Inklaar, and Marcel~P. Timmer.
-\newblock The next generation of the penn world table.
-\newblock {\em American Economic Review}, 105(10):3150--3182, 2015.
+\bibitem [\protect \citeauthoryear {%
+Feenstra%
+, Inklaar%
+\BCBL {}\ \BBA {} Timmer%
+}{%
+Feenstra%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2015}}%
+}]{%
+Feenstra2015}
+\APACinsertmetastar {%
+Feenstra2015}%
+\begin{APACrefauthors}%
+Feenstra, R\BPBI C.%
+, Inklaar, R.%
+\BCBL {}\ \BBA {} Timmer, M\BPBI P.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The Next Generation of the Penn World Table} {The next generation of the penn world table}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{American Economic Review}{105}{10}{3150-3182}.
+\newblock
+\begin{APACrefURL} \url{www.ggdc.net/pwt} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{figari2025climate}
-Sebastian Figari.
-\newblock Climate change response: Input adjustment in agriculture.
-\newblock {\em Journal of Development Economics}, 175:103472, 2025.
+\bibitem [\protect \citeauthoryear {%
+Figari%
+}{%
+Figari%
+}{%
+{\protect \APACyear {2025}}%
+}]{%
+figari2025climate}
+\APACinsertmetastar {%
+figari2025climate}%
+\begin{APACrefauthors}%
+Figari, S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2025}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Climate Change Response: Input Adjustment in Agriculture} {Climate change response: Input adjustment in agriculture}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Development Economics}{175}{}{103472}.
+\newblock
+\begin{APACrefURL} \url{https://doi.org/10.1016/j.jdeveco.2025.103472} \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.jdeveco.2025.103472} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{FisherEtAl2012}
-A.~C. Fisher, W.~M. Hanemann, M.~J. Roberts, and W.~Schlenker.
-\newblock The economic impacts of climate change: Evidence from agricultural output and random fluctuations in weather: Comment.
-\newblock {\em American Economic Review}, 102(7):3749--3760, 2012.
-\newblock Comment on Deschênes and Greenstone (2007).
+\bibitem [\protect \citeauthoryear {%
+Fisher%
+, Hanemann%
+, Roberts%
+\BCBL {}\ \BBA {} Schlenker%
+}{%
+Fisher%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2012}}%
+}]{%
+FisherEtAl2012}
+\APACinsertmetastar {%
+FisherEtAl2012}%
+\begin{APACrefauthors}%
+Fisher, A\BPBI C.%
+, Hanemann, W\BPBI M.%
+, Roberts, M\BPBI J.%
+\BCBL {}\ \BBA {} Schlenker, W.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2012}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The economic impacts of climate change: Evidence from agricultural output and random fluctuations in weather: Comment} {The economic impacts of climate change: Evidence from agricultural output and random fluctuations in weather: Comment}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{American Economic Review}{102}{7}{3749--3760}.
+\newblock
+\begin{APACrefURL} \url{https://doi.org/10.1257/aer.102.7.3749} \end{APACrefURL}
+\newblock
+\APACrefnote{Comment on Deschênes and Greenstone (2007)}
+\newblock
+\begin{APACrefDOI} \doi{10.1257/aer.102.7.3749} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{gilbert2007}
-Christopher~L. Gilbert.
-\newblock Have we been mugged? market power in the world coffee industry.
-\newblock Technical Report~25, GRADE (Group of Research and Analysis on Development), Università degli Studi di Trento, Trento, Italy, 2007.
-\newblock Initial version: 6 October 2007.
+\bibitem [\protect \citeauthoryear {%
+Gilbert%
+}{%
+Gilbert%
+}{%
+{\protect \APACyear {2007}}%
+}]{%
+gilbert2007}
+\APACinsertmetastar {%
+gilbert2007}%
+\begin{APACrefauthors}%
+Gilbert, C\BPBI L.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2007}{}{}.
+\newblock
+\APACrefbtitle {Have we been mugged? Market power in the world coffee industry} {Have we been mugged? market power in the world coffee industry}\ \APACbVolEdTR{}{\BTR{}\ \BNUM~25}.
+\newblock
+\APACaddressInstitution{Trento, Italy}{GRADE (Group of Research and Analysis on Development), Università degli Studi di Trento}.
+\newblock
+\begin{APACrefURL} \url{https://core.ac.uk/display/71301639} \end{APACrefURL}
+\newblock
+\APACrefnote{Initial version: 6 October 2007}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{gain2024}
-{Global Adaptation Initiative}.
-\newblock Technical report: {ND GAIN} country index 2024, 2024.
+\bibitem [\protect \citeauthoryear {%
+{Global Adaptation Initiative}%
+}{%
+{Global Adaptation Initiative}%
+}{%
+{\protect \APACyear {2024}}%
+}]{%
+gain2024}
+\APACinsertmetastar {%
+gain2024}%
+\begin{APACrefauthors}%
+{Global Adaptation Initiative}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2024}{}{}.
+\newblock
+\APACrefbtitle {Technical Report: {ND GAIN} Country Index 2024.} {Technical report: {ND GAIN} country index 2024.}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{gouel2018nutrition}
-Christophe Gouel and Houssein Guimbard.
-\newblock Nutrition transition and the structure of global food demand.
-\newblock {\em American Journal of Agricultural Economics}, 100(3):1--21, 2018.
+\bibitem [\protect \citeauthoryear {%
+Gouel%
+\ \BBA {} Guimbard%
+}{%
+Gouel%
+\ \BBA {} Guimbard%
+}{%
+{\protect \APACyear {2018}}%
+}]{%
+gouel2018nutrition}
+\APACinsertmetastar {%
+gouel2018nutrition}%
+\begin{APACrefauthors}%
+Gouel, C.%
+\BCBT {}\ \BBA {} Guimbard, H.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2018}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Nutrition transition and the structure of global food demand} {Nutrition transition and the structure of global food demand}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{American Journal of Agricultural Economics}{100}{3}{1--21}.
+\newblock
+\begin{APACrefDOI} \doi{10.1093/ajae/aay030} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{hodges1991}
-Thomas Hodges.
-\newblock {\em Predicting Crop Phenology}.
-\newblock CRC Press, Boca Raton, FL, 1991.
+\bibitem [\protect \citeauthoryear {%
+Hodges%
+}{%
+Hodges%
+}{%
+{\protect \APACyear {1991}}%
+}]{%
+hodges1991}
+\APACinsertmetastar {%
+hodges1991}%
+\begin{APACrefauthors}%
+Hodges, T.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{1991}.
+\newblock
+\APACrefbtitle {Predicting Crop Phenology} {Predicting crop phenology}.
+\newblock
+\APACaddressPublisher{Boca Raton, FL}{CRC Press}.
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{hsiang2016}
-Solomon Hsiang.
-\newblock Climate econometrics.
-\newblock {\em Annual Review of Resource Economics}, 8:22.1--22.33, 2016.
+\bibitem [\protect \citeauthoryear {%
+Hsiang%
+}{%
+Hsiang%
+}{%
+{\protect \APACyear {2016}}%
+}]{%
+hsiang2016}
+\APACinsertmetastar {%
+hsiang2016}%
+\begin{APACrefauthors}%
+Hsiang, S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2016}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Climate Econometrics} {Climate econometrics}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Annual Review of Resource Economics}{8}{}{22.1--22.33}.
+\newblock
+\begin{APACrefDOI} \doi{10.1146/annurev-resource-100815-095343} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{huck2001}
-Steffen Huck, Kai~A. Konrad, and Wieland M{\"u}ller.
-\newblock Big fish eat small fish: on merger in {Stackelberg} markets.
-\newblock {\em Economics Letters}, 73(2):213--217, 2001.
+\bibitem [\protect \citeauthoryear {%
+Huck%
+, Konrad%
+\BCBL {}\ \BBA {} M{\"u}ller%
+}{%
+Huck%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2001}}%
+}]{%
+huck2001}
+\APACinsertmetastar {%
+huck2001}%
+\begin{APACrefauthors}%
+Huck, S.%
+, Konrad, K\BPBI A.%
+\BCBL {}\ \BBA {} M{\"u}ller, W.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2001}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Big fish eat small fish: on merger in {Stackelberg} markets} {Big fish eat small fish: on merger in {Stackelberg} markets}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Economics Letters}{73}{2}{213--217}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/S0165-1765(01)00490-6} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{DVN/SWPENT_2024}
-International Food Policy Research~Institute (IFPRI).
-\newblock {Global Spatially-Disaggregated Crop Production Statistics Data for 2020 Version 2.0}, 2024.
+\bibitem [\protect \citeauthoryear {%
+(IFPRI)%
+}{%
+(IFPRI)%
+}{%
+{\protect \APACyear {2024}}%
+}]{%
+DVN/SWPENT_2024}
+\APACinsertmetastar {%
+DVN/SWPENT_2024}%
+\begin{APACrefauthors}%
+(IFPRI), I\BPBI F\BPBI P\BPBI R\BPBI I.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2024}{}{}.
+\newblock
+\APACrefbtitle {{Global Spatially-Disaggregated Crop Production Statistics Data for 2020 Version 2.0}.} {{Global Spatially-Disaggregated Crop Production Statistics Data for 2020 Version 2.0}.}
+\newblock
+\APACaddressPublisher{}{Harvard Dataverse}.
+\newblock
+\begin{APACrefURL} \url{https://doi.org/10.7910/DVN/SWPENT} \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.7910/DVN/SWPENT} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{igami2015market}
-Mitsuru Igami.
-\newblock Market power in i nternational commodity trade: The case of c offee.
-\newblock {\em The Journal of Industrial Economics}, 63(2):225--248, 2015.
+\bibitem [\protect \citeauthoryear {%
+Igami%
+}{%
+Igami%
+}{%
+{\protect \APACyear {2015}}%
+}]{%
+igami2015market}
+\APACinsertmetastar {%
+igami2015market}%
+\begin{APACrefauthors}%
+Igami, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2015}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Market Power in I nternational Commodity Trade: The Case of C offee} {Market power in i nternational commodity trade: The case of c offee}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{The Journal of Industrial Economics}{63}{2}{225--248}.
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{mapspam_2020}
-International Food Policy~Research Institute.
-\newblock Spam 2020 global crop distribution, 2023.
+\bibitem [\protect \citeauthoryear {%
+Institute%
+}{%
+Institute%
+}{%
+{\protect \APACyear {2023}}%
+}]{%
+mapspam_2020}
+\APACinsertmetastar {%
+mapspam_2020}%
+\begin{APACrefauthors}%
+Institute, I\BPBI F\BPBI P\BPBI R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2023}{}{}.
+\newblock
+\APACrefbtitle {SPAM 2020 Global Crop Distribution.} {Spam 2020 global crop distribution.}
+\newblock
+\APACaddressPublisher{}{IFPRI}.
+\newblock
+\begin{APACrefURL} \url{https://www.mapspam.info/data/} \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.7910/DVN/PRFF8V} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{ICO2009ClimateCoffee}
-{International Coffee Council}.
-\newblock Climate change and coffee.
-\newblock Report ICC 103-6 Rev. 1, International Coffee Organization, London, England, December 2009.
-\newblock 103rd Session, 23--25 September 2009.
+\bibitem [\protect \citeauthoryear {%
+{International Coffee Council}%
+}{%
+{International Coffee Council}%
+}{%
+{\protect \APACyear {2009}}%
+}]{%
+ICO2009ClimateCoffee}
+\APACinsertmetastar {%
+ICO2009ClimateCoffee}%
+\begin{APACrefauthors}%
+{International Coffee Council}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2009}{{\APACmonth{12}}}{}.
+\newblock
+\APACrefbtitle {Climate change and coffee} {Climate change and coffee}\ \APACbVolEdTR {}{Report\ \BNUM\ ICC 103-6 Rev. 1}.
+\newblock
+\APACaddressInstitution{London, England}{International Coffee Organization}.
+\newblock
+\APACrefnote{103rd Session, 23--25 September 2009}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{oic1998enso}
-{International Coffee Organization}.
-\newblock The "el niño southern oscillation event (enso)" and its impact on coffee production, April 1998.
-\newblock Document presented to the Executive Board/International Coffee Council, 18–22 May 1998.
+\bibitem [\protect \citeauthoryear {%
+{International Coffee Organization}%
+}{%
+{International Coffee Organization}%
+}{%
+{\protect \APACyear {1998}}%
+}]{%
+oic1998enso}
+\APACinsertmetastar {%
+oic1998enso}%
+\begin{APACrefauthors}%
+{International Coffee Organization}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1998}{April}{}.
+\newblock
+\APACrefbtitle {The "El Niño Southern Oscillation Event (ENSO)" and its impact on coffee production} {The "el niño southern oscillation event (enso)" and its impact on coffee production}\ (\BNUM\ EB-3657/98 (E) Rev. 1).
+\newblock
+\APACaddressPublisher{London, England}{}.
+\newblock
+\APACrefnote{Document presented to the Executive Board/International Coffee Council, 18–22 May 1998}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{ICO2024}
-{International Coffee Organization}.
-\newblock Beyond coffee: Towards a circular coffee economy, 2024.
-\newblock Coffee Development Report 2022-23.
+\bibitem [\protect \citeauthoryear {%
+{International Coffee Organization}%
+}{%
+{International Coffee Organization}%
+}{%
+{\protect \APACyear {2024}}%
+{\protect \APACexlab {{\protect \BCnt {1}}}}}]{%
+ICO2024}
+\APACinsertmetastar {%
+ICO2024}%
+\begin{APACrefauthors}%
+{International Coffee Organization}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2024{\protect \BCnt {1}}}{}{}.
+\newblock
+\APACrefbtitle {Beyond Coffee: Towards a Circular Coffee Economy.} {Beyond coffee: Towards a circular coffee economy.}
+\newblock
+\APACrefnote{Coffee Development Report 2022-23}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{ICIP2024}
-{International Coffee Organization}.
-\newblock Ico composite and group indicator prices: Share of markets and group weightings. calendar year averages: 2021 to 2023, September 2024.
+\bibitem [\protect \citeauthoryear {%
+{International Coffee Organization}%
+}{%
+{International Coffee Organization}%
+}{%
+{\protect \APACyear {2024}}%
+{\protect \APACexlab {{\protect \BCnt {2}}}}}]{%
+ICIP2024}
+\APACinsertmetastar {%
+ICIP2024}%
+\begin{APACrefauthors}%
+{International Coffee Organization}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2024{\protect \BCnt {2}}}{September}{}.
+\newblock
+\APACrefbtitle {ICO composite and group indicator prices: Share of markets and group weightings. Calendar year averages: 2021 to 2023} {Ico composite and group indicator prices: Share of markets and group weightings. calendar year averages: 2021 to 2023}\ (Report\ \BNUM\ JC-03/24 Rev. 1).
+\newblock
+\APACaddressPublisher{London, United Kingdom}{}.
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{isimip2024}
-ISIMIP.
-\newblock Isimip3b bias-adjusted atmospheric climate input data, 2024.
+\bibitem [\protect \citeauthoryear {%
+ISIMIP%
+}{%
+ISIMIP%
+}{%
+{\protect \APACyear {2024}}%
+}]{%
+isimip2024}
+\APACinsertmetastar {%
+isimip2024}%
+\begin{APACrefauthors}%
+ISIMIP.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2024}{}{}.
+\newblock
+\APACrefbtitle {ISIMIP3b bias-adjusted atmospheric climate input data.} {Isimip3b bias-adjusted atmospheric climate input data.}
+\newblock
+\APACaddressPublisher{}{Inter-Sectoral Impact Model Intercomparison Project}.
+\newblock
+\begin{APACrefURL} \url{https://data.isimip.org/10.48364/ISIMIP.982724.3} \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.48364/ISIMIP.982724.3} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{karp1993dynamic}
-Larry~S. Karp and Jeffrey~M. Perloff.
-\newblock A dynamic model of oligopoly in the coffee export market.
-\newblock {\em American Journal of Agricultural Economics}, 75(2):448--457, May 1993.
+\bibitem [\protect \citeauthoryear {%
+Karp%
+\ \BBA {} Perloff%
+}{%
+Karp%
+\ \BBA {} Perloff%
+}{%
+{\protect \APACyear {1993}}%
+}]{%
+karp1993dynamic}
+\APACinsertmetastar {%
+karp1993dynamic}%
+\begin{APACrefauthors}%
+Karp, L\BPBI S.%
+\BCBT {}\ \BBA {} Perloff, J\BPBI M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1993}{May}{}.
+\newblock
+{\BBOQ}\APACrefatitle {A Dynamic Model of Oligopoly in the Coffee Export Market} {A dynamic model of oligopoly in the coffee export market}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{American Journal of Agricultural Economics}{75}{2}{448--457}.
+\newblock
+\begin{APACrefURL} \url{https://www.jstor.org/stable/1242929} \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.2307/1242929} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{krivonos2004impact}
-Ekaterina Krivonos.
-\newblock The impact of coffee market reforms on producer prices and price transmission.
-\newblock Policy Research Working Paper 3358, World Bank, July 2004.
+\bibitem [\protect \citeauthoryear {%
+Krivonos%
+}{%
+Krivonos%
+}{%
+{\protect \APACyear {2004}}%
+}]{%
+krivonos2004impact}
+\APACinsertmetastar {%
+krivonos2004impact}%
+\begin{APACrefauthors}%
+Krivonos, E.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2004}{July}{}.
+\newblock
+\APACrefbtitle {The impact of coffee market reforms on producer prices and price transmission} {The impact of coffee market reforms on producer prices and price transmission}\ \APACbVolEdTR {}{Policy Research Working Paper\ \BNUM\ 3358}.
+\newblock
+\APACaddressInstitution{}{World Bank}.
+\newblock
+\begin{APACrefURL} \url{http://econ.worldbank.org} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{maurice2011unraveling}
-Noemie~Eliana Maurice and Junior Davis.
-\newblock Unravelling the underlying causes of price volatility in world coffee and cocoa commodity markets.
-\newblock Technical Report~1, UNCTAD Special Unit on Commodities, September 2011.
+\bibitem [\protect \citeauthoryear {%
+Maurice%
+\ \BBA {} Davis%
+}{%
+Maurice%
+\ \BBA {} Davis%
+}{%
+{\protect \APACyear {2011}}%
+}]{%
+maurice2011unraveling}
+\APACinsertmetastar {%
+maurice2011unraveling}%
+\begin{APACrefauthors}%
+Maurice, N\BPBI E.%
+\BCBT {}\ \BBA {} Davis, J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2011}{September}{}.
+\newblock
+\APACrefbtitle {Unravelling the underlying causes of price volatility in world coffee and cocoa commodity markets} {Unravelling the underlying causes of price volatility in world coffee and cocoa commodity markets}\ \APACbVolEdTR{}{\BTR{}\ \BNUM~1}.
+\newblock
+\APACaddressInstitution{}{UNCTAD Special Unit on Commodities}.
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{mcmaster1997}
-Gregory~S. McMaster and W.~W. Wilhelm.
-\newblock Growing degree-days: One equation, two interpretations.
-\newblock {\em Agricultural and Forest Meteorology}, 87(4):291--300, 1997.
+\bibitem [\protect \citeauthoryear {%
+McMaster%
+\ \BBA {} Wilhelm%
+}{%
+McMaster%
+\ \BBA {} Wilhelm%
+}{%
+{\protect \APACyear {1997}}%
+}]{%
+mcmaster1997}
+\APACinsertmetastar {%
+mcmaster1997}%
+\begin{APACrefauthors}%
+McMaster, G\BPBI S.%
+\BCBT {}\ \BBA {} Wilhelm, W\BPBI W.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1997}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Growing degree-days: One equation, two interpretations} {Growing degree-days: One equation, two interpretations}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Agricultural and Forest Meteorology}{87}{4}{291--300}.
+\newblock
+\begin{APACrefDOI} \doi{10.1016/S0168-1923(97)00027-0} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{mehta2008responding}
-Aashish Mehta and Jean-Paul Chavas.
-\newblock Responding to the coffee crisis: What can we learn from price dynamics?
-\newblock {\em Journal of Development Economics}, 85(1):282--311, 2008.
+\bibitem [\protect \citeauthoryear {%
+Mehta%
+\ \BBA {} Chavas%
+}{%
+Mehta%
+\ \BBA {} Chavas%
+}{%
+{\protect \APACyear {2008}}%
+}]{%
+mehta2008responding}
+\APACinsertmetastar {%
+mehta2008responding}%
+\begin{APACrefauthors}%
+Mehta, A.%
+\BCBT {}\ \BBA {} Chavas, J\BHBI P.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2008}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Responding to the coffee crisis: What can we learn from price dynamics?} {Responding to the coffee crisis: What can we learn from price dynamics?}{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Journal of Development Economics}{85}{1}{282--311}.
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{MendelsohnNordhausShaw1994}
-R.~Mendelsohn, W.~D. Nordhaus, and D.~Shaw.
-\newblock The impact of global warming on agriculture: A ricardian analysis.
-\newblock {\em American Economic Review}, 84(4):753--771, 1994.
-\newblock Available via JSTOR.
+\bibitem [\protect \citeauthoryear {%
+Mendelsohn%
+, Nordhaus%
+\BCBL {}\ \BBA {} Shaw%
+}{%
+Mendelsohn%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {1994}}%
+}]{%
+MendelsohnNordhausShaw1994}
+\APACinsertmetastar {%
+MendelsohnNordhausShaw1994}%
+\begin{APACrefauthors}%
+Mendelsohn, R.%
+, Nordhaus, W\BPBI D.%
+\BCBL {}\ \BBA {} Shaw, D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1994}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The impact of global warming on agriculture: A Ricardian analysis} {The impact of global warming on agriculture: A ricardian analysis}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{American Economic Review}{84}{4}{753--771}.
+\newblock
+\begin{APACrefURL} \url{https://www.jstor.org/stable/2118029} \end{APACrefURL}
+\newblock
+\APACrefnote{Available via JSTOR.}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{MideksaKallbekken2010}
-T.~K. Mideksa and S.~Kallbekken.
-\newblock The impact of climate change on the electricity market: A review.
-\newblock {\em Energy Policy}, 38(7):3579--3585, 2010.
+\bibitem [\protect \citeauthoryear {%
+Mideksa%
+\ \BBA {} Kallbekken%
+}{%
+Mideksa%
+\ \BBA {} Kallbekken%
+}{%
+{\protect \APACyear {2010}}%
+}]{%
+MideksaKallbekken2010}
+\APACinsertmetastar {%
+MideksaKallbekken2010}%
+\begin{APACrefauthors}%
+Mideksa, T\BPBI K.%
+\BCBT {}\ \BBA {} Kallbekken, S.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2010}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {The impact of climate change on the electricity market: A review} {The impact of climate change on the electricity market: A review}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Energy Policy}{38}{7}{3579--3585}.
+\newblock
+\begin{APACrefURL} \url{https://doi.org/10.1016/j.enpol.2010.02.035} \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{10.1016/j.enpol.2010.02.035} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{mundlak2001production}
-Yair Mundlak.
-\newblock Production and supply.
-\newblock In Bruce~L. Gardner and Gordon~C. Rausser, editors, {\em Handbook of Agricultural Economics}, volume~1A, pages 3--85. Elsevier Science, Amsterdam, London, and New York, 2001.
+\bibitem [\protect \citeauthoryear {%
+Mundlak%
+}{%
+Mundlak%
+}{%
+{\protect \APACyear {2001}}%
+}]{%
+mundlak2001production}
+\APACinsertmetastar {%
+mundlak2001production}%
+\begin{APACrefauthors}%
+Mundlak, Y.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2001}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Production and Supply} {Production and supply}.{\BBCQ}
+\newblock
+\BIn{} B\BPBI L.~Gardner\ \BBA {} G\BPBI C.~Rausser\ (\BEDS), \APACrefbtitle {Handbook of Agricultural Economics} {Handbook of agricultural economics}\ (\BVOL~1A, \BPGS\ 3--85).
+\newblock
+\APACaddressPublisher{Amsterdam, London, and New York}{Elsevier Science}.
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{nakamura2010accounting}
-Emi Nakamura and Dawit Zerom.
-\newblock Accounting for incomplete pass-through.
-\newblock {\em The review of economic studies}, 77(3):1192--1230, 2010.
+\bibitem [\protect \citeauthoryear {%
+Nakamura%
+\ \BBA {} Zerom%
+}{%
+Nakamura%
+\ \BBA {} Zerom%
+}{%
+{\protect \APACyear {2010}}%
+}]{%
+nakamura2010accounting}
+\APACinsertmetastar {%
+nakamura2010accounting}%
+\begin{APACrefauthors}%
+Nakamura, E.%
+\BCBT {}\ \BBA {} Zerom, D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2010}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Accounting for incomplete pass-through} {Accounting for incomplete pass-through}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{The review of economic studies}{77}{3}{1192--1230}.
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{oic2013cincuenta}
-{Organización Internacional del Café}.
-\newblock La organización internacional del café de 1963 a 2013: 50 años sirviendo a la comunidad cafetera mundial, 2013.
-\newblock Preparado por Pablo Dubois a petición del Director Ejecutivo Robério Oliveira Silva.
+\bibitem [\protect \citeauthoryear {%
+{Organización Internacional del Café}%
+}{%
+{Organización Internacional del Café}%
+}{%
+{\protect \APACyear {2013}}%
+}]{%
+oic2013cincuenta}
+\APACinsertmetastar {%
+oic2013cincuenta}%
+\begin{APACrefauthors}%
+{Organización Internacional del Café}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2013}{}{}.
+\newblock
+\APACrefbtitle {La Organización Internacional del Café de 1963 a 2013: 50 años sirviendo a la comunidad cafetera mundial.} {La organización internacional del café de 1963 a 2013: 50 años sirviendo a la comunidad cafetera mundial.}
+\newblock
+\APACaddressPublisher{Londres, Reino Unido}{}.
+\newblock
+\begin{APACrefURL} \url{https://www.ico.org} \end{APACrefURL}
+\newblock
+\APACrefnote{Preparado por Pablo Dubois a petición del Director Ejecutivo Robério Oliveira Silva}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{prebisch1959}
-Raul Prebisch.
-\newblock International trade and payments in an era of coexistence: Commercial policy in the underdeveloped countries.
-\newblock {\em American Economic Review}, (49):251--273, 1959.
+\bibitem [\protect \citeauthoryear {%
+Prebisch%
+}{%
+Prebisch%
+}{%
+{\protect \APACyear {1959}}%
+}]{%
+prebisch1959}
+\APACinsertmetastar {%
+prebisch1959}%
+\begin{APACrefauthors}%
+Prebisch, R.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1959}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {International Trade and Payments in an Era of Coexistence: Commercial Policy in the Underdeveloped Countries} {International trade and payments in an era of coexistence: Commercial policy in the underdeveloped countries}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{American Economic Review}{}{49}{251-273}.
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{roberts2013}
-Michael~J. Roberts and Wolfram Schlenker.
-\newblock Identifying supply and demand elasticities of agricultural commodities: Implications for the us ethanol mandate.
-\newblock {\em American Economic Review}, 103(6):2265--2295, 2013.
+\bibitem [\protect \citeauthoryear {%
+Roberts%
+\ \BBA {} Schlenker%
+}{%
+Roberts%
+\ \BBA {} Schlenker%
+}{%
+{\protect \APACyear {2013}}%
+}]{%
+roberts2013}
+\APACinsertmetastar {%
+roberts2013}%
+\begin{APACrefauthors}%
+Roberts, M\BPBI J.%
+\BCBT {}\ \BBA {} Schlenker, W.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2013}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Identifying Supply and Demand Elasticities of Agricultural Commodities: Implications for the US Ethanol Mandate} {Identifying supply and demand elasticities of agricultural commodities: Implications for the us ethanol mandate}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{American Economic Review}{103}{6}{2265--2295}.
+\newblock
+\begin{APACrefDOI} \doi{10.1257/aer.103.6.2265} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{schlenker2009nonlinear}
-Wolfram Schlenker and Michael~J. Roberts.
-\newblock Nonlinear temperature effects indicate severe damages to u.s. crop yields under climate change.
-\newblock {\em Proceedings of the National Academy of Sciences}, 106(37):15594--15598, 2009.
+\bibitem [\protect \citeauthoryear {%
+Schlenker%
+\ \BBA {} Roberts%
+}{%
+Schlenker%
+\ \BBA {} Roberts%
+}{%
+{\protect \APACyear {2009}}%
+}]{%
+schlenker2009nonlinear}
+\APACinsertmetastar {%
+schlenker2009nonlinear}%
+\begin{APACrefauthors}%
+Schlenker, W.%
+\BCBT {}\ \BBA {} Roberts, M\BPBI J.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2009}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Nonlinear temperature effects indicate severe damages to U.S. crop yields under climate change} {Nonlinear temperature effects indicate severe damages to u.s. crop yields under climate change}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Proceedings of the National Academy of Sciences}{106}{37}{15594--15598}.
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{singer1950}
-H~Singer.
-\newblock U.s. foreign investment in underdeveloped areas: The distribution of gains between investing and borrowing countries.
-\newblock {\em American Economic Review}, (40):473--485, 1950.
+\bibitem [\protect \citeauthoryear {%
+Singer%
+}{%
+Singer%
+}{%
+{\protect \APACyear {1950}}%
+}]{%
+singer1950}
+\APACinsertmetastar {%
+singer1950}%
+\begin{APACrefauthors}%
+Singer, H.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1950}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {U.S. Foreign Investment in Underdeveloped Areas: The Distribution of Gains between Investing and Borrowing Countries} {U.s. foreign investment in underdeveloped areas: The distribution of gains between investing and borrowing countries}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{American Economic Review}{}{40}{473-485}.
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{slade1995empirical}
-Margaret~E. Slade.
-\newblock Empirical games: The oligopoly case.
-\newblock {\em The Canadian Journal of Economics / Revue canadienne d'Economique}, 28(2):368--402, 1995.
+\bibitem [\protect \citeauthoryear {%
+Slade%
+}{%
+Slade%
+}{%
+{\protect \APACyear {1995}}%
+}]{%
+slade1995empirical}
+\APACinsertmetastar {%
+slade1995empirical}%
+\begin{APACrefauthors}%
+Slade, M\BPBI E.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{1995}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Empirical Games: The Oligopoly Case} {Empirical games: The oligopoly case}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{The Canadian Journal of Economics / Revue canadienne d'Economique}{28}{2}{368-402}.
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{talbot2004grounds}
-John~M. Talbot.
-\newblock {\em Grounds for Agreement: The Political Economy of the Coffee Commodity Chain}.
-\newblock Rowman \& Littlefield Publishers, Inc., Lanham, Boulder, New York, Toronto, Oxford, 2004.
+\bibitem [\protect \citeauthoryear {%
+Talbot%
+}{%
+Talbot%
+}{%
+{\protect \APACyear {2004}}%
+}]{%
+talbot2004grounds}
+\APACinsertmetastar {%
+talbot2004grounds}%
+\begin{APACrefauthors}%
+Talbot, J\BPBI M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYear{2004}.
+\newblock
+\APACrefbtitle {Grounds for Agreement: The Political Economy of the Coffee Commodity Chain} {Grounds for agreement: The political economy of the coffee commodity chain}.
+\newblock
+\APACaddressPublisher{Lanham, Boulder, New York, Toronto, Oxford}{Rowman \& Littlefield Publishers, Inc.}
+\PrintBackRefs{\CurrentBib}
 
-\bibitem{Zhang2022}
-Wei Zhang, Sayed Saghaian, and Michael Reed.
-\newblock Influences of power structure evolution on coffee commodity markets: Insights from price discovery and volatility spillovers.
-\newblock {\em Sustainability}, 14(22):15268, 2022.
+\bibitem [\protect \citeauthoryear {%
+Zhang%
+, Saghaian%
+\BCBL {}\ \BBA {} Reed%
+}{%
+Zhang%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2022}}%
+}]{%
+Zhang2022}
+\APACinsertmetastar {%
+Zhang2022}%
+\begin{APACrefauthors}%
+Zhang, W.%
+, Saghaian, S.%
+\BCBL {}\ \BBA {} Reed, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2022}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Influences of Power Structure Evolution on Coffee Commodity Markets: Insights from Price Discovery and Volatility Spillovers} {Influences of power structure evolution on coffee commodity markets: Insights from price discovery and volatility spillovers}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{Sustainability}{14}{22}{15268}.
+\newblock
+\begin{APACrefDOI} \doi{10.3390/su142215268} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
 
 \end{thebibliography}
