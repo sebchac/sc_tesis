@@ -168,6 +168,9 @@ aux1 <- data %>%
   distinct(year, qe_y) %>%
   drop_na()
 
+summary(aux1$qe_y)
+sd(aux1$qe_y)
+
 plot1 <- ggplot(
   aux1) +
   geom_line(
@@ -211,6 +214,9 @@ aux2 <- data %>%
   mutate(date = as.Date(date)) %>%
   distinct(date, price_ym) %>%
   drop_na()
+
+summary(aux2$price_ym)
+sd(aux2$price_ym)
 
 aux2_y <- data %>%
   filter(dummy_y == 1) %>%
@@ -990,7 +996,7 @@ feols(mc_ymc_hat_s ~ scenario * dummy_leader | year, data = aux, cluster = ~year
 
 
 #-------------------------------------------------------------------------------
-# [] Evolución de HHI, C3, Lerner 
+# [VF] Evolución de HHI, C3, Lerner 
 #-------------------------------------------------------------------------------
 # HHI
 aux <- data %>%

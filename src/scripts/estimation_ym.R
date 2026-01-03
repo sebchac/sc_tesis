@@ -61,6 +61,15 @@ ruta_figures <- paste0(ruta_paper, "figures/")
            trend3y = floor((year - min(year)) / 3)) %>%
     drop_na()
   
+  summary(demand_data$teaPrices_ym)
+  sd(demand_data$teaPrices_ym)
+  
+  aux <- demand_data %>%
+    distinct(year, importGDP_ym)
+  
+  summary(aux$importGDP_ym)
+  sd(aux$importGDP_ym)
+  
   cor(demand_data %>% select(qe_ym, tas_yme, pr_yme, gdd_ym, hdd_ym, fdd_ym))
   cor(demand_data %>% select(qe_ym, tas_yme, pr_yme, optExp_ym_mean, heatExp_ym_mean, frostExp_ym_mean))
   

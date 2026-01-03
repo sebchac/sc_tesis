@@ -2,7 +2,7 @@
 
 Esta sección presenta el punto de partida para estimar estructuralmente el mercado de interés, pues se centra en la construcción de una base de datos amplia y representativa de su historia y dinámica competitiva. El análisis riguroso de mercados de \textit{soft commodities} requiere capturar tanto las fluctuaciones de corto plazo como las tendencias estructurales, por lo que es fundamental integrar información histórica que incluya variables claves como precios, volúmenes de exportación y comercio, costos de producción, variables de control y factores climáticos. La selección de un horizonte temporal suficientemente extenso permite identificar patrones cíclicos, choques exógenos y relaciones de equilibrio, garantizando así que los resultados no solo reflejen elementos coyunturales, sino también la evolución estructural del sector.
 
-En este caso, los datos recopilados resumen la información de [57] países exportadores y [] países importadores, para el período comprendido entre los años 1965 y 2019.
+En este caso, los datos recopilados resumen la información de 57 países exportadores y 39 países importadores, para el período comprendido entre los años 1965 y 2019.
 
 \subsection*{4.1. Datos utilizados para la estimación de demanda}
 
@@ -10,7 +10,7 @@ Como se explicará en la sección siguiente, la estimación de demanda se realiz
 
 La información relativa a las cantidades exportadas fue obtenida del Departamento de Agricultura de los Estados Unidos (USDA), el cual reporta cifras anuales para cada país, incluyendo importaciones, exportaciones, nivel de producción (desagregado para Robusta y Arabica), consumo doméstico, \textit{stock} inicial y \textit{stock} final; todo expresado en millones de bolsas de 60 kg. Para esta investigación, se utilizó información de exportaciones de grano (ID 90) de cada país. Dado que la información solo está disponible en frecuencia anual, fue necesaria una aproximación mensual que consistió en dividir las cantidades por 12. Este ajuste fue utilizado por Igami \citeyearpar{igami2015market} en la estimación estructural de la demanda, sin perjuicio de que también es posible llevar adelante un enfoque anual.
 
-En cuanto a los precios, se utiliza un índice mensual proporcionado por la ICO, con base en información de precios \textit{ex dock}, que reflejan costos de producción, de transporte y por descarga de embarcaciones. Cuando esta información no está disponible, la ICO ajusta el índice FOB (\textit{Free on Borad}, el precio pre-desembarque), o bien el índice CIF (\textit{Cost, Insurance and Freight}, el precio post-desembarque), para emular el precio \textit{ex dock}. Luego, pondera los precios de cada variedad de café según su participación en las principales bolsas comerciales que transan este bien agrícola [CITAR]. Este índice, establecido en la década de 1960, se considera uno de los principales precios de referencia para la industria cafetalera mundial, utilizado para proyectar condiciones comerciales y evaluar futuros costos.
+En cuanto a los precios, se utiliza un índice mensual proporcionado por la ICO, con base en información de precios \textit{ex dock}, que reflejan costos de producción, de transporte y por descarga de embarcaciones. Cuando esta información no está disponible, la ICO ajusta el índice FOB (\textit{Free on Borad}, el precio pre-desembarque), o bien el índice CIF (\textit{Cost, Insurance and Freight}, el precio post-desembarque), para emular el precio \textit{ex dock}. Luego, pondera los precios de cada variedad de café según su participación en las principales bolsas comerciales que transan este bien agrícola \citep{ICIP2024}. Este índice, establecido en la década de 1960, se considera uno de los principales precios de referencia para la industria cafetalera mundial, utilizado para proyectar condiciones comerciales y evaluar futuros costos.
 
 Para controlar por el efecto ingreso de los países importadores, se incorpora el Producto Interno Bruto real. En particular, se adopta la medición por el lado del gasto del \textit{Penn World Table} \citep{Feenstra2015}, que está expresada en dólares internacionales constantes de 2017, utilizando Paridades de Poder Adquisitivo (PPA) encadenadas, lo que permite comparaciones robustas del desempeño económico entre países y a lo largo del tiempo. Para la estimación de demanda, se utiliza la unidad expresada en logaritmos y se ajusta la frecuencia anual a una mensual, dividiendo por 12.
 
@@ -20,8 +20,7 @@ Ahora bien, la determinación conjunta de precios y cantidades en el equilibrio 
 
 La información estadística de las variables requeridas para la estimación de demanda se resumen en la siguiente Tabla N°[].
 
-[TABLA]
-
+\input{tables/datos_demanda}
 
 \subsection*{4.2. Datos utilizados para la estimación de costos marginales}
 
