@@ -18,8 +18,6 @@ El efecto sustitución es controlado por el precio internacional del té. Se uti
 
 Ahora bien, la determinación conjunta de precios y cantidades en el equilibrio de mercado presenta desafíos econométricos importantes, como son el sesgo por simultaneidad o la endogeneidad. Para abordar esta cuestión, se requiere la inclusión de variables instrumentales que influyan en la cantidad ofrecida sin afectar directamente la demanda del consumidor. En el contexto de los \textit{soft commodities}, las variables climáticas emergen como candidatos ideales, debido a su naturaleza exógena frente a las preferencias del consumidor y su impacto directo en la producción \citep{roberts2013, igami2015market}. La sección 4.3. describe con detalle la construcción de estas variables.
 
-La información estadística de las variables requeridas para la estimación de demanda se resumen en la siguiente Tabla N°[].
-
 \input{tables/datos_demanda}
 
 \subsection*{4.2. Datos utilizados para la estimación de costos marginales}
@@ -30,9 +28,7 @@ En primer lugar, se utilizó un índice mensual de precios de fertilizantes, ext
 
 Enseguida, se utilizan variables que capturan, tanto a nivel agregado como para cada país, la exposición de los campos de cultivo de café a temperaturas sobre cierto umbral, definido a partir de la naturaleza del \textit{soft commodity} y las condiciones óptimas de temperatura para su correcto desarrollo. Por construcción, se trata de una variable continua, cuya relación con el rendimiento de los cultivos no es lineal, lo que permite preservar la variación completa en la intensidad del tratamiento climático y capturar efectos marginales en la relación entre estrés térmico y resultados económicos. El detalle de la construcción de esta variable se explica en la siguiente sección.
 
-La Tabla N°[] resume la información de las variables revisadas.
-
-[TABLA]
+\input{tables/datos_costos}
 
 \subsection*{4.3. Variables de acumulación de estrés térmico}
 
@@ -40,9 +36,9 @@ La estimación estructural del mercado internacional de café requiere contar co
 
 Las variables de estrés térmico se construyen a partir de dos fuentes de datos clave. La primera de ellas otorga las temperaturas mínimas y máximas en todo el mundo, lo que permite estimar la exposición diaria a temperaturas extremas. Por otro lado, la segunda fuente permite localizar espacialmente los cultivos de café dentro de cada país exportador, dando mayor precisión al análisis. En conjunto, estos datos aseguran que las mediciones reflejen las condiciones térmicas específicas que enfrenta el sector cafetalero en cada economía.
 
-La base de datos del \textit{Inter-Sectoral Impact Model Intercomparison Project} (CITAR) proporciona información de temperaturas mínimas y máximas diarias con resolución espacial de 0.5° × 0.5° (55 km × 55 km en el ecuador, aproximadamente), ofreciendo una cobertura global consistente que es utilizada desde 1965 en adelante. Dentro de las bases disponibles, aquella con la designación \textit{obsclim} contiene datos observacionales corregidos y homogenizados, que combinan mediciones \textit{in situ} con reanálisis atmosférico, lo que garantiza la cobertura de variaciones climáticas localizadas para un bien cuyo desarrollo varía significativamente con las condiciones geográficas.
+La base de datos del \textit{Inter-Sectoral Impact Model Intercomparison Project} \citep{isimip2024} proporciona información de temperaturas mínimas y máximas diarias con resolución espacial de 0.5° × 0.5° (55 km × 55 km en el ecuador, aproximadamente), ofreciendo una cobertura global consistente que es utilizada desde 1965 en adelante. Dentro de las bases disponibles, aquella con la designación \textit{obsclim} contiene datos observacionales corregidos y homogenizados, que combinan mediciones \textit{in situ} con reanálisis atmosférico, lo que garantiza la cobertura de variaciones climáticas localizadas para un bien cuyo desarrollo varía significativamente con las condiciones geográficas.
 
-Por otro lado, la base de datos del \textit{Spatial Production Allocation Model} (CITAR) contiene información geoespacial detallada sobre la distribución global de áreas cosechadas para múltiples cultivos, incluyendo café Arabica y Robusta. Con una resolución espacial aproximada de 10 km × 10 km en el ecuador, SPAM desagrega la producción agrícola mediante un modelo de asignación que integra datos censales, estadísticas nacionales y variables auxiliares de clima, topografía y accesibilidad a mercados.
+Por otro lado, la base de datos del \textit{Spatial Production Allocation Model} \citep{mapspam_2020} contiene información geoespacial detallada sobre la distribución global de áreas cosechadas para múltiples cultivos, incluyendo café Arabica y Robusta. Con una resolución espacial aproximada de 10 km × 10 km en el ecuador, SPAM desagrega la producción agrícola mediante un modelo de asignación que integra datos censales, estadísticas nacionales y variables auxiliares de clima, topografía y accesibilidad a mercados.
 
 Las bases anteriores se complementan fuertemente, y es que la granularidad en la información de cada una permite identificar zonas específicas de cultivo de café dentro de cada país y revisar la evolución de su temperatura en el tiempo. Ahora bien, la información de SPAM no es una serie temporal, sino más bien una captura de áreas de cultivo en un momento determinado del tiempo. Con todo, estos datos son igualmente relevantes para capturar con precisión el estrés térmico sobre la producción del café.
 
@@ -83,4 +79,10 @@ La segunda variable es la exposición a temperaturas extremas. La metodología p
 
 La siguiente tabla resume la información estadística de cada variable mencionada.
 
-\input{tables/tabla4_1}
+\input{tables/datos_gdd_ym}
+
+\input{tables/datos_exp_ym}
+
+\input{tables/datos_gdd_y}
+
+\input{tables/datos_exp_y}

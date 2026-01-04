@@ -1103,5 +1103,87 @@ ggsave(
   dpi = 600,
   bg = "white")
 
+#-------------------------------------------------------------------------------
+# [VF] Estadística de variables climáticas
+#-------------------------------------------------------------------------------
+# Frecuencia mensual
+data_ym <- data %>%
+  filter(dummy_ym == 1,
+         year <= 2019,
+         year >= 1965) %>%
+  select(date, 
+         gdd_ym, gdd_ym_mean, 
+         hdd_ym, hdd_ym_mean, 
+         fdd_ym, fdd_ym_mean,
+         optExp_ym, optExp_ym_mean,
+         heatExp_ym, heatExp_ym_mean,
+         frostExp_ym, frostExp_ym_mean)
 
+summary(data_ym$gdd_ym)
+summary(data_ym$gdd_ym_mean)
+summary(data_ym$hdd_ym)
+summary(data_ym$hdd_ym_mean)
+summary(data_ym$fdd_ym)
+summary(data_ym$fdd_ym_mean)
 
+sd(data_ym$gdd_ym_mean)
+sd(data_ym$gdd_ym)
+sd(data_ym$hdd_ym_mean)
+sd(data_ym$hdd_ym)
+sd(data_ym$fdd_ym_mean)
+sd(data_ym$fdd_ym)
+
+summary(data_ym$optExp_ym_mean)
+summary(data_ym$optExp_ym)
+summary(data_ym$heatExp_ym_mean)
+summary(data_ym$heatExp_ym)
+summary(data_ym$frostExp_ym_mean)
+summary(data_ym$frostExp_ym)
+
+sd(data_ym$optExp_ym_mean)
+sd(data_ym$optExp_ym)
+sd(data_ym$heatExp_ym_mean)
+sd(data_ym$heatExp_ym)
+sd(data_ym$frostExp_ym_mean)
+sd(data_ym$frostExp_ym)
+
+# Frecuencia anual
+data_y <- data %>%
+  filter(dummy_y == 1,
+         year <= 2019,
+         year >= 1965) %>%
+  select(date, 
+         gdd_y, gdd_y_mean, 
+         hdd_y, hdd_y_mean, 
+         fdd_y, fdd_y_mean,
+         optExp_y, optExp_y_mean,
+         heatExp_y, heatExp_y_mean,
+         frostExp_y, frostExp_y_mean)
+
+summary(data_y$gdd_y_mean)
+summary(data_y$gdd_y)
+summary(data_y$hdd_y_mean)
+summary(data_y$hdd_y)
+summary(data_y$fdd_y_mean)
+summary(data_y$fdd_y)
+
+sd(data_y$gdd_y_mean)
+sd(data_y$gdd_y)
+sd(data_y$hdd_y_mean)
+sd(data_y$hdd_y)
+sd(data_y$fdd_y_mean)
+sd(data_y$fdd_y)
+
+summary(data_y$optExp_y_mean)
+summary(data_y$optExp_y)
+summary(data_y$heatExp_y_mean)
+summary(data_y$heatExp_y)
+summary(data_y$frostExp_y_mean)
+summary(data_y$frostExp_y)
+
+sd(data_y$optExp_y_mean)
+sd(data_y$optExp_y)
+sd(data_y$heatExp_y_mean)
+sd(data_y$heatExp_y)
+sd(data_y$frostExp_y_mean)
+sd(data_y$frostExp_y)

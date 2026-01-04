@@ -203,6 +203,8 @@ ruta_figures <- paste0(ruta_paper, "figures/")
   
   cor(cor_vars_y)
   
+  summary(data_yc$fert_y)
+  
 # [3.1.] Only one stage and Stackelberg
   mc_fe <- feols(
     mr_yc3 ~

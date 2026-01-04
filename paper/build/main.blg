@@ -12,61 +12,55 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: bibliografia.bib
-Warning--entry type for "DVN/SWPENT_2024" isn't style-file defined
---line 108 of file bibliografia.bib
 Warning--entry type for "ICIP2024" isn't style-file defined
---line 209 of file bibliografia.bib
+--line 199 of file bibliografia.bib
 Warning--entry type for "ICO2024" isn't style-file defined
---line 232 of file bibliografia.bib
-Warning--entry type for "isimip2024" isn't style-file defined
---line 250 of file bibliografia.bib
-Warning--entry type for "mapspam_2020" isn't style-file defined
---line 284 of file bibliografia.bib
+--line 222 of file bibliografia.bib
 Warning--entry type for "oic1998enso" isn't style-file defined
---line 373 of file bibliografia.bib
+--line 364 of file bibliografia.bib
 Warning--entry type for "oic2013cincuenta" isn't style-file defined
---line 384 of file bibliografia.bib
+--line 375 of file bibliografia.bib
 apacite.bst [2013/07/21 v6.03 APA bibliography style]
 Warning--No address in maurice2011unraveling
-You've used 46 entries,
+You've used 45 entries,
             6951 wiz_defined-function locations,
-            1613 strings with 20163 characters,
-and the built_in function-call counts, 90528 in all, are:
-= -- 11413
-> -- 658
-< -- 4526
-+ -- 4465
-- -- 109
-* -- 5836
-:= -- 17012
-add.period$ -- 197
-call.type$ -- 46
-change.case$ -- 815
+            1606 strings with 19983 characters,
+and the built_in function-call counts, 88355 in all, are:
+= -- 10994
+> -- 665
+< -- 4457
++ -- 4400
+- -- 105
+* -- 5768
+:= -- 16746
+add.period$ -- 194
+call.type$ -- 45
+change.case$ -- 798
 chr.to.int$ -- 0
-cite$ -- 93
-duplicate$ -- 2118
-empty$ -- 3439
-format.name$ -- 945
-if$ -- 17188
+cite$ -- 91
+duplicate$ -- 2103
+empty$ -- 3380
+format.name$ -- 967
+if$ -- 16688
 int.to.chr$ -- 0
-int.to.str$ -- 142
+int.to.str$ -- 139
 missing$ -- 0
-newline$ -- 1179
-num.names$ -- 370
-pop$ -- 1345
+newline$ -- 1163
+num.names$ -- 362
+pop$ -- 1425
 preamble$ -- 1
-purify$ -- 200
+purify$ -- 196
 quote$ -- 0
-skip$ -- 6036
+skip$ -- 5653
 stack$ -- 0
-substring$ -- 4977
-swap$ -- 1254
-text.length$ -- 188
+substring$ -- 4899
+swap$ -- 1252
+text.length$ -- 185
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 4248
+type$ -- 3952
 warning$ -- 1
-while$ -- 341
+while$ -- 347
 width$ -- 0
-write$ -- 1385
-(There were 8 warnings)
+write$ -- 1378
+(There were 5 warnings)

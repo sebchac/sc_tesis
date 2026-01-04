@@ -529,32 +529,6 @@ Huck, S.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-(IFPRI)%
-}{%
-(IFPRI)%
-}{%
-{\protect \APACyear {2024}}%
-}]{%
-DVN/SWPENT_2024}
-\APACinsertmetastar {%
-DVN/SWPENT_2024}%
-\begin{APACrefauthors}%
-(IFPRI), I\BPBI F\BPBI P\BPBI R\BPBI I.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2024}{}{}.
-\newblock
-\APACrefbtitle {{Global Spatially-Disaggregated Crop Production Statistics Data for 2020 Version 2.0}.} {{Global Spatially-Disaggregated Crop Production Statistics Data for 2020 Version 2.0}.}
-\newblock
-\APACaddressPublisher{}{Harvard Dataverse}.
-\newblock
-\begin{APACrefURL} \url{https://doi.org/10.7910/DVN/SWPENT} \end{APACrefURL}
-\newblock
-\begin{APACrefDOI} \doi{10.7910/DVN/SWPENT} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 Igami%
 }{%
 Igami%
@@ -581,7 +555,7 @@ Institute%
 }{%
 Institute%
 }{%
-{\protect \APACyear {2023}}%
+{\protect \APACyear {2024}}%
 }]{%
 mapspam_2020}
 \APACinsertmetastar {%
@@ -591,15 +565,17 @@ Institute, I\BPBI F\BPBI P\BPBI R.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{2023}{}{}.
+\APACrefYearMonthDay{2024}{}{}.
 \newblock
-\APACrefbtitle {SPAM 2020 Global Crop Distribution.} {Spam 2020 global crop distribution.}
+\APACrefbtitle {Global Spatially-Dissaggregated Crop Production Statistics Data.} {Global spatially-dissaggregated crop production statistics data.}
 \newblock
-\APACaddressPublisher{}{IFPRI}.
+\APAChowpublished {Dataset}.
+\newblock
+\APACaddressPublisher{}{Harvard Dataverse}.
 \newblock
 \begin{APACrefURL} \url{https://www.mapspam.info/data/} \end{APACrefURL}
 \newblock
-\begin{APACrefDOI} \doi{10.7910/DVN/PRFF8V} \end{APACrefDOI}
+\begin{APACrefDOI} \doi{10.7910/DVN/SWPENT} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -695,32 +671,6 @@ ICIP2024}%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
-ISIMIP%
-}{%
-ISIMIP%
-}{%
-{\protect \APACyear {2024}}%
-}]{%
-isimip2024}
-\APACinsertmetastar {%
-isimip2024}%
-\begin{APACrefauthors}%
-ISIMIP.%
-\end{APACrefauthors}%
-\unskip\
-\newblock
-\APACrefYearMonthDay{2024}{}{}.
-\newblock
-\APACrefbtitle {ISIMIP3b bias-adjusted atmospheric climate input data.} {Isimip3b bias-adjusted atmospheric climate input data.}
-\newblock
-\APACaddressPublisher{}{Inter-Sectoral Impact Model Intercomparison Project}.
-\newblock
-\begin{APACrefURL} \url{https://data.isimip.org/10.48364/ISIMIP.982724.3} \end{APACrefURL}
-\newblock
-\begin{APACrefDOI} \doi{10.48364/ISIMIP.982724.3} \end{APACrefDOI}
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
 Karp%
 \ \BBA {} Perloff%
 }{%
@@ -771,6 +721,40 @@ Krivonos, E.%
 \APACaddressInstitution{}{World Bank}.
 \newblock
 \begin{APACrefURL} \url{http://econ.worldbank.org} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Lange%
+, Quesada-Chacón%
+, Mengel%
+, Treu%
+\BCBL {}\ \BBA {} Büchner%
+}{%
+Lange%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2025}}%
+}]{%
+isimip2024}
+\APACinsertmetastar {%
+isimip2024}%
+\begin{APACrefauthors}%
+Lange, S.%
+, Quesada-Chacón, D.%
+, Mengel, M.%
+, Treu, S.%
+\BCBL {}\ \BBA {} Büchner, M.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2025}{}{}.
+\newblock
+\APACrefbtitle {ISIMIP3a atmospheric climate input data (v1.3).} {Isimip3a atmospheric climate input data (v1.3).}
+\newblock
+\APAChowpublished {Dataset}.
+\newblock
+\APACaddressPublisher{}{ISIMIP Repository}.
+\newblock
+\begin{APACrefURL} \url{10.48364/ISIMIP.982724.3} \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
