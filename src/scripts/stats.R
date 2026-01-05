@@ -26,6 +26,8 @@ library(rnaturalearthdata)
 library(stringr)
 library(viridis)
 library(kableExtra)
+library(readr)
+library(readxl)
 
 # Rutas
 fig_path <- "/Users/sebastianchacon/Desktop/sc_tesis/paper/figures/"
@@ -41,6 +43,8 @@ results_y <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/results_y
 results_yc <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/results_yc.rds")
 summary <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/summary.rds")
 summary_c <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/summary_c.rds")
+
+psd_coffee <- read_csv("/Users/sebastianchacon/Desktop/sc_tesis/src/original_data/psd_coffee.csv")
 
 #-------------------------------------------------------------------------------
 # [VF] Evolución de exposición al óptimo, al calor y al frío
@@ -953,46 +957,24 @@ ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/plot4.png",
 #-------------------------------------------------------------------------------
 # [] Regresiones. Efecto de cambio climático diferenciado por grupo
 #-------------------------------------------------------------------------------
-
-# Por mes-país
+# Por año-país
 
 aux <- results_yc %>%
   filter(scenario == "CF0" | scenario == "CF3") %>%
   mutate(
     date = as.Date(date),
-    year = year(date)
-  ) %>%
-  group_by(
-    year, country, scenario
-  ) %>%
-  mutate(
-    scenario = if_else(scenario == "CF0", 0, 1),
-    qe_yc = sum(quantity, na.rm = TRUE),
-    re_yc = sum(revenue, na.rm = TRUE),
-    pr_yc = sum(profit, na.rm = TRUE),
-    mc_yc = sum(mc_yc_hat_s, na.rm = TRUE)
-    ) %>%
-  ungroup() %>%
-  distinct(
-    year, country, scenario, .keep_all = TRUE
+    year = year(date),
+    trend5y = floor((year - min(year)) / 5),
+    scenario = case_when(
+      scenario == "CF0" ~ 0,
+      scenario == "CF3" ~ 1,
+      TRUE ~ NA
+    )
   )
 
-feols(pr_yc ~ scenario * dummy_leader | year, data = aux, cluster = ~year)
-feols(qe_yc ~ scenario * dummy_leader | year, data = aux, cluster = ~year)
-feols(mc_yc ~ scenario * dummy_leader | year, data = aux, cluster = ~year)
-
-# Por año-país
-
-aux <- results_ymc %>%
-  filter(scenario == "CF0" | scenario == "CF3") %>%
-  mutate(
-    date = as.Date(date),
-    year = year(date)
-  )
-
-feols(profit ~ scenario * dummy_leader | year, data = aux, cluster = ~year)
-feols(quantity ~ scenario * dummy_leader | year, data = aux, cluster = ~year)
-feols(mc_ymc_hat_s ~ scenario * dummy_leader | year, data = aux, cluster = ~year)
+feols(profit ~ scenario * dummy_leader | trend5y, data = aux, cluster = ~year)
+feols(quantity ~ scenario * dummy_leader | trend5y, data = aux, cluster = ~year)
+feols(mc_yc_hat_s ~ scenario * dummy_leader | trend5y, data = aux, cluster = ~year)
 
 
 #-------------------------------------------------------------------------------
@@ -1187,3 +1169,215 @@ sd(data_y$heatExp_y_mean)
 sd(data_y$heatExp_y)
 sd(data_y$frostExp_y_mean)
 sd(data_y$frostExp_y)
+
+#-------------------------------------------------------------------------------
+# [VF] Exportaciones por país y por especie
+#-------------------------------------------------------------------------------
+aux <- psd_coffee %>%
+  select(Country_Name, Market_Year, Attribute_Description, Attribute_ID, Value) %>%
+  rename(country = Country_Name, year = Market_Year, operation = Attribute_Description,
+         id = Attribute_ID, value = Value) %>%
+  mutate(country = if_else(country == "Congo (Brazzaville)","Congo",
+                           if_else(country == "Congo (Kinshasa)","Congo",
+                                   if_else(country == "Yemen (Sanaa)", "Yemen",
+                                           if_else(country == "Vietnam","Viet Nam",
+                                                   if_else(country == "Cote d'Ivoire","Côte d'Ivoire", country)))))) %>%
+  filter(value > 0 & (id == "029" | id == "053")) # id: 29 (arabica production) 53 (robusta production)
+
+# We sum both Congos
+aux <- aux %>%
+  group_by(year, country, operation, id) %>%
+  summarise(
+    value = sum(value),
+    .groups = 'drop') %>%
+  ungroup()
+
+# Decades
+aux <- aux %>%
+  mutate(
+    decade = floor(year / 10) * 10
+  )
+
+# Lustrum
+aux <- aux %>%
+  mutate(
+    lustrum = floor(year / 5) * 5
+  )
+
+# Ranking for Arabica and Robusta
+aux_c <- aux %>%
+  group_by(country, operation) %>%
+  summarise(
+    value_c = sum(value, na.rm = TRUE),
+    .groups = 'drop'
+  ) %>%
+  ungroup() %>%
+  group_by(operation) %>%
+  mutate(
+    value = sum(value_c, na.rm = TRUE),
+    share_c = round(value_c / value, 2)
+  ) %>%
+  ungroup() %>%
+  arrange(operation, desc(share_c))
+
+# Ranking for Arabica and Robusta by decade
+aux_dc <- aux %>%
+  group_by(country, operation, decade) %>%
+  summarise(
+    value_c = sum(value, na.rm = TRUE),
+    .groups = 'drop'
+  ) %>%
+  ungroup() %>%
+  group_by(operation, decade) %>%
+  mutate(
+    value = sum(value_c, na.rm = TRUE),
+    share_c = round(value_c / value, 2)
+  ) %>%
+  ungroup() %>%
+  arrange(decade, operation, desc(share_c)) %>%
+  group_by(decade, operation) %>%
+  slice_head(n = 2) %>%
+  ungroup()
+
+# Ranking for Arabica and Robusta by lustrum
+aux_lc <- aux %>%
+  group_by(country, operation, lustrum) %>%
+  summarise(
+    value_c = sum(value, na.rm = TRUE),
+    .groups = 'drop'
+  ) %>%
+  ungroup() %>%
+  group_by(operation, lustrum) %>%
+  mutate(
+    value = sum(value_c, na.rm = TRUE),
+    share_c = round(value_c / value, 2)
+  ) %>%
+  ungroup() %>%
+  arrange(lustrum, operation, desc(share_c)) %>%
+  group_by(lustrum, operation) %>%
+  slice_head(n = 2) %>%
+  ungroup()
+
+#-------------------------------------------------------------------------------
+# [VF] Modelo triangular de temperatura
+#-------------------------------------------------------------------------------
+
+library(ggplot2)
+
+crear_grafico_simple <- function(t_min, t_max, k_i, tipo) {
+  # tipo = 0: sombrea área bajo el umbral
+  # tipo = 1: sombrea área sobre el umbral
+  
+  x <- seq(0, 1, length.out = 100)
+  y <- ifelse(x <= 0.5,
+              t_min + (t_max - t_min) * (x / 0.5),
+              t_max - (t_max - t_min) * ((x - 0.5) / 0.5))
+  
+  # Calcular fracción según el tipo
+  if (tipo == 0) {
+    # Fracción bajo el umbral
+    f <- if (t_max <= k_i) 1.00 else if (t_min >= k_i) 0.00 else 
+      round(0.5 * (k_i - t_min) / (t_max - t_min), 2)
+  } else {
+    # Fracción sobre el umbral
+    f <- if (t_min >= k_i) 1.00 else if (t_max <= k_i) 0.00 else 
+      round(1 - (0.5 * (k_i - t_min) / (t_max - t_min)), 2)
+  }
+  
+  # Crear el gráfico base
+  p <- ggplot(data.frame(x = x, y = y), aes(x = x, y = y)) +
+    geom_hline(yintercept = k_i, linetype = "dashed", color = "black") +
+    geom_line(color = "black") +
+    scale_x_continuous(breaks = c(0, 0.5, 1), labels = c("0", "½", "1")) +
+    labs(x = "Fracción del día", y = "°C") +
+    theme_classic() +
+    theme(
+      legend.position = "bottom",
+      text = element_text(size = 9),
+      axis.title = element_text(size = 8),
+      axis.title.y = element_text(margin = margin(r = 3)),
+      axis.title.x = element_text(margin = margin(t = 3)),
+      axis.text = element_text(size = 9),
+      plot.margin = margin(5, 5, 5, 5),
+      legend.text = element_text(size = 9),
+      legend.margin = margin(t = -5, b = 0)
+    )
+  
+  # Agregar el sombreado según el tipo
+  if (tipo == 0) {
+    # Sombreado bajo el umbral
+    p <- p + geom_ribbon(aes(ymin = ifelse(y <= k_i, min(y), NA), 
+                             ymax = ifelse(y <= k_i, y, NA)), 
+                         fill = "#F0F0F0")
+  } else {
+    # Sombreado sobre el umbral
+    p <- p + geom_ribbon(aes(ymin = ifelse(y >= k_i, k_i, NA), 
+                             ymax = ifelse(y >= k_i, y, NA)), 
+                         fill = "#F0F0F0")
+  }
+  
+  return(p)
+}
+
+# Crear y mostrar
+p1 <- crear_grafico_simple(2, 8, 10, 0)
+p2 <- crear_grafico_simple(7, 13, 10, 0)
+p3 <- crear_grafico_simple(12, 18, 10, 0)
+p4 <- crear_grafico_simple(22, 28, 30, 1)
+p5 <- crear_grafico_simple(27, 33, 30, 1)
+p6 <- crear_grafico_simple(32, 38, 30, 1)
+print(p1); print(p2); print(p3); print(p4); print(p5); print(p6)
+
+ggsave(
+  filename = paste0(fig_path, "exp_p1.png"),
+  plot = p1,
+  width = 7,
+  height = 5,
+  units = "cm",
+  dpi = 600,
+  bg = "white")
+
+ggsave(
+  filename = paste0(fig_path, "exp_p2.png"),
+  plot = p2,
+  width = 7,
+  height = 5,
+  units = "cm",
+  dpi = 600,
+  bg = "white")
+
+ggsave(
+  filename = paste0(fig_path, "exp_p3.png"),
+  plot = p3,
+  width = 7,
+  height = 5,
+  units = "cm",
+  dpi = 600,
+  bg = "white")
+
+ggsave(
+  filename = paste0(fig_path, "exp_p4.png"),
+  plot = p4,
+  width = 7,
+  height = 5,
+  units = "cm",
+  dpi = 600,
+  bg = "white")
+
+ggsave(
+  filename = paste0(fig_path, "exp_p5.png"),
+  plot = p5,
+  width = 7,
+  height = 5,
+  units = "cm",
+  dpi = 600,
+  bg = "white")
+
+ggsave(
+  filename = paste0(fig_path, "exp_p6.png"),
+  plot = p6,
+  width = 7,
+  height = 5,
+  units = "cm",
+  dpi = 600,
+  bg = "white")

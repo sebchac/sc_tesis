@@ -87,6 +87,7 @@ ruta_figures <- paste0(ruta_paper, "figures/")
 
   ols2 <- lm(price_ym ~ qe_ym  + importGDP_ym,
           data = demand_data)
+  summary(ols2)
   # Store coefficients
     coeff_ols2 <- coef(ols2)
   # Predict and elasticity
@@ -96,6 +97,7 @@ ruta_figures <- paste0(ruta_paper, "figures/")
 
   ols3 <- lm(price_ym ~ qe_ym  + importGDP_ym + teaPrices_ym,
           data = demand_data)
+  summary(ols3)
   # Store coefficients
     coeff_ols3 <- coef(ols3)
   # Predict and elasticity
@@ -214,8 +216,10 @@ ruta_figures <- paste0(ruta_paper, "figures/")
       lag(fdd_y_mean) #+
       #lag(hdd_yc) +
       #lag(fdd_yc)
-      #lag(heatExp_y) +
-      #lag(frostExp_y)
+      # lag(heatExp_y) +
+      # lag(frostExp_y) +
+      # lag(heatExp_yc) +
+      # lag(frostExp_yc)
     | country,
     data = data_yc,
     cluster = ~country

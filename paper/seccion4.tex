@@ -30,9 +30,9 @@ Enseguida, se utilizan variables que capturan, tanto a nivel agregado como para 
 
 \input{tables/datos_costos}
 
-\subsection*{4.3. Variables de acumulación de estrés térmico}
+\subsection*{4.3. Variables de estrés térmico}
 
-La estimación estructural del mercado internacional de café requiere contar con una base de datos lo suficientemente extensa para abarcar la acumulación de estrés térmico en cada país exportador y su evolución en el tiempo. Específicamente, y como fue señalado, la estimación de costos marginales utiliza datos de panel en frecuencia anual, y la estimación de demanda requiere ponderar estos datos para llegar a un resultado agregado mundial.
+La estimación estructural del mercado internacional de café requiere contar con una base de datos lo suficientemente extensa para abarcar la acumulación de --y exposición al-- estrés térmico en cada país exportador y su evolución en el tiempo. Específicamente, y como fue señalado, la estimación de costos marginales utiliza datos de panel en frecuencia anual, y la estimación de demanda requiere ponderar estos datos para llegar a un resultado agregado mundial.
 
 Las variables de estrés térmico se construyen a partir de dos fuentes de datos clave. La primera de ellas otorga las temperaturas mínimas y máximas en todo el mundo, lo que permite estimar la exposición diaria a temperaturas extremas. Por otro lado, la segunda fuente permite localizar espacialmente los cultivos de café dentro de cada país exportador, dando mayor precisión al análisis. En conjunto, estos datos aseguran que las mediciones reflejen las condiciones térmicas específicas que enfrenta el sector cafetalero en cada economía.
 
@@ -44,23 +44,40 @@ Las bases anteriores se complementan fuertemente, y es que la granularidad en la
 
 En una primera etapa del procesamiento de datos, se juntan ambas bases para obtener la evolución diaria de temperaturas mínimas y máximas dentro de cada grilla de 10 km x 10 km de un país específico. Luego, se toma el promedio simple de estas grillas para determinar una observación diaria por país, desde 1965 hasta 2019\footnote{Otra alternativa es ponderar por el área de cultivo --medido en hectáreas-- dentro de cada grilla. Sin embargo, dado que la base de cultivos es equivalente a una foto en el tiempo, una ponderación estaría omitiendo posibles cambios en las zonas de cultivo en el tiempo, por lo que se prefiere utilizar un promedio simple.}.
 
-La segunda etapa toma el insumo intermedio generado y calcula tanto la acumulación de estrés térmico como el tiempo de exposición que sufren los cultivos a temperaturas extremas, definidas por umbrales en grados centígrados. Así, en base a los antecedentes revisados en la sección anterior, se considera exposición a temperaturas bajas a aquellas bajo los 10°C ($k_{1}$); por su parte, se definen como temperaturas en extremo altas a aquellas sobre los 30°C ($k_{4}$). Por otro lado, se define el rango de temperaturas óptimas entre los 18°C ($k_{2}$) y los 26°C ($k_{3}$).
+La segunda etapa toma el insumo intermedio generado y calcula tanto la acumulación de estrés térmico como el tiempo de exposición que sufren los cultivos a temperaturas extremas, definidas por umbrales en grados centígrados. En base a los antecedentes revisados en la sección anterior, se considera exposición a temperaturas bajas a aquellas bajo los 10°C ($k_{1}$); por su parte, se definen como temperaturas en extremo altas a aquellas sobre los 30°C ($k_{4}$). Por otro lado, se define el rango de temperaturas óptimas entre los 18°C ($k_{2}$) y los 26°C ($k_{3}$).
 
-La primera variable relevante para el análisis es la acumulación de estrés térmico. La literatura científica relativa al efecto de la temperatura sobre los cultivos de bienes agrícolas propone la construcción de \textit{Growing Degree Days} \citep{hodges1991, mcmaster1997, DeschenesGreenstone2007}, definidos como la acumulación de calor durante la fase de crecimiento. En la misma línea, los \textit{Frost Degree Days} y los \textit{Heating Degree Days} se refieren a la acumulación de temperaturas en extremo bajas o altas. La construcción es sencilla, y sigue las siguientes fórmulas:
+La primera variable relevante para el análisis es la \textbf{acumulación de estrés térmico}. La literatura científica relativa al efecto de la temperatura sobre los cultivos de bienes agrícolas propone la construcción de \textit{Growing Degree Days} \citep{hodges1991, mcmaster1997, DeschenesGreenstone2007}, definidos como la acumulación de calor durante la fase de crecimiento. En la misma línea, los \textit{Frost Degree Days} y los \textit{Heating Degree Days} se refieren a la acumulación de temperaturas en extremo bajas o altas. 
+
+La construcción es sencilla, y sigue las siguientes fórmulas:
 
 \begin{equation}
+    \label{eq:gdd_equation}
     GDD = \text{máx}\{\text{mín}\{\frac{t_{\text{máx}} + t_{\text{mín}}}{2}, k_{4}\} , k_{2}\} - k_{2}
 \end{equation}
 
 \begin{equation}
+    \label{eq:fdd_equation}
     FDD = \text{máx}\{k_{1} - t_{\text{mín}}, 0\}
 \end{equation}
 
 \begin{equation}
+    \label{eq:hdd_equation}
     HDD = \text{máx}\{\frac{t_{\text{máx}} + t_{\text{mín}}}{2} - k_{4}, 0\}
 \end{equation}
 
-La segunda variable es la exposición a temperaturas extremas. La metodología propuesta en este trabajo considera que la temperatura evoluciona en el día siguiendo una trayectoria similar a una función triangular, comenzando y terminando con un valor mínimo, y presentando una temperatura máxima en el vértice superior. Aunque sencilla, esta aproximación permite obtener un valor directo para la fracción del día en que se alcanza un nivel de temperatura específico. Así, para un umbral determinado $k_{i}$, con $i \in \{1, 2, 3, 4\}$, y considerando las temperaturas mínima y máxima de cada día ($t_{\text{mín}}$ y $t_{\text{máx}}$, respectivamente, con $t_{\text{mín}} < t_{\text{máx}}$), se tiene tres escenarios posibles, presentados en la Figura N°[]:
+Donde $t_{\text{máx}}$ y $t_{\text{mín}}$ se refieren a las temperaturas máxima y mínima, respectivamente. La ecuación \eqref{eq:gdd_equation} indica que, para cada día, se toma la diferencia entre la temperatura promedio y el umbral $k_{2} = 18\text{°C}$. Sin embargo, la acumulación de calor está acotada por un valor mínimo de 0°C, cuando la temperatura promedio es igual a 18°C; y por un valor máximo de 12°C, cuando la temperatura promedio es superior a los 30°C. La justificación para acotar el resultado es la acumulación de calor únicamente en el rango óptimo de crecimiento, y evitar traslapes con las otras variables. Si, por ejemplo, no existiera un límite superior, entonces una temperatura promedio de 35°C se registraría dentro de la acumulación de calor en rango óptimo, omitiendo que el calor excesivo es nocivo para el desarrollo de los cultivos.
+
+La ecuación \eqref{eq:fdd_equation} toma la acumulación de frío, a través de la diferencia entre la temperatura mínima diaria y el umbral de 10°C. La construcción también impone un límite cuando la temperatura mínima es mayor a 10°C, ya que, en tal caso, no habría acumulación de frío extremo. En este caso, se considera la temperatura mínima para la comparación debido a que, al tratarse de zonas tropicales, la temperatura promedio puede ser mayor a 10°C aún en eventos extremos, lo que llevaría a omitir acumulación de frío en muchos casos.
+
+Por último, la ecuación \eqref{eq:hdd_equation} representa la acumulación de calor extremo, comparando el promedio de la temperatura diaria con el umbral superior de 30°C, con un límite inferior de 0°C en caso de que la temperatura promedio sea inferior al umbral. En este caso, la comparación es realizada con el promedio --en lugar del máximo-- para evitar colinealidad con la variable $GDD$, y es que un día con mayor acumulación de $GDD$ tiende a registrar temperaturas máximas más altas.
+
+El procedimiento anterior es realizado para cada país, en forma diaria. Luego, los resultados mensual y anual se obtienen simplemente sumando el valor diario. Para obtener resultados agregados, se utiliza los promedios simple y ponderado de los países exportadores. En el último caso, se utiliza la participación de mercado como ponderador. Las Tablas N°\ref{tab:variables_gdd_ym} y N°\ref{tab:variables_gdd_y} resumen la información estadística de las variables revisadas.
+
+\input{tables/datos_gdd_ym}
+
+\input{tables/datos_gdd_y}
+
+La segunda variable es la \textbf{exposición a temperaturas extremas}. La metodología propuesta en este trabajo considera que la temperatura evoluciona en el día siguiendo una trayectoria similar a una función triangular, comenzando y terminando con un valor mínimo, y presentando una temperatura máxima en el vértice superior. Aunque sencilla, esta aproximación permite obtener un valor directo para la fracción del día en que se alcanza un nivel de temperatura específico. Así, para un umbral $k_{i}$, con $i \in \{1, 4\}$ definidos anteriormente, y considerando las temperaturas mínima y máxima de cada día, existen tres escenarios posibles, presentados en las Figuras N°\ref{fig:plot04_01} a N°\ref{fig:plot04_06}:
 
 \begin{itemize}
     \item $t_{\text{máx}} \leq k_{i}$: en este caso, la trayectoria diaria de la temperatura está siempre por debajo del umbral. Por lo tanto, si el objetivo es medir la fracción del día en que determinada zona geográfica estuvo expuesta a temperaturas en extremo bajas ($k_{1}$), entonces la variable en construcción debe tomar un valor igual a 1 en este caso. Por otro lado, si el objetivo es capturar la exposición a temperaturas en extremo altas ($k_{4}$), entonces la variable toma un valor igual a 0.
@@ -73,16 +90,57 @@ La segunda variable es la exposición a temperaturas extremas. La metodología p
 
 \begin{figure}[H]
     \centering
-    \caption{}
-    \label{plot04_01}
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \caption{Escenario con exposición completa al frío extremo}
+        \includegraphics[width=\linewidth]{figures/exp_p1.png}
+        \label{fig:plot04_01}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \caption{Escenario sin exposición al calor extremo}
+        \includegraphics[width=\linewidth]{figures/exp_p4.png}
+        \label{fig:plot04_04}
+    \end{minipage}
 \end{figure}
 
-La siguiente tabla resume la información estadística de cada variable mencionada.
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \caption{Escenario con exposición parcial al frío extremo}
+        \includegraphics[width=\linewidth]{figures/exp_p2.png}
+        \label{fig:plot04_02}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \caption{Escenario con exposición parcial al calor extremo}
+        \includegraphics[width=\linewidth]{figures/exp_p5.png}
+        \label{fig:plot04_05}
+    \end{minipage}
+\end{figure}
 
-\input{tables/datos_gdd_ym}
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \caption{Escenario sin exposición al frío extremo}
+        \includegraphics[width=\linewidth]{figures/exp_p3.png}
+        \label{fig:plot04_03}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \caption{Escenario con exposición completa al calor extremo}
+        \includegraphics[width=\linewidth]{figures/exp_p6.png}
+        \label{fig:plot04_06}
+    \end{minipage}
+\end{figure}
+
+Lo anterior permite obtener un resultado diario para la exposición a temperaturas extremas. Las exposiciones mensual y anual se obtienen sumando el valor diario para cada país. Por último, para obtener el resultado agregado, se utiliza tanto un promedio simple como un promedio ponderado, al igual que con la variable anterior. Las Tablas N°\ref{tab:variables_exp_ym} y N°\ref{tab:variables_exp_y} resumen la información de las variables de exposición a temperaturas extremas.
 
 \input{tables/datos_exp_ym}
-
-\input{tables/datos_gdd_y}
 
 \input{tables/datos_exp_y}
