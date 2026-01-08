@@ -131,7 +131,6 @@ ruta_figures <- paste0(ruta_paper, "figures/")
 
   iv3 <- ivreg(price_ym ~ qe_ym  + importGDP_ym + teaPrices_ym |
           tas_yme + gdd_ym +
-          #optExp_ym + heatExp_ym + frostExp_ym +
           importGDP_ym + teaPrices_ym,
           data = demand_data)
   summary(iv3)
@@ -172,7 +171,9 @@ ruta_figures <- paste0(ruta_paper, "figures/")
       # Cournot
       mr_yc = price_y + beta * qe_yc,
     # Stackelberg
-      mr_yc3 = (price_y + beta * qe_yc * (1 / (1 + n_follower_y))) * dummy_leader + (price_y + beta * qe_yc) * dummy_follower)
+      mr_yc3 = (price_y + beta * qe_yc * (1 / (1 + n_follower_y))) * dummy_leader + (price_y + beta * qe_yc) * dummy_follower,
+      ln_mr_yc3 = log(mr_yc3 + 1) 
+    )
   
 # ------------------------------------------------------------------------------
 # [3] Marginal cost estimation
@@ -185,41 +186,19 @@ ruta_figures <- paste0(ruta_paper, "figures/")
       !is.na(importGDP_y),
       !is.na(country),
       !is.na(year))
-
+  
   data_yc <- pdata.frame(
     data_yc,
     index = c("country", "year")
   )
   
-  # Correlation
-  cor_vars_yc <- data_yc %>%
-    select(tas_yce, pr_yce, gdd_yc, hdd_yc, fdd_yc) %>%
-    na.omit()
-  
-  cor(cor_vars_yc)
-  
-  cor_vars_y <- data_yc %>%
-    filter(dummy_y == 1) %>%
-    select(tas_ye_mean, pr_ye_mean, gdd_y_mean, hdd_y_mean, fdd_y_mean) %>%
-    na.omit()
-  
-  cor(cor_vars_y)
-  
-  summary(data_yc$fert_y)
-  
 # [3.1.] Only one stage and Stackelberg
   mc_fe <- feols(
-    mr_yc3 ~
+    ln_mr_yc3 ~
       trend5y +
       fert_y +
-      lag(hdd_y_mean) +
-      lag(fdd_y_mean) #+
-      #lag(hdd_yc) +
-      #lag(fdd_yc)
-      # lag(heatExp_y) +
-      # lag(frostExp_y) +
-      # lag(heatExp_yc) +
-      # lag(frostExp_yc)
+      heat_diff1_yc +
+      frost_diff1_yc
     | country,
     data = data_yc,
     cluster = ~country

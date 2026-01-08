@@ -272,7 +272,7 @@ data_yc <- data %>%
       export_dummy == 0 ~ "Importadores"
     ))
 
-plot3 <- ggplot(data_yc, aes(factor(year), y = rgdpna_yc, fill = type)) +
+plot3 <- ggplot(data_yc, aes(factor(year), y = heat, fill = type)) +
   geom_boxplot(
     position = position_dodge(0.8),
     width = 0.7,
@@ -312,6 +312,121 @@ ggsave("/Users/sebastianchacon/Desktop/sc_tesis/paper/figures/plot3.png",
       units = "cm",
       dpi = 600,
       bg = "white")
+
+#-------------------------------------------------------------------------------
+# [VF] Boxplot de heatExp_yc y frostExp_yc
+#-------------------------------------------------------------------------------
+
+data_yc <- data %>%
+  filter(dummy_yc == 1, year <= 2019, net_export_dummy == 1)
+
+ggplot(data_yc, aes(x = year, y = optExp_yc)) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(method = "lm", se = TRUE, color = "blue") +
+  geom_smooth(aes(group = country), method = "lm", se = FALSE, 
+              color = "gray", size = 0.5, alpha = 0.5) +
+  theme_minimal() +
+  labs(x = "Año", y = "Días óptimos",
+       title = "Tendencias individuales (gris) y global (azul)")
+
+ggplot(data_yc, aes(x = factor(year), y = heatExp_yc)) +
+  geom_boxplot(
+    position = position_dodge(0.8),
+    width = 0.7,
+    alpha = 0.8,
+    size = 0.5,
+    color = "black"
+  ) +
+  # Línea del promedio usando stat_summary
+  stat_summary(
+    fun = mean,
+    geom = "line",
+    aes(group = 1),
+    color = "darkred",
+    size = 1,
+    linetype = "solid"
+  ) +
+  # Puntos del promedio
+  stat_summary(
+    fun = mean,
+    geom = "point",
+    aes(group = 1),
+    color = "darkred",
+    size = 2,
+    shape = 18
+  ) +
+  labs(
+    title = NULL,
+    x = NULL,
+    y = "Dias",
+    fill = NULL
+  ) +
+  theme_classic() +
+  theme(
+    legend.position = "bottom",
+    text = element_text(size = 9),
+    axis.title = element_text(size = 8),
+    axis.title.y = element_text(margin = margin(r = 3)),
+    axis.title.x = element_text(margin = margin(t = 3)),
+    axis.text = element_text(size = 9),
+    plot.margin = margin(5, 5, 5, 5),
+    legend.text = element_text(size = 9),
+    legend.margin = margin(t = -5, b = 0)
+  ) +
+  scale_fill_grey(
+    start = 0.2,
+    end = 0.8,
+    na.value = "red"
+  ) +
+  scale_x_discrete(
+    breaks = function(x) {
+      years <- as.numeric(as.character(x))
+      seq_years <- seq(min(years), max(years), by = 5)
+      as.character(seq_years)
+    }
+  )
+  
+
+plot3 <- ggplot(data_yc, aes(factor(year), y = heatExp, fill = type)) +
+  geom_boxplot(
+    position = position_dodge(0.8),
+    width = 0.7,
+    alpha = 0.8,           # Similar alpha para consistencia
+    size = 0.5,            # Tamaño de línea similar
+    color = "black"        # Borde negro para contraste en grises
+  ) +
+  labs(
+    title = NULL,
+    x = NULL,              # Coincide con tu primer gráfico
+    y = "PIB real ajustado",       # Ajusta según tu variable
+    fill = NULL            # Coincide con tu primer gráfico
+  ) +
+  theme_classic() +        # Mismo tema base
+  theme(
+    legend.position = "bottom",
+    text = element_text(size = 9),
+    axis.title = element_text(size = 8),
+    axis.title.y = element_text(margin = margin(r = 3)),
+    axis.title.x = element_text(margin = margin(t = 3)),
+    axis.text = element_text(size = 9),
+    plot.margin = margin(5, 5, 5, 5),
+    legend.text = element_text(size = 9),
+    legend.margin = margin(t = -5, b = 0)
+  ) +
+  # Escala de grises profesional para papers
+  scale_fill_grey(
+    start = 0.2,    # Gris oscuro
+    end = 0.8,      # Gris claro  
+    na.value = "red"
+  )
+
+ggsave("/Users/sebastianchacon/Desktop/sc_tesis/paper/figures/plot3.png", 
+       plot = plot3, 
+       width = 18,
+       height = 8,
+       units = "cm",
+       dpi = 600,
+       bg = "white")
 
 #-------------------------------------------------------------------------------
 # [VF] Boxplot de ND-GAIN

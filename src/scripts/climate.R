@@ -11,7 +11,8 @@ base_path3 <- "/Users/sebastianchacon/Desktop/sc_tesis/src/original_data/tasmin"
 output_path <- "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/"
 
 # Parámetros de umbrales de temperatura
-k1 <- 10; k2 <- 18; k3 <- 26; k4 <- 30
+#k1 <- 10; k2 <- 18; k3 <- 26; k4 <- 30 # Al 7.1.2026
+k1 <- 15; k2 <- 15; k3 <- 28; k4 <- 28
 
 # Períodos a procesar (formato: inicio-fin)
 periods <- list(
@@ -237,7 +238,7 @@ for(i in seq_along(periods)) {
 if(length(all_results) > 0) {
   complete_data <- bind_rows(all_results) %>% arrange(country, date)
   
-  output_complete <- file.path(output_path, "df_gdd_complete_1961_2020.rds")
+  output_complete <- file.path(output_path, "df_gdd_complete_1961_2020_v2.rds")
   saveRDS(complete_data, output_complete)
   
   cat("\n=== PROCESAMIENTO COMPLETADO ===\n")

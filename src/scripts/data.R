@@ -428,11 +428,14 @@ tea <- tea %>%
 #-------------------------------------------------------------------------------
 # [1.9] GDD
 #-------------------------------------------------------------------------------
-gdd_files <- list.files("/Users/sebastianchacon/Desktop/ObsData/ProcessedData/GDD/",
-                        pattern = "\\.rds$", full.names = TRUE)
-
-gdd_monthly <- bind_rows(lapply(gdd_files, readRDS)) %>%
-  arrange(country, date)
+# gdd_files <- list.files("/Users/sebastianchacon/Desktop/ObsData/ProcessedData/GDD/",
+#                         pattern = "\\.rds$", full.names = TRUE)
+# 
+# gdd_monthly <- bind_rows(lapply(gdd_files, readRDS)) %>%
+#   arrange(country, date)
+ 
+gdd_monthly <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/df_gdd_complete_1961_2020_v2.rds")
+ 
 
 gdd_monthly <- gdd_monthly %>%
   mutate(country = case_when(
@@ -504,6 +507,39 @@ gdd_export_yc <- gdd_export %>%
     hdd_yc = sum(hdd_ymc, na.rm = TRUE),
     fdd_yc = sum(fdd_ymc, na.rm = TRUE),
     .groups = 'drop'
+  ) %>%
+  ungroup() %>%
+  group_by(country) %>%
+  mutate(
+    # Dummy de eventos extremos (t y t+1)
+    ext_heat_t = as.numeric(heatExp_yc > quantile(heatExp_yc, 0.90, na.rm = TRUE)),
+    ext_heat_yc = as.numeric(ext_heat_t == 1 | dplyr::lag(ext_heat_t, 1, 0) == 1),
+    
+    ext_frost_t = as.numeric(frostExp_yc > quantile(frostExp_yc, 0.90, na.rm = TRUE)),
+    ext_frost_yc = as.numeric(ext_frost_t == 1 | dplyr::lag(ext_frost_t, 1, 0) == 1),
+    
+    # Logaritmos
+    ln_heat_yc = log(heatExp_yc + 1),
+    ln_frost_yc = log(frostExp_yc + 1),
+    ln_opt_yc = log(optExp_yc + 1),
+    ln_heat_lag1_yc = dplyr::lag(ln_heat_yc, 1),
+    ln_frost_lag1_yc = dplyr::lag(ln_frost_yc, 1),
+    
+    # Rezagos
+    heat_lag1_yc = dplyr::lag(heatExp_yc, 1),
+    frost_lag1_yc = dplyr::lag(frostExp_yc, 1),
+    opt_lag1_yc = dplyr::lag(optExp_yc, 1),
+    
+    # Diferencia anual
+    heat_diff1_yc = heatExp_yc - dplyr::lag(heatExp_yc, 1),
+    frost_diff1_yc = frostExp_yc - dplyr::lag(frostExp_yc, 1),
+    opt_diff1_yc = optExp_yc - dplyr::lag(optExp_yc, 1),
+    
+    # Ratios
+    heat_ratio_yc = heatExp_yc / optExp_yc,
+    frost_ratio_yc = frostExp_yc / optExp_yc,
+    stress_ratio_yc = (heatExp_yc + frostExp_yc) / optExp_yc
+    
   ) %>%
   ungroup()
 
