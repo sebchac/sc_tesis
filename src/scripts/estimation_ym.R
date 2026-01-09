@@ -24,6 +24,7 @@ library(modelsummary)
 library(moments)
 library(kableExtra)
 library(splines)
+library(lme4)
 
 ruta_proyecto <- "/Users/sebastianchacon/Desktop/sc_tesis/"
 ruta_paper <- paste0(ruta_proyecto, "paper/")
@@ -53,12 +54,20 @@ ruta_figures <- paste0(ruta_paper, "figures/")
       optExp_ym_mean, optExp_ym,
       heatExp_ym_mean, heatExp_ym,
       frostExp_ym_mean, frostExp_ym,
-      disease1, disease2, frost1, frost2, droughts, ica_lapse) %>%
+      disease1, disease2, frost1, frost2, droughts, ica_lapse,
+      heat_lag1_ym_mean, frost_lag1_ym_mean, opt_lag1_ym_mean,
+      heat_diff1_ym_mean, frost_diff1_ym_mean, opt_diff1_ym_mean,
+      heat_ratio_ym_mean, frost_ratio_ym_mean, stress_ratio_ym_mean,
+      heat_ratio_ym, frost_ratio_ym, stress_ratio_ym,
+      heat_ratio_ym_agg, frost_ratio_ym_agg, stress_ratio_ym_agg) %>%
     mutate(trend = floor(year - min(year)),
            trend2 = trend^2,
            trend_ym = row_number(),
            trend5y = floor((year - min(year)) / 5),
-           trend3y = floor((year - min(year)) / 3)) %>%
+           trend3y = floor((year - min(year)) / 3),
+           lag3_tmax_yme = dplyr::lag(tmax_yme, 3),
+           lag3_tmin_yme = dplyr::lag(tmin_yme, 3)
+           ) %>%
     drop_na()
   
   summary(demand_data$teaPrices_ym)
@@ -107,7 +116,7 @@ ruta_figures <- paste0(ruta_paper, "figures/")
 
 # [1.2.2.] IV
   iv1 <- ivreg(price_ym ~ qe_ym |
-                 tas_yme + gdd_ym,
+                 lag3_tmax_yme + lag3_tmin_yme,
           data = demand_data)
   # Store coefficients
     coeff_iv1 <- coef(iv1)
@@ -118,7 +127,7 @@ ruta_figures <- paste0(ruta_paper, "figures/")
     summary(iv1)
 
   iv2 <- ivreg(price_ym ~ qe_ym  + importGDP_ym |
-                 tas_yme + gdd_ym +
+                 lag3_tmax_yme + lag3_tmin_yme +
           importGDP_ym,
           data = demand_data)
   summary(iv2)
@@ -130,7 +139,8 @@ ruta_figures <- paste0(ruta_paper, "figures/")
     mean_elast_iv2 <- mean(demand_data$edemand_iv2, na.rm = TRUE)
 
   iv3 <- ivreg(price_ym ~ qe_ym  + importGDP_ym + teaPrices_ym |
-          tas_yme + gdd_ym +
+          #tas_yme + gdd_ym +
+            lag3_tmax_yme + lag3_tmin_yme +
           importGDP_ym + teaPrices_ym,
           data = demand_data)
   summary(iv3)
@@ -194,11 +204,11 @@ ruta_figures <- paste0(ruta_paper, "figures/")
   
 # [3.1.] Only one stage and Stackelberg
   mc_fe <- feols(
-    ln_mr_yc3 ~
+    mr_yc3 ~
       trend5y +
       fert_y +
-      heat_diff1_yc +
-      frost_diff1_yc
+      heatExp_yc +
+      heat_lag1_yc
     | country,
     data = data_yc,
     cluster = ~country
@@ -214,8 +224,8 @@ ruta_figures <- paste0(ruta_paper, "figures/")
       #farm_prices_yc +
       trend5y + 
       fert_y +
-      lag(hdd_y_mean) +
-      lag(fdd_y_mean) | country,
+      heatExp_yc +
+      heat_lag1_yc | country,
     data = data_leader,
     cluster = ~country
   )
@@ -230,8 +240,8 @@ ruta_figures <- paste0(ruta_paper, "figures/")
       #farm_prices_yc +
       trend5y + 
       fert_y +
-      lag(hdd_y_mean) +
-      lag(fdd_y_mean) | country,
+      heatExp_yc +
+      heat_lag1_yc| country,
     data = data_follower,
     cluster = ~country
   )
@@ -250,116 +260,84 @@ ruta_figures <- paste0(ruta_paper, "figures/")
   
   summary(mc_fe_cournot)
   
-# [3.2.] Two stages
-
-  # mc_iv <- feols(
-  #   mr_ymc3 ~ fert_ym | 
-  #     farm_prices_ymc ~ hdd_ymc,
-  #   fixef = c("country", "year"),
-  #   data = data_ymc
-  # )
-  # 
-  # summary(mc_iv, diagnostics = TRUE)
-  # 
-  # mc_iv_1s <- feols(
-  #   farm_prices_ymc ~
-  #     hdd_ymc | year + country,
-  #   data = data_ymc,
-  #   cluster = ~country
-  # )
-  # 
-  # #
-  # mc_reg <- lm(
-  #   mr_ymc3 ~
-  #     farm_prices_ymc,
-  #   data = data_ymc,
-  #   cluster = ~country
-  # )
-  # summary(mc_reg)
-  # #
-  # summary(mc_iv_1s, diagnostics = TRUE)
+# Contrafactuales
+  # ============================================================================
+  # PASO 1: ESTIMAR COMPONENTES EN PERÍODO BASE (1965-1989)
+  # ============================================================================
   
- #  data_ymc$farm_prices_ymc_hat <- predict(mc_iv_1s)
- # 
- #  data_ymc$farm_prices_ymc_cf1 <- predict(
- #    mc_iv_1s,
- #    newdata = data_ymc %>%
- #      select(
- #        year, country, date, fert_ym, hdd_ymc
- #      ) %>%
- #      mutate(
- # #       hdd_ymc = 0.5 * hdd_ymc
- #        hdd_ymc = 0 * hdd_ymc
- #      )
- #  )
- #  
- #  mc_iv_2s <- feols(
- #    mr_ymc3 ~ farm_prices_ymc + fert_ym | country + year,
- #    data = data_ymc
- #  )
+  # Preparar datos
+  data_cf <- data %>%
+    distinct(country, year, heatExp_yc) %>%
+    filter(year >= 1965, year <= 1989) %>%
+    drop_na()
   
-  # data_ymc$mc_ymc_hat <- predict(mc_iv_2s)
-  # 
-  # data_ymc$mc_ymc_cf1 <- predict(
-  #   mc_iv_2s,
-  #   newdata = data_ymc %>%
-  #     select(
-  #       year, country, date, fert_ym, farm_prices_ymc_cf1, farm_prices_ymc_hat
-  #     ) %>%
-  #     mutate(
-  #       farm_prices_ymc = farm_prices_ymc_cf1
-  #     )
-  # )
+  # 1. Estimar tendencias país-específicas (1965-1989)
   
-  #modelsummary(model_mc_1,
-  #    title = "Estimación de Costos Marginales",
-  #    output = "latex",
-  #    coef_rename = c(
-  #      "farm_prices_ymc" = "Precio a productor", 
-  #      "fert_ym" = "Precio fertilizantes",
-        #"frosts" = "Eventos de helada",
-  #      "hdd_ymc" = "Grados-día calor (HDD)",
-  #      "fdd_ymc" = "Grados-día frío (FDD)"
-  #      ),
-  #    stars = TRUE,
-  #    notes = c("Errores estándar clusterizados por país.",
-  #              "Efectos fijos de año y país incluidos."))
+  coefficients <- data_cf %>%
+    group_by(country) %>%
+    nest() %>%
+    mutate(
+      model = map(data, ~lm(heatExp_yc ~ year, data = .)),
+      tidied = map(model, tidy)
+    ) %>%
+    unnest(tidied) %>%
+    select(country, term, estimate) %>%
+    tidyr::pivot_wider(names_from = term, values_from = estimate) %>%
+    rename(intercept = `(Intercept)`, slope = year)
+  
+  # 2. Construir contrafactual para 1990-2019
+  years_counterfactual <- 1990:2019
+  
+  data_counterfactual <- expand.grid(
+    country = unique(data_cf$country),
+    year = years_counterfactual,
+    stringsAsFactors = FALSE
+  ) %>%
+    left_join(coefficients, by = "country") %>%
+    mutate(heatExp_yc_cf = intercept + slope * year) %>%
+    select(country, year, heatExp_yc_cf) %>%
+    arrange(country, year) %>%
+    group_by(country) %>%
+    mutate(
+      heat_lag1_yc_cf = dplyr::lag(heatExp_yc_cf, 1),
+      year = as.factor(year)
+    ) %>%
+    ungroup() %>%
+    drop_na()
+  
+  data_yc <- data_yc %>% left_join(data_counterfactual, by = c("year", "country"))
   
   # Store coefficients FE
     coeff_mc_s <- coef(mc_fe)
   # Predict FE
     data_yc$mc_yc_hat_s <- predict(mc_fe)
-    
-  # Store coefficients FE Cournot
-    coeff_mc_c <- coef(mc_fe_cournot)
-  # Predict FE Cournot
-    data_yc$mc_yc_hat_c <- predict(mc_fe_cournot)
 
   # Predict CF1
     data_yc$mc_yc_hat_s_cf1 <- predict(
       mc_fe, 
       newdata = data_yc %>% mutate(
-        hdd_y_mean = 0.9 * hdd_y_mean,
-        fdd_y_mean = 0.9 * fdd_y_mean
+        heatExp_yc = heatExp_yc_cf,
+        heat_lag1_yc = heat_lag1_yc_cf
       ))
-  # Predict CF2
-    data_yc$mc_yc_hat_s_cf2 <- predict(
-      mc_fe, 
-      newdata = data_yc %>% mutate(
-        hdd_y_mean = 0.5 * hdd_y_mean,
-        fdd_y_mean = 0.5 * fdd_y_mean
-      ))
-  # Predict CF3
-    data_yc$mc_yc_hat_s_cf3 <- predict(
-      mc_fe, 
-      newdata = data_yc %>% mutate(
-        hdd_y_mean = 0,
-        fdd_y_mean = 0
-      ))
+  # # Predict CF2
+  #   data_yc$mc_yc_hat_s_cf2 <- predict(
+  #     mc_fe, 
+  #     newdata = data_yc %>% mutate(
+  #       hdd_y_mean = 0.5 * hdd_y_mean,
+  #       fdd_y_mean = 0.5 * fdd_y_mean
+  #     ))
+  # # Predict CF3
+  #   data_yc$mc_yc_hat_s_cf3 <- predict(
+  #     mc_fe, 
+  #     newdata = data_yc %>% mutate(
+  #       hdd_y_mean = 0,
+  #       fdd_y_mean = 0
+  #     ))
     
     # Elimina NAs generados por lag
     data_yc <- data_yc %>%
-      filter(!is.na(mc_yc_hat_s_cf1) & !is.na(mc_yc_hat_s_cf2) & !is.na(mc_yc_hat_s_cf3))
+      #filter(!is.na(mc_yc_hat_s_cf1) & !is.na(mc_yc_hat_s_cf2) & !is.na(mc_yc_hat_s_cf3))
+      filter(!is.na(mc_yc_hat_s_cf1))
     
     
   # # Store coefficients IV 
@@ -565,7 +543,7 @@ saveRDS(data_yc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_c
     simulate_market(market, coeff_iv3)
   }) 
 
-  # Scenario 1: 10% reduction
+  # Scenario 1
   cf1_processed <- map(market_list, function(market) {
     market$mc_yc_hat_s <- market$mc_yc_hat_s_cf1 
     simulate_market(market, coeff_iv3)
@@ -640,17 +618,17 @@ saveRDS(data_yc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_c
   # Combine all results
   all_results_y <- bind_rows(
     cf0_results_y,
-    cf1_results_y,
-    cf2_results_y,
-    cf3_results_y
+    cf1_results_y#,
+    #cf2_results_y,
+    #cf3_results_y
   ) %>%
     arrange(date, scenario)
   
   all_results_yc <- bind_rows(
     cf0_results_yc,
-    cf1_results_yc,
-    cf2_results_yc,
-    cf3_results_yc
+    cf1_results_yc#,
+    #cf2_results_yc,
+    #cf3_results_yc
   ) %>%
     arrange(date, country, scenario)
   

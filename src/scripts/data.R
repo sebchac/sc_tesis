@@ -433,9 +433,9 @@ tea <- tea %>%
 # 
 # gdd_monthly <- bind_rows(lapply(gdd_files, readRDS)) %>%
 #   arrange(country, date)
- 
-gdd_monthly <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/df_gdd_complete_1961_2020_v2.rds")
- 
+# 
+ gdd_monthly <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/df_gdd_complete_1961_2020_v2.rds")
+#  
 
 gdd_monthly <- gdd_monthly %>%
   mutate(country = case_when(
@@ -472,8 +472,44 @@ gdd_export <- gdd_export %>%
     fdd_ymc = pmax(k1 - tmin_ymc, 0),
      hdd_ymc = pmax(tas_ymc - k4, 0)
   ) %>%
+  group_by(country) %>%
+  mutate(
+    # Dummy de eventos extremos (t y t+1)
+    # ext_heat_t = as.numeric(heatExp_ymc > quantile(heatExp_ymc, 0.90, na.rm = TRUE)),
+    # ext_heat_ymc = as.numeric(ext_heat_t == 1 | dplyr::lag(ext_heat_t, 1, 0) == 1),
+    # 
+    # ext_frost_t = as.numeric(frostExp_ymc > quantile(frostExp_ymc, 0.90, na.rm = TRUE)),
+    # ext_frost_ymc = as.numeric(ext_frost_t == 1 | dplyr::lag(ext_frost_t, 1, 0) == 1),
+    
+    # Logaritmos
+    ln_heat_ymc = log(heatExp_ymc + 1),
+    ln_frost_ymc = log(frostExp_ymc + 1),
+    ln_opt_ymc = log(optExp_ymc + 1),
+    ln_heat_lag1_ymc = dplyr::lag(ln_heat_ymc, 24),
+    ln_frost_lag1_ymc = dplyr::lag(ln_frost_ymc, 24),
+    
+    # Rezagos
+    heat_lag1_ymc = dplyr::lag(heatExp_ymc, 24),
+    frost_lag1_ymc = dplyr::lag(frostExp_ymc, 24),
+    opt_lag1_ymc = dplyr::lag(optExp_ymc, 24),
+    
+    # Diferencia anual
+    heat_diff1_ymc = heatExp_ymc - dplyr::lag(heatExp_ymc, 24),
+    frost_diff1_ymc = frostExp_ymc - dplyr::lag(frostExp_ymc, 24),
+    opt_diff1_ymc = optExp_ymc - dplyr::lag(optExp_ymc, 1),
+    
+    # Ratios (rezago)
+    heat_ratio_ymc = heat_lag1_ymc / opt_lag1_ymc,
+    frost_ratio_ymc = frost_lag1_ymc / opt_lag1_ymc,
+    stress_ratio_ymc = (heat_lag1_ymc + frost_lag1_ymc) / opt_lag1_ymc
+  ) %>%
+  ungroup() %>%
   select(country, year, month_num, tmax_ymc, tmin_ymc, tas_ymc, gdd_ymc, hdd_ymc, fdd_ymc, range_ymce,
-         optExp_ymc, heatExp_ymc, frostExp_ymc) %>%
+         optExp_ymc, heatExp_ymc, frostExp_ymc,
+         ln_heat_lag1_ymc, ln_frost_lag1_ymc,
+         heat_lag1_ymc, frost_lag1_ymc, opt_lag1_ymc,
+         heat_diff1_ymc, frost_diff1_ymc, opt_diff1_ymc,
+         heat_ratio_ymc, frost_ratio_ymc, stress_ratio_ymc) %>%
   rename(
     tmax_ymce = tmax_ymc, tmin_ymce = tmin_ymc, tas_ymce = tas_ymc
   )
@@ -490,6 +526,18 @@ gdd_export_ym <- gdd_export %>%
     gdd_ym_mean = mean(gdd_ymc, na.rm = TRUE),
     hdd_ym_mean = mean(hdd_ymc, na.rm = TRUE),
     fdd_ym_mean = mean(fdd_ymc, na.rm = TRUE),
+    
+    heat_lag1_ym_mean = mean(heat_lag1_ymc, na.rm = TRUE),
+    frost_lag1_ym_mean = mean(frost_lag1_ymc, na.rm = TRUE),
+    opt_lag1_ym_mean = mean(opt_lag1_ymc, na.rm = TRUE),
+    
+    heat_diff1_ym_mean = mean(heat_diff1_ymc, na.rm = TRUE),
+    frost_diff1_ym_mean = mean(frost_diff1_ymc, na.rm = TRUE),
+    opt_diff1_ym_mean = mean(opt_diff1_ymc, na.rm = TRUE),
+    
+    heat_ratio_ym_mean = mean(heat_ratio_ymc, na.rm = TRUE),
+    frost_ratio_ym_mean = mean(frost_ratio_ymc, na.rm = TRUE),
+    stress_ratio_ym_mean = mean(stress_ratio_ymc, na.rm = TRUE),
     .groups = 'drop'
   ) %>%
   ungroup()
@@ -535,10 +583,10 @@ gdd_export_yc <- gdd_export %>%
     frost_diff1_yc = frostExp_yc - dplyr::lag(frostExp_yc, 1),
     opt_diff1_yc = optExp_yc - dplyr::lag(optExp_yc, 1),
     
-    # Ratios
-    heat_ratio_yc = heatExp_yc / optExp_yc,
-    frost_ratio_yc = frostExp_yc / optExp_yc,
-    stress_ratio_yc = (heatExp_yc + frostExp_yc) / optExp_yc
+    # Ratios (rezago)
+    heat_ratio_yc = heat_lag1_yc / opt_lag1_yc,
+    frost_ratio_yc = frost_lag1_yc / opt_lag1_yc,
+    stress_ratio_yc = (heat_lag1_yc + frost_lag1_yc) / opt_lag1_yc
     
   ) %>%
   ungroup()
@@ -782,7 +830,16 @@ ndgain_data <- ndgain %>%
       pr_ymi_mean = mean(pr_ymci, na.rm = TRUE),
       optExp_ym = sum(optExp_ymc * share_ymce, na.rm = TRUE),
       heatExp_ym = sum(heatExp_ymc * share_ymce, na.rm = TRUE),
-      frostExp_ym = sum(frostExp_ymc * share_ymce, na.rm = TRUE)) %>%
+      frostExp_ym = sum(frostExp_ymc * share_ymce, na.rm = TRUE),
+      
+      heat_ratio_ym = sum(heat_ratio_ymc * share_ymce, na.rm = TRUE),
+      frost_ratio_ym = sum(frost_ratio_ymc * share_ymce, na.rm = TRUE),
+      stress_ratio_ym = sum(stress_ratio_ymc * share_ymce, na.rm = TRUE),
+      
+      heat_ratio_ym_agg = sum(heat_lag1_ymc, na.rm = TRUE) / sum(opt_lag1_ymc, na.rm = TRUE),
+      frost_ratio_ym_agg = sum(frost_lag1_ymc, na.rm = TRUE) / sum(opt_lag1_ymc, na.rm = TRUE),
+      stress_ratio_ym_agg = sum(heat_lag1_ymc + frost_lag1_ymc, na.rm = TRUE)/ sum(opt_lag1_ymc, na.rm = TRUE)
+      ) %>%
     ungroup() %>%
     group_by(year, country) %>%
     mutate(
