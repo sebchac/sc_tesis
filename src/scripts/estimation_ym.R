@@ -185,10 +185,10 @@ ruta_figures <- paste0(ruta_paper, "figures/")
     ) %>%
     group_by(country, year) %>%
     mutate(mr_yc = ifelse(mr_yc < 0, 
-                          quantile(mr_yc[mr_yc >= 0], 0.25, na.rm = TRUE), 
+                          quantile(data_yc$mr_yc[data_yc$mr_yc >= 0], 0.25, na.rm = TRUE), 
                           mr_yc),
            mr_yc3 = ifelse(mr_yc3 < 0, 
-                           quantile(mr_yc3[mr_yc3 >= 0], 0.25, na.rm = TRUE), 
+                           quantile(data_yc$mr_yc3[data_yc$mr_yc3 >= 0], 0.25, na.rm = TRUE), 
                            mr_yc3)) %>%
     ungroup() %>%
     mutate(
@@ -204,9 +204,9 @@ ruta_figures <- paste0(ruta_paper, "figures/")
     ) %>%
     ungroup()
   
-  data_yc <- data_yc %>%
-    left_join(aux1, by = c("country")) %>%
-    filter(n_mr >= 31)
+  # data_yc <- data_yc %>%
+  #   left_join(aux1, by = c("country")) %>%
+  #   filter(n_mr >= 20)
   
 # ------------------------------------------------------------------------------
 # [3] Marginal cost estimation
@@ -293,8 +293,13 @@ ruta_figures <- paste0(ruta_paper, "figures/")
   # Preparar datos
   data_cf <- data %>%
     distinct(country, year, heatExp_yc) %>%
-    filter(year >= 1965, year <= 1989) %>%
+    filter(year >= 1961, year <= 2019) %>%
     drop_na()
+  
+  data_cf %>%
+    filter(country %in% c("Viet Nam", "Brazil", "Bolivia")) %>%
+    ggplot(aes(year, heatExp_yc)) +
+    geom_point() + geom_smooth(method="lm") + facet_wrap(~country)
   
   # 1. Estimar tendencias país-específicas (1965-1989)
   
@@ -334,8 +339,11 @@ ruta_figures <- paste0(ruta_paper, "figures/")
   
   # Store coefficients FE
     coeff_mc_s <- coef(mc_fe)
-  # Predict FE
+  # Predict FE Stackelberg
     data_yc$mc_yc_hat_s <- predict(mc_fe)
+    
+  # # Predict FE Cournot
+    data_yc$mc_yc_hat_c <- predict(mc_fe_cournot)
 
   # Predict CF1: Stackelberg with new heatExp
     data_yc$mc_yc_hat_s_cf1 <- predict(
@@ -345,39 +353,15 @@ ruta_figures <- paste0(ruta_paper, "figures/")
         heat_lag1_yc = heat_lag1_yc_cf
       ))
   # Predict CF2: Cournot with new heatExp
-     data_yc$mc_yc_hat_c_cf2 <- predict(
+     data_yc$mc_yc_hat_c_cf1 <- predict(
        mc_fe_cournot, 
        newdata = data_yc %>% mutate(
          heatExp_yc = heatExp_yc_cf,
-         heat_lag1_yc = heat_lag1_yc_cf
-       ))
-  # Predict CF3: Stackelberg with 25% heat reduction
-     data_yc$mc_yc_hat_s_cf3 <- predict(
-       mc_fe, 
-       newdata = data_yc %>% mutate(
-         heatExp_yc = 0.75 * heatExp_yc,
-         heat_lag1_yc = 0.75 * heat_lag1_yc
-       ))
-     
-  # Predict CF4: Cournot with 25% heat reduction
-     data_yc$mc_yc_hat_c_cf4 <- predict(
-       mc_fe_cournot, 
-       newdata = data_yc %>% mutate(
-         heatExp_yc = 0.75 * heatExp_yc,
-         heat_lag1_yc = 0.75 * heat_lag1_yc
-       ))
+         heat_lag1_yc = heat_lag1_yc_cf))
     
     # Elimina NAs generados por lag
     data_yc <- data_yc %>%
-      #filter(!is.na(mc_yc_hat_s_cf1) & !is.na(mc_yc_hat_s_cf2) & !is.na(mc_yc_hat_s_cf3))
       filter(!is.na(mc_yc_hat_s_cf1))
-    
-    
-  # # Store coefficients IV 
-  #   coeff_mc_2 <- coef(mc_iv)
-  # # Predict IV
-  #   data_ymc$mc_ymc_hat_s <- predict(mc_iv)  
-
 
 saveRDS(data_yc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_cf_y.rds")
 
@@ -567,12 +551,15 @@ saveRDS(data_yc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_c
     group_by(year) %>%
     group_split()
   
-  # Baseline
+  # Baseline Stackelberg
   cf0_processed <- map(market_list, function(market) {
-    market$mc_yc_hat_s <- predict(
-      mc_fe, 
-      newdata = market,
-      fixef = FALSE)
+    market$mc_yc_hat_s <- market$mc_yc_hat_s
+    simulate_market(market, coeff_iv3)
+  }) 
+  
+  # Baseline Cournot
+  cf0C_processed <- map(market_list, function(market) {
+    market$mc_yc_hat_s <- market$mc_yc_hat_c
     simulate_market(market, coeff_iv3)
   }) 
 
@@ -584,71 +571,49 @@ saveRDS(data_yc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_c
   
   # Scenario 2
   cf2_processed <- map(market_list, function(market) {
-    market$mc_yc_hat_s <- market$mc_yc_hat_c_cf2
+    market$mc_yc_hat_s <- market$mc_yc_hat_c_cf1
     simulate_market(market, coeff_iv3)
   })
   
-  # Scenario 3
-  cf3_processed <- map(market_list, function(market) {
-    market$mc_yc_hat_s <- market$mc_yc_hat_s_cf3
-    simulate_market(market, coeff_iv3)
-  }) 
-  
-  # Scenario 4
-  cf4_processed <- map(market_list, function(market) {
-    market$mc_yc_hat_s <- market$mc_yc_hat_c_cf4
-    simulate_market(market, coeff_iv3)
-  }) 
-  
-  
   cf0_results_y <- map_dfr(cf0_processed, ~.x$market_summary, .id = "market_id") %>% 
-    mutate(scenario = "CF0")
+    mutate(scenario = "CF0_Stackelberg")
   
   cf0_results_yc <- map_dfr(cf0_processed, ~ .x$country_profits, .id = "market_id") %>% 
-    mutate(scenario = "CF0")
+    mutate(scenario = "CF0_Stackelberg")
+  
+  cf0C_results_y <- map_dfr(cf0C_processed, ~.x$market_summary, .id = "market_id") %>% 
+    mutate(scenario = "CF0_Cournot")
+  
+  cf0C_results_yc <- map_dfr(cf0C_processed, ~ .x$country_profits, .id = "market_id") %>% 
+    mutate(scenario = "CF0_Cournot")
   
   cf1_results_y <- map_dfr(cf1_processed, ~.x$market_summary, .id = "market_id") %>% 
-    mutate(scenario = "CF1")
+    mutate(scenario = "CF1 Stackelberg")
   
   cf1_results_yc <- map_dfr(cf1_processed, ~ .x$country_profits, .id = "market_id") %>% 
-    mutate(scenario = "CF1")
+    mutate(scenario = "CF1 Stackelberg")
   
   cf2_results_y <- map_dfr(cf2_processed, ~.x$market_summary, .id = "market_id") %>% 
-    mutate(scenario = "CF2")
+    mutate(scenario = "CF1 Cournot")
   
   cf2_results_yc <- map_dfr(cf2_processed, ~ .x$country_profits, .id = "market_id") %>% 
-    mutate(scenario = "CF2")
-  
-  cf3_results_y <- map_dfr(cf3_processed, ~.x$market_summary, .id = "market_id") %>% 
-    mutate(scenario = "CF3")
-  
-  cf3_results_yc <- map_dfr(cf3_processed, ~ .x$country_profits, .id = "market_id") %>% 
-    mutate(scenario = "CF3")
-  
-  cf4_results_y <- map_dfr(cf4_processed, ~.x$market_summary, .id = "market_id") %>% 
-    mutate(scenario = "CF4")
-  
-  cf4_results_yc <- map_dfr(cf4_processed, ~ .x$country_profits, .id = "market_id") %>% 
-    mutate(scenario = "CF4")
-  
+    mutate(scenario = "CF1 Cournot")
   
   # Combine all results
   all_results_y <- bind_rows(
+    cf0C_results_y,
     cf0_results_y,
     cf1_results_y,
-    cf2_results_y,
-    cf3_results_y,
-    cf4_results_y
+    cf2_results_y
   ) %>%
     arrange(date, scenario)
   
   all_results_yc <- bind_rows(
+    cf0C_results_yc,
     cf0_results_yc,
     cf1_results_yc,
-    cf2_results_yc,
-    cf3_results_yc,
-    cf4_results_yc
-  ) %>%
+    cf2_results_yc
+    ) %>%
     arrange(date, country, scenario)
   
   saveRDS(all_results_y, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/results_y.rds")

@@ -591,6 +591,9 @@ gdd_export_yc <- gdd_export %>%
   ) %>%
   ungroup()
 
+saveRDS(gdd_export_yc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/gdd_yc.rds")
+
+
 gdd_export_y <- gdd_export_yc %>%
   group_by(year) %>%
   summarise(
