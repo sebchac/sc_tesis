@@ -711,7 +711,7 @@ aux1 <- data %>%
   select(date, price_y) %>%
   mutate(date = as.Date(date)) %>%
   left_join(results_y %>% 
-              filter(scenario == "CF0") %>%
+              filter(scenario == "Stackelberg Base") %>%
               mutate(date = as.Date(date)), by = c("date")) %>%
   distinct(date, price, price_y) %>%
   rename(price_y_estimated = price) %>%
@@ -764,7 +764,7 @@ aux2 <- data %>%
   mutate(date = as.Date(date),
          year = year(date)) %>%
   left_join(results_y %>% 
-              filter(scenario == "CF0") %>%
+              filter(scenario == "Stackelberg Base") %>%
               mutate(date = as.Date(date),
                      year = year(date)) %>%
               group_by(year) %>%
@@ -1496,3 +1496,23 @@ ggsave(
   units = "cm",
   dpi = 600,
   bg = "white")
+
+#------
+
+#-----
+# [] Test T
+#-----
+aux_yc <- results_yc %>%
+  filter(scenario %in% c("Stackelberg Base", "Stackelberg CF2")) %>%
+  select(market_id, country, scenario, quantity) %>%
+  pivot_wider(
+    names_from = scenario,
+    values_from = quantity,
+    names_prefix = "quantity_"
+  ) %>%
+  mutate(
+    delta_quantity = `quantity_Stackelberg CF2` - `quantity_Stackelberg Base`
+  )
+
+t_test_delta <- t.test(aux_yc$delta_quantity, mu = 0)
+print(t_test_delta)
