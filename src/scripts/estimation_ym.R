@@ -417,7 +417,9 @@ saveRDS(data_yc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_c
       Q_followers_total = Q_followers_total, 
       mc_hat = followers$mc_yc_hat_s))
   }
+  
   # 3. Leader optimization function
+  
   leader_optim <- function(Q_leaders, data_market, coef_demand) {
     leaders <- data_market %>% filter(dummy_leader == 1)
     n_leaders <- nrow(leaders)
@@ -443,7 +445,9 @@ saveRDS(data_yc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_c
       q_total = Q_total,
       foc_leader = mr_leaders
     ))}
+  
   # 4. Find Stackelberg
+  
   find_stackelberg <- function(data_market, coef_demand, initial_guess = NULL) {
     # Filtrar líderes
     leaders <- data_market %>% filter(dummy_leader == 1)
@@ -491,7 +495,9 @@ saveRDS(data_yc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_c
     equilibrium_results$fnorm <- sqrt(sum(solution$fvec^2))
     equilibrium_results$message <- solution$message
     return(equilibrium_results)}
+  
   # 5. Market simulation function
+  
   simulate_market <- function(data_market, coef_demand) {
     # Verificar que hay líderes
     leaders <- data_market %>% filter(dummy_leader == 1)
@@ -556,9 +562,200 @@ saveRDS(data_yc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_c
       country_profits = profits)
     return(results)
   }
-
+  
 # ------------------------------------------------------------------------------
-# [5] Run Counterfactual Analysis
+# [5] Counterfactual Analysis (Cournot Model)
+# ------------------------------------------------------------------------------
+  # Define key functions for counterfactual analysis
+  # 1. Price from demand function (inverse demand)
+  price_from_demand <- function(Q_total, coef_demand, tea_price, import_gdp) {
+    price <- coef_demand["(Intercept)"] + 
+      (coef_demand["qe_ym"] / 12) * Q_total + 
+      coef_demand["importGDP_ym"] * import_gdp + 
+      coef_demand["teaPrices_ym"] * tea_price
+    return(price)
+  }
+  
+  # # 2. Best response function for a firm (Cournot)
+  # firm_best_response <- function(firm_index, Q_rivals, data_market, coef_demand) {
+  #   firm <- data_market[firm_index, ]
+  #   b <- -beta  # Slope of demand curve (to positive)
+  #   
+  #   # Price given rivals' quantities
+  #   price <- price_from_demand(
+  #     Q_rivals, 
+  #     coef_demand, 
+  #     data_market$teaPrices_y[1], 
+  #     data_market$importGDP_y[1]
+  #   )
+  #   
+  #   # Best response: solve FOC for firm i
+  #   # MR_i = P + b*q_i = MC_i
+  #   # P + b*q_i = MC_i
+  #   # q_i = (P - MC_i) / (-b)
+  #   q_best <- (price - firm$mc_yc_hat_s) / b
+  #   
+  #   return(q_best)
+  # }
+  
+  # 3. Firm optimization function (FOC calculation)
+  firm_foc <- function(Q_firms, data_market, coef_demand) {
+    n_firms <- nrow(data_market)
+    b <- -beta
+    
+    Q_total <- sum(Q_firms)
+    
+    # Market price
+    price <- price_from_demand(
+      Q_total, 
+      coef_demand, 
+      data_market$teaPrices_y[1], 
+      data_market$importGDP_y[1]
+    )
+    
+    # Calculate FOC for each firm: MR_i - MC_i = 0
+    # MR_i = P + b*q_i (since dP/dQ_i = b for all firms in Cournot)
+    foc <- price - b * Q_firms - data_market$mc_yc_hat_s
+    
+    return(data.frame(
+      q_firm = Q_firms,
+      id = data_market$id,
+      mc_hat = data_market$mc_yc_hat_s,
+      price = price,
+      q_total = Q_total,
+      foc = foc
+    ))
+  }
+  
+  # 4. Find Cournot equilibrium using simultaneous equations
+  find_cournot_simultaneous <- function(data_market, coef_demand, initial_guess) {
+    n_firms <- nrow(data_market)
+    
+    if (n_firms == 0) {
+      stop("No hay firmas en el mercado")
+    }
+    
+    # Objective function for solver: FOC = 0 for all firms
+    objective_function <- function(Q_firms_vec) {
+      result <- firm_foc(Q_firms_vec, data_market, coef_demand)
+      return(result$foc)  # We want FOC = 0 for all firms
+    }
+    
+    # Solve the system of equations FOC = 0
+    solution <- nleqslv::nleqslv(
+      x = initial_guess,
+      fn = objective_function,
+      control = list(
+        ftol = 1e-10,
+        xtol = 1e-10,
+        maxit = 1000,
+        trace = 1,
+        allowSingular = TRUE
+      )
+    )
+    
+    # Check convergence
+    if (solution$termcd != 1) {
+      warning(paste(
+        "El solver no convergió. Código de terminación:", solution$termcd,
+        "\nMensaje:", solution$message,
+        "\nNorma final:", solution$fvec
+      ))
+      return(NULL)
+    }
+    
+    # Get equilibrium results
+    equilibrium_quantities <- solution$x
+    names(equilibrium_quantities) <- data_market$id
+
+    # Calculate all variables at equilibrium
+    equilibrium_results <- firm_foc(equilibrium_quantities, data_market, coef_demand)
+    
+    # Add convergence information
+    equilibrium_results$convergence <- solution$termcd == 1
+    equilibrium_results$iterations <- solution$iter
+    equilibrium_results$fnorm <- sqrt(sum(solution$fvec^2))
+    equilibrium_results$message <- solution$message
+    
+    return(equilibrium_results)
+  }
+  
+  # 6. Market simulation function (Cournot)
+  simulate_market_cournot <- function(data_market, coef_demand, method = "simultaneous") {
+    n_firms <- nrow(data_market)
+    
+    if (n_firms == 0) {
+      return(NULL)
+    }
+    
+    # Initial guess using observed quantities
+    Q_initial <- data_market$qe_yc
+    
+    # Find Cournot equilibrium
+    if (method == "simultaneous") {
+      firms_opt <- find_cournot_simultaneous(data_market, coef_demand, Q_initial)
+    } else if (method == "iterative") {
+      firms_opt <- find_cournot_iterative(data_market, coef_demand, Q_initial)
+    } else {
+      stop("Method must be 'simultaneous' or 'iterative'")
+    }
+    
+    if (is.null(firms_opt)) {
+      warning("No se pudo encontrar equilibrio de Cournot")
+      return(NULL)
+    }
+    
+    Q_total <- sum(firms_opt$q_firm)
+    price <- unique(firms_opt$price)
+    
+    # Profit by country
+    profits <- data_market %>%
+      left_join(
+        firms_opt %>% select(id, opt_quantity = q_firm),
+        by = "id"
+      ) %>%
+      mutate(
+        price = price,
+        quantity = ifelse(is.na(opt_quantity), 0, opt_quantity),
+        revenue = (quantity * price * 60 * 2.20462) / 100,
+        profit = (quantity * (price - mc_yc_hat_s) * (60 * 2.20462)) / 100,
+        type = "cournot_firm"
+      ) %>%
+      select(date, country, id, type, quantity, revenue, profit, mc_yc_hat_s, price)
+    
+    # Total profit
+    total_profit <- sum(profits$profit)
+    
+    # Consumer surplus
+    price_intercept <- price_from_demand(
+      0, 
+      coef_demand, 
+      unique(data_market$teaPrices_y), 
+      unique(data_market$importGDP_y)
+    )
+    consumer_surplus <- ((0.5 * (price_intercept - price) * Q_total) * (60 * 2.20462)) / 100
+    
+    # Results
+    results <- list(
+      market_summary = tibble(
+        date = unique(data_market$date),
+        year = unique(data_market$year),
+        month_num = unique(data_market$month_num),
+        n_firms = n_firms,
+        Q_total = Q_total,
+        price = price,
+        total_profit = total_profit,
+        consumer_surplus = consumer_surplus,
+        total_surplus = total_profit + consumer_surplus,
+        method = method
+      ),
+      country_profits = profits
+    )
+    
+    return(results)
+  }
+# ------------------------------------------------------------------------------
+# [6] Run Counterfactual Analysis
 # ------------------------------------------------------------------------------
 
   # Prepare data for counterfactuals
@@ -578,11 +775,11 @@ saveRDS(data_yc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_c
     simulate_market(market, coeff_iv3)
   }) 
   
-  # Baseline Cournot
-  cf0C_processed <- map(market_list, function(market) {
-    market$mc_yc_hat_s <- market$mc_yc_hat_c
-    simulate_market(market, coeff_iv3)
-  }) 
+  # # Baseline Cournot
+  # cf0C_processed <- map(market_list, function(market) {
+  #   market$mc_yc_hat_s <- market$mc_yc_hat_c
+  #   simulate_market(market, coeff_iv3)
+  # }) 
 
   # Scenario 1 Stackelberg
   cf1_processed <- map(market_list, function(market) {
@@ -592,8 +789,8 @@ saveRDS(data_yc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_c
   
   # Scenario 1 Cournot
   cf2_processed <- map(market_list, function(market) {
-    market$mc_yc_hat_s <- market$mc_yc_hat_c_cf1
-    simulate_market(market, coeff_iv3)
+    market$mc_yc_hat_s <- market$mc_yc_hat_s_cf1
+    simulate_market_cournot(market, coeff_iv3, method = "simultaneous")
   })
   
   # Scenario 2 Stackelberg
@@ -602,10 +799,11 @@ saveRDS(data_yc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_c
     simulate_market(market, coeff_iv3)
   })
   
+  
   # Scenario 2 Cournot
   cf4_processed <- map(market_list, function(market) {
-    market$mc_yc_hat_s <- market$mc_yc_hat_c_cf2
-    simulate_market(market, coeff_iv3)
+    market$mc_yc_hat_s <- market$mc_yc_hat_s_cf2
+    simulate_market_cournot(market, coeff_iv3, method = "simultaneous")
   })
   
   cf0_results_y <- map_dfr(cf0_processed, ~.x$market_summary, .id = "market_id") %>% 
@@ -614,22 +812,16 @@ saveRDS(data_yc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_c
   cf0_results_yc <- map_dfr(cf0_processed, ~ .x$country_profits, .id = "market_id") %>% 
     mutate(scenario = "Stackelberg Base")
   
-  cf0C_results_y <- map_dfr(cf0C_processed, ~.x$market_summary, .id = "market_id") %>% 
-    mutate(scenario = "Cournot Base")
-  
-  cf0C_results_yc <- map_dfr(cf0C_processed, ~ .x$country_profits, .id = "market_id") %>% 
-    mutate(scenario = "Cournot Base")
-  
   cf1_results_y <- map_dfr(cf1_processed, ~.x$market_summary, .id = "market_id") %>% 
     mutate(scenario = "Stackelberg CF1")
   
   cf1_results_yc <- map_dfr(cf1_processed, ~ .x$country_profits, .id = "market_id") %>% 
     mutate(scenario = "Stackelberg CF1")
   
-  cf2_results_y <- map_dfr(cf2_processed, ~.x$market_summary, .id = "market_id") %>% 
+  cf2_results_y <- map_dfr(cf2_processed, ~.x$market_summary, .id = "market_id") %>%
     mutate(scenario = "Cournot CF1")
-  
-  cf2_results_yc <- map_dfr(cf2_processed, ~ .x$country_profits, .id = "market_id") %>% 
+
+  cf2_results_yc <- map_dfr(cf2_processed, ~ .x$country_profits, .id = "market_id") %>%
     mutate(scenario = "Cournot CF1")
   
   cf3_results_y <- map_dfr(cf3_processed, ~.x$market_summary, .id = "market_id") %>% 
@@ -638,38 +830,80 @@ saveRDS(data_yc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_c
   cf3_results_yc <- map_dfr(cf3_processed, ~ .x$country_profits, .id = "market_id") %>% 
     mutate(scenario = "Stackelberg CF2")
   
-  cf4_results_y <- map_dfr(cf4_processed, ~.x$market_summary, .id = "market_id") %>% 
+  cf4_results_y <- map_dfr(cf4_processed, ~.x$market_summary, .id = "market_id") %>%
     mutate(scenario = "Cournot CF2")
-  
-  cf4_results_yc <- map_dfr(cf4_processed, ~ .x$country_profits, .id = "market_id") %>% 
+
+  cf4_results_yc <- map_dfr(cf4_processed, ~ .x$country_profits, .id = "market_id") %>%
     mutate(scenario = "Cournot CF2")
   
   # Combine all results
-  all_results_y <- bind_rows(
-    cf0C_results_y,
-    cf0_results_y,
-    cf1_results_y,
+  aux_yc <- bind_rows(
+    cf2_results_yc,
+    cf4_results_yc,
+  ) %>%
+    mutate(
+      dummy_leader = case_when(
+        (country == "Brazil" | country == "Colombia" | country == "Viet Nam") ~ 1,
+        TRUE ~ 0
+      )
+    ) %>%
+    select(market_id, date, country, id, dummy_leader, type, quantity, revenue, profit, mc_yc_hat_s, price, scenario)
+  
+  aux_y <- aux_yc %>%
+    mutate(,
+           year = as.factor(year(date)),
+           month_num = as.double(month(date))) %>%
+    group_by(market_id, scenario) %>%
+    mutate(
+      Q_leaders_total = sum(quantity[dummy_leader == 1], na.rm = TRUE),
+      Q_followers_total = sum(quantity[dummy_leader == 0], na.rm = TRUE),
+      Q_total = sum(quantity, na.rm = TRUE),
+      price = first(price),
+      profit_leaders = sum(profit[dummy_leader == 1], na.rm = TRUE),
+      profit_followers = sum(profit[dummy_leader == 0], na.rm = TRUE),
+      consumer_surplus = sum(profit[dummy_leader == 1], na.rm = TRUE),
+      total_surplus = sum(profit[dummy_leader == 0], na.rm = TRUE),
+      scenario = first(scenario)
+    ) %>%
+    ungroup() %>%
+    select(market_id, date, year, month_num, Q_leaders_total,
+           Q_followers_total, Q_total, price, profit_leaders,
+           profit_followers, total_surplus, scenario) %>%
+    distinct(market_id, scenario, .keep_all = TRUE)
+  
+  aux_y2 <- bind_rows(
     cf2_results_y,
-    cf3_results_y,
     cf4_results_y
   ) %>%
-    arrange(date, scenario)
+    select(market_id, , scenario, consumer_surplus)
   
+  aux_y <- aux_y %>%
+    left_join(aux_y2, by = c("market_id", "scenario")) %>%
+    select(market_id, date, year, month_num, Q_leaders_total,
+           Q_followers_total, Q_total, price, profit_leaders,
+           profit_followers, consumer_surplus, total_surplus, scenario)
+
   all_results_yc <- bind_rows(
-    cf0C_results_yc,
     cf0_results_yc,
     cf1_results_yc,
-    cf2_results_yc,
     cf3_results_yc,
-    cf4_results_yc
+    aux_yc
     ) %>%
     arrange(date, country, scenario)
+  
+  all_results_y <- bind_rows(
+    cf0_results_y,
+    cf1_results_y,
+    cf3_results_y,
+    aux_y
+  ) %>%
+    arrange(date, scenario)
   
   saveRDS(all_results_y, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/results_y.rds")
   saveRDS(all_results_yc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/results_yc.rds")
 
 # ------------------------------------------------------------------------------
-# [6] Analyze and Visualize Results
+# [7] Analyze and Visualize Results
 # ------------------------------------------------------------------------------
 
   # Summary statistics by scenario
