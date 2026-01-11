@@ -428,14 +428,17 @@ tea <- tea %>%
 #-------------------------------------------------------------------------------
 # [1.9] GDD
 #-------------------------------------------------------------------------------
-gdd_files <- list.files("/Users/sebastianchacon/Desktop/ObsData/ProcessedData/GDD/",
-                        pattern = "\\.rds$", full.names = TRUE)
-
-gdd_monthly <- bind_rows(lapply(gdd_files, readRDS)) %>%
-  arrange(country, date)
+# gdd_files <- list.files("/Users/sebastianchacon/Desktop/ObsData/ProcessedData/GDD/",
+#                         pattern = "\\.rds$", full.names = TRUE)
+# 
+# gdd_monthly <- bind_rows(lapply(gdd_files, readRDS)) %>%
+#   arrange(country, date)
 
 # gdd_monthly <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/df_gdd_complete_1961_2020_v2.rds")
-#  
+ gdd_monthly <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/df_gdd_complete_1961_2020_v3.rds") # Diferencia tipo y promedio simple
+# gdd_monthly <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/df_gdd_complete_1961_2020_weighted.rds") # Diferencia tipo y promedio ponderado
+ 
+ 
 
 gdd_monthly <- gdd_monthly %>%
   mutate(country = case_when(
