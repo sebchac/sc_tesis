@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.2)  11 JAN 2026 12:20
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.2)  11 JAN 2026 22:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -660,27 +660,27 @@ Package pdftex.def Info: figures/exp_p6.png  used on input line 106.
 
 ] [23] [24]) (./seccion6.tex [25] [26
 
-] (./tables/estimacion_demanda.tex [27]) [28] (./tables/estimacion_costos.tex) [29]
-<figures/plot_0601.png, id=434, 341.3553pt x 199.10385pt>
+] (./tables/estimacion_demanda.tex [27]) (./tables/estimacion_demanda_test.tex) [28] (./tables/estimacion_costos.tex) [29]
+<figures/plot_0601.png, id=431, 341.3553pt x 199.10385pt>
 File: figures/plot_0601.png Graphic file (type png)
 <use figures/plot_0601.png>
-Package pdftex.def Info: figures/plot_0601.png  used on input line 75.
+Package pdftex.def Info: figures/plot_0601.png  used on input line 77.
 (pdftex.def)             Requested size: 307.2169pt x 179.19179pt.
-<figures/plot_0602.png, id=435, 255.95625pt x 199.10385pt>
+<figures/plot_0602.png, id=432, 255.95625pt x 199.10385pt>
 File: figures/plot_0602.png Graphic file (type png)
 <use figures/plot_0602.png>
-Package pdftex.def Info: figures/plot_0602.png  used on input line 82.
+Package pdftex.def Info: figures/plot_0602.png  used on input line 84.
 (pdftex.def)             Requested size: 230.35847pt x 179.19179pt.
- [30 <./figures/plot_0601.png> <./figures/plot_0602.png>] (./tables/t6_results.tex) (./tables/t6_surplus.tex) [31] (./tables/t6_profits_cf.tex))
-Overfull \hbox (5.85484pt too wide) in paragraph at lines 117--72
+ [30 <./figures/plot_0601.png>] [31 <./figures/plot_0602.png>] (./tables/t6_results.tex) (./tables/t6_surplus.tex))
+Overfull \hbox (5.85484pt too wide) in paragraph at lines 104--72
 []\OT1/cmr/m/n/12 [RESULTADOS EN-TRE EX-POR-TA-DO-RES E IM-POR-TA-DO-RES] [RE-SUL-TA-DOS DEN-
  []
 
-[32] (./seccion7.tex [33]) (build/main.bbl [34
+(./seccion7.tex [32]) (build/main.bbl [33
 
-] [35
+] [34
 
-] [36]) [37] (build/main.aux
+] [35]) [36] (build/main.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 )
@@ -693,17 +693,17 @@ Package rerunfilecheck Info: File `main.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  22136 strings out of 474116
- 378831 string characters out of 5743683
- 1950187 words of memory out of 5000000
- 44013 multiletter control sequences out of 15000+600000
+ 378964 string characters out of 5743683
+ 1951187 words of memory out of 5000000
+ 44016 multiletter control sequences out of 15000+600000
  568460 words of font info for 75 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  90i,16n,93p,1360b,654s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
-Output written on build/main.pdf (39 pages, 1728445 bytes).
+Output written on build/main.pdf (38 pages, 1724002 bytes).
 PDF statistics:
- 623 PDF objects out of 1000 (max. 8388607)
- 520 compressed objects within 6 object streams
- 140 named destinations out of 1000 (max. 500000)
+ 618 PDF objects out of 1000 (max. 8388607)
+ 516 compressed objects within 6 object streams
+ 137 named destinations out of 1000 (max. 500000)
  99 words of extra memory for PDF output out of 10000 (max. 10000000)
 

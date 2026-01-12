@@ -1075,21 +1075,23 @@ ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/plot4.png",
 # Por año-país
 
 aux <- results_yc %>%
-  filter(scenario == "CF0" | scenario == "CF3") %>%
+  filter(scenario == "Stackelberg Base" | scenario == "Stackelberg CF1") %>%
   mutate(
     date = as.Date(date),
     year = year(date),
     trend5y = floor((year - min(year)) / 5),
     scenario = case_when(
-      scenario == "CF0" ~ 0,
-      scenario == "CF3" ~ 1,
+      scenario == "Stackelberg Base" ~ 0,
+      scenario == "Stackelberg CF1" ~ 1,
       TRUE ~ NA
     )
   )
 
-feols(profit ~ scenario * dummy_leader | trend5y, data = aux, cluster = ~year)
-feols(quantity ~ scenario * dummy_leader | trend5y, data = aux, cluster = ~year)
-feols(mc_yc_hat_s ~ scenario * dummy_leader | trend5y, data = aux, cluster = ~year)
+m1 <- lm(profit ~ scenario * dummy_leader, data = aux)
+m2 <- lm(quantity ~ scenario * dummy_leader, data = aux)
+m3 <- lm(mc_yc_hat_s ~ scenario * dummy_leader, data = aux)
+
+summary(m3)
 
 
 #-------------------------------------------------------------------------------

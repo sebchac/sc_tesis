@@ -435,8 +435,8 @@ tea <- tea %>%
 #   arrange(country, date)
 
 # gdd_monthly <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/df_gdd_complete_1961_2020_v2.rds")
- gdd_monthly <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/df_gdd_complete_1961_2020_v3.rds") # Diferencia tipo y promedio simple
-# gdd_monthly <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/df_gdd_complete_1961_2020_weighted.rds") # Diferencia tipo y promedio ponderado
+# gdd_monthly <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/df_gdd_complete_1961_2020_v3.rds") # Diferencia tipo y promedio simple
+ gdd_monthly <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/df_gdd_complete_1961_2020_weighted.rds") # Diferencia tipo y promedio ponderado
  
  
 

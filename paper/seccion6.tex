@@ -22,7 +22,7 @@ Esta especificación sigue el enfoque de trabajos seminales en la estimación es
 
 Naturalmente, la identificación causal de la relación entre la cantidad demandada y el índice global de precios requiere abordar el problema de endogeneidad mediante la aproximación de variables instrumentales. Para estos efectos, se utilizan rezagos de temperaturas máximas y mínimas en las áreas de cultivo de los países exportadores. Por tratarse de una estimación mensual agregada, se sigue promedio ponderado por la participación de cada exportador.
 
-Se espera que, por la relación entre las variables señaladas con la oferta del grano del café, satisfagan con éxito las condiciones de exogeneidad y relevancia que exige el uso de variables instrumentales. Como se observa en la Tabla N°[X], los resultados de la pruebas diagnósticas confirman, en general, la validez de la estrategia de variables instrumentales. El test de instrumentos débiles es estadísticamente significativo, indicando una correlación relevante con la variable endógena. Sin embargo el estadístico F (8.094) sugiere que los instrumentos, aunque no débiles, tampoco son excepcionalmente fuertes. Por otro lado, la prueba de Sargan no rechaza la hipótesis nula, lo que proporciona evidencia sólida de que los instrumentos no están correlacionados con el término de error, validando la condición de exclusión. Además, el test de Wu-Hausman justifica formalmente el uso del método de variables instrumentales al confirmar la endogeneidad de la cantidad ofrecida.
+Se espera que, por la relación entre las variables señaladas con la oferta del grano del café, satisfagan con éxito las condiciones de exogeneidad y relevancia que exige el uso de variables instrumentales. Como se observa en la Tabla N°\ref{tab:diagnosticos_iv}, los resultados de la pruebas diagnósticas confirman, en general, la validez de la estrategia de variables instrumentales. El test de instrumentos débiles es estadísticamente significativo, indicando una correlación relevante con la variable endógena. Sin embargo el estadístico F (7.908) sugiere que los instrumentos, aunque no débiles, tampoco son excepcionalmente fuertes. Por otro lado, la prueba de Sargan no rechaza la hipótesis nula, lo que proporciona evidencia sólida de que los instrumentos no están correlacionados con el término de error, validando la condición de exclusión. Además, el test de Wu-Hausman justifica formalmente el uso del método de variables instrumentales al confirmar la endogeneidad de la cantidad ofrecida.
 
 La Tabla N°\ref{tab:estimacion_demanda} presenta los resultados de la estimación de demanda a nivel mensual, tomando información desde 1965 hasta 2019. Los modelos 1, 2 y 3 solo consideran variables de control, mientras que los modelos 4, 5 y 6 incluyen las variables instrumentales discutidas en esta sección.
 
@@ -33,6 +33,8 @@ En concreto, por cada aumento de un millón de bolsas de 60 kg de café, el prec
 El resto de variables presenta coeficientes con signos que están en línea con lo teóricamente esperado. Además, son altamente significativos, lo que refuerza la validez del modelo. En particular, el coeficiente positivo y significativo del PIB de los países importadores refleja que el café es un bien normal, cuya demanda incrementa con el ingreso de los países consumidores. Al mismo tiempo, el signo positivo del precio del té valida cierto grado de sustituibilidad.
 
 \input{tables/estimacion_demanda}
+
+\input{tables/estimacion_demanda_test}
 
 Una vez estimada la ecuación de demanda, recuperar el coeficiente $\hat{\alpha}^{d}_{1}$ permite estimar los costos marginales de cada país ($c_{i,t}$), siguiendo las ecuaciones \eqref{eq:c_seguidor} y \eqref{eq:c_lider}.
 
@@ -85,7 +87,9 @@ Las Figuras N°\ref{fig:plot06_01} y N°\ref{fig:plot06_02} muestran el ajuste d
 
 Ahora bien, uno de los principales objetivos de esta investigación es la estimación de escenarios contrafactuales en el mercado internacional del café. En particular, interesa analizar el cambio en la trayectoria de precios y cantidades comercializadas una vez que se reduce el estrés térmico, modificando las variables climáticas relevantes en tal sentido. Luego, a partir de estos resultados, es posible calcular el efecto en el bienestar social, así como diferencias entre grupos de exportadores. Esta última distinción permitiría explorar si acaso el estrés térmico amplifica las diferencias estructurales entre países líderes y seguidores.
 
-Las Tablas N°\ref{tab:t6_results} y N°\ref{tab:t6_surplus} presentan los resultados para diferentes escenarios contrafactuales. En este caso, el período relevante para el análisis abarca desde el año 1990 hasta el 2019, por cuanto se trata del período posterior a la cartelización del mercado y previo al choque relacionado a la pandemia COVID.  El escenario base corresponde a la estimación del modelo (Factual), mientras que el primer escenario contrafactual (Contrafactual 1) se obtiene luego de mantener, para cada país, el promedio de la exposición anual al calor extremo entre los años 1970 y 1989, de manera que el escenario contrafactual captura el cambio de tendencia posterior. Esta ddefinición es importante, pues no supone necesariamente un escenario 
+Las Tablas N°\ref{tab:t6_results} y N°\ref{tab:t6_surplus} presentan los resultados para diferentes escenarios contrafactuales. En este caso, el período relevante para el análisis abarca desde el año 1990 hasta el 2019, por cuanto se trata del período posterior a la cartelización del mercado y previo al choque relacionado a la pandemia COVID-19.  El escenario base corresponde a la estimación del modelo (Factual), mientras que el escenario simulado (Contrafactual) se obtiene luego de mantener, para cada país, el promedio de la exposición anual al calor extremo entre los años 1970 y 1989. De esta manera, la diferencia entre los escenarios Factual y Contrafactual captura el cambio de tendencia posterior a la década de los 80s.
+
+Una alternativa para la proyección del escenario Contrafactual es estimar la evolución de las variables climáticas desde un enfoque de series temporales, similar a los propuesto por [CITAR] y desarrollado por \cite{bilal2024macroeconomic}. Sin embargo, aquella aproximación no es trivial, puesto que, en lugar de proyectar la serie temporal de la temperatura promedio de cada país, el modelo propuesto debe contemplar la evolución de las temperaturas mínimas y máximas, ya que de ellas se construyen las variables de exposición a temperaturas extremas. Así, un trabajo posterior podría explotar la construcción del escenario Contrafactual mediante la estimación de las series de tiempo involucradas.
 
 La Tabla N°\ref{tab:t6_results} muestra que, en general, las reducciones en el estrés térmico tiene consecuencias importantes sobre el precio y las cantidades exportadas, aunque la magnitud de tal efecto pareciera no ser tan alta. Así, las reducciones van de un 1,2\% a un 4,9\% en el caso del precio y de un 0,2\% a un 0,8\% para las exportaciones, de manera que la exposición afectaría más al índice global del \textit{soft commodity} que a las decisiones de exportación de los agentes. Esto es muy importante, pues el mecanismo mediante el cual el estrés térmico afecta al mercado internacional del café no es evidente; los resultados sugieren que la volatilidad del precio y su susceptibilidad a choques climáticos es clave.
 
@@ -96,23 +100,6 @@ Con todo, se debe tener presenta que lo anterior solo refleja el impacto de redu
 \input{tables/t6_results.tex}
 
 \input{tables/t6_surplus.tex}
-
-Con el objetivo de identificar con mayor detalle si existen diferencias en el impacto del estrés térmico sobre los líderes y seguidores del sistema, se plantea la siguiente regresión sobre variables dicotómicas:
-
-\begin{equation}
-    \centering
-    x_{i,t} = \beta_{1} \text{Contrafactual} + \beta_{2} \text{Líderes}  + \beta_{3} \text{Contrafactual} \times \text{Líderes} + e_{i,t} 
-\end{equation}
-
-donde $\hat{x}_{i,t}$ es la variable de interés, que puede referirse a los costos ($\hat{c}_{i,t}$), exportaciones ($q_{i,t}$) o beneficios ($\pi_{i,t}$). Por otro lado, $\text{Contrafactual}$ y $\text{Líderes}$ son variables dicotómicas que toman el valor 1 si corresponde al escenario contrafactual o a líderes, respectivamente. El coeficiente de interés para este análisis es aquel asociado a la intersección de las variables explicativas anteriores, pues refleja si existe un efecto diferencial entre escenarios por el solo hecho de pertenecer a un determinado grupo exportador.
-
-Los resultados muestran que este efecto diferencial existe y es significativo estadísticamente, de manera que, para todas las variables analizadas, el estrés térmico sí afecta las diferencias estructurales ya presentes en el mercado. 
-
-Primero, en cuanto a los costos marginales del sistema, se puede observar que el escenario contrafactual efectivamente reduce los costos marginales de ambos grupos. El efecto es equivalente a [XXXX], sobre una variable que toma un valor promedio de [XXXX]. Luego, los costos serían, en promedio, mayores para los líderes del mercado [Revisar esto]. Por último, se observa un efecto diferencial negativo, es decir, el escenario contrafactual implica una mayor reducción del costo marginal para los grandes exportadores.
-
-Segundo, los resultados sobre las cantidades exportadas reafirman la idea de que el escenario contrafactual no implica mayores cambios. Por otro lado, en promedio, los países líderes exportan más que los seguidores del sistema. El efecto diferencial, aunque pequeño, existe y es significativo, y va en la dirección del contrafactual.
-
-\input{tables/t6_profits_cf.tex}
 
 [RESULTADOS ENTRE EXPORTADORES E IMPORTADORES]
 [RESULTADOS DENTRO DE CADA GRUPO]
