@@ -29,6 +29,12 @@ library(kableExtra)
 library(readr)
 library(readxl)
 
+library(tidyverse)
+library(scales)
+library(countrycode) 
+
+library(ggrepel)
+
 # Rutas
 fig_path <- "/Users/sebastianchacon/Desktop/sc_tesis/paper/figures/"
 tab_path <- "/Users/sebastianchacon/Desktop/sc_tesis/paper/tables/"
@@ -45,6 +51,8 @@ summary <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/summary.rds
 summary_c <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/summary_c.rds")
 
 psd_coffee <- read_csv("/Users/sebastianchacon/Desktop/sc_tesis/src/original_data/psd_coffee.csv")
+
+data_cf <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_cf_y.rds")
 
 #-------------------------------------------------------------------------------
 # [VF] Evolución de exposición al óptimo, al calor y al frío
@@ -1518,3 +1526,300 @@ aux_yc <- results_yc %>%
 
 t_test_delta <- t.test(aux_yc$delta_quantity, mu = 0)
 print(t_test_delta)
+
+
+#-------------------------------------------------------------------------------
+# [] Cambio en heatExp por país
+#-------------------------------------------------------------------------------
+
+aux <- data %>%
+  filter(dummy_yc == 1, net_export_dummy == 1, year %in% 1970:1989) %>%
+  select(country, year, heatExp_yc) %>%
+  group_by(country) %>%
+  summarise(
+    mean_heat = mean(heatExp_yc, na.rm = TRUE),
+    .groups = 'drop'
+  ) %>%
+  ungroup()
+
+aux1 <- data_cf %>%
+  select(country, year, heatExp_yc) %>%
+  arrange(country, year) %>%
+  left_join(aux, by = c("country")) %>%
+  mutate(
+    diff_heat_yc = heatExp_yc - mean_heat
+  )
+
+x <- aux %>% pull(country)
+
+datos_mapa <- aux1 %>%
+  filter(year %in% 1990:2018) %>%  # Últimos 5 años para suavizar
+  group_by(country) %>%
+  summarise(diff_heat = mean(diff_heat_yc, na.rm = TRUE)) %>%
+  ungroup() %>%
+  mutate(
+    country_clean = case_when(
+      # Países con nombres idénticos o muy similares
+      country %in% c("Angola", "Benin", "Bolivia", "Brazil", "Burundi", 
+                     "Cameroon", "Colombia", "Congo", "Costa Rica", "Cuba",
+                     "Dominican Republic", "Ecuador", "El Salvador", "Ethiopia",
+                     "Gabon", "Ghana", "Guatemala", "Guinea", "Guyana", "Haiti",
+                     "Honduras", "India", "Indonesia", "Jamaica", "Kenya",
+                     "Liberia", "Madagascar", "Malawi", "Mexico", "Nicaragua",
+                     "Nigeria", "Panama", "Papua New Guinea", "Paraguay", "Peru",
+                     "Rwanda", "Sierra Leone", "Sri Lanka", "Togo", 
+                     "Trinidad and Tobago", "Uganda", "Venezuela", "Yemen",
+                     "Zambia", "Zimbabwe") ~ country,
+      
+      # Países con nombres diferentes en y
+      country == "Vietnam" ~ "Viet Nam",
+      country == "Côte d'Ivoire" ~ "Côte d'Ivoire",  # Ya es igual
+      country == "Eq. Guinea" ~ "Equatorial Guinea",
+      country == "Central African Rep." ~ "Central African Republic",
+      country == "Laos" ~ "Laos",  # Ya es igual
+      country == "Tanzania" ~ "Tanzania",  # Ya es igual
+      country == "New Caledonia" ~ "New Caledonia",  # Ya es igual
+      
+      # Para cualquier otro país no en la lista, mantener NA o el original
+      TRUE ~ NA_character_
+    ),
+    iso_a3 = countrycode(
+      country,
+      origin = "country.name",
+      destination = "iso3c",
+      warn = FALSE
+    )
+  ) %>%
+  filter(!is.na(iso_a3))
+
+# 2. OBTENER MAPA DEL MUNDO
+world <- ne_countries(scale = "medium", returnclass = "sf") %>%
+  select(iso_a3, name, geometry)
+
+y <- world %>% pull(name)
+
+# 3. UNIR DATOS CON MAPA
+world_data <- world %>%
+  left_join(datos_mapa, by = "iso_a3")
+
+# 4. CREAR MAPA
+mapa <- ggplot() +
+  # Capa base: todos los países en gris claro
+  geom_sf(data = world, fill = "gray90", color = "gray70", size = 0.1) +
+  # Capa de datos: países con información
+  geom_sf(data = world_data %>% filter(!is.na(diff_heat)), 
+          aes(fill = diff_heat), color = "gray40", size = 0.2) +
+  # Escala de color
+  scale_fill_viridis(
+    name = "Días adicionales de estrés térmico",
+    option = "plasma",
+    direction = -1,
+    na.value = NA,
+    #breaks = c(0, 5, 10, 15, 20),
+    #labels = c("0", "5", "10", "15", "20"),
+    #limits = c(-5, 30),
+    guide = guide_colorbar(
+      title.position = "top",
+      barwidth = unit(4, "cm"),
+      barheight = unit(0.4, "cm")
+    )
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom",
+    legend.title = element_text(size = 10),
+    legend.text = element_text(size = 9),
+    axis.text = element_blank(),
+    panel.grid = element_blank(),
+    plot.margin = margin(5, 5, 5, 5)
+  )
+
+# 5. MOSTRAR Y GUARDAR
+print(mapa)
+
+
+# Guardar en alta resolución
+ggsave(paste0(fig_path, "mapa_estres_termico_cafe.png"), 
+       plot = mapa,
+       width = 10, 
+       height = 6, 
+       dpi = 300,
+       bg = "white")
+
+# 6. TABLA COMPLEMENTARIA: TOP 10 PAÍSES MÁS AFECTADOS
+top_10 <- datos_mapa %>%
+  arrange(desc(diff_heat)) %>%
+  head(20) %>%
+  select(País = country, 
+         `Días adicionales` = diff_heat) %>%
+  mutate(`Días adicionales` = round(`Días adicionales`, 1))
+
+cat("\nTOP 10 PAÍSES CON MAYOR AUMENTO DE ESTRÉS TÉRMICO:\n")
+print(top_10)
+
+# También puedes guardar esta tabla
+write_csv(top_10, "top10_estres_termico.csv")
+
+
+#-------------------------------------------------------------------------------
+# [] Cambios en summary_c
+#-------------------------------------------------------------------------------
+
+aux <- summary_c %>%
+  select(country, dummy_leader, `profit_Stackelberg Base`, `profit_Stackelberg CF1`, 
+         `quantity_Stackelberg Base`, `quantity_Stackelberg CF1`,
+         `mc_Stackelberg Base`, `mc_Stackelberg CF1`) %>%
+  mutate(
+    diff_profit = round(`profit_Stackelberg CF1` / `profit_Stackelberg Base` - 1, 2),
+    diff_quantity = round(`quantity_Stackelberg CF1` / `quantity_Stackelberg Base` - 1, 2),
+    diff_cost = round(`mc_Stackelberg CF1` / `mc_Stackelberg Base` - 1, 2),
+    
+    country = factor(country, levels = country),
+    
+    grupo_profit = case_when(
+      diff_profit > 0 ~ "Positivo",
+      diff_profit < 0 ~ "Negativo",
+      TRUE ~ "Neutro"
+    ),
+    grupo_quantity = case_when(
+      diff_quantity > 0 ~ "Positivo",
+      diff_quantity < 0 ~ "Negativo",
+      TRUE ~ "Neutro"
+    ),
+    grupo_cost = case_when(
+      diff_cost > 0 ~ "Positivo",
+      diff_cost < 0 ~ "Negativo",
+      TRUE ~ "Neutro"
+    )
+  )
+
+# Plot diferencias
+
+# Profit
+plot_profit <- ggplot(aux, aes(x = country, y = diff_profit)) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray50", linewidth = 0.3) +
+  geom_point(aes(shape = grupo_profit), size = 3, stroke = 1) +
+  # Líneas de conexión al cero (opcional, ayuda a la lectura)
+  geom_segment(aes(x = country, xend = country, y = 0, yend = diff_profit), 
+               color = "gray70", linewidth = 0.2, alpha = 0.5) +
+  scale_shape_manual(values = c("Negativo" = 1, "Positivo" = 16, "Neutro" = 4)) +
+  scale_y_continuous(breaks = scales::pretty_breaks(n = 8)) +
+  labs(
+    x = NULL,
+    y = NULL,
+    shape = NULL
+  ) +
+  theme_minimal() +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    # TEXTO VERTICAL (90 grados)
+    axis.text.x = element_text(size = 9, angle = 90, hjust = 1, vjust = 0.5),
+    axis.text.y = element_text(size = 9),
+    axis.title.x = element_text(size = 10, margin = margin(t = 15)),  # Más margen superior
+    axis.title.y = element_text(size = 10, margin = margin(r = 10)),
+    legend.position = "right",
+    legend.title = element_text(size = 9),
+    legend.text = element_text(size = 8),
+    plot.background = element_rect(fill = "white", color = NA),
+    # Ajustar márgenes para dar espacio al texto vertical
+    plot.margin = margin(10, 10, 20, 10)  # Más espacio abajo
+  )
+
+print(plot_profit)
+
+# Guardar en alta resolución
+ggsave(paste0(fig_path, "diff_profit.png"), 
+       plot = plot_profit,
+       width = 8, 
+       height = 6, 
+       dpi = 300,
+       bg = "white")
+
+# Quantity
+plot_quantity <- ggplot(aux, aes(x = country, y = diff_quantity)) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray50", linewidth = 0.3) +
+  geom_point(aes(shape = grupo_quantity), size = 3, stroke = 1) +
+  geom_segment(aes(x = country, xend = country, y = 0, yend = diff_quantity),
+               color = "gray70", linewidth = 0.2, alpha = 0.5) +
+  scale_shape_manual(values = c("Negativo" = 1, "Positivo" = 16, "Neutro" = 4)) +
+  scale_y_continuous(breaks = scales::pretty_breaks(n = 8)) +
+  labs(
+    x = NULL,
+    y = NULL,
+    shape = NULL
+  ) +
+  theme_minimal() +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    # TEXTO VERTICAL (90 grados)
+    axis.text.x = element_text(size = 9, angle = 90, hjust = 1, vjust = 0.5),
+    axis.text.y = element_text(size = 9),
+    axis.title.x = element_text(size = 10, margin = margin(t = 15)),  # Más margen superior
+    axis.title.y = element_text(size = 10, margin = margin(r = 10)),
+    legend.position = "right",
+    legend.title = element_text(size = 9),
+    legend.text = element_text(size = 8),
+    plot.background = element_rect(fill = "white", color = NA),
+    # Ajustar márgenes para dar espacio al texto vertical
+    plot.margin = margin(10, 10, 20, 10)  # Más espacio abajo
+  )
+
+print(plot_quantity)
+
+# Guardar en alta resolución
+ggsave(paste0(fig_path, "diff_quantity.png"), 
+       plot = plot_quantity,
+       width = 8, 
+       height = 6, 
+       dpi = 300,
+       bg = "white")
+
+# Costs
+plot_costs <- ggplot(aux, aes(x = country, y = diff_cost)) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray50", linewidth = 0.3) +
+  geom_point(aes(shape = grupo_cost), size = 3, stroke = 1) +
+  geom_segment(aes(x = country, xend = country, y = 0, yend = diff_cost),
+               color = "gray70", linewidth = 0.2, alpha = 0.5) +
+  scale_shape_manual(values = c("Negativo" = 1, "Positivo" = 16, "Neutro" = 4)) +
+  scale_y_continuous(breaks = scales::pretty_breaks(n = 8)) +
+  labs(
+    x = NULL,
+    y = NULL,
+    shape = NULL
+  ) +
+  theme_minimal() +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    # TEXTO VERTICAL (90 grados)
+    axis.text.x = element_text(size = 9, angle = 90, hjust = 1, vjust = 0.5),
+    axis.text.y = element_text(size = 9),
+    axis.title.x = element_text(size = 10, margin = margin(t = 15)),  # Más margen superior
+    axis.title.y = element_text(size = 10, margin = margin(r = 10)),
+    legend.position = "right",
+    legend.title = element_text(size = 9),
+    legend.text = element_text(size = 8),
+    plot.background = element_rect(fill = "white", color = NA),
+    # Ajustar márgenes para dar espacio al texto vertical
+    plot.margin = margin(10, 10, 20, 10)  # Más espacio abajo
+  )
+
+print(plot_costs)
+
+# Guardar en alta resolución
+ggsave(paste0(fig_path, "diff_cost.png"), 
+       plot = plot_costs,
+       width = 8, 
+       height = 6, 
+       dpi = 300,
+       bg = "white")
+
+
