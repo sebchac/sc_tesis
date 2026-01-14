@@ -73,6 +73,8 @@ Las Figuras N°\ref{fig:plot06_01} y N°\ref{fig:plot06_02} muestran el ajuste d
 
 Sin embargo, se identifican divergencias relevantes. En el caso del precio, es claro que la estimación tiende a suavizar algunas desviaciones, como los picos en la década de los 90s, o el máximo alcanzado entre los años 2010 y 2015. Por otro lado, sobrestima el alza previa al año 2010, al igual que los valores entre 2000 y 2005. En cuanto a las cantidades, si bien se captura la tendencia, el valor estimado es siempre superior al real, por una diferencia casi constante. Estas diferencias son posiblemente atribuibles a dos factores principales. Primero, la frecuencia anual de los datos puede omitir variaciones interanuales relevantes, además de simplificar el dinamismo de aquellos factores que pueden ser determinantes en el precio global. Segundo, se debe tener en cuenta una diferencia conceptual fundamental, y es que los datos observados reflejan el comportamiento real del mercado, con sus imperfecciones y rigideces, mientras que la estimación propuesta corresponde a un escenario teórico de competencia perfecta en Stackelberg, el cual puede no capturar plenamente la interacción estratégica de los agentes del mercado.
 
+Además, las divergencias entre los valores reales y estimados reflejan que el modelo sobrestima constantemente las cantidades, lo que es coherente con la presencia de rigideces a la baja en la oferta no capturadas por el modelo teórico, como la inmovilidad del factor tierra o los costos de salida.
+
 \begin{figure}[H]
     \centering
     \caption{Precio observado y estimado}
@@ -86,6 +88,7 @@ Sin embargo, se identifican divergencias relevantes. En el caso del precio, es c
         \includegraphics[scale = 0.9]{figures/plot_0602.png}
         \label{fig:plot06_02}
 \end{figure}
+
 
 Ahora bien, uno de los principales objetivos de esta investigación es la estimación de escenarios contrafactuales en el mercado internacional del café. En particular, interesa analizar el cambio en la trayectoria de precios y cantidades comercializadas una vez que se reduce el estrés térmico, modificando las variables climáticas relevantes en tal sentido. Luego, a partir de estos resultados, es posible calcular el efecto en el bienestar social, así como diferencias entre grupos de exportadores. Esta última distinción permitiría explorar si acaso el estrés térmico amplifica las diferencias estructurales entre países líderes y seguidores.
 
@@ -130,7 +133,7 @@ Además del cambio en los costos marginales, interesa analizar el impacto en las
 
 La Figura N°\ref{fig:diff_quantity} revela que la mayoría de los países habrían incrementando sus cantidades en el Contrafactual, con excepción de Costa de Marfil, Guyana, Nueva Caledonia, Sri Lanka y Viet Nam.
 
-El aumento de las cantidades, en todo caso, es modesto, y va desde un 1\% (Honduras) hasta un 10\% (Colombia). Es directo ver que estos países no son los que vieron un mayor cambio de eficiencia entre escenarios, lo que reafirma la relevancia de la interacción estratégica del modelo. Por su parte, Nueva Caledonia y Sri Lanka no ven un cambio de sus cantidades entre escenario, aún cuando el segundo disminuyó en un 1\% sus costos marginales en el Contrafactual.
+El aumento de las cantidades, en todo caso, es modesto, y va desde un 1\% (Honduras) hasta un 10\% (Colombia). Es directo ver que estos países no son los que vieron un mayor cambio de eficiencia entre escenarios, lo que reafirma la relevancia de la interacción estratégica del modelo. Por su parte, Nueva Caledonia y Sri Lanka no ven un cambio de sus cantidades entre escenarios, aún cuando el segundo disminuyó en un 1\% sus costos marginales en el Contrafactual.
 
 Lo más llamativo, sin duda, es el caso de Viet Nam. Mientras que Costa de Marfil --cuyo aumento de costos fue de un 28\%-- y Guyana ven una reducción del 1\% y 2\%, respectivamente, las cantidades de Viet Nam caen en un 21\% en el Contrafactual, a pesar de haber experimentado una ganancia de eficiencia del 3\%. Este resultado lo posiciona como el principal beneficiado por el estrés térmico en cuanto a cantidades comercializadas, y revela que la exposición al calor --y su cambio de tendencia-- genera ganadores y perdedores aún dentro de cada grupo.
 
@@ -145,13 +148,12 @@ La divergencia dentro del grupo de líderes revela que el cambio climático no e
         \label{fig:diff_quantity}
 \end{figure}
 
+Por último, la Figura N°\ref{fig:diff_profit} presenta el cambio en los beneficios de cada país. El excedente de cada país, al igual que las variables revisadas, depende de diferentes factores. En este caso, lo relevante a entender es de qué forma conjugan el precio, la producción y la eficiencia de cada agente, como consecuencia del choque de oferta. Naturalmente, las implicancias son diferentes en cada caso. En tal sentido, se observa una amplia heterogeneidad en los resultados.
+Al igual que con las cantidades analizadas, se observa un aumento en el beneficio de Brasil y Colombia, contrastando fuertemente con la disminución de Viet Nam. La diferencia es tal que explica la pérdida del grupo dominante del mercado, presentada en la Tabla N°\ref{tab:t6_surplus}. Entre los seguidores, es destacable el caso de Cuba, el que ve más que triplicado su excedente. Lo opuesto ocurre con Csta de Marfil, que experimenta una reducción cercana al 60\%.
+
 \begin{figure}[H]
     \centering
     \caption{Cambio en el beneficio por país}
         \includegraphics[scale = 0.85]{figures/diff_profit.png}
         \label{fig:diff_profit}
 \end{figure}
-
-[RESULTADOS ENTRE EXPORTADORES E IMPORTADORES]
-[RESULTADOS DENTRO DE CADA GRUPO]
-[RESULTADOS POR LATITUD Y LONGITUD. MAPA MUNDIAL CON RESULTADOS]

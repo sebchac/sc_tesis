@@ -1383,6 +1383,210 @@ aux_lc <- aux %>%
   slice_head(n = 2) %>%
   ungroup()
 
+# Composición de la producción de cada país y por grupo
+
+aux1 <- aux %>%
+  group_by(country, year) %>%
+  summarise(
+    total_value = sum(value, na.rm = TRUE),
+    .groups = 'drop'
+  ) %>%
+  ungroup()
+
+aux2 <- aux %>% # Arabica proportion by country
+  filter(operation == "Arabica Production") %>%
+  group_by(country, year) %>%
+  summarise(
+    arabica_value = sum(value, na.rm = TRUE),
+    .groups = 'drop'
+  ) %>%
+  ungroup() %>%
+  left_join(aux1, by = c("country", "year")) %>%
+  arrange(country, year) %>%
+  mutate(
+    arabica_prop = round(arabica_value / total_value, 2)
+  )
+
+aux3 <- aux2 %>% # Arabica proportion by group
+  mutate(
+    dummy_leader = case_when(
+      (country == "Brazil" | country == "Colombia" | country == "Viet Nam") ~ 1,
+      TRUE ~ 0
+    )
+  ) %>%
+  group_by(year, dummy_leader) %>%
+  summarise(
+    arabica_value = sum(arabica_value, na.rm = TRUE),
+    total_value = sum(total_value, na.rm = TRUE),
+    .groups = 'drop'
+  ) %>%
+  ungroup() %>%
+  mutate(
+    arabica_prop = round(arabica_value / total_value, 2)
+  )
+
+plot_arab_total <- aux3 %>% # Evolución de la composición por grupo
+  filter(year %in% 1990:2020) %>%
+  group_by(year) %>%
+  summarise(arabica_value = sum(arabica_value, na.rm = TRUE),
+            total_value = sum(total_value, na.rm = TRUE),
+            arabica_prop = round(arabica_value / total_value, 2),
+            .groups = 'drop') %>%
+  ggplot(aes(x = year, y = arabica_prop)) +
+  geom_line(linewidth = 0.8) +
+  geom_point(size = 0.8) +
+  labs(
+    x = NULL,
+    y = NULL,
+  ) +
+  scale_y_continuous(labels = scales::percent, limits = c(0.5, 1)) +
+  theme_minimal() +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    axis.line = element_line(color = "black"),
+    axis.ticks = element_line(color = "black"),
+    legend.position = "bottom",
+    legend.title = element_blank()
+  )
+
+ggsave(paste0(fig_path, "arab_total.png"), 
+       plot = plot_arab_total,
+       width = 7, 
+       height = 5,
+       units = "cm",
+       dpi = 300,
+       bg = "white")
+
+
+plot_arab_grupos <- aux3 %>% # Evolución de la composición por grupo
+  filter(year %in% 1990:2020) %>%
+  group_by(year, dummy_leader) %>%
+  summarise(arabica_prop_mean = mean(arabica_prop, na.rm = TRUE)) %>%
+  mutate(grupo = ifelse(dummy_leader == 1, "Líderes", "Seguidores")) %>%
+  ggplot(aes(x = year, y = arabica_prop_mean, color = grupo, linetype = grupo)) +
+  geom_line(linewidth = 0.8) +
+  geom_point(size = 0.8) +
+  labs(
+    x = NULL,
+    y = NULL,
+  ) +
+  scale_color_manual(values = c("Líderes" = "black", "Seguidores" = "gray70")) +
+  scale_y_continuous(labels = scales::percent, limits = c(0, 1)) +
+  theme_minimal() +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    axis.line = element_line(color = "black"),
+    axis.ticks = element_line(color = "black"),
+    legend.position = "bottom",
+    legend.title = element_blank()
+  )
+
+ggsave(paste0(fig_path, "arab_grupos.png"), 
+       plot = plot_arab_grupos,
+       width = 7, 
+       height = 5,
+       units = "cm",
+       dpi = 300,
+       bg = "white")
+
+plot_arab_vietnam <- aux2 %>% # Evolución de la composición para Viet Nam
+  filter(country == "Viet Nam", year %in% 1990:2020) %>%
+  mutate(robusta_prop = 1 - arabica_prop) %>%
+  ggplot(aes(x = year, y = arabica_prop)) +
+  geom_line(linewidth = 0.8, color = "black") +
+  geom_point(size = 0.8, color = "black") +
+  scale_y_continuous(labels = scales::percent, limits = c(0, 1)) +
+  theme_minimal() +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    axis.line = element_line(color = "black"),
+    axis.ticks = element_line(color = "black"),
+    plot.title = element_text(hjust = 0.5)
+  ) +
+  labs(
+    x = NULL,
+    y = NULL
+  )
+
+ggsave(paste0(fig_path, "arab_vietnam.png"), 
+       plot = plot_arab_vietnam,
+       width = 7, 
+       height = 5, 
+       units = "cm",
+       dpi = 300,
+       bg = "white")
+
+plot_arab_col <- aux2 %>% # Evolución de la composición para Colombia
+  filter(country == "Colombia", year %in% 1990:2020) %>%
+  mutate(robusta_prop = 1 - arabica_prop) %>%
+  ggplot(aes(x = year, y = arabica_prop)) +
+  geom_line(linewidth = 0.8, color = "black") +
+  geom_point(size = 0.8, color = "black") +
+  scale_y_continuous(labels = scales::percent, limits = c(0, 1)) +
+  theme_minimal() +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    axis.line = element_line(color = "black"),
+    axis.ticks = element_line(color = "black"),
+    plot.title = element_text(hjust = 0.5)
+  ) +
+  labs(
+    x = NULL,
+    y = NULL
+  )
+
+ggsave(paste0(fig_path, "arab_col.png"), 
+       plot = plot_arab_col,
+       width = 7, 
+       height = 5, 
+       units = "cm",
+       dpi = 300,
+       bg = "white")
+
+plot_arab_br <- aux2 %>% # Evolución de la composición para Brazil
+  filter(country == "Brazil", year %in% 1990:2020) %>%
+  mutate(robusta_prop = 1 - arabica_prop) %>%
+  ggplot(aes(x = year, y = arabica_prop)) +
+  geom_line(linewidth = 0.8, color = "black") +
+  geom_point(size = 0.8, color = "black") +
+  scale_y_continuous(labels = scales::percent, limits = c(0, 1)) +
+  theme_minimal() +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    axis.line = element_line(color = "black"),
+    axis.ticks = element_line(color = "black"),
+    plot.title = element_text(hjust = 0.5)
+  ) +
+  labs(
+    x = NULL,
+    y = NULL
+  )
+
+ggsave(paste0(fig_path, "arab_br.png"), 
+       plot = plot_arab_br,
+       width = 7, 
+       height = 5, 
+       units = "cm",
+       dpi = 300,
+       bg = "white")
+
+  
+
 #-------------------------------------------------------------------------------
 # [VF] Modelo triangular de temperatura
 #-------------------------------------------------------------------------------
@@ -1510,7 +1714,7 @@ ggsave(
 #------
 
 #-----
-# [] Test T
+# [VF] Test T
 #-----
 aux_yc <- results_yc %>%
   filter(scenario %in% c("Stackelberg Base", "Stackelberg CF2")) %>%
@@ -1529,7 +1733,7 @@ print(t_test_delta)
 
 
 #-------------------------------------------------------------------------------
-# [] Cambio en heatExp por país
+# [VF] Cambio en heatExp por país
 #-------------------------------------------------------------------------------
 
 aux <- data %>%
@@ -1662,7 +1866,7 @@ write_csv(top_10, "top10_estres_termico.csv")
 
 
 #-------------------------------------------------------------------------------
-# [] Cambios en summary_c
+# [VF] Cambios en summary_c
 #-------------------------------------------------------------------------------
 
 aux <- summary_c %>%
@@ -1823,3 +2027,8 @@ ggsave(paste0(fig_path, "diff_cost.png"),
        bg = "white")
 
 
+
+
+#-------------------------------------------------------------------------------
+#
+#-------------------------------------------------------------------------------
