@@ -719,7 +719,8 @@ aux1 <- data %>%
   select(date, price_y) %>%
   mutate(date = as.Date(date)) %>%
   left_join(results_y %>% 
-              filter(scenario == "Stackelberg Base") %>%
+              #filter(scenario == "CF0") %>%
+              filter(scenario == "CF0") %>%
               mutate(date = as.Date(date)), by = c("date")) %>%
   distinct(date, price, price_y) %>%
   rename(price_y_estimated = price) %>%
@@ -772,7 +773,8 @@ aux2 <- data %>%
   mutate(date = as.Date(date),
          year = year(date)) %>%
   left_join(results_y %>% 
-              filter(scenario == "Stackelberg Base") %>%
+              #filter(scenario == "CF0") %>%
+              filter(scenario == "CF0") %>%
               mutate(date = as.Date(date),
                      year = year(date)) %>%
               group_by(year) %>%
@@ -823,20 +825,12 @@ ggsave(paste0(fig_path, "plot_0602.png"),
 # [] Precios mensuales estimados (contrafactual)
 #-------------------------------------------------------------------------------
 
-aux <- results_y %>%
-  mutate(
-    scenario = if_else(
-      scenario == "CF0", "CF1"
-    ),
-    date = as.Date(date)
-  )
-
-ggplot(aux, aes(x = date, y = price, color = scenario, group = scenario)) +
+ggplot(results_y, aes(x = date, y = price, color = scenario, group = scenario)) +
   geom_line(
     linewidth = 0.8,
     alpha = 0.8) +
   scale_color_manual(
-    values = c("Base" = blue, "Contrafactual" = red) 
+    values = c("Base" = "blue", "Contrafactual" = "red") 
   ) +
   scale_x_date(
     date_breaks = "5 years",
@@ -1083,14 +1077,14 @@ ggsave("/Users/sebastianchacon/Desktop/sc_tesis/bld/figures/plot4.png",
 # Por año-país
 
 aux <- results_yc %>%
-  filter(scenario == "Stackelberg Base" | scenario == "Stackelberg CF1") %>%
+  filter(scenario == "CF0" | scenario == "CF1") %>%
   mutate(
     date = as.Date(date),
     year = year(date),
     trend5y = floor((year - min(year)) / 5),
     scenario = case_when(
-      scenario == "Stackelberg Base" ~ 0,
-      scenario == "Stackelberg CF1" ~ 1,
+      scenario == "CF0" ~ 0,
+      scenario == "CF1" ~ 1,
       TRUE ~ NA
     )
   )
@@ -1717,7 +1711,7 @@ ggsave(
 # [VF] Test T
 #-----
 aux_yc <- results_yc %>%
-  filter(scenario %in% c("Stackelberg Base", "Stackelberg CF2")) %>%
+  filter(scenario %in% c("CF0", "Stackelberg CF2")) %>%
   select(market_id, country, scenario, quantity) %>%
   pivot_wider(
     names_from = scenario,
@@ -1725,7 +1719,7 @@ aux_yc <- results_yc %>%
     names_prefix = "quantity_"
   ) %>%
   mutate(
-    delta_quantity = `quantity_Stackelberg CF2` - `quantity_Stackelberg Base`
+    delta_quantity = `quantity_Stackelberg CF2` - `quantity_CF0`
   )
 
 t_test_delta <- t.test(aux_yc$delta_quantity, mu = 0)
@@ -1870,13 +1864,13 @@ write_csv(top_10, "top10_estres_termico.csv")
 #-------------------------------------------------------------------------------
 
 aux <- summary_c %>%
-  select(country, dummy_leader, `profit_Stackelberg Base`, `profit_Stackelberg CF1`, 
-         `quantity_Stackelberg Base`, `quantity_Stackelberg CF1`,
-         `mc_Stackelberg Base`, `mc_Stackelberg CF1`) %>%
+  select(country, dummy_leader, `profit_CF0`, `profit_CF1`, 
+         `quantity_CF0`, `quantity_CF1`,
+         `mc_CF0`, `mc_CF1`) %>%
   mutate(
-    diff_profit = round(`profit_Stackelberg CF1` / `profit_Stackelberg Base` - 1, 2),
-    diff_quantity = round(`quantity_Stackelberg CF1` / `quantity_Stackelberg Base` - 1, 2),
-    diff_cost = round(`mc_Stackelberg CF1` / `mc_Stackelberg Base` - 1, 2),
+    diff_profit = round(`profit_CF1` / `profit_CF0` - 1, 2),
+    diff_quantity = round(`quantity_CF1` / `quantity_CF0` - 1, 2),
+    diff_cost = round(`mc_CF1` / `mc_CF0` - 1, 2),
     
     country = factor(country, levels = country),
     
@@ -1907,7 +1901,8 @@ plot_profit <- ggplot(aux, aes(x = country, y = diff_profit)) +
   geom_segment(aes(x = country, xend = country, y = 0, yend = diff_profit), 
                color = "gray70", linewidth = 0.2, alpha = 0.5) +
   scale_shape_manual(values = c("Negativo" = 1, "Positivo" = 16, "Neutro" = 4)) +
-  scale_y_continuous(breaks = scales::pretty_breaks(n = 8)) +
+  scale_y_continuous(labels = scales::percent) +
+  #scale_y_continuous(breaks = scales::pretty_breaks(n = 8)) +
   labs(
     x = NULL,
     y = NULL,
@@ -1949,7 +1944,8 @@ plot_quantity <- ggplot(aux, aes(x = country, y = diff_quantity)) +
   geom_segment(aes(x = country, xend = country, y = 0, yend = diff_quantity),
                color = "gray70", linewidth = 0.2, alpha = 0.5) +
   scale_shape_manual(values = c("Negativo" = 1, "Positivo" = 16, "Neutro" = 4)) +
-  scale_y_continuous(breaks = scales::pretty_breaks(n = 8)) +
+  scale_y_continuous(labels = scales::percent, limits = c(-0.6,0.4)) +
+  #scale_y_continuous(breaks = scales::pretty_breaks(n = 8)) +
   labs(
     x = NULL,
     y = NULL,
@@ -1991,7 +1987,8 @@ plot_costs <- ggplot(aux, aes(x = country, y = diff_cost)) +
   geom_segment(aes(x = country, xend = country, y = 0, yend = diff_cost),
                color = "gray70", linewidth = 0.2, alpha = 0.5) +
   scale_shape_manual(values = c("Negativo" = 1, "Positivo" = 16, "Neutro" = 4)) +
-  scale_y_continuous(breaks = scales::pretty_breaks(n = 8)) +
+  scale_y_continuous(labels = scales::percent, limits = c(-0.5,0.5)) +
+  #scale_y_continuous(breaks = scales::pretty_breaks(n = 8)) +
   labs(
     x = NULL,
     y = NULL,
@@ -2030,5 +2027,70 @@ ggsave(paste0(fig_path, "diff_cost.png"),
 
 
 #-------------------------------------------------------------------------------
-#
+# [VF] Cambios en market share
 #-------------------------------------------------------------------------------
+
+aux_cf0 <- results_yc %>%
+  filter(scenario == "CF0") %>%
+  mutate(
+    qe = sum(quantity, na.rm = TRUE)
+  ) %>%
+  group_by(country) %>%
+  mutate(
+    qe_c = sum(quantity, na.rm = TRUE)
+    ) %>%
+  ungroup() %>%
+  distinct(country, .keep_all = TRUE) %>%
+  group_by(country) %>%
+  summarise(
+    share_c_cf0 = round(qe_c / qe, 4),
+    .groups = 'drop'
+  ) %>%
+  ungroup()
+
+aux_cf1 <- results_yc %>%
+  filter(scenario == "CF1") %>%
+  mutate(
+    qe = sum(quantity, na.rm = TRUE)
+  ) %>%
+  group_by(country) %>%
+  mutate(
+    qe_c = sum(quantity, na.rm = TRUE)
+  ) %>%
+  ungroup() %>%
+  distinct(country, .keep_all = TRUE) %>%
+  group_by(country) %>%
+  summarise(
+    share_c_cf1 = round(qe_c / qe, 4),
+    .groups = 'drop'
+  ) %>%
+  ungroup()
+
+aux <- aux_cf0 %>% left_join(aux_cf1, by = "country") %>%
+  mutate(
+    diff = round(share_c_cf1 - share_c_cf0, 4)
+  )
+
+
+
+# aux1 <- data %>%
+#   filter(dummy_yc == 1, net_export_dummy == 1) %>%
+#   mutate(
+#     qe = sum(qe_yc, na.rm = TRUE)
+#   ) %>%
+#   group_by(country) %>%
+#   mutate(
+#     qe_c = sum(qe_yc, na.rm = TRUE)
+#   ) %>%
+#   ungroup() %>%
+#   distinct(country, .keep_all = TRUE) %>%
+#   group_by(country) %>%
+#   summarise(
+#     share_c_cf0 = round(qe_c / qe, 2),
+#     .groups = 'drop'
+#   ) %>%
+#   ungroup()
+  
+  
+
+

@@ -46,6 +46,9 @@ demand_data <- data %>%
          tas_ye, tas_ye_mean, tas_yi_mean, tmin_ye, tmin_ye_mean, tmin_yi_mean, tmax_ye, 
          tmax_ye_mean, tmax_yi_mean, oni_value, fert_y,
          pr_ye, pr_ye_mean, pr_yi_mean,
+         optExp_y_mean, optExp_y,
+         heatExp_y_mean, heatExp_y,
+         frostExp_y_mean, frostExp_y,
          gdd_y, hdd_y, fdd_y, gdd_y_mean, hdd_y_mean, fdd_y_mean,
          gdd_brazil_y, gdd_colombia_y, gdd_vietnam_y, gdd_leaders_y, gdd_followers_y,
          hdd_brazil_y, hdd_colombia_y, hdd_vietnam_y, hdd_leaders_y, hdd_followers_y,
@@ -56,8 +59,6 @@ demand_data <- data %>%
          trend5y = floor((year - min(year)) / 5),
          trend3y = floor((year - min(year)) / 3)) %>%
   drop_na()
-
-cor(demand_data %>% select(qe_y, tas_ye, pr_ye, gdd_y, hdd_y, fdd_y))
 
 # [1.2.] Demand estimation models
 # [1.2.1.] OLS
@@ -114,7 +115,8 @@ demand_data$edemand_iv2 <- (1/coeff_iv2["qe_y"])*(demand_data$price_y/demand_dat
 mean_elast_iv2 <- mean(demand_data$edemand_iv2, na.rm = TRUE)
 
 iv3 <- ivreg(price_y ~ qe_y  + importGDP_y + teaPrices_y |
-               tas_ye + gdd_y +
+               #tas_ye + gdd_y +
+               tmax_ye + tmin_ye + frostExp_y + heatExp_y +
                importGDP_y + teaPrices_y,
              data = demand_data)
 summary(iv3)
@@ -146,15 +148,45 @@ aux <- demand_data %>%
   select(year, q_demand_fitted_iv3, edemand_iv3, trend, trend5y, trend3y) %>%
   mutate(year = as.double(year))
 
-data_yc_0 <- left_join(data %>% select(-trend) %>% mutate(year = as.double(year)), aux, by = c("year"))
+data_yc_0 <- left_join(data %>% select(-trend) %>% select(-ndgain_yc) %>% mutate(year = as.double(year)), aux, by = c("year"))
 
 data_yc <- data_yc_0 %>%
-  filter(dummy_yc == 1, net_export_dummy == 1, year >= 1990) %>%
+  filter(dummy_yc == 1, net_export_dummy == 1, year %in% 1990:2020) %>%
   mutate(
     # Cournot
     mr_yc = price_y + beta * qe_yc,
     # Stackelberg
     mr_yc3 = (price_y + beta * qe_yc * (1 / (1 + n_follower_y))) * dummy_leader + (price_y + beta * qe_yc) * dummy_follower)
+
+data_yc <- data_yc %>%
+  group_by(country, year) %>%
+  mutate(mr_yc = ifelse(mr_yc < 0, 
+                        quantile(data_yc$mr_yc[data_yc$mr_yc >= 0], 0.25, na.rm = TRUE), 
+                        mr_yc),
+         mr_yc3 = ifelse(mr_yc3 < 0, 
+                         quantile(data_yc$mr_yc3[data_yc$mr_yc3 >= 0], 0.25, na.rm = TRUE), 
+                         mr_yc3)) %>%
+  ungroup() %>%
+  mutate(
+    ln_mr_yc = log(mr_yc + 1), 
+    ln_mr_yc3 = log(mr_yc3 + 1)
+  )
+
+data_yc <- data_yc %>%
+  arrange(country, year) %>%
+  group_by(country) %>%
+  mutate(
+    heat_lag1_yc = dplyr::lag(heatExp_yc, 1)
+  ) %>%
+  ungroup()
+
+aux1 <- data_yc %>%
+  group_by(country) %>%
+  summarise(
+    n_mr = sum(!is.na(mr_yc3)),
+    .groups = 'drop'
+  ) %>%
+  ungroup()
 
 # ------------------------------------------------------------------------------
 # [3] Marginal cost estimation
@@ -162,40 +194,26 @@ data_yc <- data_yc_0 %>%
 
 data_yc <- data_yc %>%
   filter(!is.na(mr_yc3),
+         !is.na(mr_yc),
          !is.na(fert_y),
-         !is.na(gdd_yc),
          !is.na(importGDP_y),
          !is.na(country),
-         !is.na(year))
+         !is.na(year),
+         !is.na(heatExp_yc),
+         !is.na(heat_lag1_yc))
 
 data_yc <- pdata.frame(
   data_yc,
   index = c("country", "year")
 )
 
-# Correlation
-cor_vars_yc <- data_yc %>%
-  select(tas_yce, pr_yce, gdd_yc, hdd_yc, fdd_yc) %>%
-  na.omit()
-
-cor(cor_vars_yc)
-
-cor_vars_y <- data_yc %>%
-  filter(dummy_y == 1) %>%
-  select(tas_ye_mean, pr_ye_mean, gdd_y_mean, hdd_y_mean, fdd_y_mean) %>%
-  na.omit()
-
-cor(cor_vars_y)
-
 # [3.1.] Only one stage and Stackelberg
 mc_fe <- feols(
   mr_yc3 ~
     trend5y +
     fert_y +
-    lag(hdd_y_mean) +
-    lag(fdd_y_mean) #+
-  #lag(hdd_yc) +
-  #lag(fdd_yc)
+    heatExp_yc +
+    heat_lag1_yc 
   | country,
   data = data_yc,
   cluster = ~country
@@ -208,11 +226,10 @@ data_leader <- data_yc %>% filter(dummy_leader == 1)
 
 mc_fe_l <- feols(
   mr_yc3 ~
-    #farm_prices_yc +
     trend5y + 
     fert_y +
-    lag(hdd_y_mean) +
-    lag(fdd_y_mean) | country,
+    heatExp_yc +
+    heat_lag1_yc | country,
   data = data_leader,
   cluster = ~country
 )
@@ -224,11 +241,10 @@ data_follower <- data_yc %>% filter(dummy_leader == 0)
 
 mc_fe_f <- feols(
   mr_yc3 ~
-    #farm_prices_yc +
     trend5y + 
     fert_y +
-    lag(hdd_y_mean) +
-    lag(fdd_y_mean) | country,
+    heatExp_yc +
+    heat_lag1_yc | country,
   data = data_follower,
   cluster = ~country
 )
@@ -238,89 +254,35 @@ summary(mc_fe_f)
 # [3.2.] Only one stage and Cournot
 mc_fe_cournot <- feols(
   mr_yc ~
+    trend5y +
     fert_y +
-    lag(hdd_y_mean) +
-    lag(fdd_y_mean) | country,
+    heatExp_yc +
+    heat_lag1_yc | country,
   data = data_yc,
   cluster = ~country
 )
 
 summary(mc_fe_cournot)
 
-# [3.2.] Two stages
+# Contrafactual
 
-# mc_iv <- feols(
-#   mr_ymc3 ~ fert_y | 
-#     farm_prices_ymc ~ hdd_ymc,
-#   fixef = c("country", "year"),
-#   data = data_ymc
-# )
-# 
-# summary(mc_iv, diagnostics = TRUE)
-# 
-# mc_iv_1s <- feols(
-#   farm_prices_ymc ~
-#     hdd_ymc | year + country,
-#   data = data_ymc,
-#   cluster = ~country
-# )
-# 
-# #
-# mc_reg <- lm(
-#   mr_ymc3 ~
-#     farm_prices_ymc,
-#   data = data_ymc,
-#   cluster = ~country
-# )
-# summary(mc_reg)
-# #
-# summary(mc_iv_1s, diagnostics = TRUE)
-
-#  data_ymc$farm_prices_ymc_hat <- predict(mc_iv_1s)
-# 
-#  data_ymc$farm_prices_ymc_cf1 <- predict(
-#    mc_iv_1s,
-#    newdata = data_ymc %>%
-#      select(
-#        year, country, date, fert_ym, hdd_ymc
-#      ) %>%
-#      mutate(
-# #       hdd_ymc = 0.5 * hdd_ymc
-#        hdd_ymc = 0 * hdd_ymc
-#      )
-#  )
-#  
-#  mc_iv_2s <- feols(
-#    mr_ymc3 ~ farm_prices_ymc + fert_y | country + year,
-#    data = data_ymc
-#  )
-
-# data_ymc$mc_ymc_hat <- predict(mc_iv_2s)
-# 
-# data_ymc$mc_ymc_cf1 <- predict(
-#   mc_iv_2s,
-#   newdata = data_ymc %>%
-#     select(
-#       year, country, date, fert_ym, farm_prices_ymc_cf1, farm_prices_ymc_hat
-#     ) %>%
-#     mutate(
-#       farm_prices_ymc = farm_prices_ymc_cf1
-#     )
-# )
-
-#modelsummary(model_mc_1,
-#    title = "Estimación de Costos Marginales",
-#    output = "latex",
-#    coef_rename = c(
-#      "farm_prices_ymc" = "Precio a productor", 
-#      "fert_ym" = "Precio fertilizantes",
-#"frosts" = "Eventos de helada",
-#      "hdd_ymc" = "Grados-día calor (HDD)",
-#      "fdd_ymc" = "Grados-día frío (FDD)"
-#      ),
-#    stars = TRUE,
-#    notes = c("Errores estándar clusterizados por país.",
-#              "Efectos fijos de año y país incluidos."))
+# Proyecto el promedio anual entre 1970 y 1989
+data_cf <- data_yc %>%
+  left_join(
+    data %>%
+      filter(dummy_yc == 1, net_export_dummy == 1, year %in% 1970:1989) %>%
+      group_by(country) %>%
+      summarise(mean_heat = mean(heatExp_yc, na.rm = TRUE)),
+    by = "country"
+  ) %>%
+  rename(heatExp_yc_cf = mean_heat) %>%
+  # select(country, year, heatExp_yc, heatExp_yc_cf) %>%
+  arrange(country, year) %>%
+  group_by(country) %>%
+  mutate(
+    heat_lag1_yc_cf = dplyr::lag(heatExp_yc_cf, 1),
+    year = as.factor(year)
+  )
 
 # Store coefficients FE
 coeff_mc_s <- coef(mc_fe)
@@ -332,31 +294,24 @@ coeff_mc_c <- coef(mc_fe_cournot)
 # Predict FE Cournot
 data_yc$mc_yc_hat_c <- predict(mc_fe_cournot)
 
-# Predict CF1
+# Predict CF1 # Stackelberg average 1990:2020
 data_yc$mc_yc_hat_s_cf1 <- predict(
   mc_fe, 
-  newdata = data_yc %>% mutate(
-    hdd_y_mean = 0.9 * hdd_y_mean,
-    fdd_y_mean = 0.9 * fdd_y_mean
+  newdata = data_cf %>% mutate(
+    heatExp_yc = heatExp_yc_cf,
+    heat_lag1_yc = heat_lag1_yc_cf
   ))
-# Predict CF2
-data_yc$mc_yc_hat_s_cf2 <- predict(
-  mc_fe, 
-  newdata = data_yc %>% mutate(
-    hdd_y_mean = 0.5 * hdd_y_mean,
-    fdd_y_mean = 0.5 * fdd_y_mean
-  ))
-# Predict CF3
-data_yc$mc_yc_hat_s_cf3 <- predict(
-  mc_fe, 
-  newdata = data_yc %>% mutate(
-    hdd_y_mean = 0,
-    fdd_y_mean = 0
+# Predict CF2 # Cournot average 1990:2020
+data_yc$mc_yc_hat_c_cf1 <- predict(
+  mc_fe_cournot, 
+  newdata = data_cf %>% mutate(
+    heatExp_yc = heatExp_yc_cf,
+    heat_lag1_yc = heat_lag1_yc_cf
   ))
 
 # Elimina NAs generados por lag
 data_yc <- data_yc %>%
-  filter(!is.na(mc_yc_hat_s_cf1) & !is.na(mc_yc_hat_s_cf2) & !is.na(mc_yc_hat_s_cf3))
+  filter(!is.na(mc_yc_hat_s_cf1) & !is.na(mc_yc_hat_c_cf1))
 
 
 # # Store coefficients IV 
@@ -504,22 +459,22 @@ simulate_market <- function(data_market, coef_demand) {
     mutate(
       price = price,
       quantity = ifelse(is.na(opt_quantity), 0, opt_quantity),
-      revenue = (quantity * price * 60 * 2.20462) / 100, # Ajuste por unidad de medida (MM USD)
-      profit = (quantity * (price - mc_yc_hat_s) * (60 * 2.20462)) / 100, # Ajuste por unidad de medida (MM USD)
+      revenue = (quantity * price * 60 * 2.20462) / 1000, # Ajuste por unidad de medida (MM USD)
+      profit = (quantity * (price - mc_yc_hat_s) * (60 * 2.20462)) / 1000, # Ajuste por unidad de medida (MM USD)
       type = case_when(
         dummy_leader == 1 ~ "leader",
         dummy_follower == 1 ~ "follower", 
         TRUE ~ "other")) %>%
     select(date, country, id, dummy_leader, type, quantity, revenue, profit, mc_yc_hat_s, price)
   # Beneficio TOTAL de líderes (suma individual)
-  profit_leaders <- (sum(leaders_opt$q_leader * (price - leaders_opt$mc_hat)) * (60 * 2.20462)) / 100 # Ajuste por unidad de medida
-  profit_followers <- (sum(followers_opt$q_follower * (price - followers_opt$mc_hat)) * (60 * 2.20462)) / 100 # Ajuste por unidad de medida
+  profit_leaders <- (sum(leaders_opt$q_leader * (price - leaders_opt$mc_hat)) * (60 * 2.20462)) / 1000 # Ajuste por unidad de medida
+  profit_followers <- (sum(followers_opt$q_follower * (price - followers_opt$mc_hat)) * (60 * 2.20462)) / 1000 # Ajuste por unidad de medida
   # Consumer surplus
   price_intercept <- price_from_demand(
     0, coef_demand, 
     unique(data_market$teaPrices_y), 
     unique(data_market$importGDP_y))
-  consumer_surplus <- ((0.5 * (price_intercept - price) * Q_total) * (60 * 2.20462)) / 100 # Ajuste por unidad de medida
+  consumer_surplus <- ((0.5 * (price_intercept - price) * Q_total) * (60 * 2.20462)) / 1000 # Ajuste por unidad de medida
   # Results
   results <- list(
     market_summary = tibble(
@@ -535,6 +490,192 @@ simulate_market <- function(data_market, coef_demand) {
       consumer_surplus = consumer_surplus,
       total_surplus = profit_leaders + profit_followers + consumer_surplus),
     country_profits = profits)
+  return(results)
+}
+
+# ------------------------------------------------------------------------------
+# [5] Counterfactual Analysis (Cournot Model)
+# ------------------------------------------------------------------------------
+# Define key functions for counterfactual analysis
+# 1. Price from demand function (inverse demand)
+
+
+# # 2. Best response function for a firm (Cournot)
+# firm_best_response <- function(firm_index, Q_rivals, data_market, coef_demand) {
+#   firm <- data_market[firm_index, ]
+#   b <- -beta  # Slope of demand curve (to positive)
+#   
+#   # Price given rivals' quantities
+#   price <- price_from_demand(
+#     Q_rivals, 
+#     coef_demand, 
+#     data_market$teaPrices_y[1], 
+#     data_market$importGDP_y[1]
+#   )
+#   
+#   # Best response: solve FOC for firm i
+#   # MR_i = P + b*q_i = MC_i
+#   # P + b*q_i = MC_i
+#   # q_i = (P - MC_i) / (-b)
+#   q_best <- (price - firm$mc_yc_hat_s) / b
+#   
+#   return(q_best)
+# }
+
+# 3. Firm optimization function (FOC calculation)
+firm_foc <- function(Q_firms, data_market, coef_demand) {
+  n_firms <- nrow(data_market)
+  b <- -beta
+  
+  Q_total <- sum(Q_firms)
+  
+  # Market price
+  price <- price_from_demand(
+    Q_total, 
+    coef_demand, 
+    data_market$teaPrices_y[1], 
+    data_market$importGDP_y[1]
+  )
+  
+  # Calculate FOC for each firm: MR_i - MC_i = 0
+  # MR_i = P + b*q_i (since dP/dQ_i = b for all firms in Cournot)
+  foc <- price - b * Q_firms - data_market$mc_yc_hat_s
+  
+  return(data.frame(
+    q_firm = Q_firms,
+    id = data_market$id,
+    mc_hat = data_market$mc_yc_hat_s,
+    price = price,
+    q_total = Q_total,
+    foc = foc
+  ))
+}
+
+# 4. Find Cournot equilibrium using simultaneous equations
+find_cournot_simultaneous <- function(data_market, coef_demand, initial_guess) {
+  n_firms <- nrow(data_market)
+  
+  if (n_firms == 0) {
+    stop("No hay firmas en el mercado")
+  }
+  
+  # Objective function for solver: FOC = 0 for all firms
+  objective_function <- function(Q_firms_vec) {
+    result <- firm_foc(Q_firms_vec, data_market, coef_demand)
+    return(result$foc)  # We want FOC = 0 for all firms
+  }
+  
+  # Solve the system of equations FOC = 0
+  solution <- nleqslv::nleqslv(
+    x = initial_guess,
+    fn = objective_function,
+    control = list(
+      ftol = 1e-10,
+      xtol = 1e-10,
+      maxit = 1000,
+      trace = 1,
+      allowSingular = TRUE
+    )
+  )
+  
+  # Check convergence
+  if (solution$termcd != 1) {
+    warning(paste(
+      "El solver no convergió. Código de terminación:", solution$termcd,
+      "\nMensaje:", solution$message,
+      "\nNorma final:", solution$fvec
+    ))
+    return(NULL)
+  }
+  
+  # Get equilibrium results
+  equilibrium_quantities <- solution$x
+  names(equilibrium_quantities) <- data_market$id
+  
+  # Calculate all variables at equilibrium
+  equilibrium_results <- firm_foc(equilibrium_quantities, data_market, coef_demand)
+  
+  # Add convergence information
+  equilibrium_results$convergence <- solution$termcd == 1
+  equilibrium_results$iterations <- solution$iter
+  equilibrium_results$fnorm <- sqrt(sum(solution$fvec^2))
+  equilibrium_results$message <- solution$message
+  
+  return(equilibrium_results)
+}
+
+# 6. Market simulation function (Cournot)
+simulate_market_cournot <- function(data_market, coef_demand, method = "simultaneous") {
+  n_firms <- nrow(data_market)
+  
+  if (n_firms == 0) {
+    return(NULL)
+  }
+  
+  # Initial guess using observed quantities
+  Q_initial <- data_market$qe_yc
+  
+  # Find Cournot equilibrium
+  if (method == "simultaneous") {
+    firms_opt <- find_cournot_simultaneous(data_market, coef_demand, Q_initial)
+  } else if (method == "iterative") {
+    firms_opt <- find_cournot_iterative(data_market, coef_demand, Q_initial)
+  } else {
+    stop("Method must be 'simultaneous' or 'iterative'")
+  }
+  
+  if (is.null(firms_opt)) {
+    warning("No se pudo encontrar equilibrio de Cournot")
+    return(NULL)
+  }
+  
+  Q_total <- sum(firms_opt$q_firm)
+  price <- unique(firms_opt$price)
+  
+  # Profit by country
+  profits <- data_market %>%
+    left_join(
+      firms_opt %>% select(id, opt_quantity = q_firm),
+      by = "id"
+    ) %>%
+    mutate(
+      price = price,
+      quantity = ifelse(is.na(opt_quantity), 0, opt_quantity),
+      revenue = (quantity * price * 60 * 2.20462) / 1000,
+      profit = (quantity * (price - mc_yc_hat_s) * (60 * 2.20462)) / 1000,
+      type = "cournot_firm"
+    ) %>%
+    select(date, country, id, type, quantity, revenue, profit, mc_yc_hat_s, price)
+  
+  # Total profit
+  total_profit <- sum(profits$profit)
+  
+  # Consumer surplus
+  price_intercept <- price_from_demand(
+    0, 
+    coef_demand, 
+    unique(data_market$teaPrices_y), 
+    unique(data_market$importGDP_y)
+  )
+  consumer_surplus <- ((0.5 * (price_intercept - price) * Q_total) * (60 * 2.20462)) / 1000
+  
+  # Results
+  results <- list(
+    market_summary = tibble(
+      date = unique(data_market$date),
+      year = unique(data_market$year),
+      month_num = unique(data_market$month_num),
+      n_firms = n_firms,
+      Q_total = Q_total,
+      price = price,
+      total_profit = total_profit,
+      consumer_surplus = consumer_surplus,
+      total_surplus = total_profit + consumer_surplus,
+      method = method
+    ),
+    country_profits = profits
+  )
+  
   return(results)
 }
 
@@ -555,30 +696,21 @@ market_list <- data_yc %>%
 
 # Baseline
 cf0_processed <- map(market_list, function(market) {
-  market$mc_yc_hat_s <- predict(
-    mc_fe, 
-    newdata = market,
-    fixef = FALSE)
+  market$mc_yc_hat_s <- market$mc_yc_hat_s
   simulate_market(market, coeff_iv3)
 }) 
 
-# Scenario 1: 10% reduction
+# Scenario 1: 
 cf1_processed <- map(market_list, function(market) {
   market$mc_yc_hat_s <- market$mc_yc_hat_s_cf1 
   simulate_market(market, coeff_iv3)
 })
 
-# Scenario 2: 50% reduction
+# Scenario 2:
 cf2_processed <- map(market_list, function(market) {
-  market$mc_yc_hat_s <- market$mc_yc_hat_s_cf2
-  simulate_market(market, coeff_iv3)
+  market$mc_yc_hat_s <- market$mc_yc_hat_s_cf1
+  simulate_market_cournot(market, coeff_iv3)
 })
-
-# Scenario 3: full reduction
-cf3_processed <- map(market_list, function(market) {
-  market$mc_yc_hat_s <- market$mc_yc_hat_s_cf3
-  simulate_market(market, coeff_iv3)
-}) 
 
 
 cf0_results_y <- map_dfr(cf0_processed, ~.x$market_summary, .id = "market_id") %>% 
@@ -598,12 +730,6 @@ cf2_results_y <- map_dfr(cf2_processed, ~.x$market_summary, .id = "market_id") %
 
 cf2_results_yc <- map_dfr(cf2_processed, ~ .x$country_profits, .id = "market_id") %>% 
   mutate(scenario = "CF2")
-
-cf3_results_y <- map_dfr(cf3_processed, ~.x$market_summary, .id = "market_id") %>% 
-  mutate(scenario = "CF3")
-
-cf3_results_yc <- map_dfr(cf3_processed, ~ .x$country_profits, .id = "market_id") %>% 
-  mutate(scenario = "CF3")
 
 # # Scenario 2
 # cf2_results <- map_dfr(market_list, function(market) {
@@ -635,19 +761,50 @@ cf3_results_yc <- map_dfr(cf3_processed, ~ .x$country_profits, .id = "market_id"
 #   mutate(scenario = "CF3")
 
 # Combine all results
+
+aux_yc <- bind_rows(
+  cf2_results_yc
+) %>%
+  mutate(
+    dummy_leader = case_when(
+      (country == "Brazil" | country == "Colombia" | country == "Viet Nam") ~ 1,
+      TRUE ~ 0
+    )
+  ) %>%
+  select(market_id, date, country, id, dummy_leader, type, quantity, revenue, profit, mc_yc_hat_s, price, scenario)
+
+aux_y <- aux_yc %>%
+  mutate(,
+         year = as.factor(year(date)),
+         month_num = as.double(month(date))) %>%
+  group_by(market_id, scenario) %>%
+  mutate(
+    Q_leaders_total = sum(quantity[dummy_leader == 1], na.rm = TRUE),
+    Q_followers_total = sum(quantity[dummy_leader == 0], na.rm = TRUE),
+    Q_total = sum(quantity, na.rm = TRUE),
+    price = first(price),
+    profit_leaders = sum(profit[dummy_leader == 1], na.rm = TRUE),
+    profit_followers = sum(profit[dummy_leader == 0], na.rm = TRUE),
+    scenario = first(scenario)
+  ) %>%
+  ungroup() %>%
+  distinct(market_id, scenario, .keep_all = TRUE) %>%
+  left_join(cf2_results_y %>% select(market_id, consumer_surplus, total_surplus), by = "market_id") %>%
+  select(market_id, date, year, month_num, Q_leaders_total,
+         Q_followers_total, Q_total, price, profit_leaders,
+         profit_followers, consumer_surplus, total_surplus, scenario) 
+
 all_results_y <- bind_rows(
   cf0_results_y,
   cf1_results_y,
-  cf2_results_y,
-  cf3_results_y
+  aux_y
 ) %>%
   arrange(date, scenario)
 
 all_results_yc <- bind_rows(
   cf0_results_yc,
   cf1_results_yc,
-  cf2_results_yc,
-  cf3_results_yc
+  aux_yc
 ) %>%
   arrange(date, country, scenario)
 
@@ -663,11 +820,11 @@ summary <- all_results_y %>%
   group_by(scenario) %>%
   summarise(
     avg_price = mean(price, na.rm = TRUE),
-    quantity = sum(Q_total, na.rm = TRUE),
-    profit_leader = sum(profit_leaders, na.rm = TRUE),
-    profit_followers = sum(profit_followers, na.rm = TRUE),
-    consumer_surplus = sum(consumer_surplus, na.rm = TRUE),
-    total_surplus = sum(total_surplus, na.rm = TRUE),
+    quantity = mean(Q_total, na.rm = TRUE),
+    profit_leader = mean(profit_leaders, na.rm = TRUE),
+    profit_followers = mean(profit_followers, na.rm = TRUE),
+    consumer_surplus = mean(consumer_surplus, na.rm = TRUE),
+    total_surplus = mean(total_surplus, na.rm = TRUE),
     .groups = "drop"
   )
 

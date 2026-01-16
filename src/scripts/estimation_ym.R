@@ -394,7 +394,7 @@ saveRDS(data_yc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_c
   # 1. Price from demand function (inverse demand)
   price_from_demand <- function(Q_total, coef_demand, tea_price, import_gdp) {
     price <- coef_demand["(Intercept)"] + 
-      (coef_demand["qe_ym"] / 12) * Q_total + 
+      beta * Q_total + 
       coef_demand["importGDP_ym"] * import_gdp + 
       coef_demand["teaPrices_ym"] * tea_price
     return(price)
