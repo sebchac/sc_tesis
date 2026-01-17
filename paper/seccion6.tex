@@ -65,15 +65,13 @@ Por otra parte, el uso de efectos fijos por país y errores estándar agrupados 
 
 \input{tables/estimacion_costos}
 
-\section*{6.3. Ajuste del modelo y escenarios contrafactuales}
+\section*{6.3. Ajuste del modelo}
 
 A partir de los resultados obtenidos hasta ahora, es posible identificar la sensibilidad de la demanda ante los choques de precios y computar los costos marginales del sistema. Junto con la interacción estratégica de los agentes, es directo estimar el escenario factual, y revisar así el ajuste del modelo a los datos observados.
 
-Las Figuras N°\ref{fig:plot06_01} y N°\ref{fig:plot06_02} muestran el ajuste de la estimación para el precio y las cantidades observadas. La estimación del modelo Stackelberg persenta un ajuste razonable a los datos observados, evidenciado por la trayectoria generalmente coincidente entre precios y cantidades estimadas y reales. 
+Las Figuras N°\ref{fig:plot06_01} y N°\ref{fig:plot06_02} muestran el ajuste de la estimación para el precio y las cantidades observadas, respectivamente. La estimación del modelo Stackelberg presenta un ajuste razonable a los datos observados. 
 
-Sin embargo, se identifican divergencias relevantes. En el caso del precio, es claro que la estimación tiende a suavizar algunas desviaciones, como los picos en la década de los 90s, o el máximo alcanzado entre los años 2010 y 2015. Por otro lado, sobrestima el alza previa al año 2010, al igual que los valores entre 2000 y 2005. En cuanto a las cantidades, si bien se captura la tendencia, el valor estimado es siempre superior al real, por una diferencia casi constante. Estas diferencias son posiblemente atribuibles a dos factores principales. Primero, la frecuencia anual de los datos puede omitir variaciones interanuales relevantes, además de simplificar el dinamismo de aquellos factores que pueden ser determinantes en el precio global. Segundo, se debe tener en cuenta una diferencia conceptual fundamental, y es que los datos observados reflejan el comportamiento real del mercado, con sus imperfecciones y rigideces, mientras que la estimación propuesta corresponde a un escenario teórico de competencia perfecta en Stackelberg, el cual puede no capturar plenamente la interacción estratégica de los agentes del mercado.
-
-Además, las divergencias entre los valores reales y estimados reflejan que el modelo sobrestima constantemente las cantidades, lo que es coherente con la presencia de rigideces a la baja en la oferta no capturadas por el modelo teórico, como la inmovilidad del factor tierra o los costos de salida.
+Sin embargo, es importante remarcar las divergencias. En el caso del precio, es claro que la estimación tiende a suavizar algunas desviaciones, como los picos en la década de los 90s, o el máximo alcanzado en el año 2012. Por otro lado, sobrestima el alza previa al año 2010, al igual que los valores entre 2000 y 2005. El ajuste es mucho mejor en las cantidades, con buena coincidencia en la tendencia y en las magnitudes.
 
 \begin{figure}[H]
     \centering
@@ -90,70 +88,3 @@ Además, las divergencias entre los valores reales y estimados reflejan que el m
 \end{figure}
 
 
-Ahora bien, uno de los principales objetivos de esta investigación es la estimación de escenarios contrafactuales en el mercado internacional del café. En particular, interesa analizar el cambio en la trayectoria de precios y cantidades comercializadas una vez que se reduce el estrés térmico, modificando las variables climáticas relevantes en tal sentido. Luego, a partir de estos resultados, es posible calcular el efecto en el bienestar social, así como diferencias entre grupos de exportadores. Esta última distinción permitiría explorar si acaso el estrés térmico amplifica las diferencias estructurales entre países líderes y seguidores.
-
-Las Tablas N°\ref{tab:t6_results} y N°\ref{tab:t6_surplus} presentan los resultados para diferentes escenarios contrafactuales. En este caso, el período relevante para el análisis abarca desde el año 1990 hasta el 2019, por cuanto se trata del período posterior a la cartelización del mercado y previo al choque relacionado a la pandemia COVID-19.  El escenario base corresponde a la estimación del modelo (Factual), mientras que el escenario simulado (Contrafactual) se obtiene luego de mantener, para cada país, el promedio de la exposición anual al calor extremo entre los años 1970 y 1989. De esta manera, la diferencia entre los escenarios Factual y Contrafactual captura el cambio de tendencia posterior a la década de los 80s.
-
-Una alternativa para la proyección del escenario Contrafactual es estimar la evolución de las variables climáticas desde un enfoque de series temporales, similar a los propuesto por [CITAR] y desarrollado por \cite{bilal2024macroeconomic}. Sin embargo, aquella aproximación no es trivial, puesto que, en lugar de proyectar la serie temporal de la temperatura promedio de cada país, se debe estudiar la evolución de las temperaturas mínimas y máximas --en estrcito rigor, la distribución diaria de la temperaturas--, ya que de ellas se construyen las variables de exposición a temperaturas extremas. Así, un trabajo posterior podría explotar la construcción del escenario Contrafactual mediante la estimación de las series de tiempo involucradas.
-
-Para efectos de este análisis, la comparación con el promedio previo a 1990 es suficiente para analizar el impacto del estrés térmico a partir de este año. Además, esta definición nos permite estudiar desde ya la diferencia para cada país. La Figura N°\ref{fig:plot_stress} muestra que existe heterogeneidad en la diferencia promedio entre la exposición al calor extrema entre las épocas comparadas. En principio, es esperable que esta heterogeneidad tenga implicancias sobre los costos marginales y la estructura del modelo en el período analizado.
-
-\begin{figure}[H]
-    \centering
-    \caption{Cambio en la exposición al calor extremo (1990-2019 vs. 1970-1989)}
-        \includegraphics[scale = 0.65]{figures/mapa_estres_termico_cafe.png}
-        \label{fig:plot_stress}
-\end{figure}
-
-La Tabla N°\ref{tab:t6_results} muestra que el cambio de tendencia en el estrés térmico tuvo consecuencias sobre el precio, y que no implicó mayores cambios en las cantidades totales comercializadas. De esta manera, el cambio de escenario afectaría más al índice de precios global del \textit{soft commodity} que a las decisiones de exportación de los agentes. Esto es muy importante, pues reafirma el resultado obtenido en la estimación de demanda: la inelasticidad sugiere que un choque de oferta se traduce en un cambio de precios más que en un cambio en las cantidades.
-
-\input{tables/t6_results.tex}
-
-Enseguida, la Tabla N°\ref{tab:t6_surplus} presenta los resultados en términos de bienestar para los diferentes grupos de interés en el sistema. Debido a que el aumento del precio en el Contrafactual es mayor, en proporción, al aumento en cantidades, se espera que el excedente aumente para aquellos productores que vean una reducción en sus costos marginales. Aquello es justamente lo que se observa en los resultados. Pero el impacto entre grupos de exportadores no es trivial; se puede ver que, en el Contrafactual, los líderes del mercado tienen menos excedente (-0,9\%), mientras que los seguidores ven un incremento del 2,4\%. Dicho de otro modo, el cambio en la tendencia de la exposición al calor extremo desde el año 1990 habría beneficiado a los líderes y perjudicado a los seguidores. Esto confirma que el estrés térmico agudiza la diferencia estructural entre líderes y seguidores.
-
-En cuanto a los importadores, estos también ven un incremento en su excedente como resultado del Contrafactual, aunque es menor al incremento de los exportadores. En suma, estos elementos contribuyen a que el excedente total se vea incrementado al eliminar el cambio de tendencia en la exposición de calor desde 1990.
-\input{tables/t6_surplus.tex}
-
-Siguiendo con el análisis, es importante señalar que también se esperan diferencias en el impacto dentro de cada grupo. En particular, dado que se tiene información de las exportaciones de cada país productor, es posible observar la situación de cada país. Este nivel de granularidad es muy importante para revisar la dirección y la magnitud del impacto del estrés térmico.
-
-La Figura N°\ref{fig:diff_cost} muestra el cambio anual promedio en los costos marginales, entre los períodos Factual y Contrafactual, y es muy decidor de la heterogeneidad del efecto. Si bien la mayoría de los países aumenta su eficiencia en el Contrafactual, aquello no ocurre de la misma forma para todos. Se observa, por ejemplo, que las ganancias de eficiencia son nulas para países como Angola, Bolivia, Etiopía, Nueva Caledonia, Panamá y Trinidad y Tobago. Lo anterior se debe a que estos países no vieron un cambio sustantivo en la tendencia de la exposición al calor extremo después de 1990. 
-
-Por otro lado, las ganancias de eficiencia van desde un 1\% (Sierra Leona) hasta un 37\% (Cuba), siendo este último un caso aislado. Sobre el impacto en los líderes del mercado, el gráfico muestra que el Contrafactual lleva a una disminución de los costos, es decir, el estrés térmico también perjudicó la eficiencia de los grandes productores.
-
-Ahora bien, el cambio de tendencia desde 1990 implicó una disminución en los costos marginales para Benin, Costa de Marfil y Sri Lanka, de manera que el Contrafactual les perjudica. El caso de Costa de Marfil es destacable, pues la pérdida de eficiencia alcanza un 28\%. En resumen, solo analizando cambios en el costo marginal, se puede sostener que el estrés térmico tiene un impacto diferenciado sobre los países, y que la evolución de la exposición al calor en las últimas tres décadas ha implicado una pérdida de eficiencia para la mayoría de los países, y una ganancia para otros pocos.
-
-\begin{figure}[H]
-    \centering
-    \caption{Cambio en los costos marginales por país}
-        \includegraphics[scale = 0.85]{figures/diff_cost.png}
-        \label{fig:diff_cost}
-\end{figure}
-
-Además del cambio en los costos marginales, interesa analizar el impacto en las cantidades comercializadas, ya que su magnitud no solo es consecuencia del choque de oferta, sino también de la interacción estratégica entre países líderes y seguidores.
-
-La Figura N°\ref{fig:diff_quantity} revela que la mayoría de los países habrían incrementando sus cantidades en el Contrafactual, con excepción de Costa de Marfil, Guyana, Nueva Caledonia, Sri Lanka y Viet Nam.
-
-El aumento de las cantidades, en todo caso, es modesto, y va desde un 1\% (Honduras) hasta un 10\% (Colombia). Es directo ver que estos países no son los que vieron un mayor cambio de eficiencia entre escenarios, lo que reafirma la relevancia de la interacción estratégica del modelo. Por su parte, Nueva Caledonia y Sri Lanka no ven un cambio de sus cantidades entre escenarios, aún cuando el segundo disminuyó en un 1\% sus costos marginales en el Contrafactual.
-
-Lo más llamativo, sin duda, es el caso de Viet Nam. Mientras que Costa de Marfil --cuyo aumento de costos fue de un 28\%-- y Guyana ven una reducción del 1\% y 2\%, respectivamente, las cantidades de Viet Nam caen en un 21\% en el Contrafactual, a pesar de haber experimentado una ganancia de eficiencia del 3\%. Este resultado lo posiciona como el principal beneficiado por el estrés térmico en cuanto a cantidades comercializadas, y revela que la exposición al calor --y su cambio de tendencia-- genera ganadores y perdedores aún dentro de cada grupo.
-
-Este hallazgo encuentra explicación en la estructura estratégica del modelo. En un equilibrio de Stackelberg, el volumen óptimo de un líder no depende únicamente de sus costos marginales, sino de la interacción con la curva de reacción de los seguidores. La reducción generalizada del estrés térmico en el Contrafactual disminuye los costos de todos los productores, pero lo hace de forma asimétrica. Al mejorar relativamente más la competitividad de los seguidores --o de otros líderes como Brasil y Colombia--, la curva de reacción del mercado se vuelve más elástica, reduciendo el espacio óptimo de producción para Viet Nam. En otras palabras, el calor contribuyó como una ventaja estratégica para el país asiático; al eliminarla, su posición de liderazgo se erosiona aunque su eficiencia productiva mejore.
-
-La divergencia dentro del grupo de líderes revela que el cambio climático no es un simple choque agregado de productividad, sino un factor que reconfigura los equilibrios de poder en mercados oligopólicos. El caso de Viet Nam --principal productor mundial de café Robusta, variedad tradicionalmente más tolerante al calor-- sugiere que su especialización le permitió capitalizar el estrés térmico como una ventaja comparativa. Mientras la especie Arabica, predominante en Brasil y Colombia, sufría con las temperaturas altas, la resiliencia de Robusta pudo haber ampliado la participación de Viet Nam en la oferta global. Así, la mitigación del cambio climático, pese a sus beneficios agregados, genera redistribuciones complejas que pueden enfrentar los propios líderes del mercado.
-
-\begin{figure}[H]
-    \centering
-    \caption{Cambio en las cantidades por país}
-        \includegraphics[scale = 0.85]{figures/diff_quantity.png}
-        \label{fig:diff_quantity}
-\end{figure}
-
-Por último, la Figura N°\ref{fig:diff_profit} presenta el cambio en los beneficios de cada país. El excedente de cada país, al igual que las variables revisadas, depende de diferentes factores. En este caso, lo relevante a entender es de qué forma conjugan el precio, la producción y la eficiencia de cada agente, como consecuencia del choque de oferta. Naturalmente, las implicancias son diferentes en cada caso. En tal sentido, se observa una amplia heterogeneidad en los resultados.
-Al igual que con las cantidades analizadas, se observa un aumento en el beneficio de Brasil y Colombia, contrastando fuertemente con la disminución de Viet Nam. La diferencia es tal que explica la pérdida del grupo dominante del mercado, presentada en la Tabla N°\ref{tab:t6_surplus}. Entre los seguidores, es destacable el caso de Cuba, el que ve más que triplicado su excedente. Lo opuesto ocurre con Csta de Marfil, que experimenta una reducción cercana al 60\%.
-
-\begin{figure}[H]
-    \centering
-    \caption{Cambio en el beneficio por país}
-        \includegraphics[scale = 0.85]{figures/diff_profit.png}
-        \label{fig:diff_profit}
-\end{figure}

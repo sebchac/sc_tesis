@@ -455,6 +455,32 @@ Gouel, C.%
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
+Hamilton%
+}{%
+Hamilton%
+}{%
+{\protect \APACyear {2018}}%
+}]{%
+Hamilton2018}
+\APACinsertmetastar {%
+Hamilton2018}%
+\begin{APACrefauthors}%
+Hamilton, J\BPBI D.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2018}{December}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Why You Should Never Use the Hodrick-Prescott Filter} {Why you should never use the hodrick-prescott filter}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{The Review of Economics and Statistics}{100}{5}{831-843}.
+\newblock
+\begin{APACrefURL} \url{https://ideas.repec.org/a/tpr/restat/v100y2018i5p831-843.html} \end{APACrefURL}
+\newblock
+\begin{APACrefDOI} \doi{None} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
 Hodges%
 }{%
 Hodges%
