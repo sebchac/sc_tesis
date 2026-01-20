@@ -74,6 +74,7 @@ mean_elast_ols1 <- mean(demand_data$edemand_ols1, na.rm = TRUE)
 
 ols2 <- lm(price_y ~ qe_y  + importGDP_y,
            data = demand_data)
+summary(ols2)
 # Store coefficients
 coeff_ols2 <- coef(ols2)
 # Predict and elasticity
@@ -83,6 +84,7 @@ mean_elast_ols2 <- mean(demand_data$edemand_ols2, na.rm = TRUE)
 
 ols3 <- lm(price_y ~ qe_y  + importGDP_y + teaPrices_y,
            data = demand_data)
+summary(ols3)
 # Store coefficients
 coeff_ols3 <- coef(ols3)
 # Predict and elasticity
@@ -92,8 +94,9 @@ mean_elast_ols3 <- mean(demand_data$edemand_ols3, na.rm = TRUE)
 
 # [1.2.2.] IV
 iv1 <- ivreg(price_y ~ qe_y |
-               tas_ye + gdd_y,
+               tmax_ye + tmin_ye,
              data = demand_data)
+summary(iv1)
 # Store coefficients
 coeff_iv1 <- coef(iv1)
 # Predict and elasticity
@@ -103,7 +106,7 @@ mean_elast_iv1 <- mean(demand_data$edemand_iv1, na.rm = TRUE)
 summary(iv1)
 
 iv2 <- ivreg(price_y ~ qe_y  + importGDP_y |
-               tas_ye + gdd_y +
+               tmax_ye + tmin_ye +
                importGDP_y,
              data = demand_data)
 summary(iv2)
@@ -302,9 +305,9 @@ coeff_mc_s <- coef(mc_fe)
 data_yc$mc_yc_hat_s <- predict(mc_fe)
 
 # Store coefficients FE Cournot
-# coeff_mc_c <- coef(mc_fe_cournot)
-# # Predict FE Cournot
-# data_yc$mc_yc_hat_c <- predict(mc_fe_cournot)
+coeff_mc_c <- coef(mc_fe_cournot)
+# Predict FE Cournot
+data_yc$mc_yc_hat_c <- predict(mc_fe_cournot)
 
 # Predict CF1 # Stackelberg average 1990:2020
 # It considers past heat and adaptability

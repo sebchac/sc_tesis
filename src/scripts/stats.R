@@ -2401,11 +2401,11 @@ data_yc <- data %>%
          heatExp_yc, optExp_yc, frostExp_yc, tas_yce) %>%
   arrange(country, year) %>%
   mutate(
-    log_qe_yc = log(qe_yc),
+    log_qe_yc = log(qe_yc + 1),
     lag1_qe_yc = dplyr::lag(qe_yc, 1),
     revenue_yc = price_y * qe_yc,
     lag1_rev_yc = dplyr::lag(revenue_yc, 1),
-    log_rev_yc = log(revenue_yc),
+    log_rev_yc = log(revenue_yc + 1),
     share_yc = 100 * (qe_yc / qe_y),
     lag1_sh_yc = dplyr::lag(share_yc, 1),
     
@@ -2432,40 +2432,82 @@ data_yc <- data %>%
     diff_opt_yc = optExp_yc - lag1_opt_yc,
     diff_tas_yc = tas_yce - lag1_tas_yc
   ) %>%
-  ungroup()
+  ungroup() %>%
+  drop_na()
 
-m1 <- feols(
+m1 <- lm(
   log_qe_yc ~
-    heatExp_yc +
-    frostExp_yc
+    tas_yce + I(tas_yce^2),
+  data = data_yc
+)
+
+summary(m1)
+
+m2 <- lm(
+  log_rev_yc ~
+    tas_yce + I(tas_yce^2),
+  data = data_yc
+)
+
+summary(m2)
+
+m3 <- lm(
+  share_yc ~
+    tas_yce + I(tas_yce^2),
+  data = data_yc
+)
+
+summary(m3)
+
+m1_fe <- feols(
+  log_qe_yc ~
+    tas_yce + I(tas_yce^2)
   | country + year,
   data = data_yc,
   cluster = ~country
 )
 
-summary(m1)
+summary(m1_fe)
 
-m2 <- feols(
+m2_fe <- feols(
   log_rev_yc ~
-    heatExp_yc +
-    frostExp_yc
+    tas_yce + I(tas_yce^2)
     | country + year,
   data = data_yc,
   cluster = ~country
 )
 
-summary(m2)
+summary(m2_fe)
 
-m3 <- feols(
+m3_fe <- feols(
   share_yc ~
-    heatExp_yc +
-    frostExp_yc
+    tas_yce + I(tas_yce^2)
     | country + year,
   data = data_yc,
   cluster = ~country
 )
 
-summary(m3)
+summary(m3_fe)
+
+#-------------------------------------------------------------------------------
+# Heatmap heat
+#-------------------------------------------------------------------------------
+
+ggplot(data_yc, aes(year, country, fill= tas_yce)) + 
+  geom_tile()
+
+aux1 <- data_yc %>%
+  select(year, country, tas_yce, qe_yc) %>%
+  drop_na()
+
+ggplot(aux1, aes(x = tas_yce, y = log(qe_yc + 1))) +
+  geom_point(alpha = 0.3) +
+  geom_smooth(method = "lm", formula = y ~ x + I(x^2), color = "red") +
+  labs(title = NULL,
+       x = "Temperatura promedio", y = "Log(Exportaciones)")
+
+modelo_cuad <- lm(log(qe_yc + 1) ~ tas_yce + I(tas_yce^2), data = data)
+summary(modelo_cuad)
 
 #-------------------------------------------------------------------------------
 # [] Test de Stackelberg

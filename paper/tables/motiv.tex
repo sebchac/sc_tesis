@@ -1,20 +1,24 @@
-% Please add the following required packages to your document preamble:
-% \usepackage{graphicx}
 \begin{table}[H]
 \centering
-\caption{Efecto del estrés térmico sobre los países exportadores de café. Forma reducida}
+\caption{Efecto de la temperatura en los países productores}
 \label{tab:motiv}
 \begin{tabular}{lccc}
-\hline
-& \begin{tabular}[c]{@{}c@{}}Cantidades\\ (en logaritmo)\end{tabular} & \begin{tabular}[c]{@{}c@{}}Ingresos\\ (en logaritmo)\end{tabular} & \begin{tabular}[c]{@{}c@{}}Participación\\ de mercado\end{tabular} \\ \hline
-Exposición al calor  & -0,0017         & -0,0022         & -0,0070    \\
-                    & (0,0087)        & (0,0085)        & (0,0114)   \\
-Exposición al frío   & -0,0458$^{***}$ & -0,0410$^{***}$ & -0,0111    \\
-                    & (0,0117)        & (0,0112)        & (0,0232)   \\
-Efecto fijo por país & $\checkmark$      & $\checkmark$      & $\checkmark$ \\
-Efecto fijo por año  & $\checkmark$      & $\checkmark$      & $\checkmark$ \\ \hline
-Observaciones        & 2.778             & 2.584             & 2.778        \\
-$R^{2}$ ajustado     & 0,7978          & 0,8182           & 0,8447     \\ \hline
-\end{tabular}%
-
+\toprule
+ & \textbf{Cantidad} & \textbf{Ingresos} & \textbf{Participación} \\
+ & \textbf{(log)} & \textbf{(log)} & \textbf{de mercado} \\
+ & (1) & (2) & (3) \\
+\midrule
+Temperatura & 0.343*** & 1.015*** & 1.618*** \\
+ & (0.0265) & (0.0760) & (0.173) \\
+Temperatura$^2$ & -0.00898*** & -0.0274*** & -0.0424*** \\
+ & (0.000639) & (0.00184) & (0.00418) \\
+Constante & -2.404*** & -4.309*** & -11.99*** \\
+ & (0.275) & (0.788) & (1.796) \\
+\midrule
+Observaciones & 2,532 & 2,532 & 2,532 \\
+R$^2$ & 0.0833 & 0.105 & 0.0454 \\
+R$^2$ ajustado & 0.0826 & 0.105 & 0.0446 \\
+\bottomrule
+\multicolumn{4}{p{10cm}}{\footnotesize{\textit{Nota:} Errores estándar entre paréntesis. *** p$<$0.01, ** p$<$0.05, * p$<$0.1.}}
+\end{tabular}
 \end{table}

@@ -1,0 +1,15 @@
+\chapter*{Anexo 2. Estimación de demanda agregada mensual.}
+\label{chap:anexo2}
+
+Se realiza una estimación mensual de la demanda agregada para aprovechar la variación mensual del índice de precios del café. Para la comparabilidad con los resultados presentados en la sección N°\ref{chap:estimaciones}, se debe dividir el coeficiente asociado a las cantidades comercializadas por 12.
+
+Para la estimación con variables instrumentales, se utilizan los rezagos de tres meses de las temperaturas mínimas y máximas en las zonas cafetaleras en los países productores, bajo el supuesto de que el efecto de que el impacto de las variables climáticas sobre los cultivos no son contemporáneos, buscando ajustar por el tiempo de cosecha y maduración. Esta consideración no es necesaria en la estimación de la sección N°\ref{chap:estimaciones} debido a que se utilizan datos anuales.
+
+Se espera que, por la relación entre las variables señaladas con la oferta del grano del café, éstas satisfagan con éxito las condiciones de exogeneidad y relevancia que exige el uso de variables instrumentales. Como se observa en la Tabla N°\ref{tab:diagnosticos_iv}, los resultados de la pruebas diagnósticas confirman, en general, la validez de la estrategia de variables instrumentales. El test de instrumentos débiles es estadísticamente significativo, indicando una correlación relevante con la variable endógena. Sin embargo el estadístico F (7.908) sugiere que los instrumentos, aunque no débiles, tampoco son excepcionalmente fuertes. Por otro lado, la prueba de Sargan no rechaza la hipótesis nula, lo que proporciona evidencia sólida de que los instrumentos no están correlacionados con el término de error, validando la condición de exclusión. Además, el test de Wu-Hausman justifica formalmente el uso del método de variables instrumentales al confirmar la endogeneidad de la cantidad ofrecida.
+
+La Tabla N°\ref{tab:estimacion_demanda} presenta los resultados de la estimación de demanda a nivel mensual, tomando información desde 1965 hasta 2019. Los modelos 1, 2 y 3 solo consideran variables de control, mientras que los modelos 4, 5 y 6 incluyen las variables instrumentales discutidas en esta sección.
+
+
+\input{tables/estimacion_demanda.tex}
+
+\input{tables/estimacion_demanda_test.tex}

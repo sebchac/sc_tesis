@@ -1,0 +1,33 @@
+\begin{table}[H]
+\centering
+\caption{Efecto de la temperatura con efectos fijos de país y año}
+\label{tab:regresiones_fe}
+\begin{tabular}{lccc}
+\toprule
+& \textbf{Cantidad} & \textbf{Ingresos} & \textbf{Participación} \\
+& \textbf{(log)} & \textbf{(log)} & \textbf{de mercado} \\
+& (1) & (2) & (3) \\
+\midrule
+Temperatura & 0.198 & 0.925 & 0.0780 \\
+& (0.284) & (0.795) & (1.122) \\
+Temperatura$^2$ & -0.00507 & -0.0185 & -0.00599 \\
+& (0.00610) & (0.0168) & (0.0239) \\
+\midrule
+Efectos fijos: & & & \\
+\quad País & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+\quad Año & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+Errores agrupados por país & $\checkmark$ & $\checkmark$ & $\checkmark$ \\
+\midrule
+Observaciones & 2,532 & 2,532 & 2,532 \\
+Países & 52 & 52 & 52 \\
+Años & 55 & 55 & 55 \\
+R$^2$ ajustado & 0.829 & 0.838 & 0.844 \\
+R$^2$ intra & 0.00375 & 0.00501 & 0.000900 \\
+\bottomrule
+\end{tabular}
+\\
+\vspace{0.5em}
+\footnotesize{\textit{Nota:} Errores estándar agrupados por país entre paréntesis. \\
+*** p$<$0.01, ** p$<$0.05, * p$<$0.1. \\
+La constante es absorbida por los efectos fijos.}
+\end{table}
