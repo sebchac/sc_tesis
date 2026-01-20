@@ -20,9 +20,9 @@ Esta especificación sigue el enfoque de trabajos seminales en la estimación es
     P_{t} = \frac{1}{\alpha^{d}_{1}} \left[ Q_{t} - ( \alpha^{d}_{0} + \alpha^{d}_{2}X{t} + \alpha^{d}_{3}Z{t} + u^{d}_{t} ) \right]
 \end{equation}
 
-Naturalmente, la identificación causal de la relación entre la cantidad demandada y el índice global de precios requiere abordar el problema de endogeneidad mediante la aproximación de variables instrumentales. Para estos efectos, se utilizan rezagos de temperaturas máximas y mínimas en las áreas de cultivo de los países exportadores. Por tratarse de una estimación mensual agregada, se sigue promedio ponderado por la participación de cada exportador.
+Naturalmente, la identificación causal de la relación entre la cantidad demandada y el índice global de precios requiere abordar el problema de endogeneidad mediante la aproximación de variables instrumentales. Para estos efectos, se utilizan rezagos de temperaturas máximas y mínimas en las áreas de cultivo de los países exportadores. Las condiciones climáticas en los países productores afectan directamente la oferta cafetalera, pero no inciden de manera contemporánea en las preferencias de los consumidores internacionales. En ese sentido, el rezago de tres meses en la estimación mensual busca capturar el efecto de maduración y cosecha. Por tratarse de una estimación agregada, se sigue un promedio ponderado por la participación de cada exportador.
 
-Se espera que, por la relación entre las variables señaladas con la oferta del grano del café, satisfagan con éxito las condiciones de exogeneidad y relevancia que exige el uso de variables instrumentales. Como se observa en la Tabla N°\ref{tab:diagnosticos_iv}, los resultados de la pruebas diagnósticas confirman, en general, la validez de la estrategia de variables instrumentales. El test de instrumentos débiles es estadísticamente significativo, indicando una correlación relevante con la variable endógena. Sin embargo el estadístico F (7.908) sugiere que los instrumentos, aunque no débiles, tampoco son excepcionalmente fuertes. Por otro lado, la prueba de Sargan no rechaza la hipótesis nula, lo que proporciona evidencia sólida de que los instrumentos no están correlacionados con el término de error, validando la condición de exclusión. Además, el test de Wu-Hausman justifica formalmente el uso del método de variables instrumentales al confirmar la endogeneidad de la cantidad ofrecida.
+Se espera que, por la relación entre las variables señaladas con la oferta del grano del café, éstas satisfagan con éxito las condiciones de exogeneidad y relevancia que exige el uso de variables instrumentales. Como se observa en la Tabla N°\ref{tab:diagnosticos_iv}, los resultados de la pruebas diagnósticas confirman, en general, la validez de la estrategia de variables instrumentales. El test de instrumentos débiles es estadísticamente significativo, indicando una correlación relevante con la variable endógena. Sin embargo el estadístico F (7.908) sugiere que los instrumentos, aunque no débiles, tampoco son excepcionalmente fuertes. Por otro lado, la prueba de Sargan no rechaza la hipótesis nula, lo que proporciona evidencia sólida de que los instrumentos no están correlacionados con el término de error, validando la condición de exclusión. Además, el test de Wu-Hausman justifica formalmente el uso del método de variables instrumentales al confirmar la endogeneidad de la cantidad ofrecida.
 
 La Tabla N°\ref{tab:estimacion_demanda} presenta los resultados de la estimación de demanda a nivel mensual, tomando información desde 1965 hasta 2019. Los modelos 1, 2 y 3 solo consideran variables de control, mientras que los modelos 4, 5 y 6 incluyen las variables instrumentales discutidas en esta sección.
 
@@ -31,6 +31,8 @@ Se obtienen resultados similares al trabajo de Igami \citeyearpar{igami2015marke
 En concreto, por cada aumento de un millón de bolsas de 60 kg de café, el precio cae en 264 centavos de dólar, relativamente cercano a los 293 obtenidos por Igami. Asimismo, la elasticidad-precio de la demanda estimada para este trabajo es de 0.21, indicando una demanda inelástica en un rango aceptable\footnote{Igami obtiene una elasticidad-precio de la demanda de 0,15. Por su parte, otros trabajos han obtenido resultados de 0,2, al igual que en este caso. Ver, por ejemplo, \cite{bates1997open}.}. Esta demanda inelástica implica que choques de oferta (como el estrés térmico) se traduzcan predominantemente en aumentos de precio m, en conjunto con la existencia de choques climáticos importantes, es consistente con la explicación estándar para la variación de los precios de los bienes agrícolas \citep{deaton1992behaviour, prebisch1959, singer1950}.as que en reducciones de cantidad, lo que intensifica los efectos sobre el excedente del consumidor y genera transferencias de renta entre agentes.
 
 El resto de variables presenta coeficientes con signos que están en línea con lo teóricamente esperado. Además, son altamente significativos, lo que refuerza la validez del modelo. En particular, el coeficiente positivo y significativo del PIB de los países importadores refleja que el café es un bien normal, cuya demanda incrementa con el ingreso de los países consumidores. Al mismo tiempo, el signo positivo del precio del té valida cierto grado de sustituibilidad.
+
+El Anexo N°[] presenta los resultados para la estimación de la demanda anual. En adelante, se considerará la versión anualizada para la estimación de los costos marginales de cada país, debido a que las exportaciones tienen esa frecuencia y, por tanto, es posible capturar las variaciones del mercado sin tener que ajustar cada variable.
 
 \input{tables/estimacion_demanda}
 
@@ -55,9 +57,7 @@ donde $C_{t}$ es una variable de tendencia para identificar un ciclo de producci
 
 Siguiendo a Figari \citeyearpar{figari2025climate}, si los cambios en las variables climáticas son asignados aleatoriamente entre países, no sería necesario utilizar controles adicionales, y el coeficiente estimado tendría una interpretación causal. De hecho, de introducir controles que varíen con el tiempo y que puedan ser endógenos, como la adopción de nuevas tecnologías, se podría obtener un resultado sesgado, llevando a una situación de malos controles \citep{angrist2009mostly, hsiang2016}.
 
-La Tabla N°\ref{tab:estimacion_costos} resume los resultados para la especificación utilizada.
-
-Los resultados de la estimación de costos marginales confirman que las condiciones climáticas extremas son un determinante estadística y económicamente significativo de los costos de producción del café. Tanto la exposición anual al calor extremo como su efecto rezagado un año presentan coeficientes positivos y altamente significativos. En resumen, se tiene que, en un año, cada día adicional con temperaturas sobre 30°C incrementa el costo marginal implícito en aproximadamente 0.39 ¢/lb ese mismo año, y con un impacto persistente de 0.30 ¢/lb. Esto sugiere que el calor extremo no solo afecta los costos corrientes, posiblemente por mayor necesidad de riego, control de plagas o pérdida de cosechas, sino que también daña la productividad futura de los cafetos.
+La Tabla N°\ref{tab:estimacion_costos} resume los resultados para la especificación utilizada. Éstos confirman que las condiciones climáticas extremas son un determinante estadística y económicamente significativo de los costos de producción del café. Tanto la exposición anual al calor extremo como su efecto rezagado un año presentan coeficientes positivos y altamente significativos. En resumen, se tiene que, en un año, cada día adicional con temperaturas sobre 30°C incrementa el costo marginal implícito en aproximadamente 0.39 ¢/lb ese mismo año, y con un impacto persistente de 0.30 ¢/lb. Esto sugiere que el calor extremo no solo afecta los costos corrientes, posiblemente por mayor necesidad de riego, control de plagas o pérdida de cosechas, sino que también daña la productividad futura de los cafetos.
 
 Las variables de control funcionan como predice la teoría. El coeficiente asociado al precio de fertilizantes es positivo y altamente significativo, mientras que la tendencia del ciclo de 5 años es negativa y significativa, lo que podría reflejar ganancias de productividad a lo largo del ciclo o ajustes en la oferta.
 
@@ -71,20 +71,23 @@ A partir de los resultados obtenidos hasta ahora, es posible identificar la sens
 
 Las Figuras N°\ref{fig:plot06_01} y N°\ref{fig:plot06_02} muestran el ajuste de la estimación para el precio y las cantidades observadas, respectivamente. La estimación del modelo Stackelberg presenta un ajuste razonable a los datos observados. 
 
-Sin embargo, es importante remarcar las divergencias. En el caso del precio, es claro que la estimación tiende a suavizar algunas desviaciones, como los picos en la década de los 90s, o el máximo alcanzado en el año 2012. Por otro lado, sobrestima el alza previa al año 2010, al igual que los valores entre 2000 y 2005. El ajuste es mucho mejor en las cantidades, con buena coincidencia en la tendencia y en las magnitudes.
+Sin embargo, es importante remarcar las divergencias. En el caso del precio, es claro que la estimación tiende a suavizar algunas desviaciones, como los picos en la década de los 90s, o el máximo alcanzado en el año 2012. Por otro lado, sobrestima el alza previa al año 2010, al igual que los valores entre 2000 y 2005. El ajuste en las cantidades tiende a suavizar las desviaciones de tendencia, con una sobrestimación relevante en la década de 1990 y una subestimación desde el año 2015.
 
 \begin{figure}[H]
     \centering
-    \caption{Precio observado y estimado}
-        \includegraphics[scale = 0.9]{figures/plot_0601.png}
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \caption{Ajuste del modelo. Precio del café}
+        \includegraphics[width=\linewidth]{figures/plot_0601}
         \label{fig:plot06_01}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \caption{Exportaciones observadas y estimadas}
-        \includegraphics[scale = 0.9]{figures/plot_0602.png}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \caption{Ajuste del modelo. Exportaciones}
+        \includegraphics[width=\linewidth]{figures/plot_0602}
         \label{fig:plot06_02}
+    \end{minipage}
 \end{figure}
 
 

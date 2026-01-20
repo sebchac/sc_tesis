@@ -873,9 +873,9 @@ ndgain_data <- ndgain %>%
       tmin_yi_mean = mean(tmin_yci, na.rm = TRUE),
       tmax_ye = sum(tmax_yce * share_yce, na.rm = TRUE),
       tmax_yi_mean = mean(tmax_yci, na.rm = TRUE),
-      optExp_y = sum(optExp_yc * share_yce, na.rm = TRUE),
-      heatExp_y = sum(heatExp_yc * share_yce, na.rm = TRUE),
-      frostExp_y = sum(frostExp_yc * share_yce, na.rm = TRUE)
+      optExp_y = weighted.mean(optExp_yc, w = share_yce, na.rm = TRUE),
+      heatExp_y = weighted.mean(heatExp_yc, w = share_yce, na.rm = TRUE),
+      frostExp_y = weighted.mean(frostExp_yc, w = share_yce, na.rm = TRUE)
         ) %>%
       ungroup()
 

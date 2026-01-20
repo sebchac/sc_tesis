@@ -280,7 +280,7 @@ data_yc <- data %>%
       export_dummy == 0 ~ "Importadores"
     ))
 
-plot3 <- ggplot(data_yc, aes(factor(year), y = heat, fill = type)) +
+plot3 <- ggplot(data_yc, aes(factor(year), y = rgdpe_yc, fill = type)) +
   geom_boxplot(
     position = position_dodge(0.8),
     width = 0.7,
@@ -291,7 +291,7 @@ plot3 <- ggplot(data_yc, aes(factor(year), y = heat, fill = type)) +
   labs(
     title = NULL,
     x = NULL,              # Coincide con tu primer gráfico
-    y = "PIB real ajustado",       # Ajusta según tu variable
+    y = "PIB real ajustado (log. trill. USD)",       # Ajusta según tu variable
     fill = NULL            # Coincide con tu primer gráfico
   ) +
   theme_classic() +        # Mismo tema base
@@ -650,8 +650,8 @@ plot02_04 <- ggplot(aux1, aes(x = year, y = qe_y,
 ggsave(
   filename = paste0(fig_path, "plot02_04.png"),
   plot = plot02_04,
-  width = 7,
-  height = 5,
+  width = 8,
+  height = 6,
   units = "cm",
   dpi = 600,
   bg = "white")
@@ -746,7 +746,7 @@ plot_0601 <- ggplot(aux1) +
   labs(
     title = NULL,
     x = NULL,
-    y = "US cents/lb"
+    y = "¢/lb"
   ) +
   theme_classic() +
   theme(
@@ -793,7 +793,6 @@ plot_0602 <- ggplot(aux2) +
     name = NULL,
     values = c("Obs." = "gray40", "Est." = "black")
   ) +
-  coord_cartesian(ylim = c(0, 300)) +
   labs(
     title = NULL,
     x = NULL,
@@ -815,7 +814,7 @@ plot_0602 <- ggplot(aux2) +
 
 ggsave(paste0(fig_path, "plot_0602.png"), 
        plot = plot_0602, 
-       width = 9,
+       width = 12,
        height = 7,
        units = "cm",
        dpi = 600,
@@ -1045,8 +1044,8 @@ data_c <- data %>%
 #-------------------------------------------------------------------------------
 # [] Efecto de GDD y FDD
 #-------------------------------------------------------------------------------
-data_y <- data %>%
-  filter(dummy_y == 1, 
+data_yc <- data %>%
+  filter(dummy_yc == 1, 
          export_dummy == 1,
          year >= 1965, year <= 2019)
 
@@ -1058,7 +1057,7 @@ ggplot(data_y, aes(x = tas_ye, y = price_y)) +
   theme_classic()
 
 # Efecto de gdd, hdd y fdd en cantidades
-ggplot(data_y, aes(x = fdd_y_mean, y = qe_y)) +
+ggplot(data_yc, aes(x = heatExp_yc, y = log(qe_yc))) +
   geom_point(size = 3, color = "#2E86AB", alpha = 0.8) +
   geom_smooth(method = "lm", se = TRUE, color = "#F24236", linetype = "dashed") +
   theme_classic()
@@ -1103,9 +1102,8 @@ summary(m3)
 aux <- data %>%
   filter(
     dummy_yc == 1, 
-    export_dummy == 1,
-    year >= 1990,
-    year <= 2019) %>%
+    net_export_dummy == 1,
+    year %in% 1990:2020) %>%
   select(year, country, qe_yc, qe_y) %>%
   arrange(year, country) %>%
   mutate(
@@ -1158,8 +1156,7 @@ aux <- data %>%
   filter(
     dummy_yc == 1, 
     country %in% c("Brazil", "Colombia", "Viet Nam"),
-    year >= 1990,
-    year <= 2019) %>%
+    year %in% 1990:2020) %>%
   select(year, country, qe_yc, qe_y) %>%
   arrange(year, country) %>%
   group_by(year) %>%
@@ -1176,6 +1173,7 @@ plot_030402 <- ggplot(
     aes(x = year, y = sh_leaders_y),
     linewidth = 0.7, alpha = 1
   ) +
+  scale_y_continuous(labels = scales::percent, limits = c(0.25, 0.7)) +
   labs(
     title = NULL,
     x = NULL,
@@ -1203,6 +1201,39 @@ ggsave(
   units = "cm",
   dpi = 600,
   bg = "white")
+
+#-------------------------------------------------------------------------------
+# [] Estadística de variables para demanda y costos
+#-------------------------------------------------------------------------------
+
+aux_y <- data %>%
+  filter(dummy_y == 1) %>%
+  select(year, qe_y, price_y, importGDP_y, teaPrices_y)
+
+summary(aux_y$qe_y)
+summary(aux_y$price_y)
+summary(aux_y$importGDP_y)
+summary(aux_y$teaPrices_y)
+
+aux_ym <- data %>%
+  filter(dummy_ym == 1) %>%
+  select(qe_ym, price_ym, importGDP_ym, teaPrices_ym, fert_ym)
+
+summary(aux_ym$qe_ym)
+summary(aux_ym$price_ym)
+summary(aux_ym$importGDP_ym)
+summary(aux_ym$teaPrices_ym)
+
+aux_y <- data %>%
+  filter(dummy_y == 1, year %in% 1990:2020) %>%
+  select(year, fert_y)
+
+aux_ym <- data %>%
+  filter(dummy_ym == 1, year %in% 1990:2020) %>%
+  select(year, fert_ym)
+
+summary(aux_y$fert_y)
+summary(aux_ym$fert_ym)
 
 #-------------------------------------------------------------------------------
 # [VF] Estadística de variables climáticas
@@ -1401,6 +1432,12 @@ aux2 <- aux %>% # Arabica proportion by country-year
     arabica_prop = round(arabica_value / total_value, 2)
   )
 
+ggplot(aux2 %>% left_join(data %>% 
+         distinct(country, net_export_dummy), by = "country") %>%
+         filter(net_export_dummy == 1), 
+       aes(year, country, fill = arabica_prop)) +
+  geom_tile()
+
 arab_prop_c <- aux2 %>% # Arabica proportion by country (net Export)
   group_by(country) %>%
   summarise(
@@ -1431,7 +1468,7 @@ aux3 <- aux2 %>% # Arabica proportion by group
   )
 
 plot_arab_total <- aux3 %>% # Evolución de la composición por grupo
-  filter(year %in% 1990:2020) %>%
+  filter(year %in% 1960:2020) %>%
   group_by(year) %>%
   summarise(arabica_value = sum(arabica_value, na.rm = TRUE),
             total_value = sum(total_value, na.rm = TRUE),
@@ -1716,8 +1753,6 @@ ggsave(
   dpi = 600,
   bg = "white")
 
-#------
-
 #-----
 # [VF] Test T
 #-----
@@ -1919,7 +1954,7 @@ plot_profit <- ggplot(aux, aes(x = country, y = diff_profit)) +
     y = NULL,
     shape = NULL
   ) +
-  theme_minimal() +
+  theme_classic() +
   theme(
     panel.grid.major.x = element_blank(),
     panel.grid.minor.x = element_blank(),
@@ -1962,7 +1997,7 @@ plot_quantity <- ggplot(aux, aes(x = country, y = diff_quantity)) +
     y = NULL,
     shape = NULL
   ) +
-  theme_minimal() +
+  theme_classic() +
   theme(
     panel.grid.major.x = element_blank(),
     panel.grid.minor.x = element_blank(),
@@ -2005,7 +2040,7 @@ plot_costs <- ggplot(aux, aes(x = country, y = diff_cost)) +
     y = NULL,
     shape = NULL
   ) +
-  theme_minimal() +
+  theme_classic() +
   theme(
     panel.grid.major.x = element_blank(),
     panel.grid.minor.x = element_blank(),
@@ -2188,7 +2223,7 @@ plot_heat <- ggplot(aux_heat, aes(x = country, y = diff)) +
     y = NULL,
     shape = NULL
   ) +
-  theme_minimal() +
+  theme_classic() +
   theme(
     panel.grid.major.x = element_blank(),
     panel.grid.minor.x = element_blank(),
@@ -2274,6 +2309,50 @@ descomp_g <- descomp_c %>%
   ) %>%
   ungroup()
 
+descomp_c <- descomp_c %>%
+  left_join(data %>% distinct(country, dummy_leader), by = "country")
+
+# 4. Opción C: Versión minimalista para publicación académica
+plot_descomp_c <- ggplot(descomp_c, 
+                         aes(x = efficiency_effect, 
+                             y = strategic_effect,
+                             shape = factor(dummy_leader,
+                                            levels = c(1, 0),
+                                            labels = c("Líder", "Seguidor")))) +
+  geom_point(size = 3, alpha = 0.8) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray60") +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "gray60") +
+  geom_abline(slope = -1, intercept = 0, linetype = "dotted", color = "black") +
+  
+  # Etiquetar solo los países mencionados en el texto
+  geom_text_repel(
+    data = descomp_c %>% filter(country %in% c("Viet Nam", "Brazil", "Colombia")),
+    aes(label = country),
+    size = 3.5,
+    box.padding = 0.5,
+    segment.color = "gray50"
+  ) +
+  
+  labs(
+    x = "Efecto Eficiencia (mill. USD)",
+    y = "Efecto Estratégico (mill. USD)",
+    shape = ""
+  ) +
+  theme_classic(base_size = 11) +
+  theme(
+    legend.position = "bottom",
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank()
+  )
+
+ggsave(
+  filename = paste0(fig_path, "plot_descomp_c.png"),
+  plot = plot_descomp_c,
+  width = 8,
+  height = 6,
+  dpi = 600,
+  bg = "white")
+
 # Preparar datos en formato largo para ggplot
 decomp_long <- descomp_g %>%
   mutate(
@@ -2313,6 +2392,157 @@ ggplot(decomp_long %>% filter(!is.na(dummy_leader)),
     legend.margin = margin(t = -5, b = 0)
   )
 
+#-------------------------------------------------------------------------------
+# [] Motivación
+#-------------------------------------------------------------------------------
+data_yc <- data %>%
+  filter(dummy_yc == 1, net_export_dummy == 1) %>%
+  select(year, country, price_y, qe_yc, qe_y, 
+         heatExp_yc, optExp_yc, frostExp_yc, tas_yce) %>%
+  arrange(country, year) %>%
+  mutate(
+    log_qe_yc = log(qe_yc),
+    lag1_qe_yc = dplyr::lag(qe_yc, 1),
+    revenue_yc = price_y * qe_yc,
+    lag1_rev_yc = dplyr::lag(revenue_yc, 1),
+    log_rev_yc = log(revenue_yc),
+    share_yc = 100 * (qe_yc / qe_y),
+    lag1_sh_yc = dplyr::lag(share_yc, 1),
+    
+    log_heat_yc = log(heatExp_yc),
+    lag1_heat_yc = dplyr::lag(heatExp_yc, 1),
+    log_lag1_heat_yc = dplyr::lag(lag1_heat_yc, 1),
+    log_frost_yc = log(frostExp_yc),
+    lag1_frost_yc = dplyr::lag(frostExp_yc, 1),
+    log_lag1_frost_yc = dplyr::lag(lag1_frost_yc, 1),
+    log_opt_yc = log(optExp_yc),
+    lag1_opt_yc = dplyr::lag(optExp_yc, 1),
+    log_lag1_opt_yc = dplyr::lag(lag1_opt_yc, 1),
+    log_tas_yc = log(tas_yce),
+    lag1_tas_yc = dplyr::lag(tas_yce, 1),
+    log_lag1_tas_yc = dplyr::lag(lag1_tas_yc, 1)
+  ) %>%
+  group_by(country) %>%
+  mutate(
+    diff_qe_yc = qe_yc - lag1_qe_yc,
+    diff_rev_yc = revenue_yc - lag1_rev_yc,
+    diff_sh_yc = share_yc - lag1_sh_yc,
+    
+    diff_heat_yc = heatExp_yc - lag1_heat_yc,
+    diff_opt_yc = optExp_yc - lag1_opt_yc,
+    diff_tas_yc = tas_yce - lag1_tas_yc
+  ) %>%
+  ungroup()
+
+m1 <- feols(
+  log_qe_yc ~
+    heatExp_yc +
+    frostExp_yc
+  | country + year,
+  data = data_yc,
+  cluster = ~country
+)
+
+summary(m1)
+
+m2 <- feols(
+  log_rev_yc ~
+    heatExp_yc +
+    frostExp_yc
+    | country + year,
+  data = data_yc,
+  cluster = ~country
+)
+
+summary(m2)
+
+m3 <- feols(
+  share_yc ~
+    heatExp_yc +
+    frostExp_yc
+    | country + year,
+  data = data_yc,
+  cluster = ~country
+)
+
+summary(m3)
+
+#-------------------------------------------------------------------------------
+# [] Test de Stackelberg
+#-------------------------------------------------------------------------------
+
+data_yc <- data %>%
+  filter(dummy_yc == 1, net_export_dummy == 1) %>%
+  arrange(country, year) %>%
+  select(year, country, net_export_dummy, dummy_leader, price_y, qe_yc,
+         heatExp_yc) %>%
+  drop_na()
+
+# Variables de líderes
+aux_br <- data_yc %>%
+  filter(country == "Brazil") %>%
+  mutate(
+    qe_br_lag1 = dplyr::lag(qe_yc, 1),
+    diff_qe_br = qe_yc - qe_br_lag1,
+    heat_br_lag1 = dplyr::lag(heatExp_yc, 1),
+    diff_heat_br = heatExp_yc - heat_br_lag1
+  ) %>%
+  select(year, qe_br_lag1, diff_qe_br, heat_br_lag1, diff_heat_br)
+
+aux_co <- data_yc %>%
+  filter(country == "Colombia") %>%
+  mutate(
+    qe_co_lag1 = dplyr::lag(qe_yc, 1),
+    diff_qe_co = qe_yc - qe_co_lag1,
+    heat_co_lag1 = dplyr::lag(heatExp_yc, 1),
+    diff_heat_co = heatExp_yc - heat_co_lag1
+  ) %>%
+  select(year, qe_co_lag1, diff_qe_co, heat_co_lag1, diff_heat_co)
+
+aux_vt <- data_yc %>%
+  filter(country == "Viet Nam") %>%
+  mutate(
+    qe_vt_lag1 = dplyr::lag(qe_yc, 1),
+    diff_qe_vt = qe_yc - qe_vt_lag1,
+    heat_vt_lag1 = dplyr::lag(heatExp_yc, 1),
+    diff_heat_vt = heatExp_yc - heat_vt_lag1
+  ) %>%
+  select(year, qe_vt_lag1, diff_qe_vt, heat_vt_lag1, diff_heat_vt)
+  
+# Variables para seguidores
+aux_fl <- data_yc %>%
+  filter(dummy_leader == 0) %>%
+  group_by(year) %>%
+  summarise(
+    qe_fl = mean(qe_yc, na.rm = TRUE),
+    heat_fl = mean(heatExp_yc, na.rm = TRUE),
+    .groups = 'drop'
+  ) %>%
+  ungroup() %>%
+  mutate(
+    qe_fl_lag1 = dplyr::lag(qe_fl),
+    diff_qe_fl = qe_fl - qe_fl_lag1,
+    heat_fl_lag1 = dplyr::lag(heat_fl, 1),
+    diff_heat_fl = heat_fl - heat_fl_lag1
+  )
+
+# Unión con precio
+aux <- data %>%
+  distinct(year, price_y) %>%
+  left_join(aux_br, by = "year")
+aux <- aux %>% left_join(aux_co, by = "year")
+aux <- aux %>% left_join(aux_vt, by = "year")
+aux <- aux %>% left_join(aux_fl, by = "year")
+aux <- aux %>% drop_na()
+
+m1 <- ivreg(
+  price_y ~ diff_qe_br + diff_qe_co + diff_qe_vt + diff_qe_fl |
+    heat_br_lag1 + heat_co_lag1 + heat_vt_lag1 + heat_fl_lag1 +
+    diff_qe_br + diff_qe_co + diff_qe_vt + diff_qe_fl,
+  data = aux
+)
+
+summary(m1)
 
 
 
