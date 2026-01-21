@@ -285,7 +285,7 @@ data_cf <- data_yc %>%
   left_join(
     data %>%
 #      filter(dummy_yc == 1, net_export_dummy == 1, year %in% 1970:1989) %>%
-      filter(dummy_yc == 1, net_export_dummy == 1, year %in% 1970:1989) %>% # Para robustez
+      filter(dummy_yc == 1, net_export_dummy == 1, year %in% 1989:1989) %>% # Para robustez
       group_by(country) %>%
       summarise(mean_heat = mean(heatExp_yc, na.rm = TRUE)),
     by = "country"
@@ -318,36 +318,36 @@ data_yc$mc_yc_hat_s_cf1 <- predict(
     heat_lag1_yc = heat_lag1_yc_cf
   ))
 
-# Predict CF2
-# It considers past heat and current adaptability
-data_yc$mc_yc_hat_s_cf2 <- predict(
-  mc_fe, 
-  newdata = data_cf %>% mutate(
-    heatExp_yc = heatExp_yc_cf,
-    heat_lag1_yc = heat_lag1_yc
-  ))
-
-# Predict CF3
-# It considers current heat and past adaptability
-data_yc$mc_yc_hat_s_cf3 <- predict(
-  mc_fe, 
-  newdata = data_cf %>% mutate(
-    heatExp_yc = heatExp_yc,
-    heat_lag1_yc = heat_lag1_yc_cf
-  ))
-
-
-# Predict CF # Cournot average 1990:2020
-# data_yc$mc_yc_hat_c_cf1 <- predict(
-#   mc_fe_cournot, 
+# # Predict CF2
+# # It considers past heat and current adaptability
+# data_yc$mc_yc_hat_s_cf2 <- predict(
+#   mc_fe, 
 #   newdata = data_cf %>% mutate(
 #     heatExp_yc = heatExp_yc_cf,
+#     heat_lag1_yc = heat_lag1_yc
+#   ))
+# 
+# # Predict CF3
+# # It considers current heat and past adaptability
+# data_yc$mc_yc_hat_s_cf3 <- predict(
+#   mc_fe, 
+#   newdata = data_cf %>% mutate(
+#     heatExp_yc = heatExp_yc,
 #     heat_lag1_yc = heat_lag1_yc_cf
 #   ))
 
+
+#Predict CF # Cournot average 1990:2020
+data_yc$mc_yc_hat_c_cf1 <- predict(
+  mc_fe,
+  newdata = data_cf %>% mutate(
+    heatExp_yc = heatExp_yc_cf,
+    heat_lag1_yc = heat_lag1_yc_cf
+  ))
+
 # Elimina NAs generados por lag
 data_yc <- data_yc %>%
-  filter(!is.na(mc_yc_hat_s_cf1) & !is.na(mc_yc_hat_s_cf2) & !is.na(mc_yc_hat_s_cf3))
+  filter(!is.na(mc_yc_hat_s_cf1) & !is.na(mc_yc_hat_c_cf1))
 
 
 # # Store coefficients IV 
@@ -747,15 +747,15 @@ cf1_processed <- map(market_list, function(market) {
 
 # Scenario 2:
 cf2_processed <- map(market_list, function(market) {
-  market$mc_yc_hat_s <- market$mc_yc_hat_s_cf2
-  simulate_market(market, coeff_iv3)
+  market$mc_yc_hat_s <- market$mc_yc_hat_c_cf1
+  simulate_market_cournot(market, coeff_iv3)
 })
 
 # Scenario 3:
-cf3_processed <- map(market_list, function(market) {
-  market$mc_yc_hat_s <- market$mc_yc_hat_s_cf3
-  simulate_market(market, coeff_iv3)
-})
+# cf3_processed <- map(market_list, function(market) {
+#   market$mc_yc_hat_s <- market$mc_yc_hat_s_cf3
+#   simulate_market(market, coeff_iv3)
+# })
 
 
 cf0_results_y <- map_dfr(cf0_processed, ~.x$market_summary, .id = "market_id") %>% 
@@ -776,11 +776,11 @@ cf2_results_y <- map_dfr(cf2_processed, ~.x$market_summary, .id = "market_id") %
 cf2_results_yc <- map_dfr(cf2_processed, ~ .x$country_profits, .id = "market_id") %>% 
   mutate(scenario = "CF2")
 
-cf3_results_y <- map_dfr(cf3_processed, ~.x$market_summary, .id = "market_id") %>% 
-  mutate(scenario = "CF3")
-
-cf3_results_yc <- map_dfr(cf3_processed, ~ .x$country_profits, .id = "market_id") %>% 
-  mutate(scenario = "CF3")
+# cf3_results_y <- map_dfr(cf3_processed, ~.x$market_summary, .id = "market_id") %>% 
+#   mutate(scenario = "CF3")
+# 
+# cf3_results_yc <- map_dfr(cf3_processed, ~ .x$country_profits, .id = "market_id") %>% 
+#   mutate(scenario = "CF3")
 
 # # Scenario 2
 # cf2_results <- map_dfr(market_list, function(market) {
@@ -813,53 +813,53 @@ cf3_results_yc <- map_dfr(cf3_processed, ~ .x$country_profits, .id = "market_id"
 
 # Combine all results
 
-# aux_yc <- bind_rows(
-#   cf2_results_yc
-# ) %>%
-#   mutate(
-#     dummy_leader = case_when(
-#       (country == "Brazil" | country == "Colombia" | country == "Viet Nam") ~ 1,
-#       TRUE ~ 0
-#     )
-#   ) %>%
-#   select(market_id, date, country, id, dummy_leader, type, quantity, revenue, profit, mc_yc_hat_s, price, scenario)
-# 
-# aux_y <- aux_yc %>%
-#   mutate(,
-#          year = as.factor(year(date)),
-#          month_num = as.double(month(date))) %>%
-#   group_by(market_id, scenario) %>%
-#   mutate(
-#     Q_leaders_total = sum(quantity[dummy_leader == 1], na.rm = TRUE),
-#     Q_followers_total = sum(quantity[dummy_leader == 0], na.rm = TRUE),
-#     Q_total = sum(quantity, na.rm = TRUE),
-#     price = first(price),
-#     profit_leaders = sum(profit[dummy_leader == 1], na.rm = TRUE),
-#     profit_followers = sum(profit[dummy_leader == 0], na.rm = TRUE),
-#     scenario = first(scenario)
-#   ) %>%
-#   ungroup() %>%
-#   distinct(market_id, scenario, .keep_all = TRUE) %>%
-#   left_join(cf2_results_y %>% select(market_id, consumer_surplus, total_surplus), by = "market_id") %>%
-#   select(market_id, date, year, month_num, Q_leaders_total,
-#          Q_followers_total, Q_total, price, profit_leaders,
-#          profit_followers, consumer_surplus, total_surplus, scenario) 
+aux_yc <- bind_rows(
+  cf2_results_yc
+) %>%
+  mutate(
+    dummy_leader = case_when(
+      (country == "Brazil" | country == "Colombia" | country == "Viet Nam") ~ 1,
+      TRUE ~ 0
+    )
+  ) %>%
+  select(market_id, date, country, id, dummy_leader, type, quantity, revenue, profit, mc_yc_hat_s, price, scenario)
+
+aux_y <- aux_yc %>%
+  mutate(,
+         year = as.factor(year(date)),
+         month_num = as.double(month(date))) %>%
+  group_by(market_id, scenario) %>%
+  mutate(
+    Q_leaders_total = sum(quantity[dummy_leader == 1], na.rm = TRUE),
+    Q_followers_total = sum(quantity[dummy_leader == 0], na.rm = TRUE),
+    Q_total = sum(quantity, na.rm = TRUE),
+    price = first(price),
+    profit_leaders = sum(profit[dummy_leader == 1], na.rm = TRUE),
+    profit_followers = sum(profit[dummy_leader == 0], na.rm = TRUE),
+    scenario = first(scenario)
+  ) %>%
+  ungroup() %>%
+  distinct(market_id, scenario, .keep_all = TRUE) %>%
+  left_join(cf2_results_y %>% select(market_id, consumer_surplus, total_surplus), by = "market_id") %>%
+  select(market_id, date, year, month_num, Q_leaders_total,
+         Q_followers_total, Q_total, price, profit_leaders,
+         profit_followers, consumer_surplus, total_surplus, scenario)
 
 all_results_y <- bind_rows(
   cf0_results_y,
   cf1_results_y,
-  cf2_results_y,
-  cf3_results_y
-  #aux_y
+  #cf2_results_y,
+  #cf3_results_y
+  aux_y
 ) %>%
   arrange(date, scenario)
 
 all_results_yc <- bind_rows(
   cf0_results_yc,
   cf1_results_yc,
-  cf2_results_yc,
-  cf3_results_yc
-  #aux_yc
+  #cf2_results_yc,
+  #cf3_results_yc
+  aux_yc
 ) %>%
   arrange(date, country, scenario)
 

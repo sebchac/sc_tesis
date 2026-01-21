@@ -1,6 +1,6 @@
-\chapter*{6. Estimación y resultados}
+\chapter{Estimación y resultados}
 \label{chap:estimaciones}
-\section*{6.1. Estimación de demanda con variables instrumentales}
+\section{Estimación de demanda con variables instrumentales}
 
 La ecuación de demanda agregada busca capturar las principales fuerzas económicas que determinan el precio y las cantidades comercialziadas en el mercado internacional del café:
 
@@ -40,7 +40,7 @@ El Anexo N°\ref{chap:anexo2} presenta los resultados para la estimación de la 
 
 Una vez estimada la ecuación de demanda, recuperar el coeficiente $\hat{\alpha}^{d}_{1}$ permite estimar los costos marginales de cada país ($c_{i,t}$), siguiendo las ecuaciones \eqref{eq:c_seguidor} y \eqref{eq:c_lider}.
 
-\section*{6.2. Estimación de costos marginales}
+\section{Estimación de costos marginales}
 
 La estimación del impacto del cambio climático sobre los costos marginales del modelo se lleva a cabo en dos etapas. Primero, se computan los costos marginales implícitos de la estimación de demanda siguiendo las ecuaciones \eqref{eq:c_seguidor} y \eqref{eq:c_lider}. Luego, se estima el efecto de choques climáticos siguiendo la siguiente especificación:
 
@@ -53,19 +53,21 @@ La estimación del impacto del cambio climático sobre los costos marginales del
 \phi_{i}+u^{o}_{i,t}
 \end{equation} 
 
-donde $C_{t}$ es una variable de tendencia para identificar un ciclo de producción de 5 años, que es el tiempo en que tarda en madurar un cafeto, $F_{t}$ es el índice de precios de fertilizantes calculado por el Banco Mundial, $H_{i, t}$ es la exposición anual al calor extremo, para cada país, $H_{i, t-1}$ es el rezago de aquella variable, $\phi_{i}$ es un efecto fijo por país, y $u^{o}_{i,t}$ es el término error.
+donde $C_{t}$ es una variable de tendencia para identificar un ciclo de producción de 5 años, que es el tiempo en que tarda en madurar un cafeto, $F_{t}$ es el índice de precios de fertilizantes calculado por el Banco Mundial, $H_{i, t}$ es la exposición anual al calor, para cada país, $H_{i, t-1}$ es el rezago de la variable anterior, $\phi_{i}$ es un efecto fijo por país, y $u^{o}_{i,t}$ es el término error.
+
+La estimación de costos marginales es realizada considerando la información disponible desde 1990 en adelante. Esto es así debido a que el período anterior corresponde a la cartelización del mercado, ya revisada \textit{supra}, de manera que se vuelve necesario evitar explícitamente la influencia que pudiera tener el cartel sobre el mercado. Esta aproximación es similar a la de Igami \citeyearpar{igami2015market}, que considera el período 1965-2006 para la estimación de demanda, en el entendimiento de que el cartel no afectó las preferencias de los consumidores internacional; y, por otro lado, utilizó información disponible desde 1990 para la construcción de costos marginales implícitos, a fin de estimar escenarios contrafactuales. 
 
 Siguiendo a Figari \citeyearpar{figari2025climate}, si los cambios en las variables climáticas son asignados aleatoriamente entre países, no sería necesario utilizar controles adicionales, y el coeficiente estimado tendría una interpretación causal. De hecho, de introducir controles que varíen con el tiempo y que puedan ser endógenos, como la adopción de nuevas tecnologías, se podría obtener un resultado sesgado, llevando a una situación de malos controles \citep{angrist2009mostly, hsiang2016}.
 
-La Tabla N°\ref{tab:estimacion_costos} resume los resultados para la especificación utilizada. Éstos confirman que las condiciones climáticas extremas son un determinante estadística y económicamente significativo de los costos de producción del café. Tanto la exposición anual al calor extremo como su efecto rezagado un año presentan coeficientes positivos y altamente significativos. En resumen, se tiene que, en un año, cada día adicional con temperaturas sobre 30°C incrementa el costo marginal implícito en aproximadamente 0.39 ¢/lb ese mismo año, y con un impacto persistente de 0.30 ¢/lb. Esto sugiere que el calor extremo no solo afecta los costos corrientes, posiblemente por mayor necesidad de riego, control de plagas o pérdida de cosechas, sino que también daña la productividad futura de los cafetos.
+La Tabla N°\ref{tab:estimacion_costos} resume los resultados para la especificación utilizada. Éstos confirman que las condiciones climáticas son un determinante estadística y económicamente significativo de los costos de producción del café. Tanto la exposición anual al calor extremo como su efecto rezagado un año presentan coeficientes positivos y altamente significativos. En resumen, se tiene que, en un año, cada día adicional con temperaturas sobre 30°C incrementa el costo marginal implícito en aproximadamente 0.42 ¢/lb ese mismo año, y con un impacto persistente de 0.26 ¢/lb. Esto sugiere que el estrés térmico no solo afecta los costos corrientes, posiblemente por mayor necesidad de riego, control de plagas o pérdida de cosechas, sino que también daña la productividad futura de los cafetos.
 
 Las variables de control funcionan como predice la teoría. El coeficiente asociado al precio de fertilizantes es positivo y altamente significativo, mientras que la tendencia del ciclo de 5 años es negativa y significativa, lo que podría reflejar ganancias de productividad a lo largo del ciclo o ajustes en la oferta.
 
-Por otra parte, el uso de efectos fijos por país y errores estándar agrupados al mismo nivel aísla adecuadamente el efecto del clima de heterogeneidad no observada entre países y controla la correlación serial. En conjunto, la evidencia respalda sólidamente la hipótesis de que el aumento en la frecuencia de días extremadamente cálidos eleva de manera persistente la estructura de costos de la industria cafetalera.
+Por otra parte, el uso de efectos fijos por país y errores estándar agrupados al mismo nivel aísla adecuadamente el efecto del clima de heterogeneidad no observada entre países y controla la correlación serial. En conjunto, la evidencia respalda sólidamente la hipótesis de que el aumento del estrés térmico eleva de manera persistente la estructura de costos de la industria cafetalera.
 
 \input{tables/estimacion_costos}
 
-\section*{6.3. Ajuste del modelo}
+\section{Ajuste del modelo}
 
 A partir de los resultados obtenidos hasta ahora, es posible identificar la sensibilidad de la demanda ante los choques de precios y computar los costos marginales del sistema. Junto con la interacción estratégica de los agentes, es directo estimar el escenario factual, y revisar así el ajuste del modelo a los datos observados.
 

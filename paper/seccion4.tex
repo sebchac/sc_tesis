@@ -1,11 +1,11 @@
-\chapter*{4. Datos}
+\chapter{Datos}
 \label{chap:datos}
 
 Esta sección presenta el punto de partida para estimar estructuralmente el mercado de interés, pues se centra en la construcción de una base de datos amplia y representativa de su historia y dinámica competitiva. El análisis riguroso de mercados de \textit{soft commodities} requiere capturar tanto las fluctuaciones de corto plazo como las tendencias estructurales, por lo que es fundamental integrar información histórica que incluya variables claves como precios, volúmenes de exportación y comercio, costos de producción, variables de control y factores climáticos. La selección de un horizonte temporal suficientemente extenso permite identificar patrones cíclicos, choques exógenos y relaciones de equilibrio, garantizando así que los resultados no solo reflejen elementos coyunturales, sino también la evolución estructural del sector.
 
 En este caso, los datos recopilados resumen la información de 57 países exportadores y 39 países importadores, para el período comprendido entre los años 1965 y 2019.
 
-\subsection*{4.1. Datos utilizados para la estimación de demanda}
+\section{Datos utilizados para la estimación de demanda}
 
 Como se explicará en la sección siguiente, la estimación de demanda se realiza a nivel agregado, por lo que se construyó una base de datos de frecuencia anual y mensual con información de cantidades comercializadas y precios, complementados con variables de control e instrumentos que permitieron abordar el problema de endogeneidad.
 
@@ -21,7 +21,7 @@ Ahora bien, la determinación conjunta de precios y cantidades en el equilibrio 
 
 \input{tables/datos_demanda}
 
-\subsection*{4.2. Datos utilizados para la estimación de costos marginales}
+\section{Datos utilizados para la estimación de costos marginales}
 
 El objetivo principal de la estimación de costos marginales es determinar qué nivel de influencia tienen las variables climáticas sobre las condiciones de producción del café. En particular, interesa estimar el impacto de la exposición a temperaturas extremas, inadecuadas para el óptimo desarrollo de los cafetos, sobre los costos marginales implícitos que resultan de la estimación de demanda agregada. Para estos efectos, se utilizan diferentes \textit{cost-shifters}, con variación entre países y a nivel mensual.
 
@@ -31,9 +31,9 @@ Enseguida, se utilizan variables que capturan, tanto a nivel agregado como para 
 
 \input{tables/datos_costos}
 
-\subsection*{4.3. Variables de estrés térmico}
+\section{Variables de estrés térmico}
 
-La estimación estructural del mercado internacional de café requiere contar con una base de datos lo suficientemente extensa para abarcar la exposición al estrés térmico en cada país exportador y su evolución en el tiempo. Específicamente, y como fue señalado, la estimación de costos marginales utiliza datos de panel en frecuencia anual, y la estimación de demanda requiere ponderar observaciones mensuales por país para llegar a un resultado agregado mundial.
+La estimación estructural del mercado internacional de café requiere contar con una base de datos lo suficientemente extensa para abarcar la exposición al estrés térmico en cada país exportador y su evolución en el tiempo. Específicamente, y como fue señalado, la estimación de costos marginales utiliza datos de panel en frecuencia anual, y la estimación de demanda requiere ponderar observaciones anuales por país para llegar a un resultado agregado mundial.
 
 Las variables de estrés térmico se construyen a partir de dos fuentes de datos clave. La primera de ellas otorga las temperaturas mínimas y máximas en todo el mundo, con alto nivel de granularidad geográfica, lo que permite estimar la exposición diaria a temperaturas extremas. Por otro lado, la segunda fuente permite localizar espacialmente los cultivos de café dentro de cada país exportador, dando mayor precisión al análisis. En conjunto, estos datos aseguran que las mediciones reflejen las condiciones térmicas específicas que enfrenta el sector cafetalero en cada economía.
 
@@ -45,9 +45,9 @@ Las bases anteriores se complementan fuertemente, y es que la granularidad en la
 
 Primero, se juntan ambas bases para obtener la evolución diaria de temperaturas mínimas y máximas en cada área de cultivo, distinguiendo entre aquellas dedicadas a la producción de Robusta de las de Arábica, en hectáreas dentro de grillas de 10 km x 10 km en un país específico. Luego, para cada grilla, se calcula la exposición diaria al calor, siguiendo el procedimiento explicado \textit{infra}, y se pondera el resultado por las hectáreas de cada grilla para obtener una observación diaria por país, desde 1965 hasta 2019.
 
-En base a los antecedentes revisados en la sección anterior, se considera exposición a temperaturas bajas a aquellas bajo los 10°C ($k_{1}$); por su parte, se definen como temperaturas en extremo altas ($k_{4}$) a aquellas sobre los 30°C para Robusta y sobre los 26°C para Arabica. Por otro lado, se define el rango de temperaturas óptimas entre los 18°C ($k_{2}$) y los 26°C ($k_{3}$).
+En base a los antecedentes revisados en la sección anterior, se considera exposición a temperaturas bajas a aquellas bajo los 10°C ($k_{1}$); por su parte, se definen como temperaturas altas ($k_{4}$) a aquellas sobre los 30°C para Robusta y sobre los 26°C para Arabica. Por otro lado, se define el rango de temperaturas óptimas entre los 18°C ($k_{2}$) y los 26°C ($k_{3}$).
 
-De esta manera, se construye una variable para la \textbf{exposición a temperaturas extremas}. La metodología propuesta en este trabajo considera que la temperatura evoluciona en el día siguiendo una trayectoria similar a una función triangular, comenzando y terminando con un valor mínimo, y presentando una temperatura máxima en el vértice superior. Aunque sencilla, esta aproximación permite obtener un valor directo para la fracción del día en que se alcanza un nivel de temperatura específico. Así, para un umbral $k_{i}$, con $i \in \{1, 4\}$ definido anteriormente, y considerando las temperaturas mínima y máxima de cada día, existen tres escenarios posibles, presentados en las Figuras N°\ref{fig:plot04_01} a N°\ref{fig:plot04_06} y explicadas a continuación:
+A partir esto, es posible construir una variable para el \textbf{estrés térmico} que enfrenta cada país en el tiempo. La metodología propuesta en este trabajo considera que la temperatura evoluciona en el día siguiendo una trayectoria similar a una función triangular, comenzando y terminando con un valor mínimo, y presentando una temperatura máxima en el vértice superior. Aunque sencilla, esta aproximación permite obtener un valor directo para la fracción del día en que se alcanza un nivel de temperatura específico. Así, para un umbral $k_{i}$, con $i \in \{1, 4\}$ definido anteriormente, y considerando las temperaturas mínima y máxima de cada día, existen tres escenarios posibles, presentados en las Figuras N°\ref{fig:plot04_01} a N°\ref{fig:plot04_06} y explicadas a continuación:
 
 \begin{itemize}
     \item $t_{\text{máx}} \leq k_{i}$: en este caso, la trayectoria diaria de la temperatura está siempre por debajo del umbral. Por lo tanto, si el objetivo es medir la fracción del día en que determinada zona geográfica estuvo expuesta a temperaturas en extremo bajas ($k_{1}$), entonces la variable en construcción debe tomar un valor igual a 1 en este caso. Por otro lado, si el objetivo es capturar la exposición a temperaturas en extremo altas ($k_{4}$), entonces la variable toma un valor igual a 0.
@@ -109,7 +109,7 @@ De esta manera, se construye una variable para la \textbf{exposición a temperat
     \end{minipage}
 \end{figure}
 
-Lo anterior permite obtener un resultado diario para la exposición a temperaturas extremas. Las exposiciones mensual y anual se obtienen sumando el valor diario para cada país. Por último, para obtener el resultado agregado, se utiliza tanto un promedio simple como un promedio ponderado. Las Tablas N°\ref{tab:variables_exp_ym} y N°\ref{tab:variables_exp_y} resumen la información de las variables de exposición a temperaturas extremas.
+Lo anterior permite obtener un resultado diario para la exposición a temperaturas altas o bajas. Las exposiciones mensual y anual se obtienen sumando el valor diario para cada país. Por último, para obtener el resultado agregado, se utiliza tanto un promedio simple como un promedio ponderado. Las Tablas N°\ref{tab:variables_exp_ym} y N°\ref{tab:variables_exp_y} resumen la información de las variables de estrés térmico.
 
 \input{tables/datos_exp_ym}
 

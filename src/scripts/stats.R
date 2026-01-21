@@ -1532,7 +1532,7 @@ plot_arab_grupos <- aux3 %>% # Evolución de la composición por grupo
 ggsave(paste0(fig_path, "arab_grupos.png"), 
        plot = plot_arab_grupos,
        width = 7, 
-       height = 5,
+       height = 7,
        units = "cm",
        dpi = 300,
        bg = "white")
@@ -2313,7 +2313,7 @@ descomp_c <- descomp_c %>%
   left_join(data %>% distinct(country, dummy_leader), by = "country")
 
 # 4. Opción C: Versión minimalista para publicación académica
-plot_descomp_c <- ggplot(descomp_c, 
+plot_descomp_c <- ggplot(descomp_c %>% filter(!country %in% c("Brazil", "Colombia", "Viet Nam")), 
                          aes(x = efficiency_effect, 
                              y = strategic_effect,
                              shape = factor(dummy_leader,
@@ -2325,13 +2325,13 @@ plot_descomp_c <- ggplot(descomp_c,
   geom_abline(slope = -1, intercept = 0, linetype = "dotted", color = "black") +
   
   # Etiquetar solo los países mencionados en el texto
-  geom_text_repel(
-    data = descomp_c %>% filter(country %in% c("Viet Nam", "Brazil", "Colombia")),
-    aes(label = country),
-    size = 3.5,
-    box.padding = 0.5,
-    segment.color = "gray50"
-  ) +
+  # geom_text_repel(
+  #   data = descomp_c %>% filter(country %in% c("Viet Nam", "Brazil", "Colombia")),
+  #   aes(label = country),
+  #   size = 3.5,
+  #   box.padding = 0.5,
+  #   segment.color = "gray50"
+  # ) +
   
   labs(
     x = "Efecto Eficiencia (mill. USD)",
@@ -2492,22 +2492,183 @@ summary(m3_fe)
 #-------------------------------------------------------------------------------
 # Heatmap heat
 #-------------------------------------------------------------------------------
+data_yc <- data %>%
+  filter(dummy_yc == 1) %>%
+  mutate(
+    share_yc = qe_yc / qe_y,
+    rev_yc = qe_yc * price_y,
+    grupo = case_when(
+      country %in% c("Brazil", "Colombia", "Vietnam") ~ "Líder",
+      TRUE ~ "Seguidor"
+    )
+  ) %>%
+  select(year, country, qe_yc, qe_y, rev_yc, grupo, tas_yce, heatExp_yc, share_yc) %>%
+  drop_na() %>%
+  mutate(
+    country_clean = case_when(
+      # Países con nombres idénticos o muy similares
+      country %in% c("Angola", "Benin", "Bolivia", "Brazil", "Burundi", 
+                     "Cameroon", "Colombia", "Congo", "Costa Rica", "Cuba",
+                     "Dominican Republic", "Ecuador", "El Salvador", "Ethiopia",
+                     "Gabon", "Ghana", "Guatemala", "Guinea", "Guyana", "Haiti",
+                     "Honduras", "India", "Indonesia", "Jamaica", "Kenya",
+                     "Liberia", "Madagascar", "Malawi", "Mexico", "Nicaragua",
+                     "Nigeria", "Panama", "Papua New Guinea", "Paraguay", "Peru",
+                     "Rwanda", "Sierra Leone", "Sri Lanka", "Togo", 
+                     "Trinidad and Tobago", "Uganda", "Venezuela", "Yemen",
+                     "Zambia", "Zimbabwe") ~ country,
+      
+      # Países con nombres diferentes en y
+      country == "Vietnam" ~ "Viet Nam",
+      country == "Côte d'Ivoire" ~ "Côte d'Ivoire",  # Ya es igual
+      country == "Eq. Guinea" ~ "Equatorial Guinea",
+      country == "Central African Rep." ~ "Central African Republic",
+      country == "Laos" ~ "Laos",  # Ya es igual
+      country == "Tanzania" ~ "Tanzania",  # Ya es igual
+      country == "New Caledonia" ~ "New Caledonia",  # Ya es igual
+      
+      # Para cualquier otro país no en la lista, mantener NA o el original
+      TRUE ~ NA_character_
+    ),
+    iso_a3 = countrycode(
+      country,
+      origin = "country.name",
+      destination = "iso3c",
+      warn = FALSE
+    )
+  ) %>%
+  filter(!is.na(iso_a3))
 
 ggplot(data_yc, aes(year, country, fill= tas_yce)) + 
   geom_tile()
 
-aux1 <- data_yc %>%
-  select(year, country, tas_yce, qe_yc) %>%
-  drop_na()
+# Curva térmica qe_yc
 
-ggplot(aux1, aes(x = tas_yce, y = log(qe_yc + 1))) +
-  geom_point(alpha = 0.3) +
-  geom_smooth(method = "lm", formula = y ~ x + I(x^2), color = "red") +
-  labs(title = NULL,
-       x = "Temperatura promedio", y = "Log(Exportaciones)")
+motiv1 <- ggplot(data_yc %>% filter(country != "Bolivia"), aes(x = tas_yce, y = log(qe_yc + 1), color = grupo)) +
+  geom_point(alpha = 0.4) +
+  geom_smooth(method = "lm", formula = y ~ poly(x, 2), se = FALSE, aes(group = 1)) +
+  labs(
+    x = "Temperatura promedio anual (°C)",
+    y = "Log(Cantidad exportada)",
+    title = NULL,
+    subtitle = NULL,
+    color = NULL
+  ) +
+  theme_classic()
 
-modelo_cuad <- lm(log(qe_yc + 1) ~ tas_yce + I(tas_yce^2), data = data)
-summary(modelo_cuad)
+ggsave(
+  filename = paste0(fig_path, "motiv1.png"),
+  plot = motiv1,
+  width = 7,
+  height = 5,
+  dpi = 600,
+  bg = "white")
+
+# Curva térmica rev_yc
+
+motiv2 <- ggplot(data_yc %>% filter(country != "Bolivia"), aes(x = tas_yce, y = log(rev_yc + 1), color = grupo)) +
+  geom_point(alpha = 0.4) +
+  geom_smooth(method = "lm", formula = y ~ poly(x, 2), se = FALSE, aes(group = 1)) +
+  labs(
+    x = "Temperatura promedio anual (°C)",
+    y = "Log(Ingresos)",
+    title = NULL,
+    subtitle = NULL,
+    color = NULL
+  ) +
+  theme_classic()
+
+ggsave(
+  filename = paste0(fig_path, "motiv2.png"),
+  plot = motiv2,
+  width = 7,
+  height = 5,
+  dpi = 600,
+  bg = "white")
+
+# Curva térmica share_yc
+
+motiv3 <- ggplot(data_yc %>% filter(country != "Bolivia"), aes(x = tas_yce, y = share_yc, color = grupo)) +
+  geom_point(alpha = 0.4) +
+  geom_smooth(method = "lm", formula = y ~ poly(x, 2), se = FALSE, aes(group = 1)) +
+  labs(
+    x = "Temperatura promedio anual (°C)",
+    y = "Participación de mercado",
+    title = NULL,
+    subtitle = NULL,
+    color = NULL
+  ) +
+  scale_y_continuous(labels = scales::percent, limits = c(0, 0.4)) +
+  theme_classic()
+
+ggsave(
+  filename = paste0(fig_path, "motiv3.png"),
+  plot = motiv3,
+  width = 7,
+  height = 5,
+  dpi = 600,
+  bg = "white")
+
+map_data <- data_yc %>%
+  filter(year >= 1990) %>%
+  group_by(iso_a3) %>%
+  summarise(
+    country = first(country_clean),
+    temp_mean = mean(tas_yce, na.rm = TRUE),
+    share_mean = sum(qe_yc, na.rm = TRUE) / sum(qe_y, na.rm = TRUE),
+    .groups = 'drop'
+  ) %>%
+  mutate(
+    temp_group = if_else(temp_mean >= 20 & temp_mean <= 25, 
+                         "20-25°C", 
+                         "Otro")
+  )
+
+# Obtener datos de mapa mundial
+world <- ne_countries(scale = "medium", returnclass = "sf")
+world <- world %>% 
+  left_join(map_data, by = "iso_a3")
+
+# Gráfico principal
+ggplot(world) +
+  geom_sf(aes(fill = temp_group), color = "gray40", size = 0.2) +
+  geom_point(data = world %>% filter(!is.na(share_mean)),
+             aes(geometry = geometry, size = share_mean),
+             stat = "sf_coordinates", alpha = 0.7) +
+  scale_fill_manual(
+    values = c("20-25°C" = "#2E8B57",  # Verde
+               "Otro" = "#B0C4DE"),       # Gris azulado
+    name = "Temperatura promedio",
+    na.value = "gray90"
+  ) +
+  scale_size_continuous(
+    name = "Participación en exportaciones",
+    range = c(1, 12),
+    #breaks = c(0.1, 0.3, 0.5),
+    labels = scales::percent
+  ) +
+  labs(
+    title = NULL,
+    subtitle = NULL
+  ) +
+  theme_classic() +
+  theme(
+    legend.position = "bottom",
+    legend.box = "vertical",
+    plot.title = element_text(face = "bold", size = 14)
+  )
+
+data_yc %>%
+  group_by(year) %>%
+  summarise(temp_global = mean(tas_yce, na.rm = TRUE)) %>%
+  ggplot(aes(x = year, y = temp_global)) +
+  geom_line(linewidth = 1) +
+  geom_vline(xintercept = 1989, linetype = "dashed", color = "red") +
+  geom_smooth(data = . %>% filter(year < 1989), method = "lm", se = FALSE, color = "blue") +
+  geom_smooth(data = . %>% filter(year >= 1989), method = "lm", se = FALSE, color = "red") +
+  labs(x = "Año", y = "Temperatura promedio global (°C)",
+       title = "Cambio en tendencia térmica alrededor de 1989") +
+  theme_minimal()
 
 #-------------------------------------------------------------------------------
 # [] Test de Stackelberg

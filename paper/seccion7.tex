@@ -1,12 +1,13 @@
-\chapter*{7. Análisis contrafactual}
+\chapter{Análisis contrafactual}
+\label{chap:contrafactual}
 
 El objetivo de esta sección es utilizar el modelo estructural estimado para simular un escenario con menor estrés térmico, cuantificar sus efectos y descomponer los canales a través de los cuales el cambio climático afecta al mercado.
 
 En particular, interesa analizar el cambio en la trayectoria de precios y cantidades comercializadas una vez que se reduce el estrés térmico, modificando las variables climáticas relevantes en tal sentido. Luego, a partir de estos resultados, es posible calcular el efecto en el bienestar social, así como diferencias entre grupos de exportadores. Esta última distinción permitiría explorar si acaso el estrés térmico amplifica las diferencias estructurales entre países líderes y seguidores.
 
-\section*{7.1. Diseño del escenario contrafactual y efectos agregados}
+\section{Diseño del escenario contrafactual y efectos agregados}
 
-El diseño de un escenario contrafactual con menores niveles de estrés térmico no es trivial. Una alternativa para la proyección de variables climáticas es estimar su comportamiento desde un enfoque de series temporales, similar a lo propuesto por Hamilton \citeyearpar{Hamilton2018} y aplicado por Bilal y Känzig \citeyearpar{bilal2024macroeconomic}. Sin embargo, se debe considerar que, en este caso, en lugar de proyectar la temperatura promedio de cada país, lo más preciso es estimar la evolución de las temperaturas mínimas y máximas, o el rango diario, ya que es a partir de estos valores que se construyen las variables de exposición a temperaturas extremas.
+El diseño de un escenario contrafactual con menores niveles de estrés térmico no es trivial. Una alternativa para la proyección de variables climáticas es estimar su comportamiento desde un enfoque de series temporales, similar a lo propuesto por Hamilton \citeyearpar{Hamilton2018} y aplicado por Bilal y Känzig \citeyearpar{bilal2024macroeconomic}. Sin embargo, en este caso, en lugar de proyectar la temperatura promedio de cada país, lo más preciso es estimar la evolución de las temperaturas mínimas y máximas, o el rango diario, ya que es a partir de estos valores que se construyen las variables de exposición a temperaturas extremas.
 
 Para efectos de este análisis, se adopta un enfoque simplificado, considerando la exposición al calor promedio entre los años 1970 y 1989 para el escenario contrafactual. De esta manera, la diferencia entre ambos escenarios captura el cambio de tendencia posterior a 1990.
 
@@ -35,10 +36,10 @@ La Tabla N°\ref{tab:t6_results} muestra que el cambio de tendencia en el estré
 
 Enseguida, la Tabla N°\ref{tab:t6_surplus} presenta los resultados en términos de bienestar para los diferentes grupos de interés en el sistema. Se considera el promedio anual para el período de interés. Se puede ver que, en el contrafactual, los líderes del mercado apenas suben su excedente (0,1\%), mientras que los seguidores ven un incremento del 2,2\%. Dicho de otro modo, el cambio en la tendencia de la exposición al calor extremo desde el año 1990 habría perjudicado a ambos grupos de países exportadores, afectando más a los seguidores. Esto sugere que el estrés térmico agudiza la diferencia estructural entre ambos grupos.
 
-En cuanto a los importadores, estos también ven un incremento en su excedente como resultado del Contrafactual, aunque es menor al incremento de los exportadores. En suma, estos elementos contribuyen a que el excedente total se vea incrementado al eliminar el cambio de tendencia en la exposición de calor.
+En cuanto a los importadores, estos también ven un incremento en su excedente como resultado del contrafactual, aunque es menor al incremento de los exportadores. En suma, estos elementos contribuyen a que el excedente total se vea incrementado al eliminar el cambio de tendencia en la exposición de calor.
 \input{tables/t6_surplus.tex}
 
-\section*{7.2. Heterogeneidad de resultados entre países}
+\section{Heterogeneidad de resultados entre países}
 
 Los resultados agregados permiten comprender que el impacto del cambio climático es diferenciado entre los grupos que componen el mercado. Sin embargo, también existe amplia heterogeneidad dentro de cada grupo, o que vuelve necesario estudiar la fuente de estas diferencias.
 
@@ -48,9 +49,9 @@ Por otro lado, las ganancias de eficiencia van desde un 0,05\% (Bolivia) hasta u
 
 Ahora bien, el contrafactual perjudica la eficiencia de Benin, Costa de Marfil y Sri Lanka. El caso de Costa de Marfil es destacable, pues la pérdida alcanza un 25\%. En resumen, solo analizando cambios en el costo marginal, se puede sostener que el estrés térmico tiene un impacto diferenciado sobre los países, y que la evolución de la exposición al calor en las últimas tres décadas ha implicado una pérdida de eficiencia para la mayoría, pero una ganancia para otros pocos.
 
-El cambio analizado es consecuencia directa de la estimación de los costos marginales implícitos del sistema. Se atribuye su heterogeneidad principalmente a dos factores, según el diseño del modelo. Primero, el cambio de tendencia en el estrés térmico, provocado por la exposición al calor extremo, es diferente para cada país según la ubicación geográfica de sus cultivos. Como fue señalado \textit{supra}, la temperatura histórica depende, entre otas cosas, de la cercanía de los cultivos a la línea ecuatorial, la humedad relativa del aire o la altura. 
+El cambio analizado es consecuencia directa de la estimación de los costos marginales implícitos del sistema. Se atribuye su heterogeneidad principalmente a dos factores, según el diseño del modelo. Primero, el cambio de tendencia en el estrés térmico, provocado por la exposición al calor extremo, es diferente para cada país según la ubicación geográfica de sus cultivos. Como fue señalado \textit{supra}, la temperatura histórica depende, entre otras cosas, de la cercanía de los cultivos a la línea ecuatorial, la humedad relativa del aire o la altura. 
 
-Segundo, la construcción de la variable que mide la exposición al calor extrema incluye un umbral de temperatura diferenciado para cada especie botánica del grano de café. Robusta, por ser la especie más resiliente al calor, considera temepraturas extremas sobre los 30°C, diferente a los 26°C para el caso de Arábica. Luego, la ponderación del tiempo de exposición de los cultivos por las hectáreas destinadas a cada especie permite capturar el \textit{mix} productivo en la variable climática.
+Segundo, la construcción de la variable que mide el estrés térmico incluye un umbral de temperatura diferenciado para cada especie botánica del grano de café. Robusta, por ser la especie más resiliente al calor, considera temperaturas extremas sobre los 30°C, diferente a los 26°C para el caso de Arábica. Luego, la ponderación del tiempo de exposición de los cultivos por las hectáreas destinadas a cada especie permite capturar el \textit{mix} productivo en la variable climática.
 \begin{figure}[H]
     \centering
     \caption{Cambio en los costos marginales por país}
@@ -68,7 +69,7 @@ Lo más llamativo, sin duda, es el caso de Vietnam, y es que sus cantidades caen
 
 Diferentes elementos podrían dar explicación a este hallazgo. Como se observa en la Tabla N°\ref{tab:costs_change_leaders}, el escenario contrafactual implicó que Vietnam pasara a tener los costos marginales más altos dentro del grupo de líderes, perjudicando su posición competitiva. Si bien todos redujeron sus costos, para Vietnam el resultado fue perjudicial. En un equilibrio de Stackelberg, el volumen óptimo de un líder no depende únicamente de sus costos marginales, sino de la interacción con la curva de reacción de los seguidores. La reducción generalizada del estrés térmico en el contrafactual disminuye los costos de todos los productores, pero lo hace de forma asimétrica. Al mejorar relativamente más la competitividad de los seguidores --o de otros líderes como Brasil y Colombia--, la curva de reacción del mercado se vuelve más elástica, reduciendo el espacio óptimo de producción para Vietnam. En otras palabras, el calor contribuyó como una ventaja estratégica para el país asiático; al eliminarla, su posición de liderazgo se erosiona aunque su eficiencia productiva mejore.
 
-El cambio climático no es un simple choque agregado de productividad, sino un factor que reconfigura los equilibrios de poder en mercados oligopólicos. El caso de Vietnam --principal productor mundial de café Robusta, variedad tradicionalmente más tolerante al calor-- sugiere que su especialización le permitió capitalizar el estrés térmico como una ventaja comparativa. Mientras la especie Arabica, predominante en Brasil y Colombia, sufría con las temperaturas altas, la resiliencia de Robusta pudo haber ampliado la participación de Vietnam en la oferta global. Así, la mitigación del cambio climático, pese a sus beneficios agregados, genera redistribuciones complejas que pueden enfrentar los propios líderes del mercado.
+El estrés térmico no es un simple choque agregado de productividad, sino un factor que reconfigura los equilibrios de poder en mercados oligopólicos. El caso de Vietnam --principal productor mundial de café Robusta, variedad tradicionalmente más tolerante al calor-- sugiere que su especialización le permitió capitalizar el estrés térmico como una ventaja comparativa. Mientras la especie Arabica, predominante en Brasil y Colombia, sufría con las temperaturas altas, la resiliencia de Robusta pudo haber ampliado la participación de Vietnam en la oferta global. Así, la mitigación del estrés térmico, pese a sus beneficios agregados, genera redistribuciones complejas que pueden enfrentar los propios líderes del mercado.
 
 \input{tables/costs_change_leaders.tex}
 
@@ -90,7 +91,7 @@ Por último, la Figura N°\ref{fig:diff_profit} presenta el cambio en los benefi
 
 En resumen, la heterogeneidad revisada sirve como primera aproximación para comprender la complejidad que tiene el efecto del estrés térmico sobre el equilibrio de mercado, interviniendo con la eficiencia productiva de los países y su interacción estratégica. Sin embargo, se vuelve necesario descomponer el efecto total entre ambos elementos, a fin de tener un resultado más preciso sobre el efecto del estrés térmico.
 
-\section*{7.3. Descomposición del impacto: eficiencia e interacción estratégica}
+\section{Descomposición del impacto: eficiencia e interacción estratégica}
 
 La construcción de un escenario contrafactual, en conjunto con la estimación estructural del mercado, permiten aislar el efecto del estrés térmico y descomponerlo en dos canales. Por un lado, existe un choque de eficiencia productiva que afecta heterogéneamente los costos marginales de los países. Por otro lado, la interacción estratégica, a través de la estructura jerárquica del mercado, redistribuye rentas entre los agentes. Esta descomposición es fundamental para entender no solo la magnitud del impacto climático, sino también su incidencia distributiva entre y dentro de los grupos de países exportadores.
 
@@ -102,7 +103,7 @@ Por otro lado, la Tabla N°\ref{tab:descomp_g} y la Figura N°\ref{fig:descomp_c
 
 Lo anterior implica que existan países ganadores netos, cuya mejora en eficiencia es suficientemente grande para compensar el efecto estratégico. Este grupo incluye a varios países seguidores y a líderes como Brasil y Colombia. Para ellos, la caída del precio en el nuevo equilibrio, aunque afecta sus márgenes, es superada por la reducción de sus costos.
 
-Mientras tanto, aquellos países con una ganancia de eficiencia modesta se ven perjudicados, con un efecto neto negativo en sus beneficios. El caso más destacable es Vietnam. Su mejora de eficiencia fue positiva, pero relativamente menor a la de Brasil y Colombia. En el escenario contrafactual, el impacto del efecto estratégico no solo anula esa ganancia, sino que lo deja en una posición peor que en el escenario factual. Esto sugiere que Vietnam, en el factual, se beneficiaba de un precio de mercado más alto sostenido, en parte, por los mayores costos de sus competidores.
+Mientras tanto, aquellos países con una ganancia de eficiencia modesta se ven perjudicados, con un efecto neto negativo en sus beneficios. El caso más destacable es Vietnam. Su mejora de eficiencia fue positiva, pero relativamente menor a la de Brasil y Colombia. En el escenario contrafactual, el impacto del efecto estratégico no solo anula esa ganancia, sino que lo deja en una posición peor que en el escenario factual. Esto sugiere que Vietnam, en el factual, se beneficiaba de los mayores costos de sus competidores provocados por el estrés térmico.
 
 \input{tables/descomp_g.tex}
 \begin{figure}[H]
