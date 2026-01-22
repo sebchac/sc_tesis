@@ -2313,7 +2313,7 @@ descomp_c <- descomp_c %>%
   left_join(data %>% distinct(country, dummy_leader), by = "country")
 
 # 4. Opción C: Versión minimalista para publicación académica
-plot_descomp_c <- ggplot(descomp_c %>% filter(!country %in% c("Brazil", "Colombia", "Viet Nam")), 
+plot_descomp_c <- ggplot(descomp_c, 
                          aes(x = efficiency_effect, 
                              y = strategic_effect,
                              shape = factor(dummy_leader,
@@ -2324,15 +2324,15 @@ plot_descomp_c <- ggplot(descomp_c %>% filter(!country %in% c("Brazil", "Colombi
   geom_vline(xintercept = 0, linetype = "dashed", color = "gray60") +
   geom_abline(slope = -1, intercept = 0, linetype = "dotted", color = "black") +
   
-  # Etiquetar solo los países mencionados en el texto
-  # geom_text_repel(
-  #   data = descomp_c %>% filter(country %in% c("Viet Nam", "Brazil", "Colombia")),
-  #   aes(label = country),
-  #   size = 3.5,
-  #   box.padding = 0.5,
-  #   segment.color = "gray50"
-  # ) +
-  
+  #Etiquetar solo los países mencionados en el texto
+  geom_text_repel(
+    data = descomp_c %>% filter(country %in% c("Viet Nam", "Brazil", "Colombia")),
+    aes(label = country),
+    size = 3.5,
+    box.padding = 0.5,
+    segment.color = "gray50"
+  ) +
+
   labs(
     x = "Efecto Eficiencia (mill. USD)",
     y = "Efecto Estratégico (mill. USD)",

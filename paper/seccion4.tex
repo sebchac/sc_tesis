@@ -5,7 +5,7 @@ Esta sección presenta el punto de partida para estimar estructuralmente el merc
 
 En este caso, los datos recopilados resumen la información de 57 países exportadores y 39 países importadores, para el período comprendido entre los años 1965 y 2019.
 
-\section{Datos utilizados para la estimación de demanda}
+\section{Datos utilizados para la estimación de demanda y costos marginales}
 
 Como se explicará en la sección siguiente, la estimación de demanda se realiza a nivel agregado, por lo que se construyó una base de datos de frecuencia anual y mensual con información de cantidades comercializadas y precios, complementados con variables de control e instrumentos que permitieron abordar el problema de endogeneidad.
 
@@ -21,9 +21,7 @@ Ahora bien, la determinación conjunta de precios y cantidades en el equilibrio 
 
 \input{tables/datos_demanda}
 
-\section{Datos utilizados para la estimación de costos marginales}
-
-El objetivo principal de la estimación de costos marginales es determinar qué nivel de influencia tienen las variables climáticas sobre las condiciones de producción del café. En particular, interesa estimar el impacto de la exposición a temperaturas extremas, inadecuadas para el óptimo desarrollo de los cafetos, sobre los costos marginales implícitos que resultan de la estimación de demanda agregada. Para estos efectos, se utilizan diferentes \textit{cost-shifters}, con variación entre países y a nivel mensual.
+En cuanto a la estimación de costos marginales, cabe señalar que el principal objetivo es determinar qué nivel de influencia tienen las variables climáticas sobre las condiciones de producción del café. En particular, interesa estimar el impacto de la exposición a temperaturas extremas, inadecuadas para el óptimo desarrollo de los cafetos, sobre los costos marginales implícitos que resultan de la estimación de demanda agregada. Para estos efectos, se utilizan diferentes \textit{cost-shifters}, con variación entre países y a nivel mensual.
 
 En primer lugar, se utiliza un índice mensual de precios de fertilizantes, extraído del \textit{World Bank Commodity Price Data}, al igual que los datos del té. Este índice pondera series de precios de fertilizantes clave en la actividad agrícola, y se incluye como un determinante de los costos marginales de producción a nivel mensual, uniforme para todos los países.
 
@@ -114,3 +112,5 @@ Lo anterior permite obtener un resultado diario para la exposición a temperatur
 \input{tables/datos_exp_ym}
 
 \input{tables/datos_exp_y}
+
+

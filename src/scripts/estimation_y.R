@@ -285,7 +285,7 @@ data_cf <- data_yc %>%
   left_join(
     data %>%
 #      filter(dummy_yc == 1, net_export_dummy == 1, year %in% 1970:1989) %>%
-      filter(dummy_yc == 1, net_export_dummy == 1, year %in% 1989:1989) %>% # Para robustez
+      filter(dummy_yc == 1, net_export_dummy == 1, year %in% 1970:1989) %>% # Para robustez
       group_by(country) %>%
       summarise(mean_heat = mean(heatExp_yc, na.rm = TRUE)),
     by = "country"
