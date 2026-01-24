@@ -125,10 +125,39 @@ iv3 <- ivreg(price_y ~ qe_y  + importGDP_y + teaPrices_y |
 summary(iv3)
 # Store coefficients
 coeff_iv3 <- coef(iv3)
+
+#coeff_iv3["qe_y"] <- -3.675  #-6.2288 (to -0.59) -3.675 (-1)
 beta <- coeff_iv3["qe_y"]
+
 # Predict and elasticity
 demand_data$q_demand_fitted_iv3 <- predict(iv3)
-demand_data$edemand_iv3 <- (1/coeff_iv3["qe_y"])*(demand_data$price_y/demand_data$qe_y)
+#demand_data$edemand_iv3 <- (1/coeff_iv3["qe_y"])*(demand_data$price_y/demand_data$qe_y)
+demand_data$edemand_iv3 <- (1/beta)*(demand_data$price_y/demand_data$qe_y)
+
+# elasticidad_iv3 <- ggplot(demand_data, aes(x = edemand_iv3)) +
+#   geom_histogram(aes(y = ..density..),
+#                  fill = "gray80", color = "gray40", 
+#                  bins = 20, alpha = 0.7) +
+#   geom_density(color = "gray20", size = 1) +
+#   geom_vline(xintercept = mean(demand_data$edemand_iv3, na.rm = TRUE),
+#              color = "black", linetype = "dashed", size = 1) +
+#   labs(
+#     title = NULL,
+#     x = "Elasticidad",
+#     y = "Densidad"
+#   ) +
+#   theme_classic()
+# 
+# ggsave(
+#   filename = paste0(fig_path, "elasticidad_iv3.png"),
+#   plot = elasticidad_iv3,
+#   width = 8,
+#   height = 6,
+#   dpi = 600,
+#   bg = "white")
+
+summary(demand_data$edemand_iv3)
+sd(demand_data$edemand_iv3)
 mean_elast_iv3 <- mean(demand_data$edemand_iv3, na.rm = TRUE)
 
 # [1.2.3.] Heterocedasticidad. Autocorrelación. Cluster
@@ -182,7 +211,10 @@ data_yc <- data_yc %>%
   mutate(
     heat_lag1_yc = dplyr::lag(heatExp_yc, 1),
     frost_lag1_yc = dplyr::lag(frostExp_yc, 1),
-    opt_lag1_yc = dplyr::lag(optExp_yc, 1)
+    opt_lag1_yc = dplyr::lag(optExp_yc, 1),
+    diff_heat = heatExp_yc - dplyr::lag(heatExp_yc, 3),
+    diff_frost = frostExp_yc - dplyr::lag(frostExp_yc, 3),
+    diff_opt = optExp_yc - dplyr::lag(optExp_yc, 3)
   ) %>%
   ungroup()
 
@@ -225,6 +257,11 @@ mc_fe <- feols(
     fert_y +
     heatExp_yc +
     heat_lag1_yc
+    #frostExp_yc +
+    #frost_lag1_yc 
+    #diff_heat +
+    #diff_opt
+    #diff_frost
   | country,
   data = data_yc,
   cluster = ~country
@@ -339,7 +376,7 @@ data_yc$mc_yc_hat_s_cf1 <- predict(
 
 #Predict CF # Cournot average 1990:2020
 data_yc$mc_yc_hat_c_cf1 <- predict(
-  mc_fe,
+  mc_fe_cournot,
   newdata = data_cf %>% mutate(
     heatExp_yc = heatExp_yc_cf,
     heat_lag1_yc = heat_lag1_yc_cf
@@ -498,22 +535,22 @@ simulate_market <- function(data_market, coef_demand) {
     mutate(
       price = price,
       quantity = ifelse(is.na(opt_quantity), 0, opt_quantity),
-      revenue = (quantity * price * 60 * 2.20462) / 1000, # Ajuste por unidad de medida (MM USD)
-      profit = (quantity * (price - mc_yc_hat_s) * (60 * 2.20462)) / 1000, # Ajuste por unidad de medida (MM USD)
+      revenue = (quantity * price * 60 * 2.20462) / 100, # Ajuste por unidad de medida (MM USD)
+      profit = (quantity * (price - mc_yc_hat_s) * (60 * 2.20462)) / 100, # Ajuste por unidad de medida (MM USD)
       type = case_when(
         dummy_leader == 1 ~ "leader",
         dummy_follower == 1 ~ "follower", 
         TRUE ~ "other")) %>%
     select(date, country, id, dummy_leader, type, quantity, revenue, profit, mc_yc_hat_s, price)
   # Beneficio TOTAL de líderes (suma individual)
-  profit_leaders <- (sum(leaders_opt$q_leader * (price - leaders_opt$mc_hat)) * (60 * 2.20462)) / 1000 # Ajuste por unidad de medida
-  profit_followers <- (sum(followers_opt$q_follower * (price - followers_opt$mc_hat)) * (60 * 2.20462)) / 1000 # Ajuste por unidad de medida
+  profit_leaders <- (sum(leaders_opt$q_leader * (price - leaders_opt$mc_hat)) * (60 * 2.20462)) / 100 # Ajuste por unidad de medida
+  profit_followers <- (sum(followers_opt$q_follower * (price - followers_opt$mc_hat)) * (60 * 2.20462)) / 100 # Ajuste por unidad de medida
   # Consumer surplus
   price_intercept <- price_from_demand(
     0, coef_demand, 
     unique(data_market$teaPrices_y), 
     unique(data_market$importGDP_y))
-  consumer_surplus <- ((0.5 * (price_intercept - price) * Q_total) * (60 * 2.20462)) / 1000 # Ajuste por unidad de medida
+  consumer_surplus <- ((0.5 * (price_intercept - price) * Q_total) * (60 * 2.20462)) / 100 # Ajuste por unidad de medida
   # Results
   results <- list(
     market_summary = tibble(
@@ -680,8 +717,8 @@ simulate_market_cournot <- function(data_market, coef_demand, method = "simultan
     mutate(
       price = price,
       quantity = ifelse(is.na(opt_quantity), 0, opt_quantity),
-      revenue = (quantity * price * 60 * 2.20462) / 1000,
-      profit = (quantity * (price - mc_yc_hat_s) * (60 * 2.20462)) / 1000,
+      revenue = (quantity * price * 60 * 2.20462) / 100,
+      profit = (quantity * (price - mc_yc_hat_s) * (60 * 2.20462)) / 100,
       type = "cournot_firm"
     ) %>%
     select(date, country, id, type, quantity, revenue, profit, mc_yc_hat_s, price)
@@ -696,7 +733,7 @@ simulate_market_cournot <- function(data_market, coef_demand, method = "simultan
     unique(data_market$teaPrices_y), 
     unique(data_market$importGDP_y)
   )
-  consumer_surplus <- ((0.5 * (price_intercept - price) * Q_total) * (60 * 2.20462)) / 1000
+  consumer_surplus <- ((0.5 * (price_intercept - price) * Q_total) * (60 * 2.20462)) / 100
   
   # Results
   results <- list(
@@ -733,29 +770,29 @@ market_list <- data_yc %>%
   group_by(year) %>%
   group_split()
 
-# Baseline
+# Baseline Stackelberg
 cf0_processed <- map(market_list, function(market) {
   market$mc_yc_hat_s <- market$mc_yc_hat_s
   simulate_market(market, coeff_iv3)
 }) 
 
-# Scenario 1: 
+# Scenario 1 CF Stackelberg
 cf1_processed <- map(market_list, function(market) {
   market$mc_yc_hat_s <- market$mc_yc_hat_s_cf1 
   simulate_market(market, coeff_iv3)
 })
 
-# Scenario 2:
+# Scenario 2: Baseline Cournot
 cf2_processed <- map(market_list, function(market) {
-  market$mc_yc_hat_s <- market$mc_yc_hat_c_cf1
+  market$mc_yc_hat_s <- market$mc_yc_hat_c
   simulate_market_cournot(market, coeff_iv3)
 })
 
-# Scenario 3:
-# cf3_processed <- map(market_list, function(market) {
-#   market$mc_yc_hat_s <- market$mc_yc_hat_s_cf3
-#   simulate_market(market, coeff_iv3)
-# })
+# Scenario 3: CF Cournot
+cf3_processed <- map(market_list, function(market) {
+  market$mc_yc_hat_s <- market$mc_yc_hat_c_cf1
+  simulate_market_cournot(market, coeff_iv3)
+})
 
 
 cf0_results_y <- map_dfr(cf0_processed, ~.x$market_summary, .id = "market_id") %>% 
@@ -776,11 +813,11 @@ cf2_results_y <- map_dfr(cf2_processed, ~.x$market_summary, .id = "market_id") %
 cf2_results_yc <- map_dfr(cf2_processed, ~ .x$country_profits, .id = "market_id") %>% 
   mutate(scenario = "CF2")
 
-# cf3_results_y <- map_dfr(cf3_processed, ~.x$market_summary, .id = "market_id") %>% 
-#   mutate(scenario = "CF3")
-# 
-# cf3_results_yc <- map_dfr(cf3_processed, ~ .x$country_profits, .id = "market_id") %>% 
-#   mutate(scenario = "CF3")
+cf3_results_y <- map_dfr(cf3_processed, ~.x$market_summary, .id = "market_id") %>%
+  mutate(scenario = "CF3")
+
+cf3_results_yc <- map_dfr(cf3_processed, ~ .x$country_profits, .id = "market_id") %>%
+  mutate(scenario = "CF3")
 
 # # Scenario 2
 # cf2_results <- map_dfr(market_list, function(market) {
@@ -814,7 +851,8 @@ cf2_results_yc <- map_dfr(cf2_processed, ~ .x$country_profits, .id = "market_id"
 # Combine all results
 
 aux_yc <- bind_rows(
-  cf2_results_yc
+  cf2_results_yc,
+  cf3_results_yc
 ) %>%
   mutate(
     dummy_leader = case_when(

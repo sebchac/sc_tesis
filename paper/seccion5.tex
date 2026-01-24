@@ -1,6 +1,8 @@
 \chapter{Modelo}
 \label{chap:modelo}
 
+\section{Juego secuencial con $m > 1$ líderes}
+
 El modelo que motiva la estimación se basa en un esquema de competencia secuencial en cantidades (Stackelberg) aplicado al mercado internacional del café, donde los países exportadores interactúan estratégicamente en su toma de decisiones de producción. Esta estructura captura la asimetría entre naciones con diferencias notables de participación de mercado, generando dinámicas de dependencia estratégica en la competencia.
 
 El grano verde de café es considerado un bien homogéneo, a pesar de las diferencias entre especies (principalmente Arábica y Robusta) y categorías comerciales (café de altura o estándar), en base a lo desarrollado en la sección \ref{chap:mercado}.
@@ -26,7 +28,7 @@ En equilibrio, cada seguidor resuelve (1) tomando las exportaciones del grupo de
 $$ \frac{\partial \pi^{s}}{\partial q_{i}^{s}} = 0 \iff P-c_{i}^{s}-B q_{i}^{s}=0$$
 $$ q_{i}^{s}=\frac{P-c_{i}^{s}}{B} = \frac{A-B \cdot \bar{Q}^{l}-B\cdot Q^{s}_{-i}-c_{i}}{2B}$$
 
-Luego, por la simetría entre los seguidores, es posible agregar el resultado, de manera que $Q^{s}_{-i} = (n-m-1)\cdot q^{s}_{i}$. Así:
+Luego, bajo un supuesto de simetría entre los seguidores, es posible agregar el resultado, de manera que $Q^{s}_{-i} = (n-m-1)\cdot q^{s}_{i}$. Así:
 
 \begin{equation}
     q^{s}_{i}(\bar{Q}^{l}) = \frac{A-B\cdot \bar{Q}^{l}-c_{i}}{(n-m+1)\cdot B}
@@ -38,7 +40,7 @@ $$  max_{q_{i}^{l} \ge 0}: \pi^{l}(q_{i}^{l}) = (A-B(Q^{l}_{-i}+ \textcolor{blue
 
 $$ \frac{\partial \pi^{l}}{\partial q^{l}_{i}} = 0 \iff q^{l}_{i} = \frac{A-B\cdot Q^{l}_{-i} - c_{i}}{2B}$$
 
-Nuevamente, por simetría, es directo que $Q^{l}_{-i} = (m-1)\cdot q^{l}_{i}$. Por tanto:
+Nuevamente, bajo un supuesto de simetría, es directo que $Q^{l}_{-i} = (m-1)\cdot q^{l}_{i}$. Por tanto:
 
 $$ q^{l}_{i} = \frac{A-B\cdot (m-1) \cdot q^{l}_{i} - c_{i}}{2B} $$
 
@@ -52,26 +54,52 @@ Así, de sustituir (3) en (2), se obtiene que:
     q^{s}_{i} = \frac{A-c_{i}}{(m+1)(n-m+1)B}
 \end{equation}
 
+Es importante notar que las expresiones anteriores se obtienen bajo un supuesto de simetría dentro de cada grupo (líderes y seguidores), lo que permite derivar formas cerradas para ilustrar la intuición económica fundamental del modelo: los seguidores enfrentan una penalización adicional $(n-m+1)$ en sus cantidades óptimas respecto de los líderes.
+
+Sin embargo, en la estimación empírica se relaja este supuesto de simetría. Dado que los costos marginales varían sustancialmente entre países --incluso dentro del mismo grupo-- la implementación empírica resuelve el sistema completo de condiciones de primer orden sin imponer igualdad entre los miembros de cada grupo exportador. Esto permite capturar la heterogeneidad observada en las capacidades productivas de los distintos actores.
+
 Es directo ver cómo las funciones de reacción difieren entre países líderes y seguidores. En el caso de estos últimos, las cantidades óptimas que resuelven la interacción estratégica se ven penalizadas por el factor $(n-m+1)$, es decir, la brecha aumenta cuanto menor sea la cantidad de líderes, o cuanto más se incremente la diferencia $n-m$. 
 
-Enseguida, al reordenar las condiciones de primer orden, es posible obtener una expresión implícita para los costos marginales, los que posteriormente serán modelados en función de variables observables.
+Reordenando las condiciones de primer orden, es posible obtener expresiones implícitas para los costos marginales, que relacionan precios observados con cantidades individuales. Estas expresiones no requieren asumir simetría y constituyen la base de la estimación estructural.
 
-Para los países seguidores, el costo marginal se despeja como la suma del precio del mercado y el efecto de su producción individual sobre dicho precio, ponderado por su volumen exportado. En el caso de los países líderes, la expresión análoga incorpora un factor de ajuste que refleja su ventaja estratégica en este modelo. Este término actúa como un amortiguador que reduce la sensibilidad de sus costos marginales estimados ante cambios en sus volúmenes de exportación, en comparación con los seguidores. Intuitivamente, esto surge de su capacidad para internalizar cómo sus decisiones afectan el comportamiento de los seguidores, lo que les permite operar con márgenes más amplios.
+Para un país seguidor $i$, se tiene que:
 
 \begin{equation}
     \label{eq:c_seguidor}
     c_{i}^{s} = P + \frac{\partial P}{\partial q_{i}^{s}}\cdot q_{i}^{s}
 \end{equation}
 
+Por su parte, para un país líder $i$, la condición incorpora el efecto estratégico sobre los seguidores. En el caso de $m$ líderes simétricos, este factor sería igual a $\frac{1}{m+1}$, pero en la estimación con líderes heterogéneos se mantiene la estructura cualitativa:
+
 \begin{equation}
     \label{eq:c_lider}
-    c_{i}^{l} = P + \left( \frac{1}{m+1}\right) \cdot \frac{\partial P}{\partial q_{i}^{l}}\cdot q_{i}^{l}
+    c_{i}^{l} = P + \left( \frac{\partial P}{\partial Q^{s}}\right) \cdot \frac{\partial Q^{s}}{\partial q_{i}^{l}}\cdot q_{i}^{l}
 \end{equation}
 
-El proceso de estimación del impacto del cambio climático en el mercado internacional del café procede en tres etapas. Primero, la estimación de la demanda agregada para cada período permite extraer la elasticidad-precio de la demanda y, de esa manera, construir los costos marginales implícitos del modelo para cada país, siguiendo las ecuaciones \eqref{eq:c_seguidor} y \eqref{eq:c_lider}, y utilizando datos observados de precios y cantidades. Luego, estos valores se modelan como funciones de variables determinantes, las que incluyen factores climáticos. Como se verá, esta especificación permite cuantificar de qué manera las variaciones en el estrés térmico afectan la competitividad relativa de cada productor.
+\section{Implementación empírica}
 
-Por último, para evaluar escenarios contrafactuales, el modelo resuelve un sistema de ecuaciones simultáneas que incorpora: \textbf{(i)} las funciones de reacción de todos los países, tanto líderes como seguidores; \textbf{(ii)} la condición de equilibrio de mercado que iguala oferta total y demanda; y \textbf{(iii)} las relaciones estimadas entre costos marginales y sus determinantes.
+El proceso de estimación procede en tres etapas, relajando el supuesto de simetría del modelo teórico para capturar la heterogeneidad observada.
 
-La solución de este sistema, bajo diferentes condiciones climáticas, permite simular diversos escenarios de interés. De esta manera, el modelo permite evaluar el resultado de un contexto global con condiciones climáticas desfavorables para la productividad del café, así como el impacto sobre el equilibrio de mercado y las exportaciones de cada país. Todo esto, manteniendo la estructura jerárquica del mercado y la interacción estratégica entre los grupos de países exportadores.
+En la primera etapa, se estima la demanda agregada mediante variables instrumentales, utilizando variables climáticas como instrumentos para la cantidad exportada. Esto permite recuperar la elasticidad-precio de la demanda y construir los costos marginales implícitos país-específicos mediante las ecuaciones \eqref{eq:c_seguidor} y \eqref{eq:c_lider}.
 
-Así, el enfoque estructural proporciona un marco robusto para cuantificar los efectos distributivos de choques climáticos, tanto entre líderes y seguidores como dentro de cada grupo, mediante variaciones en los costos marginales y excedentes económicos a nivel agregado y por cada país.
+Más adelante, en una segunda etapa, los costos marginales recuperados se modelan como función de variables observables —fertilizantes, tendencias temporales, exposición a estrés térmico—  mediante un modelo de efectos fijos por país. Esta especificación permite cuantificar cómo las variaciones en condiciones climáticas afectan la competitividad relativa de cada productor.
+
+Por último, para evaluar escenarios contrafactuales, se resuelve numéricamente el sistema completo de condiciones de primer orden para todos los países. Formalmente, el equilibrio se caracteriza por el vector de cantidades $(q_1^*, ..., q_n^*)$ que satisface simultáneamente:
+
+\begin{itemize}
+    \item Para cada líder $i \in L$: 
+    $$P(Q^*) + \frac{\partial P}{\partial q_i}\left(q_i^* + Q_s^*(Q_L^*)\right) 
+    \cdot q_i^* \left(1 + \frac{\partial Q_s}{\partial Q_L}\right) = c_i$$
+    
+    \item Para cada seguidor $j \in S$: 
+    $$P(Q^*) + \frac{\partial P}{\partial q_j} \cdot q_j^* = c_j$$
+    
+    \item Equilibrio de mercado: 
+    $$Q^* = \sum_{i \in L} q_i^* + \sum_{j \in S} q_j^*$$
+\end{itemize}
+
+donde $Q_s^*(Q_L^*)$ representa la respuesta agregada de los seguidores ante las cantidades de los líderes, y $c_i$, $c_j$ son los costos marginales predichos según las condiciones climáticas del escenario evaluado.
+
+Este sistema se resuelve mediante el algoritmo de Newton-Raphson multivariado, lo que permite obtener el equilibrio sin imponer restricciones de simetría. La ventaja de este enfoque es que preserva la estructura jerárquica del modelo Stackelberg —donde los líderes internalizan la respuesta de los seguidores— mientras captura las diferencias sustanciales en costos y escalas entre países.
+
+Los escenarios contrafactuales se construyen modificando las variables climáticas en las funciones de costo estimadas y resolviendo nuevamente el sistema. Esto permite cuantificar tanto los efectos directos del cambio climático sobre cada productor como los efectos indirectos derivados de la recomposición del equilibrio de mercado.

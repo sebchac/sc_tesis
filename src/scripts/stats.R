@@ -42,7 +42,6 @@ filename_psdcoffee <- "psd_coffee.csv"
 main_dir <- "/Users/sebastianchacon/Desktop/sc_tesis/src/original_data/"
 filepath_psdcoffee <- paste(main_dir, filename_psdcoffee,sep="") 
 
-
 # Data
 data <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data.rds")
 results_y <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/results_y.rds")
@@ -1049,6 +1048,10 @@ data_yc <- data %>%
          export_dummy == 1,
          year >= 1965, year <= 2019)
 
+data_y <- data %>%
+  filter(dummy_y == 1,
+         net_export_dummy == 1, tas_ye > 0)
+
 # Efecto de gdd, hdd y fdd en precios
 
 ggplot(data_y, aes(x = tas_ye, y = price_y)) +
@@ -1057,7 +1060,7 @@ ggplot(data_y, aes(x = tas_ye, y = price_y)) +
   theme_classic()
 
 # Efecto de gdd, hdd y fdd en cantidades
-ggplot(data_yc, aes(x = heatExp_yc, y = log(qe_yc))) +
+ggplot(data_yc, aes(x = frostExp_y_mean, y = qe_y)) +
   geom_point(size = 3, color = "#2E86AB", alpha = 0.8) +
   geom_smooth(method = "lm", se = TRUE, color = "#F24236", linetype = "dashed") +
   theme_classic()
@@ -1786,44 +1789,48 @@ aux <- data %>%
   ) %>%
   ungroup()
 
-aux1 <- data_cf %>%
+aux1 <- data %>%
+  filter(dummy_yc == 1, net_export_dummy == 1, year %in% 1990:2019) %>%
   select(country, year, heatExp_yc) %>%
-  arrange(country, year) %>%
-  left_join(aux, by = c("country")) %>%
+  group_by(country) %>%
+  summarise(
+    heat_factual = mean(heatExp_yc, na.rm = TRUE),
+    .groups = 'drop'
+  ) %>%
+  ungroup()
+
+aux <- aux %>%
+  left_join(aux1, by = c("country")) %>%
   mutate(
-    diff_heat_yc =  heatExp_yc - mean_heat
+    diff_heat =  heat_factual / mean_heat - 1
   )
 
 x <- aux %>% pull(country)
 
-datos_mapa <- aux1 %>%
-  filter(year %in% 1990:2018) %>%  # Últimos 5 años para suavizar
-  group_by(country) %>%
-  summarise(diff_heat = mean(diff_heat_yc, na.rm = TRUE)) %>%
-  ungroup() %>%
+country_interest <- c("Angola", "Benin", "Bolivia", "Brazil", "Burundi", 
+                      "Cameroon", "Colombia", "Congo", "Costa Rica", "Cuba",
+                      "Dominican Republic", "Ecuador", "El Salvador", "Ethiopia",
+                      "Gabon", "Ghana", "Guatemala", "Guinea", "Guyana", "Haiti",
+                      "Honduras", "India", "Indonesia", "Jamaica", "Kenya",
+                      "Liberia", "Madagascar", "Malawi", "Mexico", "Nicaragua",
+                      "Nigeria", "Panama", "Papua New Guinea", "Paraguay", "Peru",
+                      "Rwanda", "Sierra Leone", "Sri Lanka", "Togo", 
+                      "Trinidad and Tobago", "Uganda", "Venezuela", "Yemen",
+                      "Zambia", "Zimbabwe") 
+
+country_final <- intersect(country_interest, country_plots)
+
+datos_mapa <- aux %>%
   mutate(
     country_clean = case_when(
       # Países con nombres idénticos o muy similares
-      country %in% c("Angola", "Benin", "Bolivia", "Brazil", "Burundi", 
-                     "Cameroon", "Colombia", "Congo", "Costa Rica", "Cuba",
-                     "Dominican Republic", "Ecuador", "El Salvador", "Ethiopia",
-                     "Gabon", "Ghana", "Guatemala", "Guinea", "Guyana", "Haiti",
-                     "Honduras", "India", "Indonesia", "Jamaica", "Kenya",
-                     "Liberia", "Madagascar", "Malawi", "Mexico", "Nicaragua",
-                     "Nigeria", "Panama", "Papua New Guinea", "Paraguay", "Peru",
-                     "Rwanda", "Sierra Leone", "Sri Lanka", "Togo", 
-                     "Trinidad and Tobago", "Uganda", "Venezuela", "Yemen",
-                     "Zambia", "Zimbabwe") ~ country,
+      country %in% country_final ~ country,
       
       # Países con nombres diferentes en y
       country == "Vietnam" ~ "Viet Nam",
       country == "Côte d'Ivoire" ~ "Côte d'Ivoire",  # Ya es igual
       country == "Eq. Guinea" ~ "Equatorial Guinea",
-      country == "Central African Rep." ~ "Central African Republic",
-      country == "Laos" ~ "Laos",  # Ya es igual
-      country == "Tanzania" ~ "Tanzania",  # Ya es igual
-      country == "New Caledonia" ~ "New Caledonia",  # Ya es igual
-      
+
       # Para cualquier otro país no en la lista, mantener NA o el original
       TRUE ~ NA_character_
     ),
@@ -1846,38 +1853,57 @@ y <- world %>% pull(name)
 world_data <- world %>%
   left_join(datos_mapa, by = "iso_a3")
 
-# 4. CREAR MAPA
+world_data <- world_data %>%
+  mutate(
+    diff_heat_percentil = case_when(
+      diff_heat <= quantile(diff_heat, 0.25, na.rm = TRUE) ~ "0-25%",
+      diff_heat <= quantile(diff_heat, 0.50, na.rm = TRUE) ~ "25-50%",
+      diff_heat <= quantile(diff_heat, 0.75, na.rm = TRUE) ~ "50-75%",
+      diff_heat <= quantile(diff_heat, 1.00, na.rm = TRUE) ~ "75-100%",
+      TRUE ~ NA_character_
+    ),
+    # Convertir a factor ordenado
+    diff_heat_percentil = factor(diff_heat_percentil,
+                                 levels = c("0-25%", "25-50%", "50-75%", "75-100%"))
+  )
+
+# Verificar los cortes
+quantiles <- quantile(world_data$diff_heat, probs = c(0, 0.25, 0.5, 0.75, 1), na.rm = TRUE)
+cat("Percentiles 0%, 25%, 50%, 75%, 100%:\n")
+print(quantiles)
+
+# Gráfico con categorías de percentiles
 mapa <- ggplot() +
-  # Capa base: todos los países en gris claro
   geom_sf(data = world, fill = "gray90", color = "gray70", size = 0.1) +
-  # Capa de datos: países con información
-  geom_sf(data = world_data %>% filter(!is.na(diff_heat)), 
-          aes(fill = diff_heat), color = "gray40", size = 0.2) +
-  # Escala de color
-  scale_fill_viridis(
-    name = "Días adicionales de estrés térmico",
+  # Líneas geográficas
+  geom_hline(yintercept = 0, color = "red", linetype = "dashed", linewidth = 0.5, alpha = 0.7) +
+  geom_hline(yintercept = 23.5, color = "blue", linetype = "dotted", linewidth = 0.4, alpha = 0.6) +
+  geom_hline(yintercept = -23.5, color = "blue", linetype = "dotted", linewidth = 0.4, alpha = 0.6) +
+  # Datos
+  geom_sf(data = world_data %>% filter(!is.na(diff_heat_percentil)), 
+          aes(fill = diff_heat_percentil), color = "gray40", size = 0.2) +
+  scale_fill_viridis_d(
+    name = NULL,
     option = "plasma",
     direction = -1,
     na.value = NA,
-    #breaks = c(0, 5, 10, 15, 20),
-    #labels = c("0", "5", "10", "15", "20"),
-    #limits = c(-5, 30),
-    guide = guide_colorbar(
+    drop = FALSE,
+    guide = guide_legend(
       title.position = "top",
-      barwidth = unit(6, "cm"),
-      barheight = unit(0.4, "cm")
+      title.hjust = 0.5,
+      nrow = 1,
+      keywidth = unit(0.8, "cm"),
+      keyheight = unit(0.4, "cm")
     )
   ) +
+  coord_sf(ylim = c(-60, 60)) +  # Asegura que se vean las líneas
   theme_minimal() +
   theme(
     legend.position = "bottom",
-    legend.title = element_text(size = 10),
-    legend.text = element_text(size = 9),
     axis.text = element_blank(),
     panel.grid = element_blank(),
     plot.margin = margin(5, 5, 5, 5)
   )
-
 # 5. MOSTRAR Y GUARDAR
 print(mapa)
 
@@ -1914,9 +1940,9 @@ aux <- summary_c %>%
          `quantity_CF0`, `quantity_CF1`,
          `mc_CF0`, `mc_CF1`) %>%
   mutate(
-    diff_profit = round(`profit_CF1` / `profit_CF0` - 1, 2),
-    diff_quantity = round(`quantity_CF1` / `quantity_CF0` - 1, 2),
-    diff_cost = round(`mc_CF1` / `mc_CF0` - 1, 2),
+    diff_profit = round(`profit_CF0` / `profit_CF1` - 1, 4),
+    diff_quantity = round(`quantity_CF0` / `quantity_CF1` - 1, 4),
+    diff_cost = round(`mc_CF0` / `mc_CF1` - 1, 4),
     
     country = factor(country, levels = country),
     
@@ -1937,10 +1963,30 @@ aux <- summary_c %>%
     )
   )
 
+# Se omiten casos con menos de 25 años de información entre 1990 y 2019
+aux1 <- data %>%
+  filter(dummy_yc == 1, net_export_dummy == 1, year %in% 1990:2019) %>%
+  group_by(country) %>%
+  summarise(
+    n_obs = sum(!is.na(qe_yc)),
+    .groups = 'drop'
+  ) %>%
+  ungroup() %>%
+  filter(n_obs > 25) %>%
+  pull(country)
+
+aux <- aux %>%
+  filter(country %in% aux1, diff_profit < 4, diff_profit > -4) # Se omiten casos extremos (diff_profit 1000%)
+
+country_plots <- aux %>%
+  mutate(country = as.character(country)) %>%
+  pull(country)
+
 # Plot diferencias
 
 # Profit
-plot_profit <- ggplot(aux, aes(x = country, y = diff_profit)) +
+plot_profit <- ggplot(aux %>%
+                        filter(country %in% country_plots), aes(x = country, y = diff_profit)) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "gray50", linewidth = 0.3) +
   geom_point(aes(shape = grupo_profit), size = 3, stroke = 1) +
   # Líneas de conexión al cero (opcional, ayuda a la lectura)
@@ -1984,13 +2030,58 @@ ggsave(paste0(fig_path, "diff_profit.png"),
        bg = "white")
 
 # Quantity
-plot_quantity <- ggplot(aux, aes(x = country, y = diff_quantity)) +
+plot_quantity_ld <- ggplot(aux %>% filter(country %in% c("Brazil", "Colombia", "Viet Nam")), aes(x = country, y = diff_quantity)) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray50", linewidth = 0.3) +
+  geom_point(aes(shape = grupo_quantity), size = 3, stroke = 1) +
+  geom_segment(aes(x = country, xend = country, y = 0, yend = diff_quantity),
+               color = "gray70", linewidth = 0.2, alpha = 0.5) +
+  # AGREGAR ETIQUETAS DE VALOR
+  geom_text(aes(label = scales::percent(diff_quantity, accuracy = 0.1)), 
+            vjust = -1.5, size = 3) +
+  scale_shape_manual(values = c("Negativo" = 1, "Positivo" = 16, "Neutro" = 4)) +
+  scale_y_continuous(labels = scales::percent, limits = c(-0.4,1.3)) +
+  labs(
+    x = NULL,
+    y = NULL,  # Eliminada etiqueta del eje Y
+    shape = NULL
+  ) +
+  theme_classic() +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    # TEXTO VERTICAL (90 grados)
+    axis.text.x = element_text(size = 9, angle = 90, hjust = 1, vjust = 0.5),
+    axis.text.y = element_blank(),
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),  # ELIMINADO
+    legend.position = "right",
+    legend.title = element_text(size = 9),
+    legend.text = element_text(size = 8),
+    plot.background = element_rect(fill = "white", color = NA),
+    # Ajustar márgenes para dar espacio al texto vertical
+    plot.margin = margin(10, 10, 20, 10)
+  )
+
+print(plot_quantity_ld)
+
+# Guardar en alta resolución
+ggsave(paste0(fig_path, "diff_quantity_leaders.png"), 
+       plot = plot_quantity_ld,
+       width = 8, 
+       height = 6, 
+       dpi = 300,
+       bg = "white")
+
+# Quantity only followers
+plot_quantity_fl <- ggplot(aux %>% filter(!country %in% c("Brazil", "Colombia", "Viet Nam")), aes(x = country, y = diff_quantity)) +
   geom_hline(yintercept = 0, linetype = "dashed", color = "gray50", linewidth = 0.3) +
   geom_point(aes(shape = grupo_quantity), size = 3, stroke = 1) +
   geom_segment(aes(x = country, xend = country, y = 0, yend = diff_quantity),
                color = "gray70", linewidth = 0.2, alpha = 0.5) +
   scale_shape_manual(values = c("Negativo" = 1, "Positivo" = 16, "Neutro" = 4)) +
-  scale_y_continuous(labels = scales::percent, limits = c(-0.6,0.4)) +
+  scale_y_continuous(labels = scales::percent, limits = c(-0.1,0.1)) +
   #scale_y_continuous(breaks = scales::pretty_breaks(n = 8)) +
   labs(
     x = NULL,
@@ -2016,11 +2107,11 @@ plot_quantity <- ggplot(aux, aes(x = country, y = diff_quantity)) +
     plot.margin = margin(10, 10, 20, 10)  # Más espacio abajo
   )
 
-print(plot_quantity)
+print(plot_quantity_fl)
 
 # Guardar en alta resolución
-ggsave(paste0(fig_path, "diff_quantity.png"), 
-       plot = plot_quantity,
+ggsave(paste0(fig_path, "diff_quantity_followers.png"), 
+       plot = plot_quantity_fl,
        width = 8, 
        height = 6, 
        dpi = 300,
@@ -2033,7 +2124,7 @@ plot_costs <- ggplot(aux, aes(x = country, y = diff_cost)) +
   geom_segment(aes(x = country, xend = country, y = 0, yend = diff_cost),
                color = "gray70", linewidth = 0.2, alpha = 0.5) +
   scale_shape_manual(values = c("Negativo" = 1, "Positivo" = 16, "Neutro" = 4)) +
-  scale_y_continuous(labels = scales::percent, limits = c(-0.5,0.5)) +
+  scale_y_continuous(labels = scales::percent, limits = c(-0.3,0.6)) +
   #scale_y_continuous(breaks = scales::pretty_breaks(n = 8)) +
   labs(
     x = NULL,
@@ -2068,9 +2159,6 @@ ggsave(paste0(fig_path, "diff_cost.png"),
        height = 6, 
        dpi = 300,
        bg = "white")
-
-
-
 
 #-------------------------------------------------------------------------------
 # [VF] Cambios en market share
@@ -2114,10 +2202,48 @@ aux_cf1 <- results_yc %>%
 
 aux_share <- aux_cf0 %>% left_join(aux_cf1, by = "country") %>%
   mutate(
-    diff = round(share_c_cf1 - share_c_cf0, 4)
+    diff = round(share_c_cf0 - share_c_cf1, 4)
+  ) %>%
+  mutate(
+    grupo_share = case_when(
+      diff > 0 ~ "Positivo",
+      diff < 0 ~ "Negativo",
+      TRUE ~ "Neutro"
+    )
   )
+  
 
-
+ggplot(aux_share %>% filter(!country %in% c("Brazil", "Colombia", "Viet Nam")), aes(x = country, y = diff)) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray50", linewidth = 0.3) +
+  geom_point(aes(shape = grupo_share), size = 3, stroke = 1) +
+  geom_segment(aes(x = country, xend = country, y = 0, yend = diff),
+               color = "gray70", linewidth = 0.2, alpha = 0.5) +
+  scale_shape_manual(values = c("Negativo" = 1, "Positivo" = 16, "Neutro" = 4)) +
+  scale_y_continuous(labels = scales::percent, limits = c(-0.01,0.01)) +
+  #scale_y_continuous(breaks = scales::pretty_breaks(n = 8)) +
+  labs(
+    x = NULL,
+    y = NULL,
+    shape = NULL
+  ) +
+  theme_classic() +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.y = element_blank(),
+    # TEXTO VERTICAL (90 grados)
+    axis.text.x = element_text(size = 9, angle = 90, hjust = 1, vjust = 0.5),
+    axis.text.y = element_text(size = 9),
+    axis.title.x = element_text(size = 10, margin = margin(t = 15)),  # Más margen superior
+    axis.title.y = element_text(size = 10, margin = margin(r = 10)),
+    legend.position = "right",
+    legend.title = element_text(size = 9),
+    legend.text = element_text(size = 8),
+    plot.background = element_rect(fill = "white", color = NA),
+    # Ajustar márgenes para dar espacio al texto vertical
+    plot.margin = margin(10, 10, 20, 10)  # Más espacio abajo
+  )
 
 # aux1 <- data %>%
 #   filter(dummy_yc == 1, net_export_dummy == 1) %>%
@@ -2196,7 +2322,7 @@ aux_heat <- data_cf %>%
     dummy_leader = first(dummy_leader),
     heatExp_c = mean(heatExp_yc, na.rm = TRUE),
     heatExp_cf_c = mean(heatExp_yc_cf, na.rm = TRUE),
-    diff = heatExp_c - heatExp_cf_c,
+    diff = heatExp_c / heatExp_cf_c - 1,
     .groups = 'drop'
   ) %>%
   ungroup() %>%
@@ -2208,7 +2334,8 @@ aux_heat <- data_cf %>%
       diff < 0 ~ "Negativo",
       TRUE ~ "Neutro"
     )
-  )
+  ) %>%
+  filter(country %in% country_plots)
 
 # Heat
 plot_heat <- ggplot(aux_heat, aes(x = country, y = diff)) +
@@ -2217,7 +2344,8 @@ plot_heat <- ggplot(aux_heat, aes(x = country, y = diff)) +
   geom_segment(aes(x = country, xend = country, y = 0, yend = diff),
                color = "gray70", linewidth = 0.2, alpha = 0.5) +
   scale_shape_manual(values = c("Negativo" = 1, "Positivo" = 16, "Neutro" = 4)) +
-  scale_y_continuous(breaks = scales::pretty_breaks(n = 8)) +
+  scale_y_continuous(labels = scales::percent) +
+  #scale_y_continuous(breaks = scales::pretty_breaks(n = 8)) +
   labs(
     x = NULL,
     y = NULL,
@@ -2234,7 +2362,7 @@ plot_heat <- ggplot(aux_heat, aes(x = country, y = diff)) +
     axis.text.y = element_text(size = 9),
     axis.title.x = element_text(size = 10, margin = margin(t = 15)),  # Más margen superior
     axis.title.y = element_text(size = 10, margin = margin(r = 10)),
-    legend.position = "right",
+    legend.position = "none",
     legend.title = element_text(size = 9),
     legend.text = element_text(size = 8),
     plot.background = element_rect(fill = "white", color = NA),
@@ -2266,33 +2394,34 @@ descomp_yc <- results_yc %>%
     names_sep = "_"
   ) %>%
   mutate(
+    conversion = (60 * 2.20462) / 100,
+    
     total_effect = profit_CF1 - profit_CF0,
     
-    ps_efficiency_only = ((price_CF0 - costs_CF1) * quantity_CF0 * (60 * 2.20462)) / 1000,
+    direct_effect = (costs_CF0 - costs_CF1) * quantity_CF0 * conversion,
 
-    efficiency_effect = ps_efficiency_only - profit_CF0,
+    strategic_effect = total_effect - direct_effect,
 
-    strategic_effect = total_effect - efficiency_effect,
+    abs_total = abs(direct_effect) + abs(strategic_effect),
     
-    abs_effect = abs(efficiency_effect) + abs(strategic_effect),
+    direct_prop = ifelse(abs_total > 0, abs(direct_effect) / abs_total, NA),
     
-    efficiency_prop = round(abs(efficiency_effect) / abs_effect, 4),
-    
-    strategic_prop = round(abs(strategic_effect) / abs_effect, 4)
+    strategic_prop = ifelse(abs_total > 0, abs(strategic_effect) / abs_total, NA),
   )
 
 descomp_c <- descomp_yc %>%
   group_by(country) %>%
   summarise(
     total_effect = sum(total_effect, na.rm = TRUE),
-    efficiency_effect = sum(efficiency_effect, na.rm = TRUE),
+    direct_effect = sum(direct_effect, na.rm = TRUE),
     strategic_effect = sum(strategic_effect, na.rm = TRUE),
-    abs_effect = abs(efficiency_effect) + abs(strategic_effect),
-    efficiency_prop = round(abs(efficiency_effect) / abs_effect, 4),
+    abs_effect = abs(direct_effect) + abs(strategic_effect),
+    efficiency_prop = round(abs(direct_effect) / abs_effect, 4),
     strategic_prop = round(abs(strategic_effect) / abs_effect, 4),
     .groups = 'drop'
   ) %>%
-  ungroup()
+  ungroup() %>%
+  filter(country %in% country_plots)
 
 descomp_g <- descomp_c %>%
   left_join(data %>% distinct(country, dummy_leader), by = "country") %>%
@@ -2300,10 +2429,10 @@ descomp_g <- descomp_c %>%
   group_by(dummy_leader) %>%
   summarise(
     total_effect = sum(total_effect, na.rm = TRUE),
-    efficiency_effect = sum(efficiency_effect, na.rm = TRUE),
+    direct_effect = sum(direct_effect, na.rm = TRUE),
     strategic_effect = sum(strategic_effect, na.rm = TRUE),
-    abs_effect = abs(efficiency_effect) + abs(strategic_effect),
-    efficiency_prop = round(abs(efficiency_effect) / abs_effect, 4),
+    abs_effect = abs(direct_effect) + abs(strategic_effect),
+    efficiency_prop = round(abs(direct_effect) / abs_effect, 4),
     strategic_prop = round(abs(strategic_effect) / abs_effect, 4),
     .groups = 'drop'
   ) %>%
@@ -2312,9 +2441,10 @@ descomp_g <- descomp_c %>%
 descomp_c <- descomp_c %>%
   left_join(data %>% distinct(country, dummy_leader), by = "country")
 
-# 4. Opción C: Versión minimalista para publicación académica
-plot_descomp_c <- ggplot(descomp_c, 
-                         aes(x = efficiency_effect, 
+# Cuadrantes Líderes
+plot_descomp_ld <- ggplot(descomp_c %>%
+                           filter(country %in% c("Viet Nam", "Brazil", "Colombia")), 
+                         aes(x = direct_effect, 
                              y = strategic_effect,
                              shape = factor(dummy_leader,
                                             levels = c(1, 0),
@@ -2326,7 +2456,9 @@ plot_descomp_c <- ggplot(descomp_c,
   
   #Etiquetar solo los países mencionados en el texto
   geom_text_repel(
-    data = descomp_c %>% filter(country %in% c("Viet Nam", "Brazil", "Colombia")),
+    data = descomp_c %>%
+      mutate(country = if_else(country == "Viet Nam", "Vietnam", country)) %>%
+      filter(country %in% c("Vietnam", "Brazil", "Colombia")),
     aes(label = country),
     size = 3.5,
     box.padding = 0.5,
@@ -2340,18 +2472,279 @@ plot_descomp_c <- ggplot(descomp_c,
   ) +
   theme_classic(base_size = 11) +
   theme(
-    legend.position = "bottom",
+    legend.position = "none",
     panel.grid.major = element_blank(),
     panel.grid.minor = element_blank()
   )
 
 ggsave(
-  filename = paste0(fig_path, "plot_descomp_c.png"),
-  plot = plot_descomp_c,
+  filename = paste0(fig_path, "plot_descomp_ld.png"),
+  plot = plot_descomp_ld,
   width = 8,
   height = 6,
   dpi = 600,
   bg = "white")
+
+# Cuadrantes Seguidores
+plot_descomp_fl <- ggplot(descomp_c %>%
+                           filter(!country %in% c("Viet Nam", "Brazil", "Colombia", "Cuba", "Côte d'Ivoire")), 
+                         aes(x = direct_effect, 
+                             y = strategic_effect,
+                             shape = factor(dummy_leader,
+                                            levels = c(1, 0),
+                                            labels = c("Líder", "Seguidor")))) +
+  geom_point(size = 3, alpha = 0.8) +
+  geom_hline(yintercept = 0, linetype = "dashed", color = "gray60") +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "gray60") +
+  geom_abline(slope = -1, intercept = 0, linetype = "dotted", color = "black") +
+  
+  #Etiquetar solo los países mencionados en el texto
+  # geom_text_repel(
+  #   data = descomp_c %>%
+  #     filter(country %in% c("Côte d'Ivoire", "Cuba")),
+  #   aes(label = country),
+  #   size = 3.5,
+  #   box.padding = 0.5,
+  #   segment.color = "gray50"
+  # ) +
+  
+  labs(
+    x = "Efecto Eficiencia (mill. USD)",
+    y = "Efecto Estratégico (mill. USD)",
+    shape = ""
+  ) +
+  theme_classic(base_size = 11) +
+  theme(
+    legend.position = "none",
+    panel.grid.major = element_blank(),
+    panel.grid.minor = element_blank()
+  )
+
+ggsave(
+  filename = paste0(fig_path, "plot_descomp_fl.png"),
+  plot = plot_descomp_fl,
+  width = 8,
+  height = 6,
+  dpi = 600,
+  bg = "white")
+
+# Ranking Top Pérdida
+plot_ranking_losers <- descomp_c %>%
+  arrange(desc(total_effect)) %>%
+  slice(1:10) %>%
+  select(country, dummy_leader, direct_effect, strategic_effect, efficiency_prop, strategic_prop) %>%
+  mutate(
+    country = forcats::fct_reorder(country, direct_effect + strategic_effect),
+    Type = ifelse(dummy_leader == 1, "Líder", "Seguidor"),
+    pct_direct = efficiency_prop,
+    pct_strategic = strategic_prop
+  ) %>%
+  pivot_longer(cols = c(direct_effect, strategic_effect),
+               names_to = "Efecto", values_to = "Valor") %>%
+  mutate(
+    Efecto = recode(Efecto,
+                    "direct_effect" = "Efecto directo",
+                    "strategic_effect" = "Efecto estratégico"),
+    # Crear etiqueta de porcentaje
+    pct = ifelse(Efecto == "Efecto directo", pct_direct, pct_strategic),
+    pct_label = paste0(round(pct * 100, 0), "%")
+  ) %>%
+  ggplot(aes(x = country, y = Valor, fill = Efecto)) +
+  geom_col(position = "stack", width = 0.7) +
+  geom_text(
+    aes(label = pct_label),
+    position = position_stack(vjust = 0.5),
+    color = "black",
+    size = 3
+  ) +
+  coord_flip() +
+  scale_fill_manual(
+    values = c("Efecto directo" = "#BE988C", "Efecto estratégico" = "#C9D6C3")
+  ) +
+  labs(
+    title = NULL,
+    subtitle = NULL,
+    x = NULL,
+    y = "Pérdida total (MM USD)",
+    fill = NULL
+  ) +
+  theme_classic() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(face = "bold", size = 14)
+  )
+
+print(plot_ranking_losers)
+
+ggsave(
+  filename = paste0(fig_path, "plot_ranking_losers.png"),
+  plot = plot_ranking_losers,
+  width = 9,
+  height = 6,
+  dpi = 600,
+  bg = "white")
+
+# Ranking Top Win
+plot_ranking_winners <- descomp_c %>%
+  arrange(desc(total_effect)) %>%
+  slice_tail(n=5) %>%
+  select(country, dummy_leader, direct_effect, strategic_effect, efficiency_prop, strategic_prop) %>%
+  mutate(
+    #strategic_effect = -strategic_effect,
+    
+    #efficiency_prop = -efficiency_prop,
+    
+    country = forcats::fct_reorder(country, direct_effect + strategic_effect),
+    Type = ifelse(dummy_leader == 1, "Líder", "Seguidor"),
+    pct_direct = efficiency_prop,
+    pct_strategic = strategic_prop
+  ) %>%
+  pivot_longer(cols = c(direct_effect, strategic_effect),
+               names_to = "Efecto", values_to = "Valor") %>%
+  mutate(
+    Efecto = recode(Efecto,
+                    "direct_effect" = "Efecto directo",
+                    "strategic_effect" = "Efecto estratégico"),
+    # Crear etiqueta de porcentaje
+    pct = ifelse(Efecto == "Efecto directo", pct_direct, pct_strategic),
+    pct_label = paste0(round(pct * 100, 0), "%")
+  ) %>%
+  ggplot(aes(x = country, y = Valor, fill = Efecto)) +
+  geom_col(position = "stack", width = 0.7) +
+  geom_text(
+    aes( label = pct_label),  # Extremo derecho
+    hjust = -0.1,  # Ajusta para separar del borde
+    color = "black",
+    size = 3
+  )+
+  coord_flip() +
+  scale_fill_manual(
+    values = c("Efecto eficiencia" = "#BE988C", "Efecto estratégico" = "#C9D6C3")
+  ) +
+  labs(
+    title = NULL,
+    subtitle = NULL,
+    x = NULL,
+    y = "Ganancia total (MM USD)",
+    fill = NULL
+  ) +
+  theme_classic() +
+  theme(
+    legend.position = "bottom",
+    plot.title = element_text(face = "bold", size = 14)
+  )
+
+print(plot_ranking_winners)
+
+ggsave(
+  filename = paste0(fig_path, "plot_ranking_winners.png"),
+  plot = plot_ranking_winners,
+  width = 8,
+  height = 6,
+  dpi = 600,
+  bg = "white")
+
+# Distribución de proporciones
+
+plot_violin <- descomp_c %>%
+  select(country, dummy_leader, efficiency_prop, strategic_prop) %>%
+  pivot_longer(cols = c(efficiency_prop, strategic_prop),
+               names_to = "Componente", values_to = "Proporción") %>%
+  mutate(
+    Type = ifelse(dummy_leader == 1, "Líderes", "Seguidores"),
+    Componente = recode(Componente,
+                        "efficiency_prop" = "Proporción: Efecto directo",
+                        "strategic_prop" = "Proporción: Efecto estratégico")
+  ) %>%
+  ggplot(aes(x = Type, y = Proporción, fill = Type)) +
+  geom_violin(alpha = 0.7, draw_quantiles = c(0.25, 0.5, 0.75)) +
+  geom_jitter(width = 0.2, alpha = 0.3, size = 1) +
+  facet_wrap(~Componente) +
+  scale_fill_manual(values = c("Líderes" = "#d73027", "Seguidores" = "#4575b4")) +
+  scale_y_continuous(labels = scales::percent) +
+  labs(
+    title = "Distribución de la composición de pérdidas",
+    subtitle = "¿Qué tan importante es cada efecto? Comparación líderes vs seguidores",
+    x = NULL,
+    y = "Proporción del efecto total (%)"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(face = "bold", size = 14),
+    strip.text = element_text(face = "bold", size = 11)
+  )
+
+# Ganadores estratégicos
+
+library(kableExtra)
+
+tabla_winners <- descomp_c %>%
+  filter(strategic_effect < 0) %>%  # Ganancia estratégica
+  arrange(strategic_effect) %>%
+  mutate(
+    Type = ifelse(dummy_leader == 1, "Líder", "Seguidor"),
+    net_effect = total_effect,
+    gain_ratio = abs(strategic_effect / direct_effect)
+  ) %>%
+  select(Country = country, Type, 
+         `Efecto directo` = direct_effect,
+         `Efecto estratégico` = strategic_effect,
+         `Efecto neto` = net_effect,
+         `Ratio ganancia` = gain_ratio) %>%
+  mutate(across(where(is.numeric), ~round(., 2))) %>%
+  kbl(
+    caption = "Países con ganancia estratégica por cambio climático",
+    booktabs = TRUE,
+    format = "latex",
+    align = c("l", "l", rep("r", 4))
+  ) %>%
+  kable_styling(
+    latex_options = c("hold_position", "scale_down"),
+    font_size = 10
+  ) %>%
+  footnote(
+    general = "Ratio ganancia = |Efecto estratégico| / Efecto directo. Un ratio > 1 indica que la ganancia estratégica supera la pérdida directa.",
+    general_title = "Nota:",
+    footnote_as_chunk = TRUE
+  )
+
+writeLines(as.character(tabla_winners), paste0(tab_path, "tabla_winners.tex"))
+
+# Concentración de pérdidas
+library(ineq)
+
+# Curva de Lorenz de pérdidas
+descomp_c_sorted <- descomp_c %>%
+  arrange(total_effect) %>%
+  mutate(
+    cumulative_countries = row_number() / n(),
+    cumulative_loss = cumsum(total_effect) / sum(total_effect, na.rm = TRUE)
+  )
+
+gini_loss <- ineq(descomp_c$total_effect, type = "Gini")
+
+plot_lorenz <- ggplot(descomp_c_sorted, 
+                      aes(x = cumulative_countries, y = cumulative_loss)) +
+  geom_line(linewidth = 1.2, color = "#d73027") +
+  geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "gray50") +
+  annotate("text", x = 0.3, y = 0.8, 
+           label = paste0("Gini = ", round(gini_loss, 3)),
+           size = 5, fontface = "bold") +
+  labs(
+    title = "Concentración de pérdidas por cambio climático",
+    subtitle = "Curva de Lorenz: ¿Las pérdidas están concentradas en pocos países?",
+    x = "Proporción acumulada de países",
+    y = "Proporción acumulada de pérdidas"
+  ) +
+  scale_x_continuous(labels = scales::percent) +
+  scale_y_continuous(labels = scales::percent) +
+  theme_minimal() +
+  theme(plot.title = element_text(face = "bold", size = 14))
+
+ggsave(paste0(ruta_figures, "lorenz_losses.png"), 
+       plot_lorenz, width = 8, height = 8)
+
 
 # Preparar datos en formato largo para ggplot
 decomp_long <- descomp_g %>%
@@ -2359,7 +2752,7 @@ decomp_long <- descomp_g %>%
     dummy_leader = if_else(dummy_leader == 1, "Líderes", "Seguidores")
   ) %>%
   pivot_longer(
-    cols = c(efficiency_effect, strategic_effect),
+    cols = c(direct_effect, strategic_effect),
     names_to = "effect_type",
     values_to = "effect_value"
   )
@@ -2369,7 +2762,7 @@ ggplot(decomp_long %>% filter(!is.na(dummy_leader)),
        aes(x = dummy_leader, y = effect_value, fill = effect_type)) +
   geom_bar(stat = "identity", position = "stack") +
   scale_fill_manual(
-    values = c("efficiency_effect" = "black", 
+    values = c("direct_effect" = "black", 
                "strategic_effect" = "gray70"),
     labels = c("Eficiencia", "Efecto Estratégico")
   ) +
@@ -2391,6 +2784,66 @@ ggplot(decomp_long %>% filter(!is.na(dummy_leader)),
     legend.text = element_text(size = 9),
     legend.margin = margin(t = -5, b = 0)
   )
+
+# hEATMAP
+
+descomp_c <- descomp_c %>%
+  mutate(
+    vulnerability_class = case_when(
+      total_effect > quantile(total_effect, 0.75, na.rm = TRUE) ~ "Muy vulnerable",
+      total_effect > quantile(total_effect, 0.5, na.rm = TRUE) ~ "Vulnerable",
+      total_effect > quantile(total_effect, 0.25, na.rm = TRUE) ~ "Moderado",
+      TRUE ~ "Poco vulnerable"
+    ),
+    strategic_class = case_when(
+      strategic_effect > 0 & efficiency_prop > 0.7 ~ "Pérdida por costos",
+      strategic_effect > 0 & efficiency_prop <= 0.7 ~ "Pérdida mixta",
+      strategic_effect < 0 ~ "Ganancia estratégica",
+      TRUE ~ "Neutro"
+    )
+  )
+
+# Top 15 países más afectados
+plot_top15 <- descomp_c %>%
+  arrange(desc(total_effect)) %>%
+  slice(1:15) %>%
+  select(country, direct_effect, strategic_effect) %>%
+  pivot_longer(cols = c(direct_effect, strategic_effect),
+               names_to = "Efecto", values_to = "Valor") %>%
+  mutate(
+    Efecto = recode(Efecto,
+                    "direct_effect" = "Efecto directo",
+                    "strategic_effect" = "Efecto estratégico"),
+    country = forcats::fct_reorder(country, Valor, .fun = sum)
+  ) %>%
+  ggplot(aes(x = Efecto, y = country, fill = Valor)) +
+  geom_tile(color = "white", linewidth = 0.5) +
+  geom_text(aes(label = round(Valor, 1)), color = "black", size = 3) +
+  scale_fill_gradient2(
+    low = "#2166ac", mid = "white", high = "#b2182b",
+    midpoint = 0,
+    name = "Pérdida\n(MM USD)"
+  ) +
+  labs(
+    title = NULL,
+    subtitle = NULL,
+    x = NULL, y = NULL
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    axis.text.y = element_text(size = 10),
+    legend.position = "bottom"
+  )
+
+ggsave(
+  filename = paste0(fig_path, "plot_top15.png"),
+  plot = plot_top15,
+  width = 8,
+  height = 6,
+  dpi = 600,
+  bg = "white")
+
 
 #-------------------------------------------------------------------------------
 # [] Motivación
@@ -2747,6 +3200,286 @@ m1 <- ivreg(
 
 summary(m1)
 
+#-------------------------------------------------------------------------------
+# [VF] Forma reducida para precios
+#-------------------------------------------------------------------------------
+data_br <- data %>%
+  filter(dummy_yc == 1, 
+         net_export_dummy == 1,
+         country %in% c("Brazil")) %>%
+  select(country, year, qe_yc, price_y) %>%
+  rename(qe_br = qe_yc) %>%
+  mutate(
+    log_qe_br = log(qe_br)
+  )
+
+data_co <- data %>%
+  filter(dummy_yc == 1, 
+         net_export_dummy == 1,
+         country %in% c("Colombia")) %>%
+  select(country, year, qe_yc) %>%
+  rename(qe_co = qe_yc) %>%
+  mutate(
+    log_qe_co = log(qe_co)
+  )
+
+data_vt <- data %>%
+  filter(dummy_yc == 1, 
+         net_export_dummy == 1,
+         country %in% c("Viet Nam")) %>%
+  select(country, year, qe_yc) %>%
+  rename(qe_vt = qe_yc) %>%
+  mutate(
+    log_qe_vt = log(qe_vt)
+  )
+
+data_leaders <- data %>%
+  filter(dummy_yc == 1, 
+         net_export_dummy == 1,
+         country %in% c("Cuba", "Peru", "Panama")) %>%
+  select(country, year, qe_yc) %>%
+  group_by(year) %>%
+  summarise(
+    qe_leaders_sum = sum(qe_yc, na.rm = TRUE),
+    qe_leaders_mean = mean(qe_yc, na.rm = TRUE),
+    .groups = 'drop'
+  ) %>%
+  ungroup() %>%
+  mutate(
+    log_qe_leaders = log(qe_leaders_sum)
+  )
+
+data_followers <- data %>%
+  filter(dummy_yc == 1, 
+         net_export_dummy == 1,
+         !country %in% c("Cuba", "Peru", "Panama")) %>%
+  select(country, year, qe_yc) %>%
+  group_by(year) %>%
+  summarise(
+    qe_followers_sum = sum(qe_yc, na.rm = TRUE),
+    qe_followers_mean = mean(qe_yc, na.rm = TRUE),
+    .groups = 'drop'
+  ) %>%
+  ungroup() %>%
+  mutate(
+    log_qe_followers = log(qe_followers_sum)
+  )
+
+data_motiv <- data_br %>%
+  left_join(data_co, by = "year")
+data_motiv <- data_motiv %>%
+  left_join(data_vt, by = "year")
+data_motiv <- data_motiv %>%
+  left_join(data_leaders, by = "year")
+data_motiv <- data_motiv %>%
+  left_join(data_followers, by = "year")
+
+m1 <- lm(
+  price_y ~ qe_leaders_sum + qe_followers_sum,
+  data = data_motiv
+)
+
+summary(m1)
 
 
+#-------------------------------------------------------------------------------
+# [VF] Long Differences
+#-------------------------------------------------------------------------------
+# Filtrar años, crear periodos y calcular promedios
+data_ld <- data %>%
+  filter(dummy_yc == 1,
+         net_export_dummy == 1,
+         year >= 1960 & year <= 2019) %>%
+  mutate(period = ifelse(year %in% 1989:1991, "initial",
+                         ifelse(year %in% 1997:2019, "final", NA)),
+         rev_yc = price_y * qe_yc,
+         share_yc = qe_yc / qe_y) %>%
+  filter(!is.na(period)) %>%
+  group_by(country, period) %>%
+  summarise(
+    qe = mean(qe_yc, na.rm = TRUE),
+    heat = mean(heatExp_yc, na.rm = TRUE),
+    frost = mean(frostExp_yc, na.rm = TRUE),
+    opt = mean(optExp_yc, na.rm = TRUE),
+    price = mean(price_y, na.rm = TRUE),
+    tas = mean(tas_yce, na.rm = TRUE),
+    rev = mean(rev_yc, na.rm = TRUE),
+    share = mean(share_yc, na.rm = TRUE),
+    tmax = mean(tmax_yce, na.rm = TRUE),
+    tmin = mean(tmin_yce, na.rm = TRUE),
+    .groups = 'drop'
+  ) %>%
+  ungroup()
 
+# Crear diferencias (final - inicial)
+diff_data <- data_ld %>%
+  pivot_wider(names_from = period, values_from = c(qe, tmax, tmin, share, rev, heat, frost, opt, price, tas)) %>%
+  mutate(
+    d_qe = qe_final - qe_initial,
+    d_heat = heat_final - heat_initial,
+    d_frost = frost_final - frost_initial,
+    d_price = price_final - price_initial,
+    d_tas = tas_final - tas_initial,
+    d_opt = opt_final - opt_initial,
+    d_rev = rev_final - rev_initial,
+    d_share = share_final - share_initial,
+    d_tmax = tmax_final - tmax_initial,
+    d_tmin = tmin_final - tmin_initial
+  ) %>%
+  select(country, starts_with("d_")) %>%
+  drop_na()
+
+# Regresión de diferencias
+model <- lm(d_share ~ d_tmax + d_heat + d_price, data = diff_data)
+
+# Resultados
+summary(model)
+tidy(model)
+
+# Gráfico clave: Calor vs Exportaciones
+ggplot(diff_data, aes(x = d_opt, y = d_qe, label = country)) +
+  geom_point(color = "#2E8B57", size = 3) +
+  geom_smooth(method = "lm", se = TRUE, color = "#8B4513") +
+  labs(
+    title = "Impacto del Cambio Climático en Exportaciones de Café",
+    subtitle = "Cambio 1990-1994 vs 2015-2019 (Long Differences)",
+    x = "Cambio en Exposición al Calor (d_heat)",
+    y = "Cambio en Exportaciones (d_qe)",
+    caption = "Fuente: Base data_yc. Nota: Incluye control por cambios en precio y heladas."
+  ) +
+  theme_minimal(base_size = 13)
+
+
+m1 <- feols(qe_yc ~ heatExp_yc + frostExp_yc |
+              country + year, data = data_yc %>% filter(year >= 1990))
+
+summary(m1)
+
+
+#-------------------------------------------------------------------------------
+# [VF] Motivación
+#-------------------------------------------------------------------------------
+library(dplyr)
+library(ggplot2)
+library(ggrepel)
+
+# 1. CALCULAR CAMBIO EN ESTRÉS TÉRMICO (TEMPERATURA PROMEDIO)
+# Suponiendo que tas_yce es temperatura promedio anual por país
+
+heat_change <- data %>%
+  filter(dummy_yc == 1, net_export_dummy == 1) %>%
+  select(country, year, qe_y, qe_yc, tas_yce, heatExp_yc) %>%
+  mutate(periodo = case_when(
+    year %in% 1970:1989 ~ "antes",
+    year %in% 1990:2019 ~ "despues",
+    TRUE ~ NA_character_
+  )) %>%
+  filter(!is.na(periodo)) %>%
+  group_by(country, periodo) %>%
+  summarise(temp_promedio = mean(tas_yce, na.rm = TRUE), 
+            heat_promedio = mean(heatExp_yc, na.rm = TRUE),
+            .groups = 'drop') %>%
+  ungroup() %>%
+  pivot_wider(names_from = periodo, values_from = c(temp_promedio, heat_promedio)) %>%
+  mutate(cambio_temp = temp_promedio_despues - temp_promedio_antes,
+         cambio_heat = heat_promedio_despues - heat_promedio_antes) %>%
+  select(country, cambio_temp, cambio_heat)
+
+# 2. CALCULAR CAMBIO EN PARTICIPACIÓN DE MERCADO
+# Unir con datos de países y calcular participación
+participation_change <- data %>%
+  filter(dummy_yc == 1, net_export_dummy == 1) %>%
+  mutate(
+    share_yc = qe_yc / qe_y
+  ) %>%
+  mutate(periodo = case_when(
+    year %in% 1970:1989 ~ "antes",
+    year %in% 1990:2019 ~ "despues",
+    TRUE ~ NA_character_
+  )) %>%
+  filter(!is.na(periodo)) %>%
+  group_by(country, periodo) %>%
+  summarise(participacion_prom = mean(share_yc, na.rm = TRUE), .groups = 'drop') %>%
+  ungroup() %>%
+  pivot_wider(names_from = periodo, values_from = participacion_prom) %>%
+  mutate(cambio_participacion = despues - antes) %>%
+  select(country, cambio_participacion, participacion_antes = antes, participacion_despues = despues)
+
+# 3. UNIR AMBAS VARIABLES Y CLASIFICAR PAÍSES
+plot_data <- heat_change %>%
+  inner_join(participation_change, by = "country") %>%
+  # Crear grupos: Líderes (definir según tu criterio) y Seguidores
+  mutate(grupo = case_when(
+    country %in% c("Brazil", "Colombia", "Viet Nam") ~ "Líder",
+    participacion_antes > 0.02 ~ "Seguidor Grande", # Umbral arbitrario
+    TRUE ~ "Seguidor Pequeño"
+  ))
+
+
+# 5. VERSIÓN ALTERNATIVA: FOCUS EN LA NUBE Y EL OUTLIER
+# Filtrar para ver mejor la distribución
+# Gráfico simple con los tres líderes etiquetados
+ggplot(plot_data, aes(x = cambio_temp, y = cambio_participacion)) +
+  # Todos los puntos en gris
+  geom_point(color = "gray60", size = 2, alpha = 0.7) +
+  
+  # Destacar los tres líderes
+  geom_point(
+    data = filter(plot_data, country %in% c("Brazil", "Colombia", "Vietnam", "Viet Nam")),
+    aes(color = country),
+    size = 4,
+    shape = c(16, 17, 15)[as.factor(filter(plot_data, country %in% c("Brazil", "Colombia", "Vietnam", "Viet Nam"))$country)]
+  ) +
+  
+  # Etiquetar los tres líderes
+  geom_text_repel(
+    data = filter(plot_data, country %in% c("Brazil", "Colombia", "Vietnam", "Viet Nam")),
+    aes(label = country, color = country),
+    size = 3.5,
+    box.padding = 0.5,
+    show.legend = FALSE
+  ) +
+  
+  # Escala de colores para líderes
+  scale_color_manual(
+    values = c(
+      "Brazil" = "#0072B2",   # Azul
+      "Colombia" = "#009E73", # Verde
+      "Vietnam" = "#D55E00",  # Naranja
+      "Viet Nam" = "#D55E00"  # Por si acaso
+    )
+  ) +
+  
+  labs(
+    x = "Δ Temperatura (°C)",
+    y = "Δ Participación (%)",
+    color = NULL
+  ) +
+  
+  theme_classic() +
+  theme(
+    legend.position = "bottom"
+  )
+
+# Gráfico simple sin líderes - versión minimalista pura
+# Con línea de tendencia sutil
+ggplot(plot_data %>% filter(!(country %in% c("Brazil", "Colombia", "Vietnam", "Viet Nam"))), 
+       aes(x = cambio_heat, y = cambio_participacion)) +
+  
+  geom_point(color = "gray40", size = 2, alpha = 0.7) +
+  
+  # Línea de tendencia muy sutil
+  geom_smooth(method = "lm", se = FALSE, 
+              color = "gray30", linewidth = 0.5, linetype = "dashed") +
+  
+  # Líneas de referencia cero
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.3, linetype = "solid") +
+  geom_vline(xintercept = 0, color = "gray70", linewidth = 0.3, linetype = "solid") +
+  
+  labs(x = "Δ Temperatura", y = "Δ Participación") +
+  
+  theme_minimal() +
+  theme(
+    panel.grid = element_blank(),
+    axis.line = element_line(color = "gray80")
+  )

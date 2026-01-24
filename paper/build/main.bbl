@@ -20,9 +20,9 @@ Angrist, J\BPBI D.%
 \newblock
 \APACrefYear{2009}.
 \newblock
-\APACrefbtitle {Mostly harmless econometrics: An empiricist's companion} {Mostly harmless econometrics: An empiricist's companion}.
+\APACrefbtitle {Mostly harmless econometrics: An empiricist's companion} {Mostly harmless econometrics: An empiricist's companion}\ (\PrintOrdinal{1st}\ \BEd).
 \newblock
-\APACaddressPublisher{}{Princeton university press}.
+\APACaddressPublisher{Princeton, NJ}{Princeton University Press}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -69,13 +69,9 @@ Bettendorf, L.%
 \newblock
 \APACrefYearMonthDay{2000}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Incomplete transmission of coffee bean prices: evidence from The Netherlands} {Incomplete transmission of coffee bean prices: evidence from the netherlands}.{\BBCQ}
+{\BBOQ}\APACrefatitle {Incomplete transmission of coffee bean prices: Evidence from the Netherlands} {Incomplete transmission of coffee bean prices: Evidence from the netherlands}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{European Review of Agricultural Economics}{27}{1}{1--16}.
-\newblock
-\begin{APACrefURL} \url{https://doi.org/10.1093/erae/27.1.1} \end{APACrefURL}
-\newblock
-\APACrefnote{Received April 1998, final version received October 1999}
 \newblock
 \begin{APACrefDOI} \doi{10.1093/erae/27.1.1} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
@@ -98,15 +94,13 @@ Bilal, A.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{2024}{November}{}.
+\APACrefYearMonthDay{2024}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {The Macroeconomic Impact of Climate Change: Global vs. Local Temperature} {The macroeconomic impact of climate change: Global vs. local temperature}.{\BBCQ}
+\APACrefbtitle {The macroeconomic impact of climate change: Global vs. local temperature} {The macroeconomic impact of climate change: Global vs. local temperature}\ \APACbVolEdTR {}{Working paper\ \BNUM\ 32450}.
 \newblock
-\APACjournalVolNumPages{Working Paper}{}{}{}.
+\APACaddressInstitution{}{National Bureau of Economic Research}.
 \newblock
-\begin{APACrefURL} \url{https://www.sites.google.com/site/adrienbilal} \end{APACrefURL}
-\newblock
-\APACrefnote{Stanford University and Northwestern University}
+\begin{APACrefURL} \url{https://www.nber.org/papers/w32450} \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -126,11 +120,11 @@ Bresnahan, T\BPBI F.%
 \newblock
 \APACrefYearMonthDay{1989}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Empirical Studies of Industries with Market Power} {Empirical studies of industries with market power}.{\BBCQ}
+{\BBOQ}\APACrefatitle {Empirical studies of industries with market power} {Empirical studies of industries with market power}.{\BBCQ}
 \newblock
-\APACjournalVolNumPages{Handbook of Industrial Organization}{II}{}{1011-1057}.
+\BIn{} R.~Schmalensee\ \BBA {} R\BPBI D.~Willig\ (\BEDS), \APACrefbtitle {Handbook of industrial organization} {Handbook of industrial organization}\ (\BVOL~2, \BPGS\ 1011--1057).
 \newblock
-\APACrefnote{Chapter 17}
+\APACaddressPublisher{Amsterdam, The Netherlands}{Elsevier Science Publishers}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -153,9 +147,11 @@ Burke, M.%
 \newblock
 \APACrefYearMonthDay{2016}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Adaptation to Climate Change: Evidence from US Agriculture} {Adaptation to climate change: Evidence from us agriculture}.{\BBCQ}
+{\BBOQ}\APACrefatitle {Adaptation to climate change: Evidence from US agriculture} {Adaptation to climate change: Evidence from us agriculture}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{American Economic Journal: Economic Policy}{8}{3}{106--140}.
+\newblock
+\begin{APACrefDOI} \doi{10.1257/pol.20130025} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -181,8 +177,6 @@ Chen, S.%
 {\BBOQ}\APACrefatitle {Response and adaptation of agriculture to climate change: Evidence from China} {Response and adaptation of agriculture to climate change: Evidence from china}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Journal of Development Economics}{148}{}{102557}.
-\newblock
-\begin{APACrefURL} \url{https://doi.org/10.1016/j.jdeveco.2020.102557} \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1016/j.jdeveco.2020.102557} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
@@ -211,6 +205,8 @@ Covindassamy, G.%
 {\BBOQ}\APACrefatitle {Sugar with your coffee? Fundamentals, financials, and softs price uncertainty} {Sugar with your coffee? fundamentals, financials, and softs price uncertainty}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Journal of Futures Markets}{37}{8}{744--765}.
+\newblock
+\begin{APACrefDOI} \doi{http://dx.doi.org/10.18235/0000865} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -237,6 +233,8 @@ da Silveira, R\BPBI L\BPBI F.%
 {\BBOQ}\APACrefatitle {The reaction of coffee futures price volatility to crop reports} {The reaction of coffee futures price volatility to crop reports}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Emerging Markets Finance \& Trade}{53}{10}{2361--2374}.
+\newblock
+\begin{APACrefDOI} \doi{10.1080/1540496X.2016.1205976} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -259,9 +257,39 @@ Deaton, A.%
 \newblock
 \APACrefYearMonthDay{1992}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {On the Behaviour of Commodity Prices} {On the behaviour of commodity prices}.{\BBCQ}
+{\BBOQ}\APACrefatitle {On the behaviour of commodity prices} {On the behaviour of commodity prices}.{\BBCQ}
 \newblock
-\APACjournalVolNumPages{Review of Economic Studies}{59}{1}{1-23}.
+\APACjournalVolNumPages{The Review of Economic Studies}{59}{1}{1--23}.
+\newblock
+\begin{APACrefDOI} \doi{https://ideas.repec.org/p/nbr/nberwo/3439.html} \end{APACrefDOI}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+Dell%
+, Jones%
+\BCBL {}\ \BBA {} Olken%
+}{%
+Dell%
+\ \protect \BOthers {.}}{%
+{\protect \APACyear {2012}}%
+}]{%
+dell2012temperature}
+\APACinsertmetastar {%
+dell2012temperature}%
+\begin{APACrefauthors}%
+Dell, M.%
+, Jones, B\BPBI F.%
+\BCBL {}\ \BBA {} Olken, B\BPBI A.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2012}{}{}.
+\newblock
+{\BBOQ}\APACrefatitle {Temperature shocks and economic growth: Evidence from the last half century} {Temperature shocks and economic growth: Evidence from the last half century}.{\BBCQ}
+\newblock
+\APACjournalVolNumPages{American Economic Journal: Macroeconomics}{4}{3}{66--95}.
+\newblock
+\begin{APACrefDOI} \doi{10.1257/mac.4.3.66} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -288,8 +316,6 @@ Deschênes, O.%
 \newblock
 \APACjournalVolNumPages{American Economic Review}{97}{1}{354--385}.
 \newblock
-\begin{APACrefURL} \url{https://doi.org/10.1257/aer.97.1.354} \end{APACrefURL}
-\newblock
 \begin{APACrefDOI} \doi{10.1257/aer.97.1.354} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
@@ -314,11 +340,11 @@ Feenstra, R\BPBI C.%
 \newblock
 \APACrefYearMonthDay{2015}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {The Next Generation of the Penn World Table} {The next generation of the penn world table}.{\BBCQ}
+{\BBOQ}\APACrefatitle {The next generation of the Penn World Table} {The next generation of the penn world table}.{\BBCQ}
 \newblock
-\APACjournalVolNumPages{American Economic Review}{105}{10}{3150-3182}.
+\APACjournalVolNumPages{American Economic Review}{105}{10}{3150--3182}.
 \newblock
-\begin{APACrefURL} \url{www.ggdc.net/pwt} \end{APACrefURL}
+\begin{APACrefDOI} \doi{10.1257/aer.20130954} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -338,11 +364,9 @@ Figari, S.%
 \newblock
 \APACrefYearMonthDay{2025}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Climate Change Response: Input Adjustment in Agriculture} {Climate change response: Input adjustment in agriculture}.{\BBCQ}
+{\BBOQ}\APACrefatitle {Climate change response: Input adjustment in agriculture} {Climate change response: Input adjustment in agriculture}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Journal of Development Economics}{175}{}{103472}.
-\newblock
-\begin{APACrefURL} \url{https://doi.org/10.1016/j.jdeveco.2025.103472} \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1016/j.jdeveco.2025.103472} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
@@ -374,10 +398,6 @@ Fisher, A\BPBI C.%
 \newblock
 \APACjournalVolNumPages{American Economic Review}{102}{7}{3749--3760}.
 \newblock
-\begin{APACrefURL} \url{https://doi.org/10.1257/aer.102.7.3749} \end{APACrefURL}
-\newblock
-\APACrefnote{Comment on Deschênes and Greenstone (2007)}
-\newblock
 \begin{APACrefDOI} \doi{10.1257/aer.102.7.3749} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
@@ -403,8 +423,6 @@ Gilbert, C\BPBI L.%
 \APACaddressInstitution{Trento, Italy}{GRADE (Group of Research and Analysis on Development), Università degli Studi di Trento}.
 \newblock
 \begin{APACrefURL} \url{https://core.ac.uk/display/71301639} \end{APACrefURL}
-\newblock
-\APACrefnote{Initial version: 6 October 2007}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -412,7 +430,7 @@ Gilbert, C\BPBI L.%
 }{%
 {Global Adaptation Initiative}%
 }{%
-{\protect \APACyear {2024}}%
+{\protect \APACyear {2023}}%
 }]{%
 gain2024}
 \APACinsertmetastar {%
@@ -422,9 +440,13 @@ gain2024}%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{2024}{}{}.
+\APACrefYearMonthDay{2023}{}{}.
 \newblock
-\APACrefbtitle {Technical Report: {ND GAIN} Country Index 2024.} {Technical report: {ND GAIN} country index 2024.}
+\APACrefbtitle {{ND-GAIN} country index 2023} {{ND-GAIN} country index 2023}\ \APACbVolEdTR{}{\BTR{}}.
+\newblock
+\APACaddressInstitution{}{University of Notre Dame}.
+\newblock
+\begin{APACrefURL} \url{https://gain.nd.edu/our-work/country-index/} \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -469,15 +491,13 @@ Hamilton, J\BPBI D.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{2018}{December}{}.
+\APACrefYearMonthDay{2018}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Why You Should Never Use the Hodrick-Prescott Filter} {Why you should never use the hodrick-prescott filter}.{\BBCQ}
+{\BBOQ}\APACrefatitle {Why you should never use the Hodrick--Prescott filter} {Why you should never use the hodrick--prescott filter}.{\BBCQ}
 \newblock
-\APACjournalVolNumPages{The Review of Economics and Statistics}{100}{5}{831-843}.
+\APACjournalVolNumPages{The Review of Economics and Statistics}{100}{5}{831--843}.
 \newblock
-\begin{APACrefURL} \url{https://ideas.repec.org/a/tpr/restat/v100y2018i5p831-843.html} \end{APACrefURL}
-\newblock
-\begin{APACrefDOI} \doi{None} \end{APACrefDOI}
+\begin{APACrefDOI} \doi{10.1162/rest_a_00706} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -497,7 +517,7 @@ Hodges, T.%
 \newblock
 \APACrefYear{1991}.
 \newblock
-\APACrefbtitle {Predicting Crop Phenology} {Predicting crop phenology}.
+\APACrefbtitle {Predicting crop phenology} {Predicting crop phenology}.
 \newblock
 \APACaddressPublisher{Boca Raton, FL}{CRC Press}.
 \PrintBackRefs{\CurrentBib}
@@ -571,9 +591,11 @@ Igami, M.%
 \newblock
 \APACrefYearMonthDay{2015}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Market Power in I nternational Commodity Trade: The Case of C offee} {Market power in i nternational commodity trade: The case of c offee}.{\BBCQ}
+{\BBOQ}\APACrefatitle {Market power in international commodity trade: The case of coffee} {Market power in international commodity trade: The case of coffee}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{The Journal of Industrial Economics}{63}{2}{225--248}.
+\newblock
+\begin{APACrefDOI} \doi{10.1111/joie.12076} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -619,13 +641,11 @@ ICO2009ClimateCoffee}%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{2009}{{\APACmonth{12}}}{}.
+\APACrefYearMonthDay{2009}{}{}.
 \newblock
-\APACrefbtitle {Climate change and coffee} {Climate change and coffee}\ \APACbVolEdTR {}{Report\ \BNUM\ ICC 103-6 Rev. 1}.
+\APACrefbtitle {Climate change and coffee} {Climate change and coffee}\ \APACbVolEdTR{}{\BTR{}\ \BNUM\ ICC 103-6 Rev. 1}.
 \newblock
 \APACaddressInstitution{London, England}{International Coffee Organization}.
-\newblock
-\APACrefnote{103rd Session, 23--25 September 2009}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -635,21 +655,45 @@ ICO2009ClimateCoffee}%
 }{%
 {\protect \APACyear {1998}}%
 }]{%
-oic1998enso}
+ico1998enso}
 \APACinsertmetastar {%
-oic1998enso}%
+ico1998enso}%
 \begin{APACrefauthors}%
 {International Coffee Organization}.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{1998}{April}{}.
+\APACrefYearMonthDay{1998}{}{}.
 \newblock
-\APACrefbtitle {The "El Niño Southern Oscillation Event (ENSO)" and its impact on coffee production} {The "el niño southern oscillation event (enso)" and its impact on coffee production}\ (\BNUM\ EB-3657/98 (E) Rev. 1).
+\APACrefbtitle {The {El Niño Southern Oscillation} event ({ENSO}) and its impact on coffee production} {The {El Niño Southern Oscillation} event ({ENSO}) and its impact on coffee production}\ \APACbVolEdTR{}{\BTR{}\ \BNUM\ EB-3657/98 (E) Rev. 1}.
 \newblock
-\APACaddressPublisher{London, England}{}.
+\APACaddressInstitution{London, England}{International Coffee Organization}.
 \newblock
-\APACrefnote{Document presented to the Executive Board/International Coffee Council, 18–22 May 1998}
+\begin{APACrefURL} \url{https://www.ico.org} \end{APACrefURL}
+\PrintBackRefs{\CurrentBib}
+
+\bibitem [\protect \citeauthoryear {%
+{International Coffee Organization}%
+}{%
+{International Coffee Organization}%
+}{%
+{\protect \APACyear {2013}}%
+}]{%
+oic2013cincuenta}
+\APACinsertmetastar {%
+oic2013cincuenta}%
+\begin{APACrefauthors}%
+{International Coffee Organization}.%
+\end{APACrefauthors}%
+\unskip\
+\newblock
+\APACrefYearMonthDay{2013}{}{}.
+\newblock
+\APACrefbtitle {The International Coffee Organization 1963--2013: 50 years serving the world coffee community.} {The international coffee organization 1963--2013: 50 years serving the world coffee community.}
+\newblock
+\APACaddressPublisher{London, United Kingdom}{}.
+\newblock
+\begin{APACrefURL} \url{https://www.ico.org} \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -669,9 +713,9 @@ ICO2024}%
 \newblock
 \APACrefYearMonthDay{2024{\protect \BCnt {1}}}{}{}.
 \newblock
-\APACrefbtitle {Beyond Coffee: Towards a Circular Coffee Economy.} {Beyond coffee: Towards a circular coffee economy.}
+\APACrefbtitle {Beyond coffee: Towards a circular coffee economy} {Beyond coffee: Towards a circular coffee economy}\ \APACbVolEdTR {}{Coffee Development Report}.
 \newblock
-\APACrefnote{Coffee Development Report 2022-23}
+\APACaddressInstitution{}{International Coffee Organization}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -691,9 +735,9 @@ ICIP2024}%
 \newblock
 \APACrefYearMonthDay{2024{\protect \BCnt {2}}}{September}{}.
 \newblock
-\APACrefbtitle {ICO composite and group indicator prices: Share of markets and group weightings. Calendar year averages: 2021 to 2023} {Ico composite and group indicator prices: Share of markets and group weightings. calendar year averages: 2021 to 2023}\ (Report\ \BNUM\ JC-03/24 Rev. 1).
+\APACrefbtitle {ICO composite and group indicator prices: Share of markets and group weightings. Calendar year averages: 2021 to 2023} {Ico composite and group indicator prices: Share of markets and group weightings. calendar year averages: 2021 to 2023}\ \APACbVolEdTR {}{Report\ \BNUM\ JC-03/24 Rev. 1}.
 \newblock
-\APACaddressPublisher{London, United Kingdom}{}.
+\APACaddressInstitution{London, United Kingdom}{International Coffee Organization}.
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -720,8 +764,6 @@ Karp, L\BPBI S.%
 \newblock
 \APACjournalVolNumPages{American Journal of Agricultural Economics}{75}{2}{448--457}.
 \newblock
-\begin{APACrefURL} \url{https://www.jstor.org/stable/1242929} \end{APACrefURL}
-\newblock
 \begin{APACrefDOI} \doi{10.2307/1242929} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
@@ -740,7 +782,7 @@ Krivonos, E.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{2004}{July}{}.
+\APACrefYearMonthDay{2004}{}{}.
 \newblock
 \APACrefbtitle {The impact of coffee market reforms on producer prices and price transmission} {The impact of coffee market reforms on producer prices and price transmission}\ \APACbVolEdTR {}{Policy Research Working Paper\ \BNUM\ 3358}.
 \newblock
@@ -774,13 +816,15 @@ Lange, S.%
 \newblock
 \APACrefYearMonthDay{2025}{}{}.
 \newblock
-\APACrefbtitle {ISIMIP3a atmospheric climate input data (v1.3).} {Isimip3a atmospheric climate input data (v1.3).}
+\APACrefbtitle {{ISIMIP3a} atmospheric climate input data.} {{ISIMIP3a} atmospheric climate input data.}
 \newblock
-\APAChowpublished {Dataset}.
+\APACaddressPublisher{}{Inter-Sectoral Impact Model Intercomparison Project}.
 \newblock
-\APACaddressPublisher{}{ISIMIP Repository}.
+\begin{APACrefURL} \url{https://data.isimip.org/datasets/982724/} \end{APACrefURL}
 \newblock
-\begin{APACrefURL} \url{10.48364/ISIMIP.982724.3} \end{APACrefURL}
+\APACrefnote{Dataset version 1.3}
+\newblock
+\begin{APACrefDOI} \doi{10.48364/ISIMIP.982724.3} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -801,11 +845,11 @@ Maurice, N\BPBI E.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{2011}{September}{}.
+\APACrefYearMonthDay{2011}{}{}.
 \newblock
-\APACrefbtitle {Unravelling the underlying causes of price volatility in world coffee and cocoa commodity markets} {Unravelling the underlying causes of price volatility in world coffee and cocoa commodity markets}\ \APACbVolEdTR{}{\BTR{}\ \BNUM~1}.
+\APACrefbtitle {Unravelling the underlying causes of price volatility in world coffee and cocoa commodity markets} {Unravelling the underlying causes of price volatility in world coffee and cocoa commodity markets}\ \APACbVolEdTR {}{Discussion paper\ \BNUM~1}.
 \newblock
-\APACaddressInstitution{}{UNCTAD Special Unit on Commodities}.
+\begin{APACrefURL} \url{https://ideas.repec.org/p/pra/mprapa/43813.html} \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -858,6 +902,8 @@ Mehta, A.%
 {\BBOQ}\APACrefatitle {Responding to the coffee crisis: What can we learn from price dynamics?} {Responding to the coffee crisis: What can we learn from price dynamics?}{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Journal of Development Economics}{85}{1}{282--311}.
+\newblock
+\begin{APACrefDOI} \doi{https://doi.org/10.1016/j.jdeveco.2006.07.006} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -886,8 +932,6 @@ Mendelsohn, R.%
 \APACjournalVolNumPages{American Economic Review}{84}{4}{753--771}.
 \newblock
 \begin{APACrefURL} \url{https://www.jstor.org/stable/2118029} \end{APACrefURL}
-\newblock
-\APACrefnote{Available via JSTOR.}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -913,8 +957,6 @@ Mideksa, T\BPBI K.%
 {\BBOQ}\APACrefatitle {The impact of climate change on the electricity market: A review} {The impact of climate change on the electricity market: A review}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Energy Policy}{38}{7}{3579--3585}.
-\newblock
-\begin{APACrefURL} \url{https://doi.org/10.1016/j.enpol.2010.02.035} \end{APACrefURL}
 \newblock
 \begin{APACrefDOI} \doi{10.1016/j.enpol.2010.02.035} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
@@ -965,33 +1007,9 @@ Nakamura, E.%
 \newblock
 {\BBOQ}\APACrefatitle {Accounting for incomplete pass-through} {Accounting for incomplete pass-through}.{\BBCQ}
 \newblock
-\APACjournalVolNumPages{The review of economic studies}{77}{3}{1192--1230}.
-\PrintBackRefs{\CurrentBib}
-
-\bibitem [\protect \citeauthoryear {%
-{Organización Internacional del Café}%
-}{%
-{Organización Internacional del Café}%
-}{%
-{\protect \APACyear {2013}}%
-}]{%
-oic2013cincuenta}
-\APACinsertmetastar {%
-oic2013cincuenta}%
-\begin{APACrefauthors}%
-{Organización Internacional del Café}.%
-\end{APACrefauthors}%
-\unskip\
+\APACjournalVolNumPages{The Review of Economic Studies}{77}{3}{1192--1230}.
 \newblock
-\APACrefYearMonthDay{2013}{}{}.
-\newblock
-\APACrefbtitle {La Organización Internacional del Café de 1963 a 2013: 50 años sirviendo a la comunidad cafetera mundial.} {La organización internacional del café de 1963 a 2013: 50 años sirviendo a la comunidad cafetera mundial.}
-\newblock
-\APACaddressPublisher{Londres, Reino Unido}{}.
-\newblock
-\begin{APACrefURL} \url{https://www.ico.org} \end{APACrefURL}
-\newblock
-\APACrefnote{Preparado por Pablo Dubois a petición del Director Ejecutivo Robério Oliveira Silva}
+\begin{APACrefDOI} \doi{https://doi.org/10.1111/j.1467-937X.2009.589.x} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -1011,9 +1029,11 @@ Prebisch, R.%
 \newblock
 \APACrefYearMonthDay{1959}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {International Trade and Payments in an Era of Coexistence: Commercial Policy in the Underdeveloped Countries} {International trade and payments in an era of coexistence: Commercial policy in the underdeveloped countries}.{\BBCQ}
+{\BBOQ}\APACrefatitle {International trade and payments in an era of coexistence: Commercial policy in the underdeveloped countries} {International trade and payments in an era of coexistence: Commercial policy in the underdeveloped countries}.{\BBCQ}
 \newblock
-\APACjournalVolNumPages{American Economic Review}{}{49}{251-273}.
+\APACjournalVolNumPages{American Economic Review}{49}{}{251--273}.
+\newblock
+\begin{APACrefDOI} \doi{https://www.jstor.org/stable/1816120} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -1066,6 +1086,8 @@ Schlenker, W.%
 {\BBOQ}\APACrefatitle {Nonlinear temperature effects indicate severe damages to U.S. crop yields under climate change} {Nonlinear temperature effects indicate severe damages to u.s. crop yields under climate change}.{\BBCQ}
 \newblock
 \APACjournalVolNumPages{Proceedings of the National Academy of Sciences}{106}{37}{15594--15598}.
+\newblock
+\begin{APACrefDOI} \doi{https://doi.org/10.1073/pnas.0906865106} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -1079,15 +1101,17 @@ singer1950}
 \APACinsertmetastar {%
 singer1950}%
 \begin{APACrefauthors}%
-Singer, H.%
+Singer, H\BPBI W.%
 \end{APACrefauthors}%
 \unskip\
 \newblock
 \APACrefYearMonthDay{1950}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {U.S. Foreign Investment in Underdeveloped Areas: The Distribution of Gains between Investing and Borrowing Countries} {U.s. foreign investment in underdeveloped areas: The distribution of gains between investing and borrowing countries}.{\BBCQ}
+{\BBOQ}\APACrefatitle {The Distribution of Gains between Investing and Borrowing Countries} {The distribution of gains between investing and borrowing countries}.{\BBCQ}
 \newblock
-\APACjournalVolNumPages{American Economic Review}{}{40}{473-485}.
+\APACjournalVolNumPages{The American Economic Review}{40}{2}{473--485}.
+\newblock
+\begin{APACrefURL} \url{https://www.jstor.org/stable/1818065} \end{APACrefURL}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -1107,9 +1131,11 @@ Slade, M\BPBI E.%
 \newblock
 \APACrefYearMonthDay{1995}{}{}.
 \newblock
-{\BBOQ}\APACrefatitle {Empirical Games: The Oligopoly Case} {Empirical games: The oligopoly case}.{\BBCQ}
+{\BBOQ}\APACrefatitle {Empirical games: The oligopoly case} {Empirical games: The oligopoly case}.{\BBCQ}
 \newblock
-\APACjournalVolNumPages{The Canadian Journal of Economics / Revue canadienne d'Economique}{28}{2}{368-402}.
+\APACjournalVolNumPages{The Canadian Journal of Economics / Revue canadienne d'Economique}{28}{2}{368--402}.
+\newblock
+\begin{APACrefDOI} \doi{https://doi.org/10.2307/136036} \end{APACrefDOI}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%
@@ -1149,13 +1175,13 @@ UnionEuropea2023}%
 \end{APACrefauthors}%
 \unskip\
 \newblock
-\APACrefYearMonthDay{2023}{5}{}.
+\APACrefYearMonthDay{2023}{}{}.
 \newblock
-\APACrefbtitle {Reglamento (UE) 2023/1115 del Parlamento Europeo y del Consejo, de 31 de mayo de 2023, relativo a la comercializaci{\'o}n en el mercado de la Uni{\'o}n y a la exportaci{\'o}n desde la Uni{\'o}n de determinadas materias primas y productos b{\'a}sicos asociados a la deforestaci{\'o}n y la degradaci{\'o}n forestal, y por el que se deroga el Reglamento (UE) n.º 995/2010.} {Reglamento (ue) 2023/1115 del parlamento europeo y del consejo, de 31 de mayo de 2023, relativo a la comercializaci{\'o}n en el mercado de la uni{\'o}n y a la exportaci{\'o}n desde la uni{\'o}n de determinadas materias primas y productos b{\'a}sicos asociados a la deforestaci{\'o}n y la degradaci{\'o}n forestal, y por el que se deroga el reglamento (ue) n.º 995/2010.}
+\APACrefbtitle {Reglamento (UE) 2023/1115 del Parlamento Europeo y del Consejo, de 31 de mayo de 2023.} {Reglamento (ue) 2023/1115 del parlamento europeo y del consejo, de 31 de mayo de 2023.}
 \newblock
-\APAChowpublished {Diario Oficial de la Uni{\'o}n Europea, L 150, 206-247}.
+\APAChowpublished {\url{https://eur-lex.europa.eu/eli/reg/2023/1115/oj}}.
 \newblock
-\begin{APACrefURL} [{2026-01-02}]\url{https://eur-lex.europa.eu/eli/reg/2023/1115/oj} \end{APACrefURL}
+\APACrefnote{Diario Oficial de la Uni{\'o}n Europea, L 150, 206-247}
 \PrintBackRefs{\CurrentBib}
 
 \bibitem [\protect \citeauthoryear {%

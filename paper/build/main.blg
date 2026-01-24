@@ -12,55 +12,49 @@ Reallocated singl_function (elt_size=4) to 100 items from 50.
 Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
 Reallocated singl_function (elt_size=4) to 100 items from 50.
 Database file #1: bibliografia.bib
-Warning--entry type for "ICIP2024" isn't style-file defined
---line 213 of file bibliografia.bib
-Warning--entry type for "ICO2024" isn't style-file defined
---line 236 of file bibliografia.bib
-Warning--entry type for "oic1998enso" isn't style-file defined
---line 378 of file bibliografia.bib
 Warning--entry type for "oic2013cincuenta" isn't style-file defined
---line 389 of file bibliografia.bib
+--line 377 of file bibliografia.bib
 apacite.bst [2013/07/21 v6.03 APA bibliography style]
-Warning--No address in maurice2011unraveling
-You've used 46 entries,
+Warning--No address in ICO2024
+You've used 47 entries,
             6951 wiz_defined-function locations,
-            1615 strings with 20194 characters,
-and the built_in function-call counts, 90159 in all, are:
-= -- 11211
-> -- 675
-< -- 4551
-+ -- 4488
-- -- 107
-* -- 5892
-:= -- 17091
-add.period$ -- 198
-call.type$ -- 46
-change.case$ -- 817
+            1604 strings with 19361 characters,
+and the built_in function-call counts, 88431 in all, are:
+= -- 10985
+> -- 708
+< -- 4245
++ -- 4223
+- -- 109
+* -- 5752
+:= -- 16323
+add.period$ -- 206
+call.type$ -- 47
+change.case$ -- 821
 chr.to.int$ -- 0
-cite$ -- 93
-duplicate$ -- 2145
-empty$ -- 3456
-format.name$ -- 981
-if$ -- 17026
+cite$ -- 95
+duplicate$ -- 2225
+empty$ -- 3516
+format.name$ -- 1019
+if$ -- 16946
 int.to.chr$ -- 0
-int.to.str$ -- 142
+int.to.str$ -- 145
 missing$ -- 0
-newline$ -- 1189
-num.names$ -- 370
-pop$ -- 1448
+newline$ -- 1215
+num.names$ -- 380
+pop$ -- 1545
 preamble$ -- 1
-purify$ -- 202
+purify$ -- 192
 quote$ -- 0
-skip$ -- 5773
+skip$ -- 5655
 stack$ -- 0
-substring$ -- 4994
-swap$ -- 1280
-text.length$ -- 189
+substring$ -- 4774
+swap$ -- 1350
+text.length$ -- 192
 text.prefix$ -- 0
 top$ -- 1
-type$ -- 4032
+type$ -- 3960
 warning$ -- 1
-while$ -- 354
+while$ -- 359
 width$ -- 0
-write$ -- 1406
-(There were 5 warnings)
+write$ -- 1441
+(There were 2 warnings)

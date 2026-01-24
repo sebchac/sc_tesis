@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.2)  21 JAN 2026 23:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.2)  23 JAN 2026 23:57
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -538,7 +538,7 @@ File: spanish.apc 2013/07/21 v6.03 apacite language file
 LaTeX Info: Redefining \BPBI on input line 138.
 LaTeX Info: Redefining \BHBI on input line 139.
 )
-<figures/escudoU2014.pdf, id=100, 320.19624pt x 689.57625pt>
+<figures/escudoU2014.pdf, id=104, 320.19624pt x 689.57625pt>
 File: figures/escudoU2014.pdf Graphic file (type pdf)
 <use figures/escudoU2014.pdf>
 Package pdftex.def Info: figures/escudoU2014.pdf  used on input line 36.
@@ -557,7 +557,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.64 \mainmatter
+l.65 \mainmatter
                  [1
 
 ] (./seccion1.tex
@@ -569,248 +569,159 @@ Cap\'{\i }tulo 1.
 Cap\'{\i }tulo 2.
 [4
 
-] [5]) (./seccion3.tex [6]
-Cap\'{\i }tulo 3.
-[7
-
-]
-<figures/export1960.png, id=240, 199.10385pt x 142.25145pt>
-File: figures/export1960.png Graphic file (type png)
-<use figures/export1960.png>
-Package pdftex.def Info: figures/export1960.png  used on input line 19.
-(pdftex.def)             Requested size: 212.41261pt x 151.7669pt.
-<figures/icip1960.png, id=241, 199.10385pt x 142.25145pt>
-File: figures/icip1960.png Graphic file (type png)
-<use figures/icip1960.png>
-Package pdftex.def Info: figures/icip1960.png  used on input line 26.
-(pdftex.def)             Requested size: 212.41261pt x 151.7669pt.
- [8 <./figures/export1960.png> <./figures/icip1960.png>] [9{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}] [10]
-<figures/plot02_04.png, id=291, 227.53004pt x 170.67764pt>
-File: figures/plot02_04.png Graphic file (type png)
-<use figures/plot02_04.png>
-Package pdftex.def Info: figures/plot02_04.png  used on input line 84.
-(pdftex.def)             Requested size: 227.52948pt x 170.6772pt.
- [11]
-<figures/hhi.png, id=305, 213.31696pt x 142.25145pt>
-File: figures/hhi.png Graphic file (type png)
-<use figures/hhi.png>
-Package pdftex.def Info: figures/hhi.png  used on input line 95.
-(pdftex.def)             Requested size: 212.41261pt x 141.64984pt.
-<figures/c3.png, id=306, 213.31696pt x 142.25145pt>
-File: figures/c3.png Graphic file (type png)
-<use figures/c3.png>
-Package pdftex.def Info: figures/c3.png  used on input line 102.
-(pdftex.def)             Requested size: 212.41261pt x 141.64984pt.
- [12 <./figures/plot02_04.png> <./figures/hhi.png> <./figures/c3.png>] (./tables/motiv.tex)
-<figures/motiv1.png, id=320, 505.89pt x 361.35pt>
+] [5] [6] (./tables/motiv.tex)
+<figures/motiv1.png, id=234, 505.89pt x 361.35pt>
 File: figures/motiv1.png Graphic file (type png)
 <use figures/motiv1.png>
-Package pdftex.def Info: figures/motiv1.png  used on input line 120.
-(pdftex.def)             Requested size: 379.41655pt x 271.01184pt.
- [13]
-<figures/motiv2.png, id=330, 505.89pt x 361.35pt>
+Package pdftex.def Info: figures/motiv1.png  used on input line 46.
+(pdftex.def)             Requested size: 303.53633pt x 216.81168pt.
+ [7{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
+<figures/motiv2.png, id=247, 505.89pt x 361.35pt>
 File: figures/motiv2.png Graphic file (type png)
 <use figures/motiv2.png>
-Package pdftex.def Info: figures/motiv2.png  used on input line 127.
-(pdftex.def)             Requested size: 379.41655pt x 271.01184pt.
-<figures/motiv3.png, id=331, 505.89pt x 361.35pt>
+Package pdftex.def Info: figures/motiv2.png  used on input line 53.
+(pdftex.def)             Requested size: 303.53633pt x 216.81168pt.
+<figures/motiv3.png, id=248, 505.89pt x 361.35pt>
 File: figures/motiv3.png Graphic file (type png)
 <use figures/motiv3.png>
-Package pdftex.def Info: figures/motiv3.png  used on input line 134.
-(pdftex.def)             Requested size: 379.41655pt x 271.01184pt.
- [14 <./figures/motiv1.png> <./figures/motiv2.png>]
-<figures/plot02_01.png, id=340, 199.10385pt x 142.25145pt>
+Package pdftex.def Info: figures/motiv3.png  used on input line 60.
+(pdftex.def)             Requested size: 303.53633pt x 216.81168pt.
+ [8 <./figures/motiv1.png> <./figures/motiv2.png>]
+<figures/plot02_01.png, id=257, 199.10385pt x 142.25145pt>
 File: figures/plot02_01.png Graphic file (type png)
 <use figures/plot02_01.png>
-Package pdftex.def Info: figures/plot02_01.png  used on input line 145.
+Package pdftex.def Info: figures/plot02_01.png  used on input line 71.
 (pdftex.def)             Requested size: 212.41261pt x 151.7669pt.
-<figures/plot02_02.png, id=341, 199.10385pt x 142.25145pt>
+<figures/plot02_02.png, id=258, 199.10385pt x 142.25145pt>
 File: figures/plot02_02.png Graphic file (type png)
 <use figures/plot02_02.png>
-Package pdftex.def Info: figures/plot02_02.png  used on input line 152.
+Package pdftex.def Info: figures/plot02_02.png  used on input line 78.
 (pdftex.def)             Requested size: 212.41261pt x 151.7669pt.
-) (./seccion4.tex [15 <./figures/motiv3.png> <./figures/plot02_01.png> <./figures/plot02_02.png>]
-Cap\'{\i }tulo 4.
-[16
+<figures/plot02_03.png, id=259, 199.10385pt x 142.25145pt>
+File: figures/plot02_03.png Graphic file (type png)
+<use figures/plot02_03.png>
+Package pdftex.def Info: figures/plot02_03.png  used on input line 86.
+(pdftex.def)             Requested size: 199.10335pt x 142.2511pt.
+) (./seccion3.tex [9 <./figures/motiv3.png> <./figures/plot02_01.png> <./figures/plot02_02.png>] [10 <./figures/plot02_03.png>]
+Cap\'{\i }tulo 3.
+[11
 
-] (./tables/datos_demanda.tex) [17] (./tables/datos_costos.tex)
+]
+<figures/export1960.png, id=295, 199.10385pt x 142.25145pt>
+File: figures/export1960.png Graphic file (type png)
+<use figures/export1960.png>
+Package pdftex.def Info: figures/export1960.png  used on input line 17.
+(pdftex.def)             Requested size: 212.41261pt x 151.7669pt.
+<figures/icip1960.png, id=296, 199.10385pt x 142.25145pt>
+File: figures/icip1960.png Graphic file (type png)
+<use figures/icip1960.png>
+Package pdftex.def Info: figures/icip1960.png  used on input line 24.
+(pdftex.def)             Requested size: 212.41261pt x 151.7669pt.
+ [12 <./figures/export1960.png> <./figures/icip1960.png>] [13] [14]
+<figures/plot02_04.png, id=346, 227.53004pt x 170.67764pt>
+File: figures/plot02_04.png Graphic file (type png)
+<use figures/plot02_04.png>
+Package pdftex.def Info: figures/plot02_04.png  used on input line 82.
+(pdftex.def)             Requested size: 227.52948pt x 170.6772pt.
+ [15]
+<figures/hhi.png, id=359, 213.31696pt x 142.25145pt>
+File: figures/hhi.png Graphic file (type png)
+<use figures/hhi.png>
+Package pdftex.def Info: figures/hhi.png  used on input line 93.
+(pdftex.def)             Requested size: 212.41261pt x 141.64984pt.
+<figures/c3.png, id=360, 213.31696pt x 142.25145pt>
+File: figures/c3.png Graphic file (type png)
+<use figures/c3.png>
+Package pdftex.def Info: figures/c3.png  used on input line 100.
+(pdftex.def)             Requested size: 212.41261pt x 141.64984pt.
+) (./seccion4.tex [16 <./figures/plot02_04.png> <./figures/hhi.png> <./figures/c3.png>]
+Cap\'{\i }tulo 4.
+[17
+
+] (./tables/datos_demanda.tex) [18] (./tables/datos_costos.tex)
 Overfull \hbox (6.43013pt too wide) in paragraph at lines 38--39
 []\OT1/cmr/m/n/12 La ba-se de da-tos del \OT1/cmr/m/it/12 Inter-Sectoral Im-pact Mo-del In-ter-com-pa-ri-son Pro-ject \OT1/cmr/m/n/12 ([]Lan-ge, Quesada-
  []
 
-[18] [19]
-<figures/exp_p1.png, id=390, 199.10385pt x 142.25145pt>
+[19] [20]
+<figures/exp_p1.png, id=412, 199.10385pt x 142.25145pt>
 File: figures/exp_p1.png Graphic file (type png)
 <use figures/exp_p1.png>
 Package pdftex.def Info: figures/exp_p1.png  used on input line 64.
 (pdftex.def)             Requested size: 212.41261pt x 151.7669pt.
-<figures/exp_p4.png, id=391, 199.10385pt x 142.25145pt>
+<figures/exp_p4.png, id=413, 199.10385pt x 142.25145pt>
 File: figures/exp_p4.png Graphic file (type png)
 <use figures/exp_p4.png>
 Package pdftex.def Info: figures/exp_p4.png  used on input line 71.
 (pdftex.def)             Requested size: 212.41261pt x 151.7669pt.
-<figures/exp_p2.png, id=392, 199.10385pt x 142.25145pt>
+<figures/exp_p2.png, id=414, 199.10385pt x 142.25145pt>
 File: figures/exp_p2.png Graphic file (type png)
 <use figures/exp_p2.png>
 Package pdftex.def Info: figures/exp_p2.png  used on input line 81.
 (pdftex.def)             Requested size: 212.41261pt x 151.7669pt.
-<figures/exp_p5.png, id=393, 199.10385pt x 142.25145pt>
+<figures/exp_p5.png, id=415, 199.10385pt x 142.25145pt>
 File: figures/exp_p5.png Graphic file (type png)
 <use figures/exp_p5.png>
 Package pdftex.def Info: figures/exp_p5.png  used on input line 88.
 (pdftex.def)             Requested size: 212.41261pt x 151.7669pt.
-<figures/exp_p3.png, id=394, 199.10385pt x 142.25145pt>
+<figures/exp_p3.png, id=416, 199.10385pt x 142.25145pt>
 File: figures/exp_p3.png Graphic file (type png)
 <use figures/exp_p3.png>
 Package pdftex.def Info: figures/exp_p3.png  used on input line 98.
 (pdftex.def)             Requested size: 212.41261pt x 151.7669pt.
-<figures/exp_p6.png, id=395, 199.10385pt x 142.25145pt>
+<figures/exp_p6.png, id=417, 199.10385pt x 142.25145pt>
 File: figures/exp_p6.png Graphic file (type png)
 <use figures/exp_p6.png>
 Package pdftex.def Info: figures/exp_p6.png  used on input line 105.
 (pdftex.def)             Requested size: 212.41261pt x 151.7669pt.
- [20 <./figures/exp_p1.png> <./figures/exp_p4.png> <./figures/exp_p2.png> <./figures/exp_p5.png>] (./tables/datos_exp_ym.tex) (./tables/datos_exp_y.tex)) (./seccion5.tex [21 <./figures/exp_p3.png> <./figures/exp_p6.png>]
+ [21 <./figures/exp_p1.png> <./figures/exp_p4.png> <./figures/exp_p2.png> <./figures/exp_p5.png>] (./tables/datos_exp_ym.tex) (./tables/datos_exp_y.tex)) (./seccion5.tex [22 <./figures/exp_p3.png> <./figures/exp_p6.png>]
 Cap\'{\i }tulo 5.
-[22
 
-] [23]) (./seccion6.tex [24] [25]
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 4.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 4.
+
+[23
+
+] [24] [25]) (./seccion6.tex [26]
 Cap\'{\i }tulo 6.
-[26
+[27
 
-] (./tables/estimacion_demanda_y.tex [27]) (./tables/estimacion_demanda_test_y.tex) [28] (./tables/estimacion_costos.tex [29])
-<figures/plot_0601.png, id=501, 341.3553pt x 199.10385pt>
+] (./tables/estimacion_demanda_y.tex) [28] (./tables/estimacion_demanda_test_y.tex)
+<figures/elasticidad_iv3.png, id=501, 578.16pt x 433.62pt>
+File: figures/elasticidad_iv3.png Graphic file (type png)
+<use figures/elasticidad_iv3.png>
+Package pdftex.def Info: figures/elasticidad_iv3.png  used on input line 44.
+(pdftex.def)             Requested size: 346.89867pt x 260.17401pt.
+ [29] [30 <./figures/elasticidad_iv3.png>] (./tables/estimacion_costos.tex [31])
+<figures/plot_0601.png, id=532, 341.3553pt x 199.10385pt>
 File: figures/plot_0601.png Graphic file (type png)
 <use figures/plot_0601.png>
-Package pdftex.def Info: figures/plot_0601.png  used on input line 83.
+Package pdftex.def Info: figures/plot_0601.png  used on input line 95.
 (pdftex.def)             Requested size: 212.41261pt x 123.89577pt.
-<figures/plot_0602.png, id=502, 341.3553pt x 199.10385pt>
+<figures/plot_0602.png, id=533, 341.3553pt x 199.10385pt>
 File: figures/plot_0602.png Graphic file (type png)
 <use figures/plot_0602.png>
-Package pdftex.def Info: figures/plot_0602.png  used on input line 90.
+Package pdftex.def Info: figures/plot_0602.png  used on input line 102.
 (pdftex.def)             Requested size: 212.41261pt x 123.89577pt.
- [30]) (./seccion7.tex [31 <./figures/plot_0601.png> <./figures/plot_0602.png>]
+ [32]) (./seccion7.tex [33 <./figures/plot_0601.png> <./figures/plot_0602.png>]
 Cap\'{\i }tulo 7.
-[32
+[34
 
 ]
-<figures/diff_heat.png, id=523, 578.16pt x 433.62pt>
+<figures/diff_heat.png, id=553, 578.16pt x 433.62pt>
 File: figures/diff_heat.png Graphic file (type png)
 <use figures/diff_heat.png>
-Package pdftex.def Info: figures/diff_heat.png  used on input line 21.
-(pdftex.def)             Requested size: 375.79955pt x 281.84966pt.
-<figures/mapa_estres_termico_cafe.png, id=524, 722.7pt x 433.62pt>
-File: figures/mapa_estres_termico_cafe.png Graphic file (type png)
-<use figures/mapa_estres_termico_cafe.png>
-Package pdftex.def Info: figures/mapa_estres_termico_cafe.png  used on input line 27.
-(pdftex.def)             Requested size: 469.74944pt x 281.84966pt.
- [33 <./figures/diff_heat.png>] (./tables/t6_results.tex) [34 <./figures/mapa_estres_termico_cafe.png>] (./tables/t6_surplus.tex) [35]
-<figures/diff_cost.png, id=548, 578.16pt x 433.62pt>
+Package pdftex.def Info: figures/diff_heat.png  used on input line 17.
+(pdftex.def)             Requested size: 346.89867pt x 260.17401pt.
+ (./tables/t6_results.tex) [35 <./figures/diff_heat.png>] (./tables/t6_surplus.tex) [36]
+<figures/diff_cost.png, id=573, 578.16pt x 433.62pt>
 File: figures/diff_cost.png Graphic file (type png)
 <use figures/diff_cost.png>
-Package pdftex.def Info: figures/diff_cost.png  used on input line 58.
-(pdftex.def)             Requested size: 491.43832pt x 368.57874pt.
-
-Overfull \hbox (19.40709pt too wide) in paragraph at lines 58--60
- [][] 
- []
-
-[36 <./figures/diff_cost.png>] (./tables/costs_change_leaders.tex)
-<figures/diff_quantity.png, id=556, 578.16pt x 433.62pt>
-File: figures/diff_quantity.png Graphic file (type png)
-<use figures/diff_quantity.png>
-Package pdftex.def Info: figures/diff_quantity.png  used on input line 79.
-(pdftex.def)             Requested size: 491.43832pt x 368.57874pt.
-
-Overfull \hbox (19.40709pt too wide) in paragraph at lines 79--81
- [][] 
- []
-
-[37]
-<figures/diff_profit.png, id=565, 578.16pt x 433.62pt>
-File: figures/diff_profit.png Graphic file (type png)
-<use figures/diff_profit.png>
-Package pdftex.def Info: figures/diff_profit.png  used on input line 88.
-(pdftex.def)             Requested size: 491.43832pt x 368.57874pt.
-
-Overfull \hbox (19.40709pt too wide) in paragraph at lines 88--90
- [][] 
- []
-
-[38 <./figures/diff_quantity.png>] [39 <./figures/diff_profit.png>] (./tables/descomp_g.tex)
-<figures/plot_descomp_c.png, id=578, 578.16pt x 433.62pt>
-File: figures/plot_descomp_c.png Graphic file (type png)
-<use figures/plot_descomp_c.png>
-Package pdftex.def Info: figures/plot_descomp_c.png  used on input line 112.
+Package pdftex.def Info: figures/diff_cost.png  used on input line 46.
 (pdftex.def)             Requested size: 346.89867pt x 260.17401pt.
- [40]) (./seccion8.tex [41 <./figures/plot_descomp_c.png>]
-Cap\'{\i }tulo 8.
-[42
-
-]) (./anexo1.tex [43]
-Cap\'{\i }tulo 9.
-
-LaTeX Warning: Reference `chap:evidencia' on page 44 undefined on input line 3.
-
-(./tables/motiv_fe.tex)) (./anexo2.tex [44
-
-]
-Cap\'{\i }tulo 10.
-(./tables/estimacion_demanda.tex [45
-
-]) (./tables/estimacion_demanda_test.tex)) (./anexo3.tex [46]
-Cap\'{\i }tulo 11.
-(./tables/results_1989.tex) (./tables/surplus_1989.tex) [47
-
-] (./tables/descomp_g_1989.tex)
-<figures/diff_profit_1989.png, id=633, 578.16pt x 433.62pt>
-File: figures/diff_profit_1989.png Graphic file (type png)
-<use figures/diff_profit_1989.png>
-Package pdftex.def Info: figures/diff_profit_1989.png  used on input line 23.
-(pdftex.def)             Requested size: 346.89867pt x 260.17401pt.
-File: figures/diff_profit.png Graphic file (type png)
-<use figures/diff_profit.png>
-Package pdftex.def Info: figures/diff_profit.png  used on input line 30.
-(pdftex.def)             Requested size: 346.89867pt x 260.17401pt.
- [48 <./figures/diff_profit_1989.png>]
-<figures/plot_descomp_c_1989.png, id=642, 578.16pt x 433.62pt>
-File: figures/plot_descomp_c_1989.png Graphic file (type png)
-<use figures/plot_descomp_c_1989.png>
-Package pdftex.def Info: figures/plot_descomp_c_1989.png  used on input line 37.
-(pdftex.def)             Requested size: 346.89867pt x 260.17401pt.
-File: figures/plot_descomp_c.png Graphic file (type png)
-<use figures/plot_descomp_c.png>
-Package pdftex.def Info: figures/plot_descomp_c.png  used on input line 44.
-(pdftex.def)             Requested size: 346.89867pt x 260.17401pt.
-) [49 <./figures/plot_descomp_c_1989.png>] (build/main.bbl [50] [51
-
-] [52]) [53] (build/main.aux
-LaTeX Info: Redefining \. on input line 11.
-LaTeX Info: Redefining \% on input line 11.
-)
- ***********
-LaTeX2e <2023-11-01> patch level 1
-L3 programming layer <2024-02-20>
- ***********
-
-
-LaTeX Warning: There were undefined references.
-
-Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: ABB86BC5916A6EF37714E5B226330DDF;5614.
- ) 
-Here is how much of TeX's memory you used:
- 22403 strings out of 474116
- 384979 string characters out of 5743683
- 1951187 words of memory out of 5000000
- 44200 multiletter control sequences out of 15000+600000
- 568201 words of font info for 74 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 90i,17n,93p,1372b,654s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
-Output written on build/main.pdf (55 pages, 8305532 bytes).
-PDF statistics:
- 830 PDF objects out of 1000 (max. 8388607)
- 697 compressed objects within 7 object streams
- 180 named destinations out of 1000 (max. 500000)
- 328 words of extra memory for PDF output out of 10000 (max. 10000000)
-
+ [37 <./figures/diff_cost.png>] (./tables/costs_change_leaders.tex)
+<figur
