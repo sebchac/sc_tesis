@@ -2645,15 +2645,17 @@ ggsave(
   bg = "white")
 
 # Distribución de proporciones
+descomp_yc <- descomp_yc %>%
+  left_join(data %>% distinct(country, dummy_leader), by = "country")
 
-plot_violin <- descomp_c %>%
-  select(country, dummy_leader, efficiency_prop, strategic_prop) %>%
-  pivot_longer(cols = c(efficiency_prop, strategic_prop),
+plot_violin <- descomp_yc %>%
+  select(country, dummy_leader, direct_prop, strategic_prop) %>%
+  pivot_longer(cols = c(direct_prop, strategic_prop),
                names_to = "Componente", values_to = "Proporción") %>%
   mutate(
     Type = ifelse(dummy_leader == 1, "Líderes", "Seguidores"),
     Componente = recode(Componente,
-                        "efficiency_prop" = "Proporción: Efecto directo",
+                        "direct_prop" = "Proporción: Efecto directo",
                         "strategic_prop" = "Proporción: Efecto estratégico")
   ) %>%
   ggplot(aes(x = Type, y = Proporción, fill = Type)) +
@@ -2668,7 +2670,7 @@ plot_violin <- descomp_c %>%
     x = NULL,
     y = "Proporción del efecto total (%)"
   ) +
-  theme_minimal() +
+  theme_classic() +
   theme(
     legend.position = "none",
     plot.title = element_text(face = "bold", size = 14),

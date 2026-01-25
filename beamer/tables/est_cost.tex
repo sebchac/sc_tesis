@@ -1,0 +1,35 @@
+\scriptsize
+\begin{table}[H]
+\caption{Estimación de costos marginales}
+\label{tab:est_cost}
+\centering
+\begin{tabular}{lccc}
+\hline 
+\hline 
+Var. Dep.: $C_{i, t}$ (Costos marginales) & (1) & (2) & (3)\\   
+\hline 
+
+$T_{t}$ (Tendencia)                   & -9,86$^{***}$ & -8,79$^{***}$ & -11,03 $^{***}$ \\   
+                            & (0,8107) & (0,9012) & (0,9364) \\   
+$F_{t}$ (Fertilizantes)               & 0,51$^{***}$ & 0,52$^{***}$ & 0,53$^{***}$ \\   
+                            & (0,0174) & (0,0191) & (0,0199)\\ 
+\textbf{Exposición al calor:} \\
+$H_{i, t}$                  & 0,42$^{***}$ & - & 0,36$^{**}$ \\   
+                            & (0,1043) & - & (0,1062) \\   
+$H_{i, t-1}$                & 0,26$^{*}$ & - & 0,29$^{*}$ \\   
+                            & (0,1055) & - & (0,1153)\\ 
+\textbf{Exposición al frío:} \\
+$C_{i, t}$                  & - & -1,60$^{***}$ & -1,52$^{***}$ \\   
+                            & - & (0,3802) & (0,3875)\\   
+$C_{i, t-1}$      & - & -0,19 & -0,1486\\   
+                            & - & (0,2215) & (0,2355)\\  
+\hline
+Efecto fijo por país        & $\checkmark$ & $\checkmark$ & $\checkmark$ \\  
+\hline
+Observaciones               & 1.282 & 1.282 & 1.282\\  
+R$^2$                       & 0,2651 & 0,2642 & 0,2713\\  
+Within R$^2$                & 0,1404 & 0,1392 & 0,1490\\        
+\hline
+\hline
+\end{tabular}
+\end{table}

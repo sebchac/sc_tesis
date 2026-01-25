@@ -24,6 +24,10 @@ library(modelsummary)
 library(moments)
 library(kableExtra)
 library(splines)
+library(ivmodel)
+library(gmm)
+
+
 
 ruta_proyecto <- "/Users/sebastianchacon/Desktop/sc_tesis/"
 ruta_paper <- paste0(ruta_proyecto, "paper/")
@@ -123,10 +127,43 @@ iv3 <- ivreg(price_y ~ qe_y  + importGDP_y + teaPrices_y |
                importGDP_y + teaPrices_y,
              data = demand_data)
 summary(iv3)
+
+# Construcción de CLR
+Y <- demand_data$price_y
+D <- demand_data$qe_y
+
+Z <- cbind(
+  demand_data$tmax_ye,
+  demand_data$tmin_ye
+)
+
+X <- cbind(
+  demand_data$importGDP_y,
+  demand_data$teaPrices_y
+)
+
+iv_clr <- ivmodel(Y = Y, D = D, Z = Z, X = X)
+confint(iv_clr, parm = "D", level = 0.95, method = "CLR")
+
+modelo_cue <- gmm(
+  g = price_y ~ importGDP_y + teaPrices_y + qe_y,  # Ecuación principal
+  x = ~ importGDP_y + teaPrices_y + tmax_ye + tmin_ye,  # Instrumentos
+  data = demand_data,
+  
+  type = "iterative",  # Esto es equivalente a CUE
+  crit = 1e-10,
+  itermax = 100
+)
+
+summary(modelo_cue)
+
+
+#
+
 # Store coefficients
 coeff_iv3 <- coef(iv3)
 
-#coeff_iv3["qe_y"] <- -3.675  #-6.2288 (to -0.59) -3.675 (-1)
+#coeff_iv3["qe_y"] <- -3.675 # CLR -7.05283 -42.07088   #-3.675 (to -1) -6.2288 (to -0.59) -3.675 (-1)
 beta <- coeff_iv3["qe_y"]
 
 # Predict and elasticity

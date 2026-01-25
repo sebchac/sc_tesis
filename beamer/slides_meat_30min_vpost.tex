@@ -1,0 +1,377 @@
+% !TEX root = slides_meat_30min_vpost.tex
+% !TEX program = xelatex
+
+\input{sty/header.tex}
+\usepackage{sty/personalmacros}
+\usepackage{sty/personalslides}
+
+\usepackage{pifont}
+\usepackage{multicol}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{booktabs} 
+
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bbm}
+
+\newenvironment{wideitemize}{\itemize\addtolength{\itemsep}{10pt}}{\enditemize}
+\definecolor{amaranth}{rgb}{0.9, 0.17, 0.31}
+
+\title{{\color{yaleblue}\textbf{El Impacto del Cambio Climático en los Bienes Agrícolas}}}
+\subtitle{\color{yaleblue}El Caso del Café}
+\date{2026}
+\author[Chacón]{\small Sebastián Chacón\inst{*}}
+\institute[]{\inst{*} Universidad de Chile}
+
+\begin{document}
+\maketitle
+
+\begin{frame}{Contenido}
+\tableofcontents
+\end{frame}
+\section{Motivación}
+\begin{frame}{Pregunta de investigación}
+    \setbeamertemplate{itemize items}[circle]
+    \begin{wideitemize}
+        \item En mercados agrícolas, la exposición a temperaturas extremas (\textbf{estrés térmico}) puede deteriorar el desempeño de los cultivos, incrementando los costos marginales de producción.
+        
+        \item La literatura ha analizado este fenómeno como un choque agregado de productividad que genera adaptabilidad por parte los agentes.
+        \begin{itemize}
+            \item Métodos de forma reducida, datos de panel, \textit{long differences}
+        \end{itemize}
+        \item Pero el estrés térmico también puede tener efectos sobre la interacción estratégica de los productores en un mercado oligopólico.
+
+        \item \textbf{\color{amaranth} ¿Cómo el estrés térmico reconfigura el equilibrio estratégico y el bienestar en el mercado internacional del café?}
+    \end{wideitemize}
+\end{frame}
+
+\begin{frame}{En este trabajo}
+    \setbeamertemplate{itemize items}[circle]
+    \begin{wideitemize}
+        \item Estimación estructural del mercado internacional del café, bajo un modelo de competencia \textit{à la Stackelberg}
+
+        \item Simulación de un escenario contrafactual sin estrés térmico. Efectos en precios, cantidades y excedente social.
+
+        \item Descomposición del impacto total: efecto en costos + efecto estratégico.
+        \begin{itemize}
+            \item \textbf{¿Quién gana y quién pierde bajo el estrés térmico?}
+        \end{itemize}
+    \end{wideitemize}
+    \end{frame}
+
+\begin{frame}{El mercado internacional del café}
+    \label{frame:mercado_supuestos}
+    \setbeamertemplate{itemize items}[circle]
+    \begin{wideitemize}
+        \item \textbf{Un bien homogéneo:}
+        \begin{itemize}
+            \item Índice de precios agregado.
+            \item Exportaciones anuales agregadas.
+            \item Cartelización histórica sin distinguir entre especies.
+        \end{itemize}
+
+        \item \textbf{Oligopolio jerárquico:}  \hyperlink{frame:oligopolio_plot}{\beamerbutton{Ver}}
+        \begin{itemize}
+            \item Brasil, Colombia, Vietnam (60\% exportaciones) y $\approx$ 50 países más pequeños.
+        \end{itemize}
+
+        \item \textbf{Sensibilidad al estrés térmico:} \hyperlink{frame:estres_plot}{\beamerbutton{Ver}}
+        \begin{itemize}
+            \item Cantidades responden a umbrales de temperaturas altas.
+            \item Temperaturas altas diferenciadas por especie (Arábica vs Robusta).
+        \end{itemize}
+    \end{wideitemize}            
+\end{frame}
+
+\begin{frame}{Evidencia preliminar}
+    * Podría pasar lo de sensibilidad al estrés térmico acá
+
+    * Ver opciones de forma reducida
+
+    * Plot cambio en °C y cambio en share
+
+\end{frame}
+
+\section{Datos}
+
+\begin{frame}{Datos y variable de estrés térmico}
+    \label{frame:datos}
+    \setbeamertemplate{itemize items}[circle]
+    \begin{wideitemize}
+        \item \textbf{Período:} 1965-2019 (57 exportadores, 39 importadores).            
+        \item \textbf{Fuentes clave:}
+            \begin{itemize}
+                \item \textit{USDA} (exportaciones anuales).
+                \item \textit{ICO} (índice global de precios).
+                \item \textit{ISIMIP} (temperaturas diarias, 0.5° resolución).
+                \item \textit{SPAM} (localización espacial de cultivos, 2020).
+                \item \textit{WB} (ingresos de importadores, precios del té y fertilizantes).
+            \end{itemize}
+
+        \item \textbf{Estrés térmico:} Exposición anual a días de calor excesivo. \hyperlink{frame:variable_estres}{\beamerbutton{Ver}}
+            \begin{itemize}
+                \item Umbral específico por especie (Arábica: 26°C, Robusta: 30°C).
+                \item Promedio ponderado por hectáreas observadas en 2020.
+            \end{itemize}
+    \end{wideitemize}
+\end{frame}
+
+\section{Modelo}
+
+\begin{frame}{\textit{Stackelberg} con  $m>1$ líderes}
+    \setbeamertemplate{itemize items}[circle]
+    \begin{wideitemize}
+        \item Jerarquía de productores:
+        \begin{itemize}
+            \item $m = 3$ líderes (Brasil, Colombia, Vietnam).
+            \item $n-m$ seguidores.
+        \end{itemize}
+        \item Función de demanda inversa lineal:
+        $$ P_{t}(Q_{t}) = a_{t} - b Q_{t}, \quad Q_{t} = \sum_{i=1}^{m} q_{i,t}^{l} + \sum_{j=m+1}^{n} q_{j,t}^{s} $$
+        \item Costos marginales dependen del estrés térmico:
+        $$ c_{i,t} =  \alpha S_{i,t} + \phi_{t} + \phi_{i}, \quad \alpha > 0 $$
+    \end{wideitemize}
+\end{frame}
+
+\begin{frame}{El modelo. \textit{Stackelberg} con  $m>1$ líderes}
+    \setbeamertemplate{itemize items}[circle]
+    \begin{wideitemize}
+        \item Problema de optimización de líderes y seguidores:
+\begin{equation}    
+    \text{máx}_{q_{i}^{s} \ge 0}: \pi^{s}(q_{i}^{s}) = (A-B(\bar{Q}^{l}+Q^{s}_{-i} + q^{s}_{i})- c_{i})\cdot q_{i}^{s}
+\end{equation}
+\begin{equation} 
+    \text{máx}_{q_{j}^{l} \ge 0}: \pi^{l}(q_{j}^{l}) = (A-B(Q^{l}_{-j}+Q^{s}(q^{l}_{j} + Q^{l}_{-j}) + q^{l}_{j})- c_{j})\cdot q_{j}^{l}
+\end{equation}    
+        \item Condiciones de primer orden:
+\begin{equation}
+    \label{eq:c_seguidor}
+    c_{i}^{s} = P + \frac{\partial P}{\partial q_{i}^{s}}\cdot q_{i}^{s}
+\end{equation}
+\begin{equation}
+    \label{eq:c_lider}
+    c_{j}^{l} = P + \left( \frac{\partial P}{\partial Q^{s}} \cdot \frac{\partial Q^{s}}{\partial q_{j}^{l}} + \frac{\partial P}{\partial Q^{l}} \cdot \frac{\partial Q^{l}}{\partial q_{j}^{l}} \right)\cdot q_{j}^{l}
+\end{equation}
+    \end{wideitemize}
+\end{frame}
+
+\section{Resultados}
+
+\begin{frame}{Hallazgo 1: Demanda inelástica y costos heterogéneos}
+\label{frame:est_demand_y}
+\hyperlink{frame:est_demand_ym}{\beamerbutton{Estimación mensual}} \hyperlink{frame:est_demand_tests}{\beamerbutton{Pruebas estadísticas}} \hyperlink{frame:est_demand_iv_weak}{\beamerbutton{Intervalo CLR}}
+    \input{tables/est_demand_y}
+\end{frame}
+
+\begin{frame}{Hallazgo 1: Demanda inelástica y costos heterogéneos}
+    \input{tables/est_cost}
+
+\end{frame}
+
+\begin{frame}{Hallazgo 2: El impacto del estrés térmico}{Resultados agregados}
+
+\input{tables/results_1}
+\input{tables/results_2}
+
+\end{frame}
+
+\begin{frame}{Hallazgo 2: El impacto del estrés térmico}{Resultados por país}
+
+Gráficos para costos, cantidades, profits
+
+\end{frame}
+
+\begin{frame}{Hallazgo 3: Descomposición del efecto total}
+    \input{tables/descomp_g}
+\end{frame}
+
+\begin{frame}{Hallazgo 3: Ganadores y perdedores bajo estrés térmico}
+    A
+\end{frame}
+
+\section{Conclusiones}
+\begin{frame}{Conclusiones y discusión}
+    A
+\end{frame}
+
+\section{Apéndices}
+
+\begin{frame}{Apéndice}{Oligopolio jerárquico \hyperlink{frame:mercado_supuestos}{\beamerbutton{Volver}}
+}
+    \label{frame:oligopolio_plot}
+    \begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \caption{Participación de mercado de líderes}
+        \includegraphics[width=\linewidth]{figures/c3}
+        \label{fig:c3}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \caption{Cantidades por grupo exportador}
+        \includegraphics[width=\linewidth]{figures/leaders}
+        \label{fig:leaders}
+    \end{minipage}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Apéndice}{Sensibilidad al estrés térmico \hyperlink{frame:mercado_supuestos}{\beamerbutton{Volver}}} 
+    \label{frame:estres_plot}
+    \input{tables/temperatura_qe}
+
+\end{frame}
+
+\begin{frame}{Apéndice}{Sensibilidad al estrés térmico \hyperlink{frame:mercado_supuestos}{\beamerbutton{Volver}}
+} 
+    \begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \caption{Temperatura y cantidades}
+        \includegraphics[width=\linewidth]{figures/motiv1}
+        \label{fig:estres_qe}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \caption{Temperatura e ingresos}
+        \includegraphics[width=\linewidth]{figures/motiv2}
+        \label{fig:estres_rev}
+    \end{minipage}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Apéndice}{Sensibilidad al estrés térmico \hyperlink{frame:mercado_supuestos}{\beamerbutton{Volver}}} 
+    
+    \begin{figure}[H]
+    \centering      
+    \caption{Temperatura y participación de mercado}
+    \includegraphics[scale=0.5]{figures/motiv3}
+    \end{figure}
+\end{frame}
+\begin{frame}{Apéndice}{Variable de estrés térmico \hyperlink{frame:datos}{\beamerbutton{Volver}}}
+    \label{frame:variable_estres}
+    \setbeamertemplate{itemize items}[circle]
+    \begin{wideitemize}
+        \item Se considera que la temperatura sigue una trayectoria triangular en el día, con un máximo $T_{max}$ y un mínimo $T_{min}$.
+        \item Esto permite calcular la fracción del día en que la temperatura excede un umbral $T_{umbral}$:
+    \end{wideitemize}
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \caption{Exposición total al frío}
+        \includegraphics[width=\linewidth]{figures/exp_p1}
+        \label{fig:exp_p1}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \caption{Sin exposición al calor}
+        \includegraphics[width=\linewidth]{figures/exp_p4}
+        \label{fig:exp_p4}
+    \end{minipage}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Apéndice}{Variable de estrés térmico \hyperlink{frame:datos}{\beamerbutton{Volver}}}
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \caption{Exposición parcial al frío}
+        \includegraphics[width=\linewidth]{figures/exp_p2}
+        \label{fig:exp_p2}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \caption{Exposición parcial al calor}
+        \includegraphics[width=\linewidth]{figures/exp_p5}
+        \label{fig:exp_p5}
+    \end{minipage}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Apéndice}{Variable de estrés térmico \hyperlink{frame:datos}{\beamerbutton{Volver}}}
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \caption{Sin exposición al frío}
+        \includegraphics[width=\linewidth]{figures/exp_p3}
+        \label{fig:exp_p3}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \caption{Exposición total al calor}
+        \includegraphics[width=\linewidth]{figures/exp_p6}
+        \label{fig:exp_p6}
+    \end{minipage}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Apéndice}{Variable de estrés térmico \hyperlink{frame:datos}{\beamerbutton{Volver}}}
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \caption{Exposición al óptimo en el tiempo}
+        \includegraphics[width=\linewidth]{figures/optimo_y}
+        \label{fig:optimo_y}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \caption{Exposición al frío en el tiempo}
+        \includegraphics[width=\linewidth]{figures/frio_y}
+        \label{fig:frio_y}
+    \end{minipage}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Apéndice}{Variable de estrés térmico \hyperlink{frame:datos}{\beamerbutton{Volver}}} 
+    
+    \begin{figure}[H]
+    \centering      
+    \caption{Exposición al calor en el tiempo}
+    \includegraphics[scale=0.5]{figures/calor_y}
+    \label{fig:calor_y}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Apéndice}{Estimación de demanda mensual \hyperlink{frame:est_demand_y}{\beamerbutton{Volver}}}
+\label{frame:est_demand_ym}
+    \input{tables/est_demand_ym}
+\end{frame}
+
+\begin{frame}{Apéndice}{Estimación de demanda. Pruebas estadísticas \hyperlink{frame:est_demand_y}{\beamerbutton{Volver}}}
+\label{frame:est_demand_tests}
+    \input{tables/est_demand_y_tests}
+    \input{tables/est_demand_ym_tests}
+
+\end{frame}
+
+\begin{frame}{Apéndice}{Estimación de demanda. Instrumentos débiles \hyperlink{frame:est_demand_y}{\beamerbutton{Volver}}}
+    \label{frame:est_demand_iv_weak}
+    \setbeamertemplate{itemize items}[circle]
+    \begin{wideitemize}
+        \item Esta sección resuelve el sistema utilizando las cotas del intervalo de confianza CLR (\textit{Conditional Likelihood Ratio}), robusto a instrumentos débiles.
+        \item El intervalo de confianza al 95\% mantiene coeficientes negativos. El objetivo es analizar el cambio en los resultados finales.
+
+    $$ CLR = \left[ -42,07088 -7,05283 \right] $$
+
+    \end{wideitemize}
+    
+    \end{frame}
+
+\begin{frame}{Apéndice}{Instrumentos débiles}
+    \input{tables/est_cost_clr}
+\end{frame}
+
+\end{document}

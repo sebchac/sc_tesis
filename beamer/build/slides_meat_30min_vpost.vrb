@@ -1,0 +1,5 @@
+\frametitle{Título del Frame}
+    \begin{wideitemize}
+        \item<1-> Punto 1
+        \item<2-> Punto 2
+    \end{wideitemize}
