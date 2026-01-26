@@ -126,7 +126,13 @@ iv3 <- ivreg(price_y ~ qe_y  + importGDP_y + teaPrices_y |
                tmax_ye + tmin_ye +
                importGDP_y + teaPrices_y,
              data = demand_data)
-summary(iv3)
+
+summary(iv3, diagnostics = TRUE)
+
+first_stage_lm <- lm(qe_y ~ tmax_ye + tmin_ye + importGDP_y + teaPrices_y,
+                     data = demand_data)
+summary(first_stage_lm)
+f_stat <- summary(first_stage_lm)$fstatistic[1]
 
 # Construcción de CLR
 Y <- demand_data$price_y
@@ -163,7 +169,7 @@ summary(modelo_cue)
 # Store coefficients
 coeff_iv3 <- coef(iv3)
 
-#coeff_iv3["qe_y"] <- -3.675 # CLR -7.05283 -42.07088   #-3.675 (to -1) -6.2288 (to -0.59) -3.675 (-1)
+#coeff_iv3["qe_y"] <- -7.05283  # CLR -7.05283 -42.07088   #-3.675 (to -1) -6.2288 (to -0.59) -3.675 (-1)
 beta <- coeff_iv3["qe_y"]
 
 # Predict and elasticity
@@ -305,6 +311,32 @@ mc_fe <- feols(
 )
 
 summary(mc_fe)
+
+data_yc_df <- as.data.frame(data_yc)
+
+mr_yc3_values <- as.numeric(data_yc$mr_yc3)
+mr_yc3_clean <- mr_yc3_values[is.finite(mr_yc3_values)]
+
+# Crear data.frame simple
+plot_data <- data.frame(mr_yc3 = mr_yc3_clean)
+
+costs_hist <- ggplot(plot_data, aes(x = mr_yc3)) +
+  geom_histogram(aes(y = after_stat(density)),
+                 fill = "gray80", color = "gray40",
+                 bins = 20, alpha = 0.7) +
+  geom_density(color = "gray20", linewidth = 1) +
+  geom_vline(xintercept = mean(plot_data$mr_yc3),
+             color = "black", linetype = "dashed", linewidth = 1) +
+  labs(x = "Costos marginales", y = "Densidad") +
+  theme_classic()
+
+ggsave(
+  filename = paste0(fig_path, "costs_hist.png"),
+  plot = costs_hist,
+  width = 8,
+  height = 6,
+  dpi = 600,
+  bg = "white")
 
 
 # Only one stage and Stackelberg for leaders

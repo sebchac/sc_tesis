@@ -10,11 +10,16 @@
 \usepackage{graphicx}
 \usepackage{caption}
 \usepackage{subcaption}
-\usepackage{booktabs} 
+\usepackage{booktabs}
 
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{bbm}
+
+\usepackage[spanish]{babel}
+\usepackage{caption}
+\captionsetup[table]{name=Tabla}
+\captionsetup[figure]{name=Figura}
 
 \newenvironment{wideitemize}{\itemize\addtolength{\itemsep}{10pt}}{\enditemize}
 \definecolor{amaranth}{rgb}{0.9, 0.17, 0.31}
@@ -35,29 +40,28 @@
 \begin{frame}{Pregunta de investigación}
     \setbeamertemplate{itemize items}[circle]
     \begin{wideitemize}
-        \item En mercados agrícolas, la exposición a temperaturas extremas (\textbf{estrés térmico}) puede deteriorar el desempeño de los cultivos, incrementando los costos marginales de producción.
+        \item <1-> En mercados agrícolas, la exposición a temperaturas extremas (\textbf{estrés térmico}) puede deteriorar el desempeño de los cultivos, incrementando los costos marginales de producción.
         
-        \item La literatura ha analizado este fenómeno como un choque agregado de productividad que genera adaptabilidad por parte los agentes.
+        \item <2-> La literatura ha analizado este fenómeno como un choque agregado de productividad que genera adaptabilidad por parte los agentes.
         \begin{itemize}
             \item Métodos de forma reducida, datos de panel, \textit{long differences}
         \end{itemize}
-        \item Pero el estrés térmico también puede tener efectos sobre la interacción estratégica de los productores en un mercado oligopólico.
+        \item <3-> Pero el estrés térmico también puede tener efectos sobre la interacción estratégica de los productores en un mercado oligopólico.
 
-        \item \textbf{\color{amaranth} ¿Cómo el estrés térmico reconfigura el equilibrio estratégico y el bienestar en el mercado internacional del café?}
+        \item <4-> \textbf{\color{amaranth} ¿Cómo el estrés térmico reconfigura el equilibrio estratégico y el bienestar en el mercado internacional del café?}
     \end{wideitemize}
 \end{frame}
 
 \begin{frame}{En este trabajo}
     \setbeamertemplate{itemize items}[circle]
     \begin{wideitemize}
-        \item Estimación estructural del mercado internacional del café, bajo un modelo de competencia \textit{à la Stackelberg}
+        \item <1-> Estimación estructural del mercado internacional del café, bajo un modelo de competencia \textit{à la Stackelberg}
 
-        \item Simulación de un escenario contrafactual sin estrés térmico. Efectos en precios, cantidades y excedente social.
+        \item <2-> Estimación del impacto del estrés térmico en 1990-2019. Efectos en precios, cantidades y excedente social.
 
-        \item Descomposición del impacto total: efecto en costos + efecto estratégico.
-        \begin{itemize}
-            \item \textbf{¿Quién gana y quién pierde bajo el estrés térmico?}
-        \end{itemize}
+        \item <3-> Descomposición del impacto total: efecto en costos + efecto estratégico.
+
+        \item <4-> \textbf{\color{amaranth} El estrés térmico incrementa los costos marginales de los países productores y reconfigura el equilibrio estratégico, amplificando las asimetrías iniciales entre líderes y seguidores y generando ganadores y perdedores netos.}
     \end{wideitemize}
     \end{frame}
 
@@ -67,9 +71,9 @@
     \begin{wideitemize}
         \item \textbf{Un bien homogéneo:}
         \begin{itemize}
-            \item Índice de precios agregado.
-            \item Exportaciones anuales agregadas.
             \item Cartelización histórica sin distinguir entre especies.
+            \item Índice de precios agregado.
+            \item Demanda por ambas especies (\textit{mix}).
         \end{itemize}
 
         \item \textbf{Oligopolio jerárquico:}  \hyperlink{frame:oligopolio_plot}{\beamerbutton{Ver}}
@@ -80,18 +84,8 @@
         \item \textbf{Sensibilidad al estrés térmico:} \hyperlink{frame:estres_plot}{\beamerbutton{Ver}}
         \begin{itemize}
             \item Cantidades responden a umbrales de temperaturas altas.
-            \item Temperaturas altas diferenciadas por especie (Arábica vs Robusta).
         \end{itemize}
     \end{wideitemize}            
-\end{frame}
-
-\begin{frame}{Evidencia preliminar}
-    * Podría pasar lo de sensibilidad al estrés térmico acá
-
-    * Ver opciones de forma reducida
-
-    * Plot cambio en °C y cambio en share
-
 \end{frame}
 
 \section{Datos}
@@ -110,11 +104,7 @@
                 \item \textit{WB} (ingresos de importadores, precios del té y fertilizantes).
             \end{itemize}
 
-        \item \textbf{Estrés térmico:} Exposición anual a días de calor excesivo. \hyperlink{frame:variable_estres}{\beamerbutton{Ver}}
-            \begin{itemize}
-                \item Umbral específico por especie (Arábica: 26°C, Robusta: 30°C).
-                \item Promedio ponderado por hectáreas observadas en 2020.
-            \end{itemize}
+        \item \textbf{Estrés térmico:} Días de exposición al calor excesivo en un año. \hyperlink{frame:variable_estres}{\beamerbutton{Ver}}
     \end{wideitemize}
 \end{frame}
 
@@ -135,68 +125,137 @@
     \end{wideitemize}
 \end{frame}
 
-\begin{frame}{El modelo. \textit{Stackelberg} con  $m>1$ líderes}
+\begin{frame}{\textit{Stackelberg} con  $m>1$ líderes}
     \setbeamertemplate{itemize items}[circle]
     \begin{wideitemize}
         \item Problema de optimización de líderes y seguidores:
-\begin{equation}    
-    \text{máx}_{q_{i}^{s} \ge 0}: \pi^{s}(q_{i}^{s}) = (A-B(\bar{Q}^{l}+Q^{s}_{-i} + q^{s}_{i})- c_{i})\cdot q_{i}^{s}
-\end{equation}
 \begin{equation} 
     \text{máx}_{q_{j}^{l} \ge 0}: \pi^{l}(q_{j}^{l}) = (A-B(Q^{l}_{-j}+Q^{s}(q^{l}_{j} + Q^{l}_{-j}) + q^{l}_{j})- c_{j})\cdot q_{j}^{l}
-\end{equation}    
+\end{equation}  
+\begin{equation}    
+    \text{máx}_{q_{i}^{s} \ge 0}: \pi^{s}(q_{i}^{s}) = (A-B(\bar{Q}^{l}+Q^{s}_{-i} + q^{s}_{i})- c_{i})\cdot q_{i}^{s}
+\end{equation}  
         \item Condiciones de primer orden:
+\begin{equation}
+    \label{eq:c_lider}
+    c_{j}^{l} = P + \left( \frac{\partial P}{\partial Q^{s}} \cdot \frac{\partial Q^{s}}{\partial q_{j}^{l}} + \frac{\partial P}{\partial q_{j}^{l}} \right)\cdot q_{j}^{l}
+\end{equation}
 \begin{equation}
     \label{eq:c_seguidor}
     c_{i}^{s} = P + \frac{\partial P}{\partial q_{i}^{s}}\cdot q_{i}^{s}
-\end{equation}
-\begin{equation}
-    \label{eq:c_lider}
-    c_{j}^{l} = P + \left( \frac{\partial P}{\partial Q^{s}} \cdot \frac{\partial Q^{s}}{\partial q_{j}^{l}} + \frac{\partial P}{\partial Q^{l}} \cdot \frac{\partial Q^{l}}{\partial q_{j}^{l}} \right)\cdot q_{j}^{l}
 \end{equation}
     \end{wideitemize}
 \end{frame}
 
 \section{Resultados}
 
-\begin{frame}{Hallazgo 1: Demanda inelástica y costos heterogéneos}
+\begin{frame}{1. Demanda inelástica y costos heterogéneos}
 \label{frame:est_demand_y}
 \hyperlink{frame:est_demand_ym}{\beamerbutton{Estimación mensual}} \hyperlink{frame:est_demand_tests}{\beamerbutton{Pruebas estadísticas}} \hyperlink{frame:est_demand_iv_weak}{\beamerbutton{Intervalo CLR}}
     \input{tables/est_demand_y}
 \end{frame}
 
-\begin{frame}{Hallazgo 1: Demanda inelástica y costos heterogéneos}
+\begin{frame}{1. Demanda inelástica y costos heterogéneos}
+\label{frame:est_demand_y_elast}
+\setbeamertemplate{itemize items}[circle]
+    \begin{wideitemize}
+        \item Igami (2015): -0,15. Bates (1997): -0,20.
+    \end{wideitemize}
+
+    \begin{figure}
+        \caption{Elasticidad-precio de la demanda. Modelo VI.}
+        \centering
+        \includegraphics[scale=0.4]{figures/elasticidad_iv3}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{1. Demanda inelástica y costos heterogéneos}
+    \vspace{0.2cm}
+\label{frame:est_costs_y}
+    \hyperlink{frame:ajuste_modelo}{\beamerbutton{Ajuste del modelo}}
     \input{tables/est_cost}
 
 \end{frame}
 
-\begin{frame}{Hallazgo 2: El impacto del estrés térmico}{Resultados agregados}
+\begin{frame}{2. El impacto del estrés térmico}{Construcción de un escenario contrafactual}
+    \setbeamertemplate{itemize items}[circle]
+    \begin{wideitemize}
+        \item <1-> \textbf{Año clave.} En 1989 se acaba el período de cartelización del café. A partir de entonces, los países compiten en virtud de su posición estratégica y condiciones de estrés térmico.
+        
+        \item <2-> Se construye el promedio de la exposición al estrés térmico observado en 1970-1989, el que se utiliza para estimar los costos marginales contrafactuales en 1990-2019.
+        
+        \item <3-> Se compara el escenario base (factual) con la construcción sin cambio de tendencia en el estrés térmico (contrafactual). El resultado es el efecto del cambio de tendencia desde 1990 en adelante.
+    \end{wideitemize}
+    
+\end{frame}
+
+\begin{frame}{2. El impacto del estrés térmico}{Resultados agregados}
 
 \input{tables/results_1}
 \input{tables/results_2}
 
 \end{frame}
 
-\begin{frame}{Hallazgo 2: El impacto del estrés térmico}{Resultados por país}
-
-Gráficos para costos, cantidades, profits
-
+\begin{frame}{2. El impacto del estrés térmico}{Resultados por país}
+    \label{frame:hallazgo2}
+    \setbeamertemplate{itemize items}[circle]
+    \begin{wideitemize}
+        \item <1-> La mayoría de los países exportadores experimentan un incremento en sus costos marginales debido al estrés térmico. \hyperlink{frame:diff_heat_diff_costs}{\beamerbutton{Ver}}
+        
+        \vspace{0.5cm}
+        \item <2-> La reacción de las cantidades, aunque negativas, son acotadas, excepto para los líderes del mercado. \hyperlink{frame:diff_costs_diff_qe}{\beamerbutton{Ver}}
+        
+        \vspace{0.5cm}
+        \item <3-> Los beneficios incorporan también el cambio en precios. Se observan ganadores y perdedores netos. \hyperlink{frame:diff_costs_diff_profit}{\beamerbutton{Ver}}
+    \end{wideitemize}
 \end{frame}
 
-\begin{frame}{Hallazgo 3: Descomposición del efecto total}
-    \input{tables/descomp_g}
-\end{frame}
+\begin{frame}{3. Descomposición del efecto total}{Ecuación}
+\centering
 
-\begin{frame}{Hallazgo 3: Ganadores y perdedores bajo estrés térmico}
-    A
+\[
+\Delta\pi = \underbrace{-\Delta c \cdot q^0}_{\substack{\text{Efecto} \\ \text{eficiencia}}} + \underbrace{\Delta P \cdot q^0 + (P^1 - c^1)\Delta q}_{\substack{\text{Efecto} \\ \text{estratégico}}}
+\]
+
+\setbeamertemplate{itemize items}[circle]
+    \begin{wideitemize}
+        \item <1-> \textbf{Efecto eficiencia:} Cambio debido al aumento en costos marginales por estrés térmico, manteniendo fija la estructura estratégica del mercado.
+
+        \item <2-> \textbf{Efecto estratégico:} Cambio en cantidades y precios debido a la reconfiguración del equilibrio estratégico del mercado.
+    \end{wideitemize}  
+
+\end{frame}
+\begin{frame}{3. Descomposición del efecto total}{Resultados}
+    \label{frame:descomposicion1}
+    \setbeamertemplate{itemize items}[circle]
+    \begin{wideitemize}
+        \item A nivel agregado, el efecto eficiencia domina las pérdidas totales. El efecto estratégico las mitiga parcialmente.
+        
+            \vspace{0.3cm}
+            \input{tables/descomp_g}
+            \vspace{0.3cm}
+        \item El resultado neto se define por la magnitud relativa de ambos efectos. \hyperlink{frame:efecto_estrategico1}{\beamerbutton{Efecto estratégico y pérdida total}}
+    \end{wideitemize}
 \end{frame}
 
 \section{Conclusiones}
-\begin{frame}{Conclusiones y discusión}
-    A
+\begin{frame}{Conclusiones}
+    \setbeamertemplate{itemize items}[circle]
+    \begin{wideitemize}
+        \item <1-> El estrés térmico incrementa los costos marginales de producción, \pause \textbf{\color{amaranth} pero los agentes responden estratégicamente, mitigando parcialmente las pérdidas totales.}
+
+        \item <2-> Modelos reducidos podrían sobreestimar las pérdidas totales al no considerar la reconfiguración del equilibrio estratégico.
+
+        \item <3-> Se agudizan las asimetrías iniciales. A nivel agregado, los seguidores se ven más afectados por el estrés térmico. Los líderes neutralizan el impacto.
+        
+        \item <4-> El efecto neto depende de la magnitud relativa del efecto eficiencia y el efecto estratégico. Este último varía con la elasticidad de la demanda y el cambio en costos marginales.
+
+    \end{wideitemize}
 \end{frame}
 
-\section{Apéndices}
+\setbeamertemplate{footline}{} 
+\setcounter{framenumber}{0} 
+\section*{Apéndices}
 
 \begin{frame}{Apéndice}{Oligopolio jerárquico \hyperlink{frame:mercado_supuestos}{\beamerbutton{Volver}}
 }
@@ -258,9 +317,15 @@ Gráficos para costos, cantidades, profits
     \setbeamertemplate{itemize items}[circle]
     \begin{wideitemize}
         \item Se considera que la temperatura sigue una trayectoria triangular en el día, con un máximo $T_{max}$ y un mínimo $T_{min}$.
-        \item Esto permite calcular la fracción del día en que la temperatura excede un umbral $T_{umbral}$:
+        \item Esto permite calcular la fracción del día en que la temperatura excede un umbral $T_{umbral}$.
+        \item Umbrales diferentes por especie (30°C Robusta, 26°C Arábica).
+        \item Ponderación por hectáreas cultivadas en 2020.
     \end{wideitemize}
-\begin{figure}[H]
+
+\end{frame}
+
+\begin{frame}{Apéndice}{Variable de estrés térmico \hyperlink{frame:datos}{\beamerbutton{Volver}}}
+    \begin{figure}[H]
     \centering
     \begin{minipage}[t]{0.45\textwidth}
         \centering
@@ -340,7 +405,7 @@ Gráficos para costos, cantidades, profits
     \begin{figure}[H]
     \centering      
     \caption{Exposición al calor en el tiempo}
-    \includegraphics[scale=0.5]{figures/calor_y}
+    \includegraphics[scale=0.7]{figures/calor_y}
     \label{fig:calor_y}
     \end{figure}
 \end{frame}
@@ -350,14 +415,21 @@ Gráficos para costos, cantidades, profits
     \input{tables/est_demand_ym}
 \end{frame}
 
-\begin{frame}{Apéndice}{Estimación de demanda. Pruebas estadísticas \hyperlink{frame:est_demand_y}{\beamerbutton{Volver}}}
+
+
+\begin{frame}{Apéndice}{Estimación de demanda. Primera etapa \hyperlink{frame:est_demand_y}{\beamerbutton{Volver}}}
 \label{frame:est_demand_tests}
+    \input{tables/est_demand_y_1s}
+
+
+\end{frame}
+\begin{frame}{Apéndice}{Estimación de demanda. Pruebas estadísticas \hyperlink{frame:est_demand_y}{\beamerbutton{Volver}}}
     \input{tables/est_demand_y_tests}
     \input{tables/est_demand_ym_tests}
 
 \end{frame}
 
-\begin{frame}{Apéndice}{Estimación de demanda. Instrumentos débiles \hyperlink{frame:est_demand_y}{\beamerbutton{Volver}}}
+\begin{frame}{Apéndice}{Estimación de demanda. Intervalo CLR \hyperlink{frame:est_demand_y}{\beamerbutton{Volver}}}
     \label{frame:est_demand_iv_weak}
     \setbeamertemplate{itemize items}[circle]
     \begin{wideitemize}
@@ -370,8 +442,102 @@ Gráficos para costos, cantidades, profits
     
     \end{frame}
 
-\begin{frame}{Apéndice}{Instrumentos débiles}
+\begin{frame}{Apéndice}{Intervalo CLR}
     \input{tables/est_cost_clr}
 \end{frame}
+\begin{frame}{Apéndice}{Intervalo CLR}
+    \input{tables/results1_clr}
+    \input{tables/results2_clr}
+
+\end{frame}
+
+\begin{frame}{Apéndice}{Ajuste del modelo \hyperlink{frame:est_costs_y}{\beamerbutton{Volver}}}
+    \label{frame:ajuste_modelo}
+\begin{figure}[H]
+    \centering
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \caption{Ajuste en precios}
+        \includegraphics[width=\linewidth]{figures/fit_precio}
+        \label{fig:fit_precio}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.45\textwidth}
+        \centering
+        \caption{Ajuste en cantidades}
+        \includegraphics[width=\linewidth]{figures/fit_qe}
+        \label{fig:fit_qe}
+    \end{minipage}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Apéndice}{Estiamción de costos marginales \hyperlink{frame:est_costs_y}{\beamerbutton{Volver}}}
+    \vspace{0.2cm}
+\label{frame:est_costs_y_hist}
+    \begin{figure}
+        \caption{Histograma de costos marginales (1990-2019)}
+        \centering
+        \includegraphics[scale=0.4]{figures/costs_hist}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Apéndice}{Cambio en calor y costos. Resultados por país \hyperlink{frame:hallazgo2}{\beamerbutton{Volver}}}
+    \label{frame:diff_heat_diff_costs}
+    \begin{figure}[H]
+        \caption{Cambio en calor y costos (1990-2019 vs. 1970-1989)}
+    \centering
+    \includegraphics[scale = 0.4]{figures/diff_heat_diff_costs}
+    \label{diff_heat_diff_costs}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Apéndice}{Cambio en costos y cantidades. Resultados por país \hyperlink{frame:hallazgo2}{\beamerbutton{Volver}}}
+    \label{frame:diff_costs_diff_qe}
+    \begin{figure}[H]
+        \caption{Cambio en costos y cantidades (1990-2019 vs. 1970-1989)}
+    \centering
+    \includegraphics[scale = 0.4]{figures/diff_costs_diff_qe}
+    \label{diff_costs_diff_qe}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Apéndice}{Cambio en costos y beneficios. Resultados por país \hyperlink{frame:hallazgo2}{\beamerbutton{Volver}}}
+    \label{frame:diff_costs_diff_profit}
+    \begin{figure}[H]
+        \caption{Cambio en costos y beneficios (1990-2019 vs. 1970-1989)}
+    \centering
+    \includegraphics[scale = 0.4]{figures/diff_costs_diff_profit}
+    \label{diff_costs_diff_profit}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Apéndice}{Descomposición del efecto total \hyperlink{frame:descomposicion1}{\beamerbutton{Volver}}}
+    \label{frame:efecto_estrategico1}
+    \begin{figure}
+    \caption{Efecto estratégico y pérdida. Promedio anualizado (1990-2019)}
+    \centering
+    \includegraphics[scale=0.4]{figures/efecto_est_prop_nout}
+    \label{efecto_est_prop_nout}
+    \end{figure}
+\end{frame}
+\begin{frame}{Apéndice}{Descomposición del efecto total \hyperlink{frame:descomposicion1}{\beamerbutton{Volver}}}
+    \label{frame:efecto_estrategico2}
+    \begin{figure}
+    \caption{Efecto estratégico y cambio en costos. Promedio anualizado (1990-2019)}
+    \centering
+    \includegraphics[scale=0.4]{figures/costs_strat}
+    \label{costs_strat}
+    \end{figure}
+\end{frame}
+\begin{frame}{Apéndice}{Descomposición del efecto total \hyperlink{frame:descomposicion1}{\beamerbutton{Volver}}}
+    \label{frame:efecto_estrategico3}
+    \begin{figure}
+    \caption{Efecto estratégico y cambio en calor. Promedio anualizado (1990-2019)}
+    \centering
+    \includegraphics[scale=0.4]{figures/heat_strat}
+    \label{heat_strat}
+    \end{figure}
+\end{frame}
+
 
 \end{document}

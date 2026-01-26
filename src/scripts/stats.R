@@ -2953,7 +2953,7 @@ data_yc <- data %>%
     share_yc = qe_yc / qe_y,
     rev_yc = qe_yc * price_y,
     grupo = case_when(
-      country %in% c("Brazil", "Colombia", "Vietnam") ~ "Líder",
+      country %in% c("Brazil", "Colombia", "Viet Nam") ~ "Líder",
       TRUE ~ "Seguidor"
     )
   ) %>%
@@ -2994,7 +2994,7 @@ data_yc <- data %>%
   ) %>%
   filter(!is.na(iso_a3))
 
-ggplot(data_yc, aes(year, country, fill= tas_yce)) + 
+ggplot(data_yc %>% filter(!country %in% c("Bolivia")), aes(year, country, fill= tas_yce)) + 
   geom_tile()
 
 # Curva térmica qe_yc
