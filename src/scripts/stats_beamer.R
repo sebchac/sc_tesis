@@ -635,8 +635,8 @@ descomp_c <- descomp_c %>%
 ax_c <- descomp_c %>% filter(!country %in% c("Côte d'Ivoire", "Cuba"))
 ax_yc <- descomp_yc %>% filter(!country %in% c("Côte d'Ivoire", "Viet Nam", "Cuba", "Colombia", "Brazil"))
 
-plot(ax_c$strategic_prop, ax_c$total_effect)
-plot(ax_yc$strategic_prop, ax_yc$total_effect)
+plot(ax_c$strategic_effect, ax_c$direct_effect)
+plot(ax_yc$strategic_effect, ax_yc$direct_effect)
 
 efecto_est_prop_nout <- ggplot(ax_c, aes(x = strategic_prop, y = total_effect)) +
   # Líneas de referencia
@@ -713,9 +713,10 @@ bb_yc <- descomp_yc %>%
   mutate(
     share_yc_CF0 = quantity_CF0 / qe_y_CF0,
     diff_costs_nivel = abs(costs_CF0 - costs_CF1),
-    diff_cost = abs(diff_cost)
-  ) #%>%
-  #filter(!country %in% c("Côte d'Ivoire", "Viet Nam", "Cuba", "Colombia", "Brazil"))
+    diff_cost =diff_cost,
+    umbral = strategic_effect / quantity_CF0
+  ) %>%
+  filter(!country %in% c("Côte d'Ivoire", "Viet Nam", "Cuba", "Colombia", "Brazil"))
 
 hh_yc <- data_cf %>%
   select(year, country, heatExp_yc, heatExp_yc_cf) %>%
@@ -730,6 +731,8 @@ aa_yc <- bb_yc %>%
       country %in% c("Brazil", "Colombia", "Viet Nam") ~ 1,
                      TRUE ~ 0)
     )
+
+plot(aa_yc$diff_cost, aa_yc$umbral)
 
 # Costos de rivales y cantidades
 aa_yc <- aa_yc %>%
@@ -751,6 +754,8 @@ aa_yc <- aa_yc %>%
 aa_c <- aa_yc %>%
   group_by(country) %>%
   summarise(
+    total_effect = mean(total_effect, na.rm = TRUE),
+    abs_total = mean(abs_total, na.rm = TRUE),
     strategic_prop = mean(strategic_prop, na.rn = TRUE),
     diff_heat_nivel = mean(diff_heat_nivel, na.rm = TRUE),
     diff_costs_nivel = mean(diff_costs_nivel, na.rm = TRUE),
@@ -761,9 +766,9 @@ aa_c <- aa_yc %>%
   
 plot(aa_c$diff_costs_rivals, aa_c$strategic_prop)
 
-plot(aa_c$diff_heat_nivel, aa_c$strategic_prop)
+plot(aa_yc$diff_heat_nivel, aa_yc$strategic_prop)
 
-a <- feols(quantity_CF0 ~ i_costs_CF0 | country, data = aa_yc)
+a <- feols(strategic_prop ~ diff_heat_nivel + diff_heat_nivel^2 | year + country, data = aa_yc)
 summary(a)
 
 library(ggplot2)
@@ -1010,4 +1015,247 @@ ggplot(aux_yc, aes(x = year)) +
   scale_color_manual(values = c("Líder" = "#2E86AB", "Seguidor" = "#A23B72")) +
   theme_classic()
 
+#------------------------------
+# Top 10 CF0 vs CF1
+#------------------------------
 
+top_c <- descomp_yc %>%
+  group_by(year) %>%
+  mutate(
+    qe_y_CF0 = sum(quantity_CF0, na.rm = TRUE),
+    qe_y_CF1 = sum(quantity_CF1, na.rm = TRUE)
+  ) %>%
+  ungroup() %>%
+  arrange(country, year) %>%
+  mutate(
+    share_yc_CF0 = quantity_CF0 / qe_y_CF0,
+    share_yc_CF1 = quantity_CF1 / qe_y_CF1
+  ) %>%
+  group_by(country) %>%
+  summarise(
+    share_c_CF0 = mean(share_yc_CF0, na.rm = TRUE),
+    share_c_CF1 = mean(share_yc_CF1, na.rm = TRUE),
+    .groups = 'drop'
+  ) %>%
+  ungroup() %>%
+  filter(country %in% country_plots)
+
+top2_c <- descomp_yc %>%
+  group_by(country) %>%
+  summarise(
+    qe_c_CF0 = sum(quantity_CF0, na.rm = TRUE),
+    qe_c_CF1 = sum(quantity_CF1, na.rm = TRUE),
+    .groups = 'drop'
+  ) %>%
+  ungroup() %>%
+  mutate(
+    qe_CF0 = sum(qe_c_CF0, na.rm = TRUE),
+    qe_CF1= sum(qe_c_CF1, na.rm = TRUE),
+    
+    share_c_CF0 = qe_c_CF0 / qe_CF0,
+    share_c_CF1 = qe_c_CF1 / qe_CF1
+  ) %>%
+  filter(country %in% country_plots)
+
+#------------------------------
+# Vietnam
+#------------------------------
+
+vt_aux <- descomp_yc %>%
+  filter(country == "Viet Nam") %>%
+  summarise(
+    country = first(country),
+    qe_CF0 = sum(quantity_CF0, na.rm = TRUE),
+    qe_CF1 = sum(quantity_CF1, na.rm = TRUE),
+    profit_CF0 = sum(profit_CF0, na.rm = TRUE),
+    profit_CF1 = sum(profit_CF1, na.rm = TRUE),
+    
+    strategic_effect = sum(strategic_effect, na.rm = TRUE),
+    direct_effect = sum(direct_effect, na.rm = TRUE),
+    
+    strat_prop = mean(strategic_prop, na.rm = TRUE),
+    .groups = 'drop'
+  )
+
+# 1. Transformar datos a formato largo
+df_prep <- vt_aux %>%
+  select(-strat_prop) %>%
+  pivot_longer(
+    cols = c(qe_CF0, qe_CF1, profit_CF0, profit_CF1),
+    names_to = "variable",
+    values_to = "valor"
+  ) %>%
+  mutate(
+    categoria = case_when(
+      grepl("qe", variable) ~ "Cantidades (mill. 60 kg)",
+      grepl("profit", variable) ~ "Beneficios (mill. USD)",
+      grepl("strat", variable) ~ "Efecto estratégico (%)"
+    ),
+    escenario = case_when(
+      grepl("CF0", variable) ~ "Con estrés térmico",
+      grepl("CF1", variable) ~ "Sin estrés térmico",
+      TRUE ~ "Proporción"
+    ),
+    # Ordenar las categorías
+    categoria = factor(categoria, 
+                       levels = c("Cantidades (mill. 60 kg)", 
+                                  "Beneficios (mill. USD)", 
+                                  "Efecto estratégico (%)")),
+    # Formatear etiquetas
+    etiqueta = case_when(
+      categoria == "Efecto estratégico (%)" ~ sprintf("%.1f%%", valor * 100),
+      categoria == "Cantidades (mill. 60 kg)" ~ sprintf("%.0f", valor),
+      categoria == "Beneficios (mill. USD)" ~ sprintf("%.0f", valor)
+    )
+  )
+
+df_prop <- vt_aux %>%
+  select(country, strat_prop) %>%
+  mutate(
+    categoria = "Efecto estratégico (%)",
+    escenario = "Proporción",
+    valor = strat_prop
+  ) %>%
+  select(-strat_prop)
+
+df_long <- bind_rows(df_prep, df_prop) %>%
+  mutate(
+    # Ordenar las categorías
+    categoria = factor(categoria, 
+                       levels = c("Cantidades (mill. kg)", 
+                                  "Beneficios (mill. USD)", 
+                                  "Efecto estratégico (%)")),
+    # Ordenar escenarios
+    escenario = factor(escenario,
+                       levels = c("Sin estrés térmico", 
+                                  "Con estrés térmico", 
+                                  "Proporción")),
+    # Formatear etiquetas
+    etiqueta = case_when(
+      categoria == "Efecto estratégico (%)" ~ sprintf("%.1f%%", valor * 100),
+      categoria == "Cantidades (mill. 60 kg)" ~ sprintf("%.0f", valor),
+      categoria == "Beneficios (mill. USD)" ~ sprintf("%.0f", valor)
+    )
+  )
+
+# Gráfico para df_prep (Cantidades y Beneficios)
+vietnam_qe <- ggplot(df_prep, aes(x = categoria, y = valor, fill = escenario)) +
+  geom_bar(stat = "identity", position = position_dodge(width = 0.8), 
+           width = 0.7, alpha = 0.9) +
+  geom_text(aes(label = etiqueta),
+            position = position_dodge(width = 0.8),
+            vjust = -0.5, 
+            size = 4,
+            fontface = "bold") +
+  scale_fill_manual(
+    values = c(
+      "Sin estrés térmico" = "#A23B72" ,  # Azul oscuro
+      "Con estrés térmico" = "#2E86AB"     # Magenta
+    ),
+    name = "Escenario",
+    labels = c("Sin estrés térmico", "Con estrés térmico")
+  ) +
+  theme_minimal(base_size = 12) +
+  theme(
+    # Panel y fondo
+    panel.background = element_rect(fill = "white", color = NA),
+    plot.background = element_rect(fill = "white", color = NA),
+    
+    # Ejes
+    axis.title.y = element_blank(),
+    axis.title.x = element_blank(),
+    axis.text.x = element_text(size = 11, face = "bold"),
+    axis.text.y = element_blank(),
+    
+    # Títulos
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 14, 
+                              margin = margin(b = 10)),
+    plot.subtitle = element_text(hjust = 0.5, size = 11, color = "gray40",
+                                 margin = margin(b = 15)),
+    plot.caption = element_text(hjust = 1, size = 9, color = "gray50",
+                                margin = margin(t = 10)),
+    
+    # Leyenda
+    legend.position = "none",
+    legend.title = element_text(face = "bold", size = 10),
+    legend.text = element_text(size = 10),
+    legend.box.spacing = unit(0.2, "cm"),
+    
+    # Grid
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.major.y = element_line(color = "gray90", linewidth = 0.3),
+    panel.grid.minor.y = element_blank(),
+    
+    # Márgenes
+    plot.margin = margin(20, 20, 20, 20)
+  ) +
+  scale_y_continuous(
+    expand = expansion(mult = c(0, 0.15)),
+    labels = scales::comma_format()
+  ) +
+  # Añadir línea horizontal en 0 para claridad
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.3)
+
+# Guardar en alta resolución
+ggsave(paste0(fig_path, "vietnam_qe.png"), 
+       plot = vietnam_qe,
+       width = 10, 
+       height = 6, 
+       dpi = 300,
+       bg = "white")
+
+# Gráfico para df_prop (Efecto Estratégico)
+vietnam_prop <- ggplot(df_prop, aes(x = categoria, y = valor)) +
+  geom_bar(stat = "identity", width = 0.5, 
+           fill = "#4A6D7C", alpha = 0.9) +  # Gris azulado
+  geom_text(aes(label = sprintf("%.1f%%", valor * 100)),
+            vjust = -0.5, 
+            size = 5,
+            fontface = "bold",
+            color = "#2C3E50") +
+  theme_minimal(base_size = 12) +
+  theme(
+    # Panel y fondo
+    panel.background = element_rect(fill = "white", color = NA),
+    plot.background = element_rect(fill = "white", color = NA),
+    
+    # Ejes
+    axis.title.y = element_blank(),
+    axis.text.x = element_blank(),
+    axis.text.y = element_blank(),
+    axis.title.x = element_blank(),
+    
+    # Títulos
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 14, 
+                              margin = margin(b = 10)),
+    plot.subtitle = element_text(hjust = 0.5, size = 11, color = "gray40",
+                                 margin = margin(b = 15)),
+    plot.caption = element_text(hjust = 0, size = 9, color = "gray50",
+                                margin = margin(t = 10)),
+    
+    # Grid
+    panel.grid.major.x = element_blank(),
+    panel.grid.minor.x = element_blank(),
+    panel.grid.major.y = element_line(color = "gray90", linewidth = 0.3),
+    panel.grid.minor.y = element_blank(),
+    
+    # Márgenes
+    plot.margin = margin(20, 20, 20, 20)
+  ) +
+  scale_y_continuous(
+    expand = expansion(mult = c(0, 0.2)),
+    labels = scales::percent_format(accuracy = 1),
+    limits = c(0, max(df_prop$valor) * 1.3)  # Ajustar límites para etiqueta
+  ) +
+  # Línea de referencia en 0
+  geom_hline(yintercept = 0, color = "gray70", linewidth = 0.3) +
+  # Opcional: línea de referencia en 50% si es relevante
+  geom_hline(yintercept = 0.5, color = "gray80", linewidth = 0.3, linetype = "dashed", alpha = 0.5)
+
+ggsave(paste0(fig_path, "vietnam_prop.png"), 
+       plot = vietnam_prop,
+       width = 10, 
+       height = 6, 
+       dpi = 300,
+       bg = "white")

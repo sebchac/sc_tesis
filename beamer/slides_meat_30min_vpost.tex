@@ -34,6 +34,7 @@
 \maketitle
 
 \begin{frame}{Contenido}
+\color{yaleblue}
 \tableofcontents
 \end{frame}
 \section{Motivación}
@@ -42,13 +43,13 @@
     \begin{wideitemize}
         \item <1-> En mercados agrícolas, la exposición a temperaturas extremas (\textbf{estrés térmico}) puede deteriorar el desempeño de los cultivos, incrementando los costos marginales de producción.
         
-        \item <2-> La literatura ha analizado este fenómeno como un choque agregado de productividad que genera adaptabilidad por parte los agentes.
+        \item <2-> La literatura ha analizado este fenómeno principalmente como un choque de productividad (costos).
         \begin{itemize}
             \item Métodos de forma reducida, datos de panel, \textit{long differences}
         \end{itemize}
         \item <3-> Pero el estrés térmico también puede tener efectos sobre la interacción estratégica de los productores en un mercado oligopólico.
 
-        \item <4-> \textbf{\color{amaranth} ¿Cómo el estrés térmico reconfigura el equilibrio estratégico y el bienestar en el mercado internacional del café?}
+        \item <4-> \textbf{\color{amaranth} ¿Cómo el estrés térmico reconfigura el equilibrio estratégico y el bienestar en los mercados de bienes agrícolas?}
     \end{wideitemize}
 \end{frame}
 
@@ -57,11 +58,19 @@
     \begin{wideitemize}
         \item <1-> Estimación estructural del mercado internacional del café, bajo un modelo de competencia \textit{à la Stackelberg}
 
-        \item <2-> Estimación del impacto del estrés térmico en 1990-2019. Efectos en precios, cantidades y excedente social.
+        \item <2-> Estimación del impacto del estrés térmico en 1990-2019. Efectos en precios, cantidades y excedente total.
 
         \item <3-> Descomposición del impacto total: efecto en costos + efecto estratégico.
+        
+        \item <4-> Hallazgos
+        \begin{itemize}
+        \item <4-> \textbf{\color{amaranth} El estrés térmico incrementa los costos marginales.}
+        \item <4-> \textbf{\color{amaranth} Pero el efecto estratégico mitiga este impacto directo.}
+        \item <4-> \textbf{\color{amaranth} La magnitud relativa de ambos elementos genera ganadores y perdedores netos.}
+    \end{itemize}
 
-        \item <4-> \textbf{\color{amaranth} El estrés térmico incrementa los costos marginales de los países productores y reconfigura el equilibrio estratégico, amplificando las asimetrías iniciales entre líderes y seguidores y generando ganadores y perdedores netos.}
+        
+        
     \end{wideitemize}
     \end{frame}
 
@@ -69,11 +78,10 @@
     \label{frame:mercado_supuestos}
     \setbeamertemplate{itemize items}[circle]
     \begin{wideitemize}
-        \item \textbf{Un bien homogéneo:}
+        \item \textbf{El grano verde de café:}
         \begin{itemize}
-            \item Cartelización histórica sin distinguir entre especies.
-            \item Índice de precios agregado.
             \item Demanda por ambas especies (\textit{mix}).
+            \item Cartelización histórica sin distinguir entre especies.
         \end{itemize}
 
         \item \textbf{Oligopolio jerárquico:}  \hyperlink{frame:oligopolio_plot}{\beamerbutton{Ver}}
@@ -83,7 +91,7 @@
 
         \item \textbf{Sensibilidad al estrés térmico:} \hyperlink{frame:estres_plot}{\beamerbutton{Ver}}
         \begin{itemize}
-            \item Cantidades responden a umbrales de temperaturas altas.
+            \item Cantidades responden a umbrales de temperaturas extremas.
         \end{itemize}
     \end{wideitemize}            
 \end{frame}
@@ -97,14 +105,14 @@
         \item \textbf{Período:} 1965-2019 (57 exportadores, 39 importadores).            
         \item \textbf{Fuentes clave:}
             \begin{itemize}
-                \item \textit{USDA} (exportaciones anuales).
-                \item \textit{ICO} (índice global de precios).
+                \item \textit{USDA} (exportaciones anuales, mill. 60 kg).
+                \item \textit{ICO} (índice global de precios, ¢/lb).
                 \item \textit{ISIMIP} (temperaturas diarias, 0.5° resolución).
                 \item \textit{SPAM} (localización espacial de cultivos, 2020).
                 \item \textit{WB} (ingresos de importadores, precios del té y fertilizantes).
             \end{itemize}
 
-        \item \textbf{Estrés térmico:} Días de exposición al calor excesivo en un año. \hyperlink{frame:variable_estres}{\beamerbutton{Ver}}
+        \item \textbf{Estrés térmico:} Días de exposición a temperaturas extremas en un año. \hyperlink{frame:variable_estres}{\beamerbutton{Ver}}
     \end{wideitemize}
 \end{frame}
 
@@ -244,7 +252,7 @@
     \begin{wideitemize}
         \item <1-> El estrés térmico incrementa los costos marginales de producción, \pause \textbf{\color{amaranth} pero los agentes responden estratégicamente, mitigando parcialmente las pérdidas totales.}
 
-        \item <2-> Modelos reducidos podrían sobreestimar las pérdidas totales al no considerar la reconfiguración del equilibrio estratégico.
+        \item <2-> Modelos reducidos podrían subestimar (sobrestimar) las pérdidas totales al no considerar la reconfiguración del equilibrio estratégico.
 
         \item <3-> Se agudizan las asimetrías iniciales. A nivel agregado, los seguidores se ven más afectados por el estrés térmico. Los líderes neutralizan el impacto.
         
@@ -278,14 +286,10 @@
 \end{figure}
 \end{frame}
 
-\begin{frame}{Apéndice}{Sensibilidad al estrés térmico \hyperlink{frame:mercado_supuestos}{\beamerbutton{Volver}}} 
-    \label{frame:estres_plot}
-    \input{tables/temperatura_qe}
-
-\end{frame}
-
 \begin{frame}{Apéndice}{Sensibilidad al estrés térmico \hyperlink{frame:mercado_supuestos}{\beamerbutton{Volver}}
 } 
+    \label{frame:estres_plot}
+
     \begin{figure}[H]
     \centering
     \begin{minipage}[t]{0.45\textwidth}
@@ -305,18 +309,25 @@
 \end{frame}
 
 \begin{frame}{Apéndice}{Sensibilidad al estrés térmico \hyperlink{frame:mercado_supuestos}{\beamerbutton{Volver}}} 
-    
+
     \begin{figure}[H]
     \centering      
     \caption{Temperatura y participación de mercado}
     \includegraphics[scale=0.5]{figures/motiv3}
     \end{figure}
 \end{frame}
+
+\begin{frame}{Apéndice}{Sensibilidad al estrés térmico \hyperlink{frame:mercado_supuestos}{\beamerbutton{Volver}}} 
+    \input{tables/temperatura_qe}
+
+\end{frame}
+
 \begin{frame}{Apéndice}{Variable de estrés térmico \hyperlink{frame:datos}{\beamerbutton{Volver}}}
     \label{frame:variable_estres}
     \setbeamertemplate{itemize items}[circle]
     \begin{wideitemize}
-        \item Se considera que la temperatura sigue una trayectoria triangular en el día, con un máximo $T_{max}$ y un mínimo $T_{min}$.
+        \item Información georreferenciada de cultivos dentro de cada país. Identificamos $T_{max}$ y $T_{min}$.
+        \item Se considera que la temperatura sigue una trayectoria triangular en el día.
         \item Esto permite calcular la fracción del día en que la temperatura excede un umbral $T_{umbral}$.
         \item Umbrales diferentes por especie (30°C Robusta, 26°C Arábica).
         \item Ponderación por hectáreas cultivadas en 2020.
@@ -539,5 +550,24 @@
     \end{figure}
 \end{frame}
 
+\begin{frame}{Apéndice}{El caso de Vietnam}
+    \begin{figure}
+    \caption{Cambio en la producción de Vietnam}
+    \centering
+    \includegraphics[scale=0.45]{figures/vietnam_qe}
+    \label{vietnam_qe}
+    \end{figure}
+    
+\end{frame}
+
+
+\begin{frame}{Apéndice}{El caso de Vietnam}
+    \begin{figure}
+    \caption{Cambio en costos de los líderes}
+    \centering
+    \input{tables/costs_change_leaders}
+    \end{figure}
+    
+\end{frame}
 
 \end{document}

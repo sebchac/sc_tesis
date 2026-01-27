@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.8.2)  26 JAN 2026 00:29
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.8.2)  26 JAN 2026 15:35
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1171,19 +1171,19 @@ File: figures/leaders.png Graphic file (type bmp)
 <figures/leaders.png>
  [32
 
-] (./tables/temperatura_qe.tex) [33
-
 ]
 File: figures/motiv1.png Graphic file (type bmp)
 <figures/motiv1.png>
 File: figures/motiv2.png Graphic file (type bmp)
 <figures/motiv2.png>
- [34
+ [33
 
 ]
 File: figures/motiv3.png Graphic file (type bmp)
 <figures/motiv3.png>
- [35
+ [34
+
+] (./tables/temperatura_qe.tex) [35
 
 ] [36
 
@@ -1280,6 +1280,27 @@ File: figures/heat_strat.png Graphic file (type bmp)
  [55
 
 ]
+File: figures/vietnam_qe.png Graphic file (type bmp)
+<figures/vietnam_qe.png>
+
+Overfull \hbox (17.92276pt too wide) in paragraph at lines 561--561
+ [] 
+ []
+
+
+Overfull \vbox (19.89919pt too high) detected at line 561
+ []
+
+[56
+
+] (./tables/costs_change_leaders.tex
+Overfull \hbox (7.93498pt too wide) in paragraph at lines 6--17
+ [] 
+ []
+
+) [57
+
+]
 \tf@nav=\write6
 \openout6 = `slides_meat_30min_vpost.nav'.
 
@@ -1303,12 +1324,12 @@ Package rerunfilecheck Info: File `slides_meat_30min_vpost.out' has not changed.
 (rerunfilecheck)             Checksum: 68647C22C90EB6BECF57BA4373DEB390;360.
  ) 
 Here is how much of TeX's memory you used:
- 33032 strings out of 474773
- 655262 string characters out of 5757725
+ 33067 strings out of 474773
+ 656240 string characters out of 5757725
  1933839 words of memory out of 5000000
- 54505 multiletter control sequences out of 15000+600000
- 569910 words of font info for 118 fonts, out of 8000000 for 9000
+ 54535 multiletter control sequences out of 15000+600000
+ 569918 words of font info for 119 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  106i,15n,110p,502b,729s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on build/slides_meat_30min_vpost.pdf (55 pages).
+Output written on build/slides_meat_30min_vpost.pdf (57 pages).

@@ -16,9 +16,9 @@
 \beamer@slide {fig:c3}{32}
 \beamer@slide {fig:leaders}{32}
 \beamer@slide {frame:estres_plot}{33}
-\beamer@slide {tab:motiv}{33}
-\beamer@slide {fig:estres_qe}{34}
-\beamer@slide {fig:estres_rev}{34}
+\beamer@slide {fig:estres_qe}{33}
+\beamer@slide {fig:estres_rev}{33}
+\beamer@slide {tab:motiv}{35}
 \beamer@slide {frame:variable_estres}{36}
 \beamer@slide {fig:exp_p1}{37}
 \beamer@slide {fig:exp_p4}{37}
@@ -55,3 +55,5 @@
 \beamer@slide {costs_strat}{54}
 \beamer@slide {frame:efecto_estrategico3}{55}
 \beamer@slide {heat_strat}{55}
+\beamer@slide {vietnam_qe}{56}
+\beamer@slide {tab:costs_change_leaders}{57}
