@@ -273,6 +273,7 @@ full_prices_annual <- full_prices %>%
   group_by(year, dummy_arabica) %>%
   mutate(price_y = mean(price_ym, na.rm = TRUE)) %>%
   distinct(year, price_y, dummy_arabica)
+
 #-------------------------------------------------------------------------------
 # [1.3] Production (1000 60 kg bags) (1960-2023)
 #-------------------------------------------------------------------------------
@@ -321,11 +322,11 @@ full_production <- bind_rows(production_ar, production_ro)
 #-------------------------------------------------------------------------------
 
 imports <- psd_coffee %>%
-  filter(value > 0 & id == "058") %>%
-  mutate(value = value/1000) %>% # To get millions 60 kg bags as Igami
-  rename(qi_yc = value) %>%
+  filter(qe_yc > 0 & id == "058") %>%
+  mutate(qe_yc = qe_yc/1000) %>% # To get millions 60 kg bags as Igami
+  rename(qi_yc = qe_yc) %>%
   ungroup() %>%
-  select(-c(id, operation)) %>%
+  select(-c(id, dummy_arabica)) %>%
   tidyr::expand(nesting(year, country, qi_yc), month_num = 1:12) %>%
   mutate(qi_ymc = qi_yc / 12) %>%
   group_by(year, month_num) %>%
@@ -343,6 +344,20 @@ for (x in importCountries){
 
 # Consolidates
 full_import <- imports
+
+# Top 10
+top10i <- full_import %>%
+  group_by(country) %>%
+  summarise(
+    qi_c = sum(qi_ymc, na.rm = TRUE),
+    .groups = 'drop'
+  ) %>%
+  ungroup() %>%
+  mutate(qi = sum(qi_c, na.rm = TRUE),
+         share_c = round(qi_c / qi, 2)) %>%
+  arrange(desc(share_c)) %>%
+  slice_head(n = 10)
+
 
 #-------------------------------------------------------------------------------
 # [1.5] Farm gate prices (Prices Paid to Growers - US cents per lb)
@@ -377,23 +392,25 @@ growers <- growers %>%
   filter(farm_prices_ymc > 0) %>%
   mutate(country = if_else(country == "Bolivia (Plurinational State of)","Bolivia", 
                            if_else(country == "Democratic Republic of Congo","Congo",
-                                   if_else(country == "Trinidad & Tobago", "Trinidad and Tobago", country)))) %>%
-  group_by(country, date) %>%
-  mutate(farm_prices_ymc = mean(farm_prices_ymc)) %>%
-  ungroup() %>%
-  distinct(country, date, farm_prices_ymc)
-
-growers <- create_month(growers)
+                                   if_else(country == "Trinidad & Tobago", "Trinidad and Tobago", country))),
+         month_num = as.double(month(date)),
+         year = as.double(year)) %>%
+  rename(dummy_arabica = type) %>%
+  select(-date)
 
 full_farm_prices <- growers %>%
   left_join(cpi, by = c("year", "month_num")) %>%
   mutate(farm_prices_ymc = farm_prices_ymc * (100 / cpi_2017)) %>%
-  filter(farm_prices_ymc <= 1500) %>%
+  filter(farm_prices_ymc <= 1500) %>% # Remove outliers
   select(-cpi_2017) %>%
   ungroup() %>%
-  group_by(country, year) %>%
+  group_by(country, dummy_arabica, year) %>%
   mutate(farm_prices_yc = mean(farm_prices_ymc, na.rm = TRUE)) %>%
-  ungroup()
+  ungroup() %>%
+  mutate(dummy_arabica = case_when(
+    dummy_arabica == "Arabica" ~ 1,
+    TRUE ~ 0
+  ))
 
 #-------------------------------------------------------------------------------
 # [1.6] Buyers' GDP (Real GDP at constant 2017 national prices (in mil. 2017US$))
@@ -415,10 +432,10 @@ aux <- gdp %>% distinct(country) %>% pull(country)
 aux <- allCountries[!allCountries %in% aux]
 
 # GDP per country
-gdp_yc <- gdp %>%
-  mutate(rgdpe_yc = log(rgdpe),
-         rgdpna_yc = log(rgdpna)) %>%
-  select(country, year, rgdpe_yc, rgdpna_yc) 
+# gdp_yc <- gdp %>%
+#   mutate(rgdpe_yc = log(rgdpe),
+#          rgdpna_yc = log(rgdpna)) %>%
+#   select(country, year, rgdpe_yc, rgdpna_yc) 
 
 # Creates dummies importsGDP
 gdp$import_dummy_gdp = 0
@@ -494,9 +511,8 @@ tea_annual <- tea %>%
 
 # gdd_monthly <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/df_gdd_complete_1961_2020_v2.rds")
 # gdd_monthly <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/df_gdd_complete_1961_2020_v3.rds") # Diferencia tipo y promedio simple
-gdd_monthly <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/df_gdd_complete_1961_2020_weighted.rds") # Diferencia tipo y promedio ponderado
-
-
+# gdd_monthly <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/df_gdd_complete_1961_2020_weighted.rds") # Diferencia tipo y promedio ponderado
+gdd_monthly <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/df_gdd_complete_1961_2020_by_species.rds") 
 
 gdd_monthly <- gdd_monthly %>%
   mutate(country = case_when(
@@ -507,33 +523,15 @@ gdd_monthly <- gdd_monthly %>%
     TRUE ~ country
   )) 
 
-gdd_export <- gdd_monthly %>%
-  filter(country %in% netExportCountries_list)
-
-gdd_import <- gdd_monthly %>%
-  filter(country %in% netImportCountries_list)
-
-k1 <- 10; k2 <- 18; k3 <- 26; k4 <- 30
-
-gdd_import <- gdd_import %>%
-  mutate(
-    tas_ymc = (tmin_ymc + tmax_ymc) / 2
-  ) %>%
-  select(country, year, month_num, tmax_ymc, tmin_ymc, tas_ymc) %>%
-  rename(tmax_ymci = tmax_ymc, tmin_ymci = tmin_ymc, tas_ymci = tas_ymc)
-
-gdd_export <- gdd_export %>%
+gdd_monthly <- gdd_monthly %>%
   rename(optExp_ymc = gdd_ymc,
          heatExp_ymc = hdd_ymc,
          frostExp_ymc = fdd_ymc) %>%
   mutate(
     tas_ymc = (tmin_ymc + tmax_ymc) / 2,
-    range_ymce = tmax_ymc - tmin_ymc,
-    gdd_ymc = pmax(pmin(tas_ymc, k4), k2) - k2,
-    fdd_ymc = pmax(k1 - tmin_ymc, 0),
-    hdd_ymc = pmax(tas_ymc - k4, 0)
+    range_ymce = tmax_ymc - tmin_ymc
   ) %>%
-  group_by(country) %>%
+  group_by(country, dummy_arabica) %>%
   mutate(
     # Dummy de eventos extremos (t y t+1)
     # ext_heat_t = as.numeric(heatExp_ymc > quantile(heatExp_ymc, 0.90, na.rm = TRUE)),
@@ -565,7 +563,7 @@ gdd_export <- gdd_export %>%
     stress_ratio_ymc = (heat_lag1_ymc + frost_lag1_ymc) / opt_lag1_ymc
   ) %>%
   ungroup() %>%
-  select(country, year, month_num, tmax_ymc, tmin_ymc, tas_ymc, gdd_ymc, hdd_ymc, fdd_ymc, range_ymce,
+  select(country, year, month_num, dummy_arabica, tmax_ymc, tmin_ymc, tas_ymc, range_ymce,
          optExp_ymc, heatExp_ymc, frostExp_ymc,
          ln_heat_lag1_ymc, ln_frost_lag1_ymc,
          heat_lag1_ymc, frost_lag1_ymc, opt_lag1_ymc,
@@ -575,8 +573,8 @@ gdd_export <- gdd_export %>%
     tmax_ymce = tmax_ymc, tmin_ymce = tmin_ymc, tas_ymce = tas_ymc
   )
 
-gdd_export_ym <- gdd_export %>%
-  group_by(year, month_num) %>%
+gdd_ym <- gdd_monthly %>%
+  group_by(year, month_num,, dummy_arabica) %>%
   summarise(
     tmax_yme_mean = mean(tmax_ymce, na.rm = TRUE),
     tmin_yme_mean = mean(tmin_ymce, na.rm = TRUE),
@@ -584,9 +582,6 @@ gdd_export_ym <- gdd_export %>%
     optExp_ym_mean = mean(optExp_ymc, na.rm = TRUE),
     heatExp_ym_mean = mean(heatExp_ymc, na.rm = TRUE),
     frostExp_ym_mean = mean(frostExp_ymc, na.rm = TRUE),
-    gdd_ym_mean = mean(gdd_ymc, na.rm = TRUE),
-    hdd_ym_mean = mean(hdd_ymc, na.rm = TRUE),
-    fdd_ym_mean = mean(fdd_ymc, na.rm = TRUE),
     
     heat_lag1_ym_mean = mean(heat_lag1_ymc, na.rm = TRUE),
     frost_lag1_ym_mean = mean(frost_lag1_ymc, na.rm = TRUE),
@@ -603,8 +598,8 @@ gdd_export_ym <- gdd_export %>%
   ) %>%
   ungroup()
 
-gdd_export_yc <- gdd_export %>%
-  group_by(year, country) %>%
+gdd_yc <- gdd_monthly %>%
+  group_by(year, country, dummy_arabica) %>%
   summarise(
     tmax_yce = mean(tmax_ymce, na.rm = TRUE),
     tmin_yce = mean(tmin_ymce, na.rm = TRUE),
@@ -612,13 +607,10 @@ gdd_export_yc <- gdd_export %>%
     optExp_yc = sum(optExp_ymc, na.rm = TRUE),
     heatExp_yc = sum(heatExp_ymc, na.rm = TRUE),
     frostExp_yc = sum(frostExp_ymc, na.rm = TRUE),
-    gdd_yc = sum(gdd_ymc, na.rm = TRUE),
-    hdd_yc = sum(hdd_ymc, na.rm = TRUE),
-    fdd_yc = sum(fdd_ymc, na.rm = TRUE),
     .groups = 'drop'
   ) %>%
   ungroup() %>%
-  group_by(country) %>%
+  group_by(country, dummy_arabica) %>%
   mutate(
     # Dummy de eventos extremos (t y t+1)
     ext_heat_t = as.numeric(heatExp_yc > quantile(heatExp_yc, 0.90, na.rm = TRUE)),
@@ -652,11 +644,11 @@ gdd_export_yc <- gdd_export %>%
   ) %>%
   ungroup()
 
-saveRDS(gdd_export_yc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/gdd_yc.rds")
+saveRDS(gdd_yc, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/gdd_yc.rds")
 
 
-gdd_export_y <- gdd_export_yc %>%
-  group_by(year) %>%
+gdd_y <- gdd_yc %>%
+  group_by(year, dummy_arabica) %>%
   summarise(
     tmax_ye_mean = mean(tmax_yce, na.rm = TRUE),
     tmin_ye_mean = mean(tmin_yce, na.rm = TRUE),
@@ -664,36 +656,9 @@ gdd_export_y <- gdd_export_yc %>%
     optExp_y_mean = mean(optExp_yc, na.rm = TRUE),
     heatExp_y_mean = mean(heatExp_yc, na.rm = TRUE),
     frostExp_y_mean = mean(frostExp_yc, na.rm = TRUE),
-    gdd_y_mean = mean(gdd_yc, na.rm = TRUE),
-    hdd_y_mean = mean(hdd_yc, na.rm = TRUE),
-    fdd_y_mean = mean(fdd_yc, na.rm = TRUE),
     .groups = 'drop'
   ) %>%
   ungroup()
-
-#-------------------------------------------------------------------------------
-# [1.10] PR
-#-------------------------------------------------------------------------------
-pr_monthly <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/df_pr_complete_1961_2019.rds")
-
-pr_monthly <- pr_monthly %>%
-  arrange(country, date) %>%
-  mutate(country = case_when(
-    country == "Central African Rep." ~ "Central African Republic",
-    country == "Dominican Rep." ~ "Dominican Republic", 
-    country == "Eq. Guinea" ~ "Equatorial Guinea",
-    country == "Vietnam" ~ "Viet Nam",
-    TRUE ~ country
-  )) %>%
-  select(-date)
-
-pr_export <- pr_monthly %>%
-  filter(country %in% netExportCountries_list) %>%
-  rename(pr_ymce = pr_ymc)
-
-pr_import <- pr_monthly %>%
-  filter(country %in% netImportCountries_list) %>%
-  rename(pr_ymci = pr_ymc)
 
 #-------------------------------------------------------------------------------
 # [1.11] SOI
@@ -812,63 +777,32 @@ supplyShocks$year = as.integer(supplyShocks$year)
 supplyShocks$date  = NULL
 supplyShocks$trend = NULL
 
-
-
-#-------------------------------------------------------------------------------
-# [1.13] ND GAIN
-#-------------------------------------------------------------------------------
-ndgain <- read_csv(filepath_ndgain) 
-
-ndgain_data <- ndgain %>%
-  select(-ISO3) %>%
-  pivot_longer(cols = 2:30, names_to = "year", values_to = "ndgain_yc") %>%
-  rename(country = Name) %>%
-  mutate(
-    country = case_when(
-      country == "Bolivia, Plurinational State of" ~ "Bolivia",
-      country == "Cote d'Ivoire" ~ "Côte d'Ivoire",
-      country == "Tanzania, United Republic of" ~ "Tanzania",
-      country == "Venezuela, Bolivarian Republic o" ~ "Venezuela",
-      country == "Lao People's Democratic Republic" ~ "Laos",
-      country == "Korea, Republic of" ~ "Korea, South",
-      country == "Russian Federation" ~ "Russia",
-      country == "Macedonia" ~ "North Macedonia",
-      country == "Iran, Islamic Republic of" ~ "Iran",
-      TRUE ~ country
-    ),
-    year = as.numeric(year)
-  )
 #-------------------------------------------------------------------------------
 ################################### [2] DATA ###################################
 #-------------------------------------------------------------------------------
 # Merge 1. Exports and imports
-merge1 <- full_join(full_export, full_import, by = c("year", "month_num", "country"))
-merge1 <- replace(merge1, is.na(merge1), 0)
+# merge1 <- full_join(full_production, full_import, by = c("year", "month_num", "country"))
+# merge1 <- replace(merge1, is.na(merge1), 0)
 
 # Merge 2. Prices and costs
-merge2 <- left_join(merge1, full_prices, by = c("year", "month_num"))
-merge2 <- left_join(merge2, full_farm_prices, by = c("year", "month_num", "country"))
-merge2 <- left_join(merge2, full_prices_annual, by = c("year"))
+merge2 <- left_join(full_production, full_prices, by = c("year", "month_num", "dummy_arabica"))
+merge2 <- left_join(merge2, full_farm_prices, by = c("year", "month_num", "country", "dummy_arabica"))
+merge2 <- left_join(merge2, full_prices_annual, by = c("year", "dummy_arabica"))
 
 # Merge 3. Other variables
-merge2 <- left_join(merge2, netExportCountries %>% select(country, net_dummy_production), by = c("country"))
+#merge2 <- left_join(merge2, netExportCountries %>% select(country, net_dummy_production), by = c("country"))
 merge2 <- left_join(merge2, supplyShocks, by = c("year", "month_num"))
 merge2 <- left_join(merge2, tea, by = c( "year", "month_num"))
 merge2 <- left_join(merge2, gdp, by = c("year"))
-merge2 <- left_join(merge2, gdp_yc, by = c("year", "country"))
-merge2 <- left_join(merge2, ndgain_data, by = c("year", "country"))
 merge2 <- left_join(merge2, tea_annual, by = c("year"))
 merge2 <- left_join(merge2, fertilizers_y, by = c("year"))
 # merge2 <- left_join(merge2, data_tas_ymc, by = c("year", "month_num", "country"))
 #merge2 <- left_join(merge2, data_tas_gdd, by = c("year", "month_num", "country"))
-merge2 <- left_join(merge2, gdd_export, by = c("year", "month_num", "country"))
-merge2 <- left_join(merge2, gdd_export_ym, by = c("year", "month_num"))
-merge2 <- left_join(merge2, gdd_export_yc, by = c("year", "country"))
-merge2 <- left_join(merge2, gdd_export_y, by = c("year"))
+merge2 <- left_join(merge2, gdd_monthly, by = c("year", "month_num", "country", "dummy_arabica"))
+merge2 <- left_join(merge2, gdd_ym, by = c("year", "month_num", "dummy_arabica"))
+merge2 <- left_join(merge2, gdd_yc, by = c("year", "country", "dummy_arabica"))
+merge2 <- left_join(merge2, gdd_y, by = c("year", "dummy_arabica"))
 
-merge2 <- left_join(merge2, gdd_import, by = c("year", "month_num", "country"))
-merge2 <- left_join(merge2, pr_export, by = c("year", "month_num", "country"))
-merge2 <- left_join(merge2, pr_import, by = c("year", "month_num", "country"))
 # merge2 <- left_join(merge2, data_clima_y, by = c("year", "country"))
 # merge2 <- left_join(merge2, data_clima_ym, by = c("year", "month_num","country"))
 merge2 <- left_join(merge2, oni_events, by = c("year", "month_num"))
@@ -876,22 +810,13 @@ merge2 <- left_join(merge2, fertilizers, by = c("year", "month_num"))
 merge2 <- merge2 %>%
   mutate(date = as.Date(paste(year, month_num, "01", sep = "-")))
 merge2 <- merge2 %>%
-  group_by(year, month_num) %>%
+  group_by(year, month_num, dummy_arabica) %>%
   mutate(
     farm_prices_ym = sum(farm_prices_ymc * share_ymce, na.rm = TRUE),
     tas_yme = sum(tas_ymce * share_ymce, na.rm = TRUE),
     tmin_yme = sum(tmin_ymce * share_ymce, na.rm = TRUE),
     tmax_yme = sum(tmax_ymce * share_ymce, na.rm = TRUE),
-    gdd_ym = sum(gdd_ymc * share_ymce, na.rm = TRUE),
-    hdd_ym = sum(hdd_ymc * share_ymce, na.rm = TRUE),
-    fdd_ym = sum(fdd_ymc * share_ymce, na.rm = TRUE),
-    pr_yme = sum(pr_ymce * share_ymce, na.rm = TRUE),
     farm_prices_ym_mean = mean(farm_prices_ymc, na.rm = TRUE),
-    pr_yme_mean = mean(pr_ymce, na.rm = TRUE),
-    tas_ymi_mean = mean(tas_ymci, na.rm = TRUE),
-    tmin_ymi_mean = mean(tmin_ymci, na.rm = TRUE),
-    tmax_ymi_mean = mean(tmax_ymci, na.rm = TRUE),
-    pr_ymi_mean = mean(pr_ymci, na.rm = TRUE),
     optExp_ym = sum(optExp_ymc * share_ymce, na.rm = TRUE),
     heatExp_ym = sum(heatExp_ymc * share_ymce, na.rm = TRUE),
     frostExp_ym = sum(frostExp_ymc * share_ymce, na.rm = TRUE),
@@ -905,32 +830,18 @@ merge2 <- merge2 %>%
     stress_ratio_ym_agg = sum(heat_lag1_ymc + frost_lag1_ymc, na.rm = TRUE)/ sum(opt_lag1_ymc, na.rm = TRUE)
   ) %>%
   ungroup() %>%
-  group_by(year, country) %>%
+  group_by(year, country, dummy_arabica) %>%
   mutate(
     farm_prices_yc = mean(farm_prices_ymc, na.rm = TRUE),
-    tas_yce = mean(tas_ymce, na.rm = TRUE),
-    tas_yci = mean(tas_ymci, na.rm = TRUE),
-    pr_yce = sum(pr_ymce, na.rm = TRUE),
-    pr_yci = sum(pr_ymci, na.rm = TRUE),
-    tmin_yci = mean(tmin_ymci, na.rm = TRUE),
-    tmax_yci = mean(tmax_ymci, na.rm = TRUE)) %>%
+    tas_yce = mean(tas_ymce, na.rm = TRUE)) %>%
   ungroup() %>%
-  group_by(year) %>%
+  group_by(year, dummy_arabica) %>%
   mutate(
-    farm_prices_y = sum(farm_prices_yc * share_yce, na.rm = TRUE),
+    farm_prices_y = weighted.mean(farm_prices_yc, w = share_yce, na.rm = TRUE),
     farm_prices_y_mean = mean(farm_prices_yc, na.rm = TRUE),
-    tas_ye = sum(tas_yce * share_yce, na.rm = TRUE),
-    tas_yi_mean = mean(tas_yci, na.rm = TRUE),
-    gdd_y = sum(gdd_yc * share_yce, na.rm = TRUE),
-    hdd_y = sum(hdd_yc * share_yce, na.rm = TRUE),
-    fdd_y = sum(fdd_yc * share_yce, na.rm = TRUE),
-    pr_ye = sum(pr_yce * share_yce, na.rm = TRUE),
-    pr_ye_mean = mean(pr_yce, na.rm = TRUE),
-    pr_yi_mean = mean(pr_yci, na.rm = TRUE),
-    tmin_ye = sum(tmin_yce * share_yce, na.rm = TRUE),
-    tmin_yi_mean = mean(tmin_yci, na.rm = TRUE),
-    tmax_ye = sum(tmax_yce * share_yce, na.rm = TRUE),
-    tmax_yi_mean = mean(tmax_yci, na.rm = TRUE),
+    tas_ye = weighted.mean(tas_yce, w = share_yce, na.rm = TRUE),
+    tmin_ye = weighted.mean(tmin_yce, w = share_yce, na.rm = TRUE),
+    tmax_ye = weighted.mean(tmax_yce, w = share_yce, na.rm = TRUE),
     optExp_y = weighted.mean(optExp_yc, w = share_yce, na.rm = TRUE),
     heatExp_y = weighted.mean(heatExp_yc, w = share_yce, na.rm = TRUE),
     frostExp_y = weighted.mean(frostExp_yc, w = share_yce, na.rm = TRUE)
@@ -1009,9 +920,9 @@ merge2 <- merge2 %>%
 
 aux1 <- merge2 %>%
   filter(country == "Brazil") %>%
-  mutate(gdd_brazil_ym = gdd_ymc,
-         gdd_brazil_y = gdd_yc) %>%
-  distinct(year, month_num, gdd_brazil_ym, gdd_brazil_y)
+  mutate(opt_brazil_ym = optExp_ymc,
+         opt_brazil_y = optExp_yc) %>%
+  distinct(year, month_num, opt_brazil_ym, opt_brazil_y)
 
 aux2 <- merge2 %>%
   filter(country == "Colombia") %>%
