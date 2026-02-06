@@ -35,7 +35,11 @@ ruta_tables <- paste0(ruta_paper, "tables/")
 ruta_figures <- paste0(ruta_paper, "figures/")
 
 # Data
-data <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data.rds")
+data <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_by_type.rds")
+
+# Cambiar para AR o RO
+data <- data %>%
+  filter(dummy_y_arabica == 1) # dummy_y_robusta == 1 para Robusta
 
 # ------------------------------------------------------------------------------
 # [1] Demand estimation
@@ -44,24 +48,18 @@ data <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data.rds")
 # [1.1.] Data for demand estimation
 # Filters
 demand_data <- data %>%
-  filter(dummy_y == 1) %>%
   arrange(year) %>%
   select(date, year, price_y, qe_y, importGDP_y, teaPrices_y, farm_prices_y,
-         tas_ye, tas_ye_mean, tas_yi_mean, tmin_ye, tmin_ye_mean, tmin_yi_mean, tmax_ye, 
-         tmax_ye_mean, tmax_yi_mean, oni_value, fert_y,
-         pr_ye, pr_ye_mean, pr_yi_mean,
+         tas_ye, tas_ye_mean, tmin_ye, tmin_ye_mean, tmax_ye, 
+         tmax_ye_mean, oni_value, fert_y,
          optExp_y_mean, optExp_y,
          heatExp_y_mean, heatExp_y,
-         frostExp_y_mean, frostExp_y,
-         gdd_y, hdd_y, fdd_y, gdd_y_mean, hdd_y_mean, fdd_y_mean,
-         gdd_brazil_y, gdd_colombia_y, gdd_vietnam_y, gdd_leaders_y, gdd_followers_y,
-         hdd_brazil_y, hdd_colombia_y, hdd_vietnam_y, hdd_leaders_y, hdd_followers_y,
-         fdd_brazil_y, fdd_colombia_y, fdd_vietnam_y, fdd_leaders_y, fdd_followers_y) %>%
-  mutate(trend = floor(year - min(year)),
+         frostExp_y_mean, frostExp_y) %>%
+  mutate(trend = floor(year - min(year, na.rm = TRUE)),
          trend2 = trend^2,
          trend_y = row_number(),
-         trend5y = floor((year - min(year)) / 5),
-         trend3y = floor((year - min(year)) / 3)) %>%
+         trend5y = floor((year - min(year, na.rm = TRUE)) / 5),
+         trend3y = floor((year - min(year, na.rm = TRUE)) / 3)) %>%
   drop_na()
 
 # [1.2.] Demand estimation models
@@ -122,7 +120,7 @@ demand_data$edemand_iv2 <- (1/coeff_iv2["qe_y"])*(demand_data$price_y/demand_dat
 mean_elast_iv2 <- mean(demand_data$edemand_iv2, na.rm = TRUE)
 
 iv3 <- ivreg(price_y ~ qe_y  + importGDP_y + teaPrices_y |
-               #tas_ye + gdd_y +
+               #optExp_y + heatExp_y + frostExp_y +
                tmax_ye + tmin_ye +
                importGDP_y + teaPrices_y,
              data = demand_data)
@@ -162,9 +160,6 @@ modelo_cue <- gmm(
 )
 
 summary(modelo_cue)
-
-
-#
 
 # Store coefficients
 coeff_iv3 <- coef(iv3)
@@ -212,8 +207,7 @@ cov_iv2 <- vcovHC(iv2, method = "arellano", cluster = "year", type = "HC3")
 cov_iv3 <- vcovHC(iv3, method = "arellano", cluster = "year", type = "HC3")
 
 saveRDS(demand_data, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/demand_ym.rds")
-
-
+``
 # ------------------------------------------------------------------------------
 # [2] Implicit marginal costs
 # ------------------------------------------------------------------------------
@@ -226,7 +220,9 @@ aux <- demand_data %>%
 data_yc_0 <- left_join(data %>% select(-trend) %>% select(-ndgain_yc) %>% mutate(year = as.double(year)), aux, by = c("year"))
 
 data_yc <- data_yc_0 %>%
-  filter(dummy_yc == 1, net_export_dummy == 1, year %in% 1990:2019) %>%
+  filter(dummy_yc_ == arabica,#dummy_yc == 1, 
+         #net_export_dummy == 1, 
+         year %in% 1990:2019) %>%
   mutate(
     # Cournot
     mr_yc = price_y + beta * qe_yc,

@@ -317,6 +317,33 @@ full_production <- bind_rows(production_ar, production_ro)
 #   exports$dummy_production[exports$country == x] = 1
 # }
 
+# Biggest countries by type
+top_ar <- production_ar %>%
+  group_by(country) %>%
+  summarise(
+    qe_c = sum(qe_yc, na.rm = TRUE),
+    .groups = 'drop'
+  ) %>%
+  ungroup() %>%
+  mutate(
+    qe = sum(qe_c, na.rm = TRUE),
+    share_c = round(qe_c / qe, 2)
+  ) %>%
+  arrange(desc(share_c)) # Brazil 41, Colombia 16, Ethiopia 6
+
+top_ro <- production_ro %>%
+  group_by(country) %>%
+  summarise(
+    qe_c = sum(qe_yc, na.rm = TRUE),
+    .groups = 'drop'
+  ) %>%
+  ungroup() %>%
+  mutate(
+    qe = sum(qe_c, na.rm = TRUE),
+    share_c = round(qe_c / qe, 2)
+  ) %>%
+  arrange(desc(share_c)) # Vietnam 26,  Brazil 19, Indonesia 16
+
 #-------------------------------------------------------------------------------
 # [1.4] Imports (1000 60 kg bags) (1960-2023)
 #-------------------------------------------------------------------------------
@@ -357,7 +384,6 @@ top10i <- full_import %>%
          share_c = round(qi_c / qi, 2)) %>%
   arrange(desc(share_c)) %>%
   slice_head(n = 10)
-
 
 #-------------------------------------------------------------------------------
 # [1.5] Farm gate prices (Prices Paid to Growers - US cents per lb)
@@ -448,10 +474,17 @@ gdp <- gdp[gdp$import_dummy_gdp == 1,]
 gdp <- gdp %>%
   select(country, year, rgdpe) %>% # No information for Cuba, European Union (each country instead), Kosovo
   group_by(year) %>% 
-  mutate(importGDP_y = log(sum(rgdpe)/1000000),
-         importGDP_ym = log(sum(rgdpe)/12000000)) %>% # Log of trillion US dollars
+  mutate(
+    rgdpe_y = sum(rgdpe)/1000000,
+    rgdpe_ym = sum(rgdpe)/12000000, #Log of trillion US dollars
+    month_num = rep(1:12, length.out = n()),
+    importGDP_y = log(rgdpe_y),
+    importGDP_ym = log(rgdpe_ym)
+  ) %>%
   ungroup() %>%
-  distinct(year, importGDP_y, importGDP_ym)
+  distinct(year, month_num, importGDP_y, importGDP_ym) %>%
+  arrange(year, month_num)
+
 #-------------------------------------------------------------------------------
 # [1.7] Tea prices (Nominal US dollars ($/kg))
 #-------------------------------------------------------------------------------
@@ -793,7 +826,7 @@ merge2 <- left_join(merge2, full_prices_annual, by = c("year", "dummy_arabica"))
 #merge2 <- left_join(merge2, netExportCountries %>% select(country, net_dummy_production), by = c("country"))
 merge2 <- left_join(merge2, supplyShocks, by = c("year", "month_num"))
 merge2 <- left_join(merge2, tea, by = c( "year", "month_num"))
-merge2 <- left_join(merge2, gdp, by = c("year"))
+merge2 <- left_join(merge2, gdp, by = c("year", "month_num"))
 merge2 <- left_join(merge2, tea_annual, by = c("year"))
 merge2 <- left_join(merge2, fertilizers_y, by = c("year"))
 # merge2 <- left_join(merge2, data_tas_ymc, by = c("year", "month_num", "country"))
@@ -869,32 +902,57 @@ ncountry <- merge2 %>%
   ) %>%
   filter(nobs == length(ntrend))  # full data country
 
-# Creates categorical for fixed effects
-## Dummy for year-country
-merge2 <- merge2 %>%
-  mutate(dummy_ym = if_else(id == ncountry$id[1], 1L, 0L))
+# # Creates categorical for fixed effects
+# ## Dummy for year-country
+# merge2 <- merge2 %>%
+#   mutate(dummy_ym = if_else(id == ncountry$id[1], 1L, 0L))
+# 
+# # Dummy for year
+# merge2 <- merge2 %>%
+#   group_by(year) %>%
+#   mutate(
+#     dummy_y = if_else(month_num == 1 & dummy_ym == 1, 1L, 0L)
+#   ) %>%
+#   ungroup()
+# 
+# # Dummy for year-country
+# merge2 <- merge2 %>%
+#   group_by(country, year) %>%
+#   mutate(
+#     dummy_yc = if_else(month_num == min(month_num), 1L, 0L)
+#   ) %>%
+#   ungroup()
 
-# Dummy for year
 merge2 <- merge2 %>%
-  group_by(year) %>%
+  arrange(year, month_num, dummy_arabica, country)
+
+merge2 <- merge2 %>%
+  group_by(year, month_num, dummy_arabica) %>%
   mutate(
-    dummy_y = if_else(month_num == 1 & dummy_ym == 1, 1L, 0L)
+    dummy_ym_arabica = ifelse(dummy_arabica == 1 & row_number() == 1, 1, 0),
+    dummy_ym_robusta = ifelse(dummy_arabica == 0 & row_number() == 1, 1, 0)
+    ) %>%
+  ungroup() %>%
+  
+  group_by(year, dummy_arabica) %>%
+  mutate(
+    dummy_y_arabica = ifelse(dummy_arabica == 1 & row_number() == 1, 1, 0),
+    dummy_y_robusta = ifelse(dummy_arabica == 0 & row_number() == 1, 1, 0)
+  ) %>%
+  ungroup() %>%
+  
+  group_by(year, country, dummy_arabica) %>%
+  mutate(
+    dummy_yc_arabica = ifelse(dummy_arabica == 1 & row_number() == 1, 1, 0),
+    dummy_yc_robusta = ifelse(dummy_arabica == 0 & row_number() == 1, 1, 0)
   ) %>%
   ungroup()
 
-# Dummy for year-country
-merge2 <- merge2 %>%
-  group_by(country, year) %>%
-  mutate(
-    dummy_yc = if_else(month_num == min(month_num), 1L, 0L)
-  ) %>%
-  ungroup()
 
 # Dummy for leaders
 merge2 <- merge2 %>%
   mutate(
     dummy_leader = if_else(
-      #country == "Indonesia" |
       country == "Brazil" | 
         country == "Colombia" | 
         country == "Viet Nam", 1, 0
@@ -916,169 +974,4 @@ merge2 <- merge2 %>%
   ) %>%
   ungroup()
 
-# GDDs for leaders
-
-aux1 <- merge2 %>%
-  filter(country == "Brazil") %>%
-  mutate(opt_brazil_ym = optExp_ymc,
-         opt_brazil_y = optExp_yc) %>%
-  distinct(year, month_num, opt_brazil_ym, opt_brazil_y)
-
-aux2 <- merge2 %>%
-  filter(country == "Colombia") %>%
-  mutate(gdd_colombia_ym = gdd_ymc,
-         gdd_colombia_y = gdd_yc) %>%
-  distinct(year, month_num, gdd_colombia_ym, gdd_colombia_y)
-
-# aux3 <- merge2 %>%
-#   filter(country == "Indonesia") %>%
-#   mutate(gdd_indonesia_ym = gdd_ymc,
-#          gdd_indonesia_y = gdd_yc) %>%
-#   distinct(year, month_num, gdd_indonesia_ym, gdd_indonesia_y)
-
-aux4 <- merge2 %>%
-  filter(country == "Viet Nam") %>%
-  mutate(gdd_vietnam_ym = gdd_ymc,
-         gdd_vietnam_y = gdd_yc) %>%
-  distinct(year, month_num, gdd_vietnam_ym, gdd_vietnam_y)
-
-merge2 <- merge2 %>%
-  left_join(aux1, by = c("year", "month_num")) %>%
-  left_join(aux2, by = c("year", "month_num")) %>%
-  # left_join(aux3, by = c("year", "month_num")) %>%
-  left_join(aux4, by = c("year", "month_num"))
-
-merge2 <- merge2 %>%
-  mutate(
-    is_leader = country %in% c(
-      "Brazil", 
-      "Colombia", 
-      # "Indonesia", 
-      "Viet Nam"),
-    gdd_leaders_ym = ifelse(is_leader, gdd_ymc, NA),
-    gdd_leaders_y = ifelse(is_leader, gdd_yc, NA),
-    gdd_followers_ym = ifelse(!is_leader, gdd_ymc, NA),
-    gdd_followers_y = ifelse(!is_leader, gdd_yc, NA)
-  ) %>%
-  group_by(year, month_num) %>%
-  mutate(
-    gdd_leaders_ym = mean(gdd_leaders_ym, na.rm = TRUE),
-    gdd_followers_ym = mean(gdd_followers_ym, na.rm = TRUE)) %>%
-  ungroup() %>%
-  group_by(year) %>%
-  mutate(
-    gdd_leaders_y = mean(gdd_leaders_y, na.rm = TRUE),
-    gdd_followers_y = mean(gdd_followers_y, na.rm = TRUE)) %>%
-  ungroup() 
-
-# HDDs for leaders
-
-aux1 <- merge2 %>%
-  filter(country == "Brazil") %>%
-  mutate(hdd_brazil_ym = hdd_ymc,
-         hdd_brazil_y = hdd_yc) %>%
-  distinct(year, month_num, hdd_brazil_ym, hdd_brazil_y)
-
-aux2 <- merge2 %>%
-  filter(country == "Colombia") %>%
-  mutate(hdd_colombia_ym = hdd_ymc,
-         hdd_colombia_y = hdd_yc) %>%
-  distinct(year, month_num, hdd_colombia_ym, hdd_colombia_y)
-
-# aux3 <- merge2 %>%
-#   filter(country == "Indonesia") %>%
-#   mutate(hdd_indonesia_ym = hdd_ymc,
-#          hdd_indonesia_y = hdd_yc) %>%
-#   distinct(year, month_num, hdd_indonesia_ym, hdd_indonesia_y)
-
-aux4 <- merge2 %>%
-  filter(country == "Viet Nam") %>%
-  mutate(hdd_vietnam_ym = hdd_ymc,
-         hdd_vietnam_y = hdd_yc) %>%
-  distinct(year, month_num, hdd_vietnam_ym, hdd_vietnam_y)
-
-merge2 <- merge2 %>%
-  left_join(aux1, by = c("year", "month_num")) %>%
-  left_join(aux2, by = c("year", "month_num")) %>%
-  # left_join(aux3, by = c("year", "month_num")) %>%
-  left_join(aux4, by = c("year", "month_num"))
-
-merge2 <- merge2 %>%
-  mutate(
-    is_leader = country %in% c(
-      "Brazil", 
-      "Colombia", 
-      # "Indonesia", 
-      "Viet Nam"),
-    hdd_leaders_ym = ifelse(is_leader, hdd_ymc, NA),
-    hdd_leaders_y = ifelse(is_leader, hdd_yc, NA),
-    hdd_followers_ym = ifelse(!is_leader, hdd_ymc, NA),
-    hdd_followers_y = ifelse(!is_leader, hdd_yc, NA)
-  ) %>%
-  group_by(year, month_num) %>%
-  mutate(
-    hdd_leaders_ym = mean(hdd_leaders_ym, na.rm = TRUE),
-    hdd_followers_ym = mean(hdd_followers_ym, na.rm = TRUE)) %>%
-  ungroup() %>%
-  group_by(year) %>%
-  mutate(
-    hdd_leaders_y = mean(hdd_leaders_y, na.rm = TRUE),
-    hdd_followers_y = mean(hdd_followers_y, na.rm = TRUE)) %>%
-  ungroup() 
-
-# FDDs for leaders
-
-aux1 <- merge2 %>%
-  filter(country == "Brazil") %>%
-  mutate(fdd_brazil_ym = fdd_ymc,
-         fdd_brazil_y = fdd_yc) %>%
-  distinct(year, month_num, fdd_brazil_ym, fdd_brazil_y)
-
-aux2 <- merge2 %>%
-  filter(country == "Colombia") %>%
-  mutate(fdd_colombia_ym = fdd_ymc,
-         fdd_colombia_y = fdd_yc) %>%
-  distinct(year, month_num, fdd_colombia_ym, fdd_colombia_y)
-
-# aux3 <- merge2 %>%
-#   filter(country == "Indonesia") %>%
-#   mutate(fdd_indonesia_ym = fdd_ymc,
-#          fdd_indonesia_y = fdd_yc) %>%
-#   distinct(year, month_num, fdd_indonesia_ym, fdd_indonesia_y)
-
-aux4 <- merge2 %>%
-  filter(country == "Viet Nam") %>%
-  mutate(fdd_vietnam_ym = fdd_ymc,
-         fdd_vietnam_y = fdd_yc) %>%
-  distinct(year, month_num, fdd_vietnam_ym, fdd_vietnam_y)
-
-merge2 <- merge2 %>%
-  left_join(aux1, by = c("year", "month_num")) %>%
-  left_join(aux2, by = c("year", "month_num")) %>%
-  # left_join(aux3, by = c("year", "month_num")) %>%
-  left_join(aux4, by = c("year", "month_num"))
-
-merge2 <- merge2 %>%
-  mutate(
-    is_leader = country %in% c(
-      "Brazil", 
-      "Colombia", 
-      # "Indonesia", 
-      "Viet Nam"),
-    fdd_leaders_ym = ifelse(is_leader, fdd_ymc, NA),
-    fdd_leaders_y = ifelse(is_leader, fdd_yc, NA),
-    fdd_followers_ym = ifelse(!is_leader, fdd_ymc, NA),
-    fdd_followers_y = ifelse(!is_leader, fdd_yc, NA)
-  ) %>%
-  group_by(year, month_num) %>%
-  mutate(
-    fdd_leaders_ym = mean(fdd_leaders_ym, na.rm = TRUE),
-    fdd_followers_ym = mean(fdd_followers_ym, na.rm = TRUE)) %>%
-  ungroup() %>%
-  group_by(year) %>%
-  mutate(
-    fdd_leaders_y = mean(fdd_leaders_y, na.rm = TRUE),
-    fdd_followers_y = mean(fdd_followers_y, na.rm = TRUE)) %>%
-  ungroup() 
-
-saveRDS(merge2, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data.rds")
+saveRDS(merge2, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_by_type.rds")
