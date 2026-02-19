@@ -33,6 +33,7 @@ ruta_proyecto <- "/Users/sebastianchacon/Desktop/sc_tesis/"
 ruta_paper <- paste0(ruta_proyecto, "paper/")
 ruta_tables <- paste0(ruta_paper, "tables/")
 ruta_figures <- paste0(ruta_paper, "figures/")
+fig_path    <- ruta_figures         # alias used by ggsave calls below
 
 # Data
 data <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data.rds")

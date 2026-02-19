@@ -1,39 +1,75 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.8.2)  8 NOV 2025 17:15
-entering extended mode
- restricted \write18 enabled.
- file:line:error style messages enabled.
- %&-line parsing enabled.
+This is LuaHBTeX, Version 1.18.0 (TeX Live 2024)  (format=lualatex 2024.8.2)  19 FEB 2026 16:53
+ system commands enabled.
 **main.tex
 (./main.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
-(./umemoria.cls
+Lua module: luaotfload 2024-02-14 3.28 Lua based OpenType font support
+Lua module: lualibs 2023-07-13 2.76 ConTeXt Lua standard libraries.
+Lua module: lualibs-extended 2023-07-13 2.76 ConTeXt Lua libraries -- extended c
+ollection.
+luaotfload | conf : Root cache directory is "/Users/sebastianchacon/Library/texl
+ive/2024/texmf-var/luatex-cache/generic/names".
+luaotfload | init : Loading fontloader "fontloader-2023-12-28.lua" from kpse-res
+olved path "/usr/local/texlive/2024/texmf-dist/tex/luatex/luaotfload/fontloader-
+2023-12-28.lua".
+Lua-only attribute luaotfload@noligature = 1
+luaotfload | init : Context OpenType loader version 3.134
+Inserting `luaotfload.node_processor' in `pre_linebreak_filter'.
+Inserting `luaotfload.node_processor' in `hpack_filter'.
+Inserting `luaotfload.glyph_stream' in `glyph_stream_provider'.
+Inserting `luaotfload.define_font' in `define_font'.
+Lua-only attribute luaotfload_color_attribute = 2
+luaotfload | conf : Root cache directory is "/Users/sebastianchacon/Library/texl
+ive/2024/texmf-var/luatex-cache/generic/names".
+Inserting `luaotfload.harf.strip_prefix' in `find_opentype_file'.
+Inserting `luaotfload.harf.strip_prefix' in `find_truetype_file'.
+Removing  `luaotfload.glyph_stream' from `glyph_stream_provider'.
+Inserting `luaotfload.harf.glyphstream' in `glyph_stream_provider'.
+Inserting `luaotfload.harf.finalize_vlist' in `post_linebreak_filter'.
+Inserting `luaotfload.harf.finalize_hlist' in `hpack_filter'.
+Inserting `luaotfload.cleanup_files' in `wrapup_run'.
+Inserting `luaotfload.harf.finalize_unicode' in `finish_pdffile'.
+Inserting `luaotfload.glyphinfo' in `glyph_info'.
+Lua-only attribute luaotfload.letterspace_done = 3
+Inserting `luaotfload.aux.set_sscale_dimens' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.set_font_index' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.patch_cambria_domh' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.fixup_fontdata' in `luaotfload.patch_font_unsafe'.
+Inserting `luaotfload.aux.set_capheight' in `luaotfload.patch_font'.
+Inserting `luaotfload.aux.set_xheight' in `luaotfload.patch_font'.
+Inserting `luaotfload.rewrite_fontname' in `luaotfload.patch_font'.
+Inserting `tracingstacklevels' in `input_level_string'. (./umemoria.cls
 Document Class: umemoria 2021/09/23 v1.6 Clase LaTeX para estandarizacion de Me
 morias U. de Chile
 (/usr/local/texlive/2024/texmf-dist/tex/latex/base/book.cls
 Document Class: book 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/local/texlive/2024/texmf-dist/tex/latex/base/bk12.clo
 File: bk12.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
-)
-\c@part=\count188
-\c@chapter=\count189
-\c@section=\count190
-\c@subsection=\count191
-\c@subsubsection=\count192
-\c@paragraph=\count193
-\c@subparagraph=\count194
-\c@figure=\count195
-\c@table=\count196
+luaotfload | db : Font names database loaded from /Users/sebastianchacon/Library
+/texlive/2024/texmf-var/luatex-cache/generic/names/luaotfload-names.luc.gz)
+\c@part=\count186
+\c@chapter=\count187
+\c@section=\count188
+\c@subsection=\count189
+\c@subsubsection=\count190
+\c@paragraph=\count191
+\c@subparagraph=\count192
+\c@figure=\count193
+\c@table=\count194
 \abovecaptionskip=\skip48
 \belowcaptionskip=\skip49
-\bibindent=\dimen140
+\bibindent=\dimen139
 )
 (/usr/local/texlive/2024/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2021/02/14 v1.3d Input encoding file
 \inpenc@prehook=\toks17
 \inpenc@posthook=\toks18
-)
-(/usr/local/texlive/2024/texmf-dist/tex/latex/geometry/geometry.sty
+
+
+Package inputenc Warning: inputenc package ignored with utf8 based engines.
+
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/keyval.sty
@@ -46,17 +82,17 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 (/usr/local/texlive/2024/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2022/02/03 v1.0f TeX engine tests
 ))
-\Gm@cnth=\count197
-\Gm@cntv=\count198
-\c@Gm@tempcnt=\count199
-\Gm@bindingoffset=\dimen141
-\Gm@wd@mp=\dimen142
-\Gm@odd@mp=\dimen143
-\Gm@even@mp=\dimen144
-\Gm@layoutwidth=\dimen145
-\Gm@layoutheight=\dimen146
-\Gm@layouthoffset=\dimen147
-\Gm@layoutvoffset=\dimen148
+\Gm@cnth=\count195
+\Gm@cntv=\count196
+\c@Gm@tempcnt=\count197
+\Gm@bindingoffset=\dimen140
+\Gm@wd@mp=\dimen141
+\Gm@odd@mp=\dimen142
+\Gm@even@mp=\dimen143
+\Gm@layoutwidth=\dimen144
+\Gm@layoutheight=\dimen145
+\Gm@layouthoffset=\dimen146
+\Gm@layoutvoffset=\dimen147
 \Gm@dimlist=\toks20
 )
 (/usr/local/texlive/2024/texmf-dist/tex/latex/amsmath/amsmath.sty
@@ -70,23 +106,23 @@ Package: amstext 2021/08/26 v2.01 AMS text
 (/usr/local/texlive/2024/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
 \@emptytoks=\toks21
-\ex@=\dimen149
+\ex@=\dimen148
 ))
 (/usr/local/texlive/2024/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen150
+\pmbraise@=\dimen149
 )
 (/usr/local/texlive/2024/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2022/04/08 v2.04 operator names
 )
-\inf@bad=\count266
-LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count267
-\leftroot@=\count268
+\inf@bad=\count198
+LaTeX Info: Redefining \frac on input line 236.
+\uproot@=\count199
+\leftroot@=\count266
 LaTeX Info: Redefining \overline on input line 399.
 LaTeX Info: Redefining \colon on input line 410.
-\classnum@=\count269
-\DOTSCASE@=\count270
+\classnum@=\count267
+\DOTSCASE@=\count268
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
@@ -96,30 +132,30 @@ LaTeX Info: Redefining \big on input line 722.
 LaTeX Info: Redefining \Big on input line 723.
 LaTeX Info: Redefining \bigg on input line 724.
 LaTeX Info: Redefining \Bigg on input line 725.
-\big@size=\dimen151
+\big@size=\dimen150
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count271
+\macc@depth=\count269
 LaTeX Info: Redefining \bmod on input line 905.
 LaTeX Info: Redefining \pmod on input line 910.
 LaTeX Info: Redefining \smash on input line 940.
 LaTeX Info: Redefining \relbar on input line 970.
 LaTeX Info: Redefining \Relbar on input line 971.
-\c@MaxMatrixCols=\count272
+\c@MaxMatrixCols=\count270
 \dotsspace@=\muskip16
-\c@parentequation=\count273
-\dspbrk@lvl=\count274
+\c@parentequation=\count271
+\dspbrk@lvl=\count272
 \tag@help=\toks22
-\row@=\count275
-\column@=\count276
-\maxfields@=\count277
+\row@=\count273
+\column@=\count274
+\maxfields@=\count275
 \andhelp@=\toks23
-\eqnshift@=\dimen152
-\alignsep@=\dimen153
-\tagshift@=\dimen154
-\tagwidth@=\dimen155
-\totwidth@=\dimen156
-\lineht@=\dimen157
+\eqnshift@=\dimen151
+\alignsep@=\dimen152
+\tagshift@=\dimen153
+\tagwidth@=\dimen154
+\totwidth@=\dimen155
+\lineht@=\dimen156
 \@envbody=\toks24
 \multlinegap=\skip51
 \multlinetaggap=\skip52
@@ -162,57 +198,155 @@ Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
 (/usr/local/texlive/2024/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: pdftex.def on input line 107.
+Package graphics Info: Driver file: luatex.def on input line 107.
 
-(/usr/local/texlive/2024/texmf-dist/tex/latex/graphics-def/pdftex.def
-File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
+(/usr/local/texlive/2024/texmf-dist/tex/latex/graphics-def/luatex.def
+File: luatex.def 2022/09/22 v1.2d Graphics/color driver for luatex
 ))
-\Gin@req@height=\dimen158
-\Gin@req@width=\dimen159
+\Gin@req@height=\dimen157
+\Gin@req@width=\dimen158
 )
 (/usr/local/texlive/2024/texmf-dist/tex/latex/caption/caption.sty
 Package: caption 2023/08/05 v3.6o Customizing captions (AR)
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
-\caption@tempdima=\dimen160
-\captionmargin=\dimen161
-\caption@leftmargin=\dimen162
-\caption@rightmargin=\dimen163
-\caption@width=\dimen164
-\caption@indent=\dimen165
-\caption@parindent=\dimen166
-\caption@hangindent=\dimen167
+\caption@tempdima=\dimen159
+\captionmargin=\dimen160
+\caption@leftmargin=\dimen161
+\caption@rightmargin=\dimen162
+\caption@width=\dimen163
+\caption@indent=\dimen164
+\caption@parindent=\dimen165
+\caption@hangindent=\dimen166
 Package caption Info: Standard document class detected.
 )
-\c@caption@flags=\count278
-\c@continuedfloat=\count279
+\c@caption@flags=\count276
+\c@continuedfloat=\count277
 )
 (/usr/local/texlive/2024/texmf-dist/tex/latex/appendix/appendix.sty
 Package: appendix 2020/02/08 v1.2c extra appendix facilities
-\c@@pps=\count280
-\c@@ppsavesec=\count281
-\c@@ppsaveapp=\count282
+\c@@pps=\count278
+\c@@ppsavesec=\count279
+\c@@ppsaveapp=\count280
 )
 (/usr/local/texlive/2024/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2024/02/07 v24.2 The Babel package
-\babel@savecnt=\count283
-\U@D=\dimen168
-\l@unhyphenated=\language89
 
-(/usr/local/texlive/2024/texmf-dist/tex/generic/babel/txtbabel.def)
+(/usr/local/texlive/2024/texmf-dist/tex/generic/babel/luababel.def
 \bbl@readstream=\read2
-\bbl@dirlevel=\count284
+\l@dumylang=\language2
+Package babel Info: Non-standard hyphenation setup on input line 118.
+\l@nohyphenation=\language3
+\l@vietnamese=\language4
+\l@hebrew=\language5
+\l@german-x-2024-02-28=\language6
+\l@ngerman-x-2024-02-28=\language7
+\l@afrikaans=\language8
+\l@ancientgreek=\language9
+\l@ibycus=\language10
+\l@arabic=\language11
+\l@armenian=\language12
+\l@basque=\language13
+\l@belarusian=\language14
+\l@bulgarian=\language15
+\l@catalan=\language16
+\l@pinyin=\language17
+\l@churchslavonic=\language18
+\l@coptic=\language19
+\l@croatian=\language20
+\l@czech=\language21
+\l@danish=\language22
+\l@dutch=\language23
+\l@ukenglish=\language24
+\l@usenglishmax=\language25
+\l@esperanto=\language26
+\l@estonian=\language27
+\l@ethiopic=\language28
+\l@farsi=\language29
+\l@finnish=\language30
+\l@schoolfinnish=\language31
+\l@french=\language32
+\l@friulan=\language33
+\l@galician=\language34
+\l@georgian=\language35
+\l@german=\language36
+\l@ngerman=\language37
+\l@swissgerman=\language38
+\l@greek=\language39
+\l@monogreek=\language40
+\l@hungarian=\language41
+\l@icelandic=\language42
+\l@assamese=\language43
+\l@bengali=\language44
+\l@gujarati=\language45
+\l@hindi=\language46
+\l@kannada=\language47
+\l@malayalam=\language48
+\l@marathi=\language49
+\l@oriya=\language50
+\l@pali=\language51
+\l@panjabi=\language52
+\l@tamil=\language53
+\l@telugu=\language54
+\l@indonesian=\language55
+\l@interlingua=\language56
+\l@irish=\language57
+\l@italian=\language58
+\l@kurmanji=\language59
+\l@classiclatin=\language60
+\l@latin=\language61
+\l@liturgicallatin=\language62
+\l@latvian=\language63
+\l@lithuanian=\language64
+\l@macedonian=\language65
+\l@mongolian=\language66
+\l@mongolianlmc=\language67
+\l@bokmal=\language68
+\l@nynorsk=\language69
+\l@occitan=\language70
+\l@piedmontese=\language71
+\l@polish=\language72
+\l@portuguese=\language73
+\l@romanian=\language74
+\l@romansh=\language75
+\l@russian=\language76
+\l@sanskrit=\language77
+\l@serbian=\language78
+\l@serbianc=\language79
+\l@slovak=\language80
+\l@slovenian=\language81
+\l@spanish=\language82
+\l@swedish=\language83
+\l@thai=\language84
+\l@turkish=\language85
+\l@turkmen=\language86
+\l@ukrainian=\language87
+\l@uppersorbian=\language88
+\l@welsh=\language89
+\babelcatcodetablenum=\catcodetable14
+\bbl@pattcodes=\catcodetable15
+)
+\babel@savecnt=\count281
+\U@D=\dimen167
+\l@unhyphenated=\language90
 
+(/usr/local/texlive/2024/texmf-dist/tex/generic/babel/luababel.def
+\bbl@attr@locale=\attribute4
+)
 (/usr/local/texlive/2024/texmf-dist/tex/generic/babel-spanish/spanish.ldf
 Language: spanish.ldf 2021/05/27 v5.0q Spanish support from the babel system
 \es@quottoks=\toks32
-\es@quotdepth=\count285
+\es@quotdepth=\count282
 Package babel Info: Making " an active character on input line 570.
 Package babel Info: Making . an active character on input line 675.
 Package babel Info: Making < an active character on input line 722.
 Package babel Info: Making > an active character on input line 722.
-))
+
+(/usr/local/texlive/2024/texmf-dist/tex/generic/hyph-utf8/loadhyph/loadhyph-es.
+tex UTF-8 Spanish hyphenation patterns
+(/usr/local/texlive/2024/texmf-dist/tex/generic/hyph-utf8/patterns/tex/hyph-es.
+tex))))
 (/usr/local/texlive/2024/texmf-dist/tex/generic/babel/locale/es/babel-spanish.t
 ex
 Package babel Info: Importing font and identification data for spanish
@@ -242,6 +376,7 @@ Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
+\pdftexcmds@toks=\toks33
 ))
 (/usr/local/texlive/2024/texmf-dist/tex/latex/hycolor/hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
@@ -261,30 +396,26 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
  (/usr/local/texlive/2024/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
-\c@section@level=\count286
+\c@section@level=\count283
 )
 (/usr/local/texlive/2024/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2020/10/05 v2.5k e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count287
+\etb@tempcnta=\count284
 )
-\@linkdim=\dimen169
-\Hy@linkcounter=\count288
-\Hy@pagecounter=\count289
+\@linkdim=\dimen168
+\Hy@linkcounter=\count285
+\Hy@pagecounter=\count286
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2024-01-20 v7.01h Hyperref: PDFDocEncoding definition (HO)
-Now handling font encoding PD1 ...
-... no UTF-8 mapping file for font encoding PD1
 )
 (/usr/local/texlive/2024/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count290
+\Hy@SavedSpaceFactor=\count287
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2024-01-20 v7.01h Hyperref: PDF Unicode definition (HO)
-Now handling font encoding PU ...
-... no UTF-8 mapping file for font encoding PU
 )
 Package hyperref Info: Option `pdfpagelabels' set `true' on input line 4062.
 Package hyperref Info: Hyper figures OFF on input line 4179.
@@ -294,14 +425,14 @@ Package hyperref Info: Plain pages OFF on input line 4194.
 Package hyperref Info: Backreferencing OFF on input line 4199.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4446.
-\c@Hy@tempcnt=\count291
+\c@Hy@tempcnt=\count288
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4784.
-\XeTeXLinkMargin=\dimen170
+\XeTeXLinkMargin=\dimen169
 
 (/usr/local/texlive/2024/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
@@ -310,9 +441,9 @@ Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count292
-\Field@Width=\dimen171
-\Fld@charsize=\dimen172
+\Fld@menulength=\count289
+\Field@Width=\dimen170
+\Fld@charsize=\dimen171
 Package hyperref Info: Hyper figures OFF on input line 6063.
 Package hyperref Info: Link nesting OFF on input line 6068.
 Package hyperref Info: Hyper index ON on input line 6071.
@@ -325,22 +456,26 @@ Package hyperref Info: PDF/A mode OFF on input line 6093.
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
 )
-\Hy@abspage=\count293
-\c@Item=\count294
-\c@Hfootnote=\count295
+\Hy@abspage=\count290
+\c@Item=\count291
+\c@Hfootnote=\count292
 )
-Package hyperref Info: Driver (autodetected): hpdftex.
+Package hyperref Info: Driver (autodetected): hluatex.
 
-(/usr/local/texlive/2024/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2024-01-20 v7.01h Hyperref driver for pdfTeX
+(/usr/local/texlive/2024/texmf-dist/tex/latex/hyperref/hluatex.def
+File: hluatex.def 2024-01-20 v7.01h Hyperref driver for luaTeX
 
+(/usr/local/texlive/2024/texmf-dist/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
+)
+)
 (/usr/local/texlive/2024/texmf-dist/tex/latex/base/atveryend-ltx.sty
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend pac
 kage
 with kernel methods
 )
-\Fld@listcount=\count296
-\c@bookmark@seq@number=\count297
+\Fld@listcount=\count293
+\c@bookmark@seq@number=\count294
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2022-07-10 v1.10 Rerun checks for auxiliary files (HO)
@@ -353,26 +488,26 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 )
 \Hy@SectionHShift=\skip56
 ) (/usr/local/texlive/2024/texmf-dist/tex/latex/listings/listings.sty
-\lst@mode=\count298
+\lst@mode=\count295
 \lst@gtempboxa=\box53
-\lst@token=\toks33
-\lst@length=\count299
-\lst@currlwidth=\dimen173
-\lst@column=\count300
-\lst@pos=\count301
-\lst@lostspace=\dimen174
-\lst@width=\dimen175
-\lst@newlines=\count302
-\lst@lineno=\count303
-\lst@maxwidth=\dimen176
+\lst@token=\toks34
+\lst@length=\count296
+\lst@currlwidth=\dimen172
+\lst@column=\count297
+\lst@pos=\count298
+\lst@lostspace=\dimen173
+\lst@width=\dimen174
+\lst@newlines=\count299
+\lst@lineno=\count300
+\lst@maxwidth=\dimen175
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstpatch.sty
 File: lstpatch.sty 2024/02/21 1.10 (Carsten Heinz)
 )
 (/usr/local/texlive/2024/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2024/02/21 1.10 (Carsten Heinz)
-\c@lstnumber=\count304
-\lst@skipnumbers=\count305
+\c@lstnumber=\count301
+\lst@skipnumbers=\count302
 \lst@framebox=\box54
 )
 (/usr/local/texlive/2024/texmf-dist/tex/latex/listings/listings.cfg
@@ -384,9 +519,9 @@ Package: listings 2024/02/21 1.10 (Carsten Heinz)
 (/usr/local/texlive/2024/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
 x
-\pgfutil@everybye=\toks34
-\pgfutil@tempdima=\dimen177
-\pgfutil@tempdimb=\dimen178
+\pgfutil@everybye=\toks35
+\pgfutil@tempdima=\dimen176
+\pgfutil@tempdimb=\dimen177
 )
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/utilities/pgfutil-latex.def
 \pgfutil@abb=\box55
@@ -396,36 +531,36 @@ Package: pgfrcs 2023-01-15 v3.1.10 (3.1.10)
 ))
 (/usr/local/texlive/2024/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
-\pgfkeys@pathtoks=\toks35
-\pgfkeys@temptoks=\toks36
+\pgfkeys@pathtoks=\toks36
+\pgfkeys@temptoks=\toks37
 
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/utilities/pgfkeyslibraryfil
 tered.code.tex
-\pgfkeys@tmptoks=\toks37
+\pgfkeys@tmptoks=\toks38
 )))
 (/usr/local/texlive/2024/texmf-dist/tex/latex/pgf/math/pgfmath.sty
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex
-\pgf@x=\dimen179
-\pgf@xa=\dimen180
-\pgf@xb=\dimen181
-\pgf@xc=\dimen182
-\pgf@y=\dimen183
-\pgf@ya=\dimen184
-\pgf@yb=\dimen185
-\pgf@yc=\dimen186
-\c@pgf@counta=\count306
-\c@pgf@countb=\count307
-\c@pgf@countc=\count308
-\c@pgf@countd=\count309
+\pgf@x=\dimen178
+\pgf@xa=\dimen179
+\pgf@xb=\dimen180
+\pgf@xc=\dimen181
+\pgf@y=\dimen182
+\pgf@ya=\dimen183
+\pgf@yb=\dimen184
+\pgf@yc=\dimen185
+\c@pgf@counta=\count303
+\c@pgf@countb=\count304
+\c@pgf@countc=\count305
+\c@pgf@countd=\count306
 )
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
-\pgfmath@dimen=\dimen187
-\pgfmath@count=\count310
+\pgfmath@dimen=\dimen186
+\pgfmath@count=\count307
 \pgfmath@box=\box56
-\pgfmath@toks=\toks38
-\pgfmath@stack@operand=\toks39
-\pgfmath@stack@operation=\toks40
+\pgfmath@toks=\toks39
+\pgfmath@stack@operand=\toks40
+\pgfmath@stack@operation=\toks41
 )
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
 tex)
@@ -447,39 +582,40 @@ code.tex)
 erarithmetics.code.tex)
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex)
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count311
+\c@pgfmathroundto@lastzeros=\count308
 )))
 (/usr/local/texlive/2024/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
 Package: pgffor 2023-01-15 v3.1.10 (3.1.10)
-\pgffor@iter=\dimen188
-\pgffor@skip=\dimen189
-\pgffor@stack=\toks41
-\pgffor@toks=\toks42
+\pgffor@iter=\dimen187
+\pgffor@skip=\dimen188
+\pgffor@stack=\toks42
+\pgffor@toks=\toks43
 ))
-\c@defn=\count312
+\c@defn=\count309
 ) (/usr/local/texlive/2024/texmf-dist/tex/latex/lipsum/lipsum.sty
 (/usr/local/texlive/2024/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
 (/usr/local/texlive/2024/texmf-dist/tex/latex/l3kernel/expl3.sty
 Package: expl3 2024-02-20 L3 programming layer (loader) 
 
-(/usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
-File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count313
+(/usr/local/texlive/2024/texmf-dist/tex/latex/l3backend/l3backend-luatex.def
+File: l3backend-luatex.def 2024-02-20 L3 backend support: PDF output (LuaTeX)
+\l__color_backend_stack_int=\count310
+Inserting `l3color' in `luaotfload.parse_color'.
 \l__pdf_internal_box=\box57
 ))
 Package: l3keys2e 2024-02-18 LaTeX2e option processing using LaTeX3 keys
 )
 Package: lipsum 2021-09-20 v2.7 150 paragraphs of Lorem Ipsum dummy text
-\g__lipsum_par_int=\count314
-\l__lipsum_a_int=\count315
-\l__lipsum_b_int=\count316
+\g__lipsum_par_int=\count311
+\l__lipsum_a_int=\count312
+\l__lipsum_b_int=\count313
 (/usr/local/texlive/2024/texmf-dist/tex/latex/lipsum/lipsum.ltd.tex))
 (/usr/local/texlive/2024/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count317
-\float@exts=\toks43
+\c@float@type=\count314
+\float@exts=\toks44
 \float@box=\box58
-\@float@everytoks=\toks44
+\@float@everytoks=\toks45
 \@floatcapt=\box59
 )
 (/usr/local/texlive/2024/texmf-dist/tex/latex/xcolor/xcolor.sty
@@ -488,7 +624,7 @@ Package: xcolor 2023/11/15 v3.01 LaTeX color extensions (UK)
 (/usr/local/texlive/2024/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
-Package xcolor Info: Driver file: pdftex.def on input line 274.
+Package xcolor Info: Driver file: luatex.def on input line 274.
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/graphics/mathcolor.ltx)
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1350.
@@ -501,31 +637,366 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1371.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1372.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1373.
 )
-No file main.aux.
-\openout1 = `main.aux'.
+(/usr/local/texlive/2024/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen189
+\lightrulewidth=\dimen190
+\cmidrulewidth=\dimen191
+\belowrulesep=\dimen192
+\belowbottomsep=\dimen193
+\aboverulesep=\dimen194
+\abovetopsep=\dimen195
+\cmidrulesep=\dimen196
+\cmidrulekern=\dimen197
+\defaultaddspace=\dimen198
+\@cmidla=\count315
+\@cmidlb=\count316
+\@aboverulesep=\dimen199
+\@belowrulesep=\dimen256
+\@thisruleclass=\count317
+\@lastruleclass=\count318
+\@thisrulewidth=\dimen257
+)
+(/usr/local/texlive/2024/texmf-dist/tex/latex/csquotes/csquotes.sty
+Package: csquotes 2022-09-14 v5.2n context-sensitive quotations (JAW)
+\csq@reset=\count319
+\csq@gtype=\count320
+\csq@glevel=\count321
+\csq@qlevel=\count322
+\csq@maxlvl=\count323
+\csq@tshold=\count324
+\csq@ltx@everypar=\toks46
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
+(/usr/local/texlive/2024/texmf-dist/tex/latex/csquotes/csquotes.def
+File: csquotes.def 2022-09-14 v5.2n csquotes generic definitions (JAW)
+)
+Package csquotes Info: Trying to load configuration file 'csquotes.cfg'...
+Package csquotes Info: ... configuration file loaded successfully.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/csquotes/csquotes.cfg
+File: csquotes.cfg 
+))
+(/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/biblatex.sty
+Package: biblatex 2023/03/05 v3.19 programmable bibliographies (PK/MW)
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/logreq/logreq.sty
+Package: logreq 2010/08/04 v1.0 xml request logger
+\lrq@indent=\count325
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/logreq/logreq.def
+File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
+))
+(/usr/local/texlive/2024/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
+)
+\c@tabx@nest=\count326
+\c@listtotal=\count327
+\c@listcount=\count328
+\c@liststart=\count329
+\c@liststop=\count330
+\c@citecount=\count331
+\c@citetotal=\count332
+\c@multicitecount=\count333
+\c@multicitetotal=\count334
+\c@instcount=\count335
+\c@maxnames=\count336
+\c@minnames=\count337
+\c@maxitems=\count338
+\c@minitems=\count339
+\c@citecounter=\count340
+\c@maxcitecounter=\count341
+\c@savedcitecounter=\count342
+\c@uniquelist=\count343
+\c@uniquename=\count344
+\c@refsection=\count345
+\c@refsegment=\count346
+\c@maxextratitle=\count347
+\c@maxextratitleyear=\count348
+\c@maxextraname=\count349
+\c@maxextradate=\count350
+\c@maxextraalpha=\count351
+\c@abbrvpenalty=\count352
+\c@highnamepenalty=\count353
+\c@lownamepenalty=\count354
+\c@maxparens=\count355
+\c@parenlevel=\count356
+\blx@tempcnta=\count357
+\blx@tempcntb=\count358
+\blx@tempcntc=\count359
+\c@blx@maxsection=\count360
+\blx@maxsegment@0=\count361
+\blx@notetype=\count362
+\blx@parenlevel@text=\count363
+\blx@parenlevel@foot=\count364
+\blx@sectionciteorder@0=\count365
+\blx@sectionciteorderinternal@0=\count366
+\blx@entrysetcounter=\count367
+\blx@biblioinstance=\count368
+\labelnumberwidth=\skip57
+\labelalphawidth=\skip58
+\biblabelsep=\skip59
+\bibitemsep=\skip60
+\bibnamesep=\skip61
+\bibinitsep=\skip62
+\bibparsep=\skip63
+\bibhang=\skip64
+\blx@bcfin=\read3
+\blx@bcfout=\write3
+\blx@langwohyphens=\language91
+\c@mincomprange=\count369
+\c@maxcomprange=\count370
+\c@mincompwidth=\count371
+Package biblatex Info: Trying to load biblatex default data model...
+Package biblatex Info: ... file 'blx-dm.def' found.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/blx-dm.def
+File: blx-dm.def 2023/03/05 v3.19 biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load biblatex style data model...
+Package biblatex Info: ... file 'apa.dbx' found.
+
+(/Users/sebastianchacon/Library/texmf/tex/latex/biblatex-apa/apa.dbx
+File: apa.dbx 2025/08/27 v9.20 APA biblatex style data model
+)
+Package biblatex Info: Trying to load biblatex custom data model...
+Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
+\c@afterword=\count372
+\c@savedafterword=\count373
+\c@annotator=\count374
+\c@savedannotator=\count375
+\c@author=\count376
+\c@savedauthor=\count377
+\c@bookauthor=\count378
+\c@savedbookauthor=\count379
+\c@commentator=\count380
+\c@savedcommentator=\count381
+\c@editor=\count382
+\c@savededitor=\count383
+\c@editora=\count384
+\c@savededitora=\count385
+\c@editorb=\count386
+\c@savededitorb=\count387
+\c@editorc=\count388
+\c@savededitorc=\count389
+\c@foreword=\count390
+\c@savedforeword=\count391
+\c@holder=\count392
+\c@savedholder=\count393
+\c@introduction=\count394
+\c@savedintroduction=\count395
+\c@namea=\count396
+\c@savednamea=\count397
+\c@nameb=\count398
+\c@savednameb=\count399
+\c@namec=\count400
+\c@savednamec=\count401
+\c@translator=\count402
+\c@savedtranslator=\count403
+\c@shortauthor=\count404
+\c@savedshortauthor=\count405
+\c@shorteditor=\count406
+\c@savedshorteditor=\count407
+\c@narrator=\count408
+\c@savednarrator=\count409
+\c@execproducer=\count410
+\c@savedexecproducer=\count411
+\c@execdirector=\count412
+\c@savedexecdirector=\count413
+\c@with=\count414
+\c@savedwith=\count415
+\c@labelname=\count416
+\c@savedlabelname=\count417
+\c@institution=\count418
+\c@savedinstitution=\count419
+\c@lista=\count420
+\c@savedlista=\count421
+\c@listb=\count422
+\c@savedlistb=\count423
+\c@listc=\count424
+\c@savedlistc=\count425
+\c@listd=\count426
+\c@savedlistd=\count427
+\c@liste=\count428
+\c@savedliste=\count429
+\c@listf=\count430
+\c@savedlistf=\count431
+\c@location=\count432
+\c@savedlocation=\count433
+\c@organization=\count434
+\c@savedorganization=\count435
+\c@origlocation=\count436
+\c@savedoriglocation=\count437
+\c@origpublisher=\count438
+\c@savedorigpublisher=\count439
+\c@publisher=\count440
+\c@savedpublisher=\count441
+\c@language=\count442
+\c@savedlanguage=\count443
+\c@origlanguage=\count444
+\c@savedoriglanguage=\count445
+\c@citation=\count446
+\c@savedcitation=\count447
+\c@pageref=\count448
+\c@savedpageref=\count449
+\shorthandwidth=\skip65
+\shortjournalwidth=\skip66
+\shortserieswidth=\skip67
+\shorttitlewidth=\skip68
+\shortauthorwidth=\skip69
+\shorteditorwidth=\skip70
+\locallabelnumberwidth=\skip71
+\locallabelalphawidth=\skip72
+\localshorthandwidth=\skip73
+\localshortjournalwidth=\skip74
+\localshortserieswidth=\skip75
+\localshorttitlewidth=\skip76
+\localshortauthorwidth=\skip77
+\localshorteditorwidth=\skip78
+Package biblatex Info: Trying to load enhanced support for Unicode engines...
+Package biblatex Info: ... file 'blx-unicode.def' found.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/blx-unicode.def)
+Package biblatex Info: Trying to load compatibility code...
+Package biblatex Info: ... file 'blx-compat.def' found.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/blx-compat.def
+File: blx-compat.def 2023/03/05 v3.19 biblatex compatibility (PK/MW)
+)
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex.def' found.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/biblatex.def
+File: biblatex.def 2023/03/05 v3.19 biblatex compatibility (PK/MW)
+\c@textcitecount=\count450
+\c@textcitetotal=\count451
+\c@textcitemaxnames=\count452
+\c@biburlbigbreakpenalty=\count453
+\c@biburlbreakpenalty=\count454
+\c@biburlnumpenalty=\count455
+\c@biburlucpenalty=\count456
+\c@biburllcpenalty=\count457
+\biburlbigskip=\muskip18
+\biburlnumskip=\muskip19
+\biburlucskip=\muskip20
+\biburllcskip=\muskip21
+\c@smartand=\count458
+)
+Package biblatex Info: Trying to load natbib compatibility...
+Package biblatex Info: ... file 'blx-natbib.def' found.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/blx-natbib.def
+File: blx-natbib.def 2023/03/05 v3.19 biblatex compatibility (PK/MW)
+Package biblatex Info: Delimiter 'nameyeardelim' in context '' already defined,
+ overwriting.
+)
+Package biblatex Info: Trying to load bibliography style 'apa'...
+Package biblatex Info: ... file 'apa.bbx' found.
+
+(/Users/sebastianchacon/Library/texmf/tex/latex/biblatex-apa/apa.bbx
+File: apa.bbx 2025/08/27 v9.20 APA biblatex references style
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+File: standard.bbx 2023/03/05 v3.19 biblatex bibliography style (PK/MW)
+\c@bbx:relatedcount=\count459
+\c@bbx:relatedtotal=\count460
+)
+Package biblatex Info: Delimiter 'nameyeardelim' in context 'bib' already defin
+ed, overwriting.
+Package biblatex Info: Delimiter 'nameyeardelim' in context 'biblist' already d
+efined, overwriting.
+Package biblatex Info: Delimiter 'nonameyeardelim' in context 'bib' already def
+ined, overwriting.
+Package biblatex Info: Delimiter 'nonameyeardelim' in context 'biblist' already
+ defined, overwriting.
+)
+Package biblatex Info: Trying to load citation style 'apa'...
+Package biblatex Info: ... file 'apa.cbx' found.
+
+(/Users/sebastianchacon/Library/texmf/tex/latex/biblatex-apa/apa.cbx
+File: apa.cbx 2025/08/27 v9.20 APA biblatex citation style
+Package biblatex Info: Delimiter 'nameyeardelim' in context '' already defined,
+ overwriting.
+Package biblatex Info: Delimiter 'andothersdelim' in context '' already defined
+, overwriting.
+Package biblatex Info: Redefining '\fullcite'.
+Package biblatex Info: Redefining '\citeauthor'.
+Package biblatex Info: Redefining '\citeyear'.
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\cites'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\parencites'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcites'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\footcitetexts'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\smartcites'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+Lua function BLTXAPAifInParensTF = 25)
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/biblatex.cfg
+File: biblatex.cfg 
+)
+Package biblatex Info: LuaTeX detected.
+(biblatex)             Assuming input encoding 'utf8'.
+Package biblatex Info: Document encoding is UTF8 ....
+Package biblatex Info: ... and expl3
+(biblatex)             2024-02-20 L3 programming layer (loader) 
+(biblatex)             is new enough (at least 2020/04/06),
+(biblatex)             setting 'casechanger=expl3'.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty
+(/usr/local/texlive/2024/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+Package: xparse 2024-02-18 L3 Experimental document command parser
+)
+Package: blx-case-expl3 2023/03/05 v3.19 expl3 case changing code for biblatex
+))
+Package csquotes Info: Checking for multilingual support...
+Package csquotes Info: ... found 'babel' package.
+Package csquotes Info: Adjusting default style.
+Package csquotes Info: Redefining alias 'default' -> 'spanish'.
+
+(./main.aux
+LaTeX Info: Redefining \. on input line 12.
+LaTeX Info: Redefining \% on input line 12.
+)
+\openout1 = main.aux
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 40.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 4
+0.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+
 *geometry* driver: auto-detecting
-*geometry* detected driver: pdftex
+*geometry* detected driver: luatex
 *geometry* verbose mode - [ preamble ] result:
-* driver: pdftex
+* driver: luatex
 * paper: letterpaper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
@@ -558,17 +1029,17 @@ LaTeX Font Info:    ... okay on input line 33.
 
 (/usr/local/texlive/2024/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count318
-\scratchdimen=\dimen190
+\scratchcounter=\count461
+\scratchdimen=\dimen258
 \scratchbox=\box60
-\nofMPsegments=\count319
-\nofMParguments=\count320
-\everyMPshowfont=\toks45
-\MPscratchCnt=\count321
-\MPscratchDim=\dimen191
-\MPnumerator=\count322
-\makeMPintoPDFobject=\count323
-\everyMPtoPDFconversion=\toks46
+\nofMPsegments=\count462
+\nofMParguments=\count463
+\everyMPshowfont=\toks47
+\MPscratchCnt=\count464
+\MPscratchDim=\dimen259
+\MPnumerator=\count465
+\makeMPintoPDFobject=\count466
+\everyMPtoPDFconversion=\toks48
 ) (/usr/local/texlive/2024/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -583,25 +1054,55 @@ Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Info: Redefining \. on input line 33.
-LaTeX Info: Redefining \% on input line 33.
-Package hyperref Info: Link coloring OFF on input line 33.
-\@outlinefile=\write3
-\openout3 = `main.out'.
+LaTeX Info: Redefining \. on input line 40.
+LaTeX Info: Redefining \% on input line 40.
+Package hyperref Info: Link coloring OFF on input line 40.
 
-\c@lstlisting=\count324
-<imagenes/escudoU2014.pdf, id=4, 320.19624pt x 689.57625pt>
-File: imagenes/escudoU2014.pdf Graphic file (type pdf)
-<use imagenes/escudoU2014.pdf>
-Package pdftex.def Info: imagenes/escudoU2014.pdf  used on input line 36.
-(pdftex.def)             Requested size: 38.42189pt x 82.74557pt.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 36.
+(./main.out) (./main.out)
+\@outlinefile=\write4
 
+\openout4 = main.out
+\c@lstlisting=\count467
+Package biblatex Info: Trying to load language 'spanish' -> 'spanish-apa'...
+Package biblatex Info: ... file 'spanish-apa.lbx' found.
 
-(/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
+(/Users/sebastianchacon/Library/texmf/tex/latex/biblatex-apa/spanish-apa.lbx
+File: spanish-apa.lbx 2025/08/27 v9.20 APA biblatex localisation
+Package biblatex Info: Trying to load language 'spanish'...
+Package biblatex Info: ... file 'spanish.lbx' found.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/lbx/spanish.lbx
+File: spanish.lbx 2023/03/05 v3.19 biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load language 'spanish'...
+Package biblatex Info: ... file 'spanish.lbx' found.
+
+(/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/lbx/spanish.lbx
+File: spanish.lbx 2023/03/05 v3.19 biblatex localization (PK/MW)
+))
+Package biblatex Info: LuaTeX detected.
+(biblatex)             Assuming input encoding 'utf8'.
+Package biblatex Info: Automatic encoding selection.
+(biblatex)             Assuming data encoding 'utf8'.
+
+\openout3 = main.bcf
+Package biblatex Info: Trying to load bibliographic data...
+Package biblatex Info: ... file 'main.bbl' found.
+
+(./main.bbl)
+Package biblatex Info: Reference section=0 on input line 40.
+Package biblatex Info: Reference segment=0 on input line 40.
+<figures/escudoU2014.pdf, id=104, 320.19624pt x 689.57625pt>
+File: figures/escudoU2014.pdf Graphic file (type pdf)
+<use figures/escudoU2014.pdf>
+Package luatex.def Info: figures/escudoU2014.pdf  used on input line 43.
+(luatex.def)             Requested size: 38.42189pt x 82.74557pt.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 43.
+
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 36.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 43.
 
 
 (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
@@ -609,656 +1110,246 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 
-{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map} <./image
-nes/escudoU2014.pdf>]
-pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.65 \mainmatter
-                 [1
+{/usr/local/texlive/2024/texmf-var/fonts/map/pdftex/updmap/pdftex.map}<./figures
+/escudoU2014.pdf>]
+warning  (pdf backend): ignoring duplicate destination with the name 'page.i'
+[1
 
-] (./seccion1.tex [1
+] (./seccion1.tex
+Capítulo 1.
+[1
 
 
-{/usr/local/texlive/2024/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-) (./seccion2.tex [2]) (./seccion3.tex
-[3
+] [2]) (./seccion2.tex [3]
+Capítulo 2.
+[4
 
-]
-<imagenes/plot1.png, id=38, 199.10385pt x 142.25145pt>
-File: imagenes/plot1.png Graphic file (type png)
-<use imagenes/plot1.png>
-Package pdftex.def Info: imagenes/plot1.png  used on input line 16.
-(pdftex.def)             Requested size: 212.41261pt x 151.7669pt.
-<imagenes/plot2.png, id=39, 199.10385pt x 142.25145pt>
-File: imagenes/plot2.png Graphic file (type png)
-<use imagenes/plot2.png>
-Package pdftex.def Info: imagenes/plot2.png  used on input line 23.
-(pdftex.def)             Requested size: 212.41261pt x 151.7669pt.
- [4
-
-]
-<imagenes/plot3.png, id=45, 512.03294pt x 227.53004pt>
-File: imagenes/plot3.png Graphic file (type png)
-<use imagenes/plot3.png>
-Package pdftex.def Info: imagenes/plot3.png  used on input line 33.
-(pdftex.def)             Requested size: 460.82538pt x 204.77513pt.
-
-
-LaTeX Warning: Citation `gain2024' on page 5 undefined on input line 36.
-
-[5 <./imagenes/plot1.png> <./imagenes/plot2.png> <./imagenes/plot3.png>]
-[6] [7] [8] [9]
-Overfull \hbox (1.75655pt too wide) in paragraph at lines 108--109
-[]\OT1/cmr/m/n/12 [GR[]AFI-CO HHI] [GR[]AFI-CO DE EX-POR-TA-CIO-NES CON PER-CEN
--TI-LES Y DE L[]IDE-
- []
-
-) (./seccion4.tex [10]
-
-LaTeX Warning: Citation `ICO2025' on page 11 undefined on input line 14.
-
+] [5] [6] (./tables/motiv.tex)
+<figures/motiv1.png, id=195, 505.89pt x 361.35pt>
+File: figures/motiv1.png Graphic file (type png)
+<use figures/motiv1.png>
+Package luatex.def Info: figures/motiv1.png  used on input line 46.
+(luatex.def)             Requested size: 303.53633pt x 216.81168pt.
+ [7]
+<figures/motiv2.png, id=208, 505.89pt x 361.35pt>
+File: figures/motiv2.png Graphic file (type png)
+<use figures/motiv2.png>
+Package luatex.def Info: figures/motiv2.png  used on input line 53.
+(luatex.def)             Requested size: 303.53633pt x 216.81168pt.
+<figures/motiv3.png, id=209, 505.89pt x 361.35pt>
+File: figures/motiv3.png Graphic file (type png)
+<use figures/motiv3.png>
+Package luatex.def Info: figures/motiv3.png  used on input line 60.
+(luatex.def)             Requested size: 303.53633pt x 216.81168pt.
+ [8<./figures/motiv1.png><./figures/motiv2.png>]
+<figures/plot02_01.png, id=218, 199.10385pt x 142.25145pt>
+File: figures/plot02_01.png Graphic file (type png)
+<use figures/plot02_01.png>
+Package luatex.def Info: figures/plot02_01.png  used on input line 71.
+(luatex.def)             Requested size: 212.41261pt x 151.7669pt.
+<figures/plot02_02.png, id=219, 199.10385pt x 142.25145pt>
+File: figures/plot02_02.png Graphic file (type png)
+<use figures/plot02_02.png>
+Package luatex.def Info: figures/plot02_02.png  used on input line 78.
+(luatex.def)             Requested size: 212.41261pt x 151.7669pt.
+<figures/plot02_03.png, id=220, 199.10385pt x 142.25145pt>
+File: figures/plot02_03.png Graphic file (type png)
+<use figures/plot02_03.png>
+Package luatex.def Info: figures/plot02_03.png  used on input line 86.
+(luatex.def)             Requested size: 199.10335pt x 142.2511pt.
+) (./seccion3.tex [9<./figures/motiv3.png><./figures/plot02_01.png><./figures/pl
+ot02_02.png>] [10<./figures/plot02_03.png>]
+Capítulo 3.
 [11
 
 ]
+<figures/export1960.png, id=253, 199.10385pt x 142.25145pt>
+File: figures/export1960.png Graphic file (type png)
+<use figures/export1960.png>
+Package luatex.def Info: figures/export1960.png  used on input line 17.
+(luatex.def)             Requested size: 212.41261pt x 151.7669pt.
+<figures/icip1960.png, id=254, 199.10385pt x 142.25145pt>
+File: figures/icip1960.png Graphic file (type png)
+<use figures/icip1960.png>
+Package luatex.def Info: figures/icip1960.png  used on input line 24.
+(luatex.def)             Requested size: 212.41261pt x 151.7669pt.
+ [12<./figures/export1960.png><./figures/icip1960.png>] [13] [14]
+<figures/plot02_04.png, id=294, 227.53004pt x 170.67764pt>
+File: figures/plot02_04.png Graphic file (type png)
+<use figures/plot02_04.png>
+Package luatex.def Info: figures/plot02_04.png  used on input line 82.
+(luatex.def)             Requested size: 227.52948pt x 170.6772pt.
+ [15]
+<figures/hhi.png, id=309, 213.31696pt x 142.25145pt>
+File: figures/hhi.png Graphic file (type png)
+<use figures/hhi.png>
+Package luatex.def Info: figures/hhi.png  used on input line 93.
+(luatex.def)             Requested size: 212.41261pt x 141.64984pt.
+<figures/c3.png, id=310, 213.31696pt x 142.25145pt>
+File: figures/c3.png Graphic file (type png)
+<use figures/c3.png>
+Package luatex.def Info: figures/c3.png  used on input line 100.
+(luatex.def)             Requested size: 212.41261pt x 141.64984pt.
+)
+(./seccion4.tex [16<./figures/plot02_04.png><./figures/hhi.png><./figures/c3.png
+>]
+Capítulo 4.
+[17
 
-LaTeX Warning: Citation `Feenstra2015' on page 12 undefined on input line 16.
+] (./tables/datos_demanda.tex) [18] (./tables/datos_costos.tex) [19]
+[20]
+<figures/exp_p1.png, id=357, 199.10385pt x 142.25145pt>
+File: figures/exp_p1.png Graphic file (type png)
+<use figures/exp_p1.png>
+Package luatex.def Info: figures/exp_p1.png  used on input line 64.
+(luatex.def)             Requested size: 212.41261pt x 151.7669pt.
+<figures/exp_p4.png, id=358, 199.10385pt x 142.25145pt>
+File: figures/exp_p4.png Graphic file (type png)
+<use figures/exp_p4.png>
+Package luatex.def Info: figures/exp_p4.png  used on input line 71.
+(luatex.def)             Requested size: 212.41261pt x 151.7669pt.
+<figures/exp_p2.png, id=359, 199.10385pt x 142.25145pt>
+File: figures/exp_p2.png Graphic file (type png)
+<use figures/exp_p2.png>
+Package luatex.def Info: figures/exp_p2.png  used on input line 81.
+(luatex.def)             Requested size: 212.41261pt x 151.7669pt.
+<figures/exp_p5.png, id=360, 199.10385pt x 142.25145pt>
+File: figures/exp_p5.png Graphic file (type png)
+<use figures/exp_p5.png>
+Package luatex.def Info: figures/exp_p5.png  used on input line 88.
+(luatex.def)             Requested size: 212.41261pt x 151.7669pt.
+<figures/exp_p3.png, id=361, 199.10385pt x 142.25145pt>
+File: figures/exp_p3.png Graphic file (type png)
+<use figures/exp_p3.png>
+Package luatex.def Info: figures/exp_p3.png  used on input line 98.
+(luatex.def)             Requested size: 212.41261pt x 151.7669pt.
+<figures/exp_p6.png, id=362, 199.10385pt x 142.25145pt>
+File: figures/exp_p6.png Graphic file (type png)
+<use figures/exp_p6.png>
+Package luatex.def Info: figures/exp_p6.png  used on input line 105.
+(luatex.def)             Requested size: 212.41261pt x 151.7669pt.
+ [21<./figures/exp_p1.png><./figures/exp_p4.png><./figures/exp_p2.png><./figures
+/exp_p5.png>] (./tables/datos_exp_ym.tex) (./tables/datos_exp_y.tex))
+(./seccion5.tex [22<./figures/exp_p3.png><./figures/exp_p6.png>]
+Capítulo 5.
 
-[12] [13] [14] (./tablas/tabla4_1.tex)) (./seccion5.tex [15] [16
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 4.
 
-] [17] [18])
-(./seccion6.tex [19] [20
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 4.
+
+[23
+
+] [24] [25]) (./seccion6.tex [26]
+Capítulo 6.
+[27
+
+] (./tables/estimacion_demanda_y.tex) [28]
+(./tables/estimacion_demanda_test_y.tex)
+<figures/elasticidad_iv3.png, id=441, 578.16pt x 433.62pt>
+File: figures/elasticidad_iv3.png Graphic file (type png)
+<use figures/elasticidad_iv3.png>
+Package luatex.def Info: figures/elasticidad_iv3.png  used on input line 44.
+(luatex.def)             Requested size: 346.89867pt x 260.17401pt.
+ [29] [30<./figures/elasticidad_iv3.png>] (./tables/estimacion_costos.tex [31])
+<figures/plot_0601.png, id=472, 341.3553pt x 199.10385pt>
+File: figures/plot_0601.png Graphic file (type png)
+<use figures/plot_0601.png>
+Package luatex.def Info: figures/plot_0601.png  used on input line 95.
+(luatex.def)             Requested size: 212.41261pt x 123.89577pt.
+<figures/plot_0602.png, id=473, 341.3553pt x 199.10385pt>
+File: figures/plot_0602.png Graphic file (type png)
+<use figures/plot_0602.png>
+Package luatex.def Info: figures/plot_0602.png  used on input line 102.
+(luatex.def)             Requested size: 212.41261pt x 123.89577pt.
+ [32]) (./seccion7.tex [33<./figures/plot_0601.png><./figures/plot_0602.png>]
+Capítulo 7.
+[34
 
 ]
+<figures/diff_heat.png, id=492, 578.16pt x 433.62pt>
+File: figures/diff_heat.png Graphic file (type png)
+<use figures/diff_heat.png>
+Package luatex.def Info: figures/diff_heat.png  used on input line 17.
+(luatex.def)             Requested size: 346.89867pt x 260.17401pt.
+ (./tables/t6_results.tex) [35<./figures/diff_heat.png>]
+(./tables/t6_surplus.tex) [36]
+<figures/diff_cost.png, id=511, 578.16pt x 433.62pt>
+File: figures/diff_cost.png Graphic file (type png)
+<use figures/diff_cost.png>
+Package luatex.def Info: figures/diff_cost.png  used on input line 46.
+(luatex.def)             Requested size: 346.89867pt x 260.17401pt.
+ [37<./figures/diff_cost.png>]
+(./tables/costs_change_leaders.tex)
+<figures/diff_quantity_leaders.png, id=523, 578.16pt x 433.62pt>
+File: figures/diff_quantity_leaders.png Graphic file (type png)
+<use figures/diff_quantity_leaders.png>
+Package luatex.def Info: figures/diff_quantity_leaders.png  used on input line 
+61.
+(luatex.def)             Requested size: 346.89867pt x 260.17401pt.
+<figures/diff_quantity_followers.png, id=524, 578.16pt x 433.62pt>
+File: figures/diff_quantity_followers.png Graphic file (type png)
+<use figures/diff_quantity_followers.png>
+Package luatex.def Info: figures/diff_quantity_followers.png  used on input lin
+e 68.
+(luatex.def)             Requested size: 346.89867pt x 260.17401pt.
+ [38<./figures/diff_quantity_leaders.png>]
+<figures/diff_profit.png, id=531, 578.16pt x 433.62pt>
+File: figures/diff_profit.png Graphic file (type png)
+<use figures/diff_profit.png>
+Package luatex.def Info: figures/diff_profit.png  used on input line 77.
+(luatex.def)             Requested size: 346.89867pt x 260.17401pt.
 
-LaTeX Warning: Reference `tab:7_1' on page 21 undefined on input line 31.
+[39<./figures/diff_quantity_followers.png>] [40<./figures/diff_profit.png>]
+(./tables/descomp_g.tex)
+<figures/plot_descomp_ld.png, id=547, 578.16pt x 433.62pt>
+File: figures/plot_descomp_ld.png Graphic file (type png)
+<use figures/plot_descomp_ld.png>
+Package luatex.def Info: figures/plot_descomp_ld.png  used on input line 103.
+(luatex.def)             Requested size: 346.89867pt x 260.17401pt.
+ [41]
+<figures/plot_descomp_fl.png, id=556, 578.16pt x 433.62pt>
+File: figures/plot_descomp_fl.png Graphic file (type png)
+<use figures/plot_descomp_fl.png>
+Package luatex.def Info: figures/plot_descomp_fl.png  used on input line 110.
+(luatex.def)             Requested size: 346.89867pt x 260.17401pt.
+) (./seccion8.tex [42<./figures/plot_descomp_ld.png><./figures/plot_descomp_fl.p
+ng>]
+Capítulo 8.
+[43
 
-(./tablas/tabla7_1.tex) [21] [22])
-Overfull \hbox (5.85484pt too wide) in paragraph at lines 78--73
-[]\OT1/cmr/m/n/12 [RESULTADOS EN-TRE EX-POR-TA-DO-RES E IM-POR-TA-DO-RES] [RE-S
-UL-TA-DOS DEN-
+]) [44] (./anexo1.tex [45]
+Capítulo 9.
+
+LaTeX Warning: Reference `chap:evidencia' on page 46 undefined on input line 3.
+
+
+(./tables/motiv_fe.tex)) (./anexo2.tex [46
+
+]
+Capítulo 10.
+(./tables/estimacion_demanda.tex [47
+
+]) (./tables/estimacion_demanda_test.tex))
+(./anexo3.tex [48]
+Capítulo 11.
+(./tables/estimacion_costs_2.tex) [49
+
+]) [50] [51
+
+]
+Overfull \hbox (2.88805pt too wide) in paragraph at lines 95--95
+[][]\TU/lmr/m/n/12 Hsiang, S. (2016). Cli-ma-te Eco-no-me-trics. \TU/lmr/m/it/1
+2 An-nual Re-view of Re-sour-ce Eco-no-mics\TU/lmr/m/n/12 , \TU/lmr/m/it/12 8\T
+U/lmr/m/n/12 , 22.1[]22.33.
  []
 
-No file main.bbl.
-(./anexoA.tex [23]
-Ap\'{e}ndice A.
-(./anexos/anexo7_1.tex) (./anexos/anexo7_3.tex
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-? $
-Type <return> to proceed, S to scroll future error messages,
-R to run without stopping, Q to run quietly,
-I to insert something, E to edit your file,
-1 or ... or 9 to ignore the next 1 to 9 tokens of input,
-H for help, X to quit.
-? 
-./anexos/anexo7_3.tex:12: Extra }, or forgotten $.
-<template> \unskip \hfil }
-                          \hskip \tabcolsep \endtemplate 
-l.12     }
-          
-? R
-OK, entering \nonstopmode...
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Missing } inserted.
-<inserted text> 
-                }
-l.12     }
-          
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Extra }, or forgotten $.
-<template> \unskip \hfil }
-                          \hskip \tabcolsep \endtemplate 
-l.12     }
-          
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Missing } inserted.
-<inserted text> 
-                }
-l.12     }
-          
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Extra }, or forgotten $.
-<template> \unskip \hfil }
-                          \hskip \tabcolsep \endtemplate 
-l.12     }
-          
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Missing } inserted.
-<inserted text> 
-                }
-l.12     }
-          
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Extra }, or forgotten $.
-<template> \unskip \hfil }
-                          \hskip \tabcolsep \endtemplate 
-l.12     }
-          
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Missing } inserted.
-<inserted text> 
-                }
-l.12     }
-          
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Extra }, or forgotten $.
-<template> \unskip \hfil }
-                          \hskip \tabcolsep \endtemplate 
-l.12     }
-          
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Missing } inserted.
-<inserted text> 
-                }
-l.12     }
-          
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Extra }, or forgotten $.
-<template> \unskip \hfil }
-                          \hskip \tabcolsep \endtemplate 
-l.12     }
-          
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Missing } inserted.
-<inserted text> 
-                }
-l.12     }
-          
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Extra }, or forgotten $.
-<template> \unskip \hfil }
-                          \hskip \tabcolsep \endtemplate 
-l.12     }
-          
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Missing } inserted.
-<inserted text> 
-                }
-l.12     }
-          
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Extra }, or forgotten $.
-<template> \unskip \hfil }
-                          \hskip \tabcolsep \endtemplate 
-l.12     }
-          
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Missing } inserted.
-<inserted text> 
-                }
-l.12     }
-          
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Extra }, or forgotten $.
-<template> \unskip \hfil }
-                          \hskip \tabcolsep \endtemplate 
-l.12     }
-          
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Missing } inserted.
-<inserted text> 
-                }
-l.12     }
-          
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Extra }, or forgotten $.
-<template> \unskip \hfil }
-                          \hskip \tabcolsep \endtemplate 
-l.12     }
-          
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Missing } inserted.
-<inserted text> 
-                }
-l.12     }
-          
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Extra }, or forgotten $.
-<template> \unskip \hfil }
-                          \hskip \tabcolsep \endtemplate 
-l.12     }
-          
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Missing } inserted.
-<inserted text> 
-                }
-l.12     }
-          
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Extra }, or forgotten $.
-<template> \unskip \hfil }
-                          \hskip \tabcolsep \endtemplate 
-l.12     }
-          
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Missing } inserted.
-<inserted text> 
-                }
-l.12     }
-          
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Extra }, or forgotten $.
-<template> \unskip \hfil }
-                          \hskip \tabcolsep \endtemplate 
-l.12     }
-          
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Missing } inserted.
-<inserted text> 
-                }
-l.12     }
-          
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Extra }, or forgotten $.
-<template> \unskip \hfil }
-                          \hskip \tabcolsep \endtemplate 
-l.12     }
-          
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Missing } inserted.
-<inserted text> 
-                }
-l.12     }
-          
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Extra }, or forgotten $.
-<template> \unskip \hfil }
-                          \hskip \tabcolsep \endtemplate 
-l.12     }
-          
-I've deleted a group-closing symbol because it seems to be
-spurious, as in `$x}$'. But perhaps the } is legitimate and
-you forgot something else, as in `\hbox{$x}'. In such cases
-the way to recover is to insert both the forgotten and the
-deleted material, e.g., by typing `I$}'.
-
-./anexos/anexo7_3.tex:12: Missing $ inserted.
-<inserted text> 
-                $
-l.12     }
-          
-I've inserted a begin-math/end-math symbol since I think
-you left one out. Proceed, with fingers crossed.
-
-./anexos/anexo7_3.tex:12: Missing } inserted.
-<inserted text> 
-                }
-l.12     }
-          
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-)) [24
-
-] (./main.aux
-LaTeX Info: Redefining \. on input line 11.
-LaTeX Info: Redefining \% on input line 11.
+[52] [53] [54] (./main.aux
+LaTeX Info: Redefining \sptext on input line 12.
+LaTeX Info: Redefining \. on input line 12.
+LaTeX Info: Redefining \% on input line 12.
 )
  ***********
 LaTeX2e <2023-11-01> patch level 1
@@ -1268,43 +1359,48 @@ L3 programming layer <2024-02-20>
 
 LaTeX Warning: There were undefined references.
 
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: B700728AF33C11888CE61BB1F7F93C85;6490.
+Package logreq Info: Writing requests to 'main.run.xml'.
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+\openout1 = main.run.xml
+)
 
+Here is how much of LuaTeX's memory you used:
+ 30948 strings out of 476447
+ 125081,1977958 words of node,token memory allocated
+ 1043 words of node memory still in use:
+   7 hlist, 2 vlist, 2 rule, 9 glue, 4 kern, 1 glyph, 114 attribute, 65 glue_spe
+c, 59 attribute_list, 1 write, 19 pdf_action nodes
+   avail lists: 1:1,2:1658,3:607,4:82,5:401,6:53,7:9361,8:79,9:778,10:27,11:1424
 
-Package rerunfilecheck Warning: File `main.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
+ 52076 multiletter control sequences out of 65536+600000
+ 68 fonts using 4777223 bytes
+ 87i,16n,89p,1362b,2803s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2024/texmf-dist/fonts/opentype/public/lm/lmroman6-regular.ot
+f></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/lm/lmroman7-regular.
+otf></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/lm/lmroman8-regula
+r.otf></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/lm/lmroman10-reg
+ular.otf></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/lm/lmroman10-
+italic.otf></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/lm/lmroman1
+2-italic.otf></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/lm/lmroma
+n12-bold.otf></usr/local/texlive/2024/texmf-dist/fonts/opentype/public/lm/lmroma
+n12-regular.otf></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmex10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmmi10.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mmi12.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmm
+i6.pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.
+pfb></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb
+></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></
+usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/
+local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/loca
+l/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/
+texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/tex
+live/2024/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb>
+Output written on main.pdf (56 pages, 7878574 bytes).
 
-Package rerunfilecheck Info: Checksums for `main.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  0449931E00683CB6516B9F9333FA8F72;238.
- ) 
-Here is how much of TeX's memory you used:
- 20835 strings out of 474116
- 356839 string characters out of 5743683
- 1950187 words of memory out of 5000000
- 42838 multiletter control sequences out of 15000+600000
- 567221 words of font info for 71 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 89i,12n,93p,1240b,523s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
-></usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
-</usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb><
-/usr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></u
-sr/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr
-/local/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/l
-ocal/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/loc
-al/texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/
-texlive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/tex
-live/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texl
-ive/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texliv
-e/2024/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive
-/2024/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on main.pdf (26 pages, 615361 bytes).
-PDF statistics:
- 245 PDF objects out of 1000 (max. 8388607)
- 185 compressed objects within 2 object streams
- 62 named destinations out of 1000 (max. 500000)
- 21 words of extra memory for PDF output out of 10000 (max. 10000000)
+PDF statistics: 797 PDF objects out of 1000 (max. 8388607)
+ 668 compressed objects within 7 object streams
+ 180 named destinations out of 1000 (max. 131072)
+ 201 words of extra memory for PDF output out of 10000 (max. 100000000)
 

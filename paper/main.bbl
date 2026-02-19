@@ -1,0 +1,3713 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{apa/apasortcite//global/global}
+    \entry{angrist2009mostly}{book}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=ee326f34eea24952d04c41cef1771bfc}{%
+           family={Angrist},
+           familyi={A\bibinitperiod},
+           given={Joshua\bibnamedelima D.},
+           giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a371aa94a6e25bcbee7d55da6003fbe6}{%
+           family={Pischke},
+           familyi={P\bibinitperiod},
+           given={Jörn-Steffen},
+           giveni={J\bibinithyphendelim S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Princeton, NJ}%
+      }
+      \list{publisher}{1}{%
+        {Princeton University Press}%
+      }
+      \strng{namehash}{3a5c15818fc709fb8d1d7a4e9b97e05e}
+      \strng{fullhash}{3a5c15818fc709fb8d1d7a4e9b97e05e}
+      \strng{bibnamehash}{3a5c15818fc709fb8d1d7a4e9b97e05e}
+      \strng{authorbibnamehash}{3a5c15818fc709fb8d1d7a4e9b97e05e}
+      \strng{authornamehash}{3a5c15818fc709fb8d1d7a4e9b97e05e}
+      \strng{authorfullhash}{3a5c15818fc709fb8d1d7a4e9b97e05e}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{1st}
+      \field{isbn}{9780691120355}
+      \field{title}{Mostly harmless econometrics: An empiricist's companion}
+      \field{year}{2009}
+    \endentry
+    \entry{bates1997open}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=f5fcf199ed348efd86eca401a4663e52}{%
+           family={Bates},
+           familyi={B\bibinitperiod},
+           given={Robert\bibnamedelima H.},
+           giveni={R\bibinitperiod\bibinitdelim H\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Princeton, NJ}%
+      }
+      \list{publisher}{1}{%
+        {Princeton University Press}%
+      }
+      \strng{namehash}{f5fcf199ed348efd86eca401a4663e52}
+      \strng{fullhash}{f5fcf199ed348efd86eca401a4663e52}
+      \strng{bibnamehash}{f5fcf199ed348efd86eca401a4663e52}
+      \strng{authorbibnamehash}{f5fcf199ed348efd86eca401a4663e52}
+      \strng{authornamehash}{f5fcf199ed348efd86eca401a4663e52}
+      \strng{authorfullhash}{f5fcf199ed348efd86eca401a4663e52}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9780691005195}
+      \field{title}{Open-Economy Politics: The Political Economy of the World Coffee Trade}
+      \field{year}{1997}
+      \verb{urlraw}
+      \verb https://press.princeton.edu/books/paperback/9780691005195/open-economy-politics
+      \endverb
+      \verb{url}
+      \verb https://press.princeton.edu/books/paperback/9780691005195/open-economy-politics
+      \endverb
+    \endentry
+    \entry{bettendorf2000incomplete}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=5b176f365027ee8a4c93350bbb0ee9be}{%
+           family={Bettendorf},
+           familyi={B\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bb0d81f0d40b95a91caa08337944768c}{%
+           family={Verboven},
+           familyi={V\bibinitperiod},
+           given={F.},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{869613d98ac8a561e59e58e97dc45148}
+      \strng{fullhash}{869613d98ac8a561e59e58e97dc45148}
+      \strng{bibnamehash}{869613d98ac8a561e59e58e97dc45148}
+      \strng{authorbibnamehash}{869613d98ac8a561e59e58e97dc45148}
+      \strng{authornamehash}{869613d98ac8a561e59e58e97dc45148}
+      \strng{authorfullhash}{869613d98ac8a561e59e58e97dc45148}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{European Review of Agricultural Economics}
+      \field{number}{1}
+      \field{title}{Incomplete transmission of coffee bean prices: Evidence from the Netherlands}
+      \field{volume}{27}
+      \field{year}{2000}
+      \field{pages}{1\bibrangedash 16}
+      \range{pages}{16}
+      \verb{doi}
+      \verb 10.1093/erae/27.1.1
+      \endverb
+    \endentry
+    \entry{bilal2024macroeconomic}{report}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=229bf95376e215257a9510090546be88}{%
+           family={Bilal},
+           familyi={B\bibinitperiod},
+           given={Adrien},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a06cbc1c351bf734532b6e2ed87a694c}{%
+           family={Känzig},
+           familyi={K\bibinitperiod},
+           given={Diego\bibnamedelima R.},
+           giveni={D\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {National Bureau of Economic Research}%
+      }
+      \strng{namehash}{999c5806c45c0b3fcd8a60a19ad8445a}
+      \strng{fullhash}{999c5806c45c0b3fcd8a60a19ad8445a}
+      \strng{bibnamehash}{999c5806c45c0b3fcd8a60a19ad8445a}
+      \strng{authorbibnamehash}{999c5806c45c0b3fcd8a60a19ad8445a}
+      \strng{authornamehash}{999c5806c45c0b3fcd8a60a19ad8445a}
+      \strng{authorfullhash}{999c5806c45c0b3fcd8a60a19ad8445a}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{32450}
+      \field{title}{The macroeconomic impact of climate change: Global vs. local temperature}
+      \field{type}{Working paper}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://www.nber.org/papers/w32450
+      \endverb
+      \verb{url}
+      \verb https://www.nber.org/papers/w32450
+      \endverb
+    \endentry
+    \entry{bresnahan1989empirical}{inbook}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=a45e952216a4661b3c133a6742ab669a}{%
+           family={Bresnahan},
+           familyi={B\bibinitperiod},
+           given={Timothy\bibnamedelima F.},
+           giveni={T\bibinitperiod\bibinitdelim F\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=1ade2ea4a733cb78a8c7177ac5501bd5}{%
+           family={Schmalensee},
+           familyi={S\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+        {{hash=d11ce2633a7c18b762fa66cba5f8b651}{%
+           family={Willig},
+           familyi={W\bibinitperiod},
+           given={R.\bibnamedelimi D.},
+           giveni={R\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Amsterdam, The Netherlands}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier Science Publishers}%
+      }
+      \strng{namehash}{a45e952216a4661b3c133a6742ab669a}
+      \strng{fullhash}{a45e952216a4661b3c133a6742ab669a}
+      \strng{bibnamehash}{a45e952216a4661b3c133a6742ab669a}
+      \strng{authorbibnamehash}{a45e952216a4661b3c133a6742ab669a}
+      \strng{authornamehash}{a45e952216a4661b3c133a6742ab669a}
+      \strng{authorfullhash}{a45e952216a4661b3c133a6742ab669a}
+      \strng{editorbibnamehash}{476e52ac61fb16c7cc76be4c6ec32feb}
+      \strng{editornamehash}{476e52ac61fb16c7cc76be4c6ec32feb}
+      \strng{editorfullhash}{476e52ac61fb16c7cc76be4c6ec32feb}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Handbook of industrial organization}
+      \field{chapter}{17}
+      \field{title}{Empirical studies of industries with market power}
+      \field{volume}{2}
+      \field{year}{1989}
+      \field{pages}{1011\bibrangedash 1057}
+      \range{pages}{47}
+    \endentry
+    \entry{burke2016adaptation}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=31d4f92abc49e335bd0880284dee11a2}{%
+           family={Burke},
+           familyi={B\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c01c32d0554496719487be2926547436}{%
+           family={Emerick},
+           familyi={E\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{aaae64f24959ee947f1a8a839be6e35c}
+      \strng{fullhash}{aaae64f24959ee947f1a8a839be6e35c}
+      \strng{bibnamehash}{aaae64f24959ee947f1a8a839be6e35c}
+      \strng{authorbibnamehash}{aaae64f24959ee947f1a8a839be6e35c}
+      \strng{authornamehash}{aaae64f24959ee947f1a8a839be6e35c}
+      \strng{authorfullhash}{aaae64f24959ee947f1a8a839be6e35c}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Economic Journal: Economic Policy}
+      \field{number}{3}
+      \field{title}{Adaptation to climate change: Evidence from US agriculture}
+      \field{volume}{8}
+      \field{year}{2016}
+      \field{pages}{106\bibrangedash 140}
+      \range{pages}{35}
+      \verb{doi}
+      \verb 10.1257/pol.20130025
+      \endverb
+    \endentry
+    \entry{chen2021response}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=ed4e688b3a13c815213f1ff2acb5d92b}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3094d60c4feaff4ab1411520529c8d64}{%
+           family={Gong},
+           familyi={G\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{69369682ebc1d786859599f3da90f7f5}
+      \strng{fullhash}{69369682ebc1d786859599f3da90f7f5}
+      \strng{bibnamehash}{69369682ebc1d786859599f3da90f7f5}
+      \strng{authorbibnamehash}{69369682ebc1d786859599f3da90f7f5}
+      \strng{authornamehash}{69369682ebc1d786859599f3da90f7f5}
+      \strng{authorfullhash}{69369682ebc1d786859599f3da90f7f5}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Development Economics}
+      \field{title}{Response and adaptation of agriculture to climate change: Evidence from China}
+      \field{volume}{148}
+      \field{year}{2021}
+      \field{pages}{102557}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.jdeveco.2020.102557
+      \endverb
+    \endentry
+    \entry{covindassamy2017sugar}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=bf4a361f85a151040f55da726d3cbedf}{%
+           family={Covindassamy},
+           familyi={C\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=99dc0debe98b595e63be0a450c048a2c}{%
+           family={Robe},
+           familyi={R\bibinitperiod},
+           given={M.\bibnamedelimi A.},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6ae26d2d436649096e1bb4b3a8e1963e}{%
+           family={Wallen},
+           familyi={W\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{407b526575e362e77dfa89c9ce4ea70e}
+      \strng{fullhash}{1fd615fa5189774ca6e9785ab6073705}
+      \strng{bibnamehash}{1fd615fa5189774ca6e9785ab6073705}
+      \strng{authorbibnamehash}{1fd615fa5189774ca6e9785ab6073705}
+      \strng{authornamehash}{407b526575e362e77dfa89c9ce4ea70e}
+      \strng{authorfullhash}{1fd615fa5189774ca6e9785ab6073705}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Futures Markets}
+      \field{number}{8}
+      \field{title}{Sugar with your coffee? Fundamentals, financials, and softs price uncertainty}
+      \field{volume}{37}
+      \field{year}{2017}
+      \field{pages}{744\bibrangedash 765}
+      \range{pages}{22}
+      \verb{doi}
+      \verb http://dx.doi.org/10.18235/0000865
+      \endverb
+    \endentry
+    \entry{silveira2017reaction}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=085fbe3d4df6e9dc0e12a2f67fdc8b00}{%
+           family={Silveira},
+           familyi={S\bibinitperiod},
+           given={R.\bibnamedelimi L.\bibnamedelimi F.},
+           giveni={R\bibinitperiod\bibinitdelim L\bibinitperiod\bibinitdelim F\bibinitperiod},
+           givenun=0,
+           prefix={da},
+           prefixi={d\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=e6fc8880206fda21de39b90615e0e584}{%
+           family={Mattos},
+           familyi={M\bibinitperiod},
+           given={F.\bibnamedelimi L.},
+           giveni={F\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c659287d73b8eebeb4e7996a02d09e5e}{%
+           family={Saes},
+           familyi={S\bibinitperiod},
+           given={M.\bibnamedelimi S.\bibnamedelimi M.},
+           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{677a14a4381e75fa19b0a5e788b7b1bd}
+      \strng{fullhash}{0daf55922423ef0cce916afa89095a32}
+      \strng{bibnamehash}{0daf55922423ef0cce916afa89095a32}
+      \strng{authorbibnamehash}{0daf55922423ef0cce916afa89095a32}
+      \strng{authornamehash}{677a14a4381e75fa19b0a5e788b7b1bd}
+      \strng{authorfullhash}{0daf55922423ef0cce916afa89095a32}
+      \field{sortinit}{d}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Emerging Markets Finance \& Trade}
+      \field{number}{10}
+      \field{title}{The reaction of coffee futures price volatility to crop reports}
+      \field{volume}{53}
+      \field{year}{2017}
+      \field{pages}{2361\bibrangedash 2374}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1080/1540496X.2016.1205976
+      \endverb
+    \endentry
+    \entry{deaton1992behaviour}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=f35d0857ca3be48507d418d575f03fe0}{%
+           family={Deaton},
+           familyi={D\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e91c46ea0811c06b1f7b4809734177c1}{%
+           family={Laroque},
+           familyi={L\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{f20a4250e0d04b57bf4f6be4d5892fed}
+      \strng{fullhash}{f20a4250e0d04b57bf4f6be4d5892fed}
+      \strng{bibnamehash}{f20a4250e0d04b57bf4f6be4d5892fed}
+      \strng{authorbibnamehash}{f20a4250e0d04b57bf4f6be4d5892fed}
+      \strng{authornamehash}{f20a4250e0d04b57bf4f6be4d5892fed}
+      \strng{authorfullhash}{f20a4250e0d04b57bf4f6be4d5892fed}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Review of Economic Studies}
+      \field{number}{1}
+      \field{title}{On the behaviour of commodity prices}
+      \field{volume}{59}
+      \field{year}{1992}
+      \field{pages}{1\bibrangedash 23}
+      \range{pages}{23}
+      \verb{doi}
+      \verb https://ideas.repec.org/p/nbr/nberwo/3439.html
+      \endverb
+    \endentry
+    \entry{dell2012temperature}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=549ac2b64b0f261f7f8a4c241d4b3ea4}{%
+           family={Dell},
+           familyi={D\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=13e47bc056213be4f05bcdc677322316}{%
+           family={Jones},
+           familyi={J\bibinitperiod},
+           given={B.\bibnamedelimi F.},
+           giveni={B\bibinitperiod\bibinitdelim F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=813e174251e06d902738bf0d577328fc}{%
+           family={Olken},
+           familyi={O\bibinitperiod},
+           given={B.\bibnamedelimi A.},
+           giveni={B\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{4102b93c10ab9a4861253b3e119d67b3}
+      \strng{fullhash}{04bbcad80854c62302e58fcbb06c107f}
+      \strng{bibnamehash}{04bbcad80854c62302e58fcbb06c107f}
+      \strng{authorbibnamehash}{04bbcad80854c62302e58fcbb06c107f}
+      \strng{authornamehash}{4102b93c10ab9a4861253b3e119d67b3}
+      \strng{authorfullhash}{04bbcad80854c62302e58fcbb06c107f}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Economic Journal: Macroeconomics}
+      \field{number}{3}
+      \field{title}{Temperature shocks and economic growth: Evidence from the last half century}
+      \field{volume}{4}
+      \field{year}{2012}
+      \field{pages}{66\bibrangedash 95}
+      \range{pages}{30}
+      \verb{doi}
+      \verb 10.1257/mac.4.3.66
+      \endverb
+    \endentry
+    \entry{DeschenesGreenstone2007}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=b8c7569dec1c0f776485ad5c01f70645}{%
+           family={Deschênes},
+           familyi={D\bibinitperiod},
+           given={O.},
+           giveni={O\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ca83879c159db538eff7be937746977a}{%
+           family={Greenstone},
+           familyi={G\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{d9bd36c299c2cd75ce79b1b5bc0f7e72}
+      \strng{fullhash}{d9bd36c299c2cd75ce79b1b5bc0f7e72}
+      \strng{bibnamehash}{d9bd36c299c2cd75ce79b1b5bc0f7e72}
+      \strng{authorbibnamehash}{d9bd36c299c2cd75ce79b1b5bc0f7e72}
+      \strng{authornamehash}{d9bd36c299c2cd75ce79b1b5bc0f7e72}
+      \strng{authorfullhash}{d9bd36c299c2cd75ce79b1b5bc0f7e72}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Economic Review}
+      \field{number}{1}
+      \field{title}{The economic impacts of climate change: Evidence from agricultural output and random fluctuations in weather}
+      \field{volume}{97}
+      \field{year}{2007}
+      \field{pages}{354\bibrangedash 385}
+      \range{pages}{32}
+      \verb{doi}
+      \verb 10.1257/aer.97.1.354
+      \endverb
+    \endentry
+    \entry{Feenstra2015}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=cbd02be690637fa2d45b5dc642e26592}{%
+           family={Feenstra},
+           familyi={F\bibinitperiod},
+           given={R.\bibnamedelimi C.},
+           giveni={R\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2a15584a7d41ff4bf3a8988771897932}{%
+           family={Inklaar},
+           familyi={I\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ec44e2071e6f275543d276f1bd9c3e06}{%
+           family={Timmer},
+           familyi={T\bibinitperiod},
+           given={M.\bibnamedelimi P.},
+           giveni={M\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{227f9f855c7967c28a37eae1d3fbf72c}
+      \strng{fullhash}{9660df3e3aa919b9b9ef408294222fb0}
+      \strng{bibnamehash}{9660df3e3aa919b9b9ef408294222fb0}
+      \strng{authorbibnamehash}{9660df3e3aa919b9b9ef408294222fb0}
+      \strng{authornamehash}{227f9f855c7967c28a37eae1d3fbf72c}
+      \strng{authorfullhash}{9660df3e3aa919b9b9ef408294222fb0}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Economic Review}
+      \field{number}{10}
+      \field{title}{The next generation of the Penn World Table}
+      \field{volume}{105}
+      \field{year}{2015}
+      \field{pages}{3150\bibrangedash 3182}
+      \range{pages}{33}
+      \verb{doi}
+      \verb 10.1257/aer.20130954
+      \endverb
+    \endentry
+    \entry{figari2025climate}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=f07f82db2d7c8a53e1faf894f0b7196f}{%
+           family={Figari},
+           familyi={F\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{f07f82db2d7c8a53e1faf894f0b7196f}
+      \strng{fullhash}{f07f82db2d7c8a53e1faf894f0b7196f}
+      \strng{bibnamehash}{f07f82db2d7c8a53e1faf894f0b7196f}
+      \strng{authorbibnamehash}{f07f82db2d7c8a53e1faf894f0b7196f}
+      \strng{authornamehash}{f07f82db2d7c8a53e1faf894f0b7196f}
+      \strng{authorfullhash}{f07f82db2d7c8a53e1faf894f0b7196f}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Development Economics}
+      \field{title}{Climate change response: Input adjustment in agriculture}
+      \field{volume}{175}
+      \field{year}{2025}
+      \field{pages}{103472}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.jdeveco.2025.103472
+      \endverb
+    \endentry
+    \entry{FisherEtAl2012}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=d1a97d0f4291a7008f3bfc96975c5799}{%
+           family={Fisher},
+           familyi={F\bibinitperiod},
+           given={A.\bibnamedelimi C.},
+           giveni={A\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a31b177a2d014f94e60cbe80bc9affe5}{%
+           family={Hanemann},
+           familyi={H\bibinitperiod},
+           given={W.\bibnamedelimi M.},
+           giveni={W\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5891696d6383fb2567019d795c8ab542}{%
+           family={Roberts},
+           familyi={R\bibinitperiod},
+           given={M.\bibnamedelimi J.},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4476897291fe821e20e4d9b88454b32b}{%
+           family={Schlenker},
+           familyi={S\bibinitperiod},
+           given={W.},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{e38c3d0eacb10de51cc641c370e39221}
+      \strng{fullhash}{f6ce95968e60ea5b7150e8de674935c1}
+      \strng{bibnamehash}{f6ce95968e60ea5b7150e8de674935c1}
+      \strng{authorbibnamehash}{f6ce95968e60ea5b7150e8de674935c1}
+      \strng{authornamehash}{e38c3d0eacb10de51cc641c370e39221}
+      \strng{authorfullhash}{f6ce95968e60ea5b7150e8de674935c1}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Economic Review}
+      \field{number}{7}
+      \field{title}{The economic impacts of climate change: Evidence from agricultural output and random fluctuations in weather: Comment}
+      \field{volume}{102}
+      \field{year}{2012}
+      \field{pages}{3749\bibrangedash 3760}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1257/aer.102.7.3749
+      \endverb
+    \endentry
+    \entry{gilbert2007}{report}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=89f772f51f16555280068dc663c85183}{%
+           family={Gilbert},
+           familyi={G\bibinitperiod},
+           given={Christopher\bibnamedelima L.},
+           giveni={C\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{2}{%
+        {GRADE (Group of Research}%
+        {Analysis on Development), Università degli Studi di Trento}%
+      }
+      \list{location}{1}{%
+        {Trento, Italy}%
+      }
+      \strng{namehash}{89f772f51f16555280068dc663c85183}
+      \strng{fullhash}{89f772f51f16555280068dc663c85183}
+      \strng{bibnamehash}{89f772f51f16555280068dc663c85183}
+      \strng{authorbibnamehash}{89f772f51f16555280068dc663c85183}
+      \strng{authornamehash}{89f772f51f16555280068dc663c85183}
+      \strng{authorfullhash}{89f772f51f16555280068dc663c85183}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{25}
+      \field{title}{Have we been mugged? Market power in the world coffee industry}
+      \field{type}{techreport}
+      \field{year}{2007}
+      \verb{urlraw}
+      \verb https://core.ac.uk/display/71301639
+      \endverb
+      \verb{url}
+      \verb https://core.ac.uk/display/71301639
+      \endverb
+    \endentry
+    \entry{gain2024}{report}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=8b95bce06ecb2d37e3da42eca32dfb8a}{%
+           family={{Global Adaptation Initiative}},
+           familyi={G\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {University of Notre Dame}%
+      }
+      \strng{namehash}{8b95bce06ecb2d37e3da42eca32dfb8a}
+      \strng{fullhash}{8b95bce06ecb2d37e3da42eca32dfb8a}
+      \strng{bibnamehash}{8b95bce06ecb2d37e3da42eca32dfb8a}
+      \strng{authorbibnamehash}{8b95bce06ecb2d37e3da42eca32dfb8a}
+      \strng{authornamehash}{8b95bce06ecb2d37e3da42eca32dfb8a}
+      \strng{authorfullhash}{8b95bce06ecb2d37e3da42eca32dfb8a}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{ND-GAIN} country index 2023}
+      \field{type}{techreport}
+      \field{year}{2023}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://gain.nd.edu/our-work/country-index/
+      \endverb
+      \verb{url}
+      \verb https://gain.nd.edu/our-work/country-index/
+      \endverb
+    \endentry
+    \entry{gouel2018nutrition}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=da68b60a0cfbad559581860111c636f0}{%
+           family={Gouel},
+           familyi={G\bibinitperiod},
+           given={Christophe},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=90d0bf3077b988ae70789d59a0111858}{%
+           family={Guimbard},
+           familyi={G\bibinitperiod},
+           given={Houssein},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{7399f7fe3dae66c031092822cfcbf973}
+      \strng{fullhash}{7399f7fe3dae66c031092822cfcbf973}
+      \strng{bibnamehash}{7399f7fe3dae66c031092822cfcbf973}
+      \strng{authorbibnamehash}{7399f7fe3dae66c031092822cfcbf973}
+      \strng{authornamehash}{7399f7fe3dae66c031092822cfcbf973}
+      \strng{authorfullhash}{7399f7fe3dae66c031092822cfcbf973}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Journal of Agricultural Economics}
+      \field{number}{3}
+      \field{title}{Nutrition transition and the structure of global food demand}
+      \field{volume}{100}
+      \field{year}{2018}
+      \field{pages}{1\bibrangedash 21}
+      \range{pages}{21}
+      \verb{doi}
+      \verb 10.1093/ajae/aay030
+      \endverb
+    \endentry
+    \entry{Hamilton2018}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=ed0cabd783cf75498bb682d0e23f8ec9}{%
+           family={Hamilton},
+           familyi={H\bibinitperiod},
+           given={J.\bibnamedelimi D.},
+           giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{ed0cabd783cf75498bb682d0e23f8ec9}
+      \strng{fullhash}{ed0cabd783cf75498bb682d0e23f8ec9}
+      \strng{bibnamehash}{ed0cabd783cf75498bb682d0e23f8ec9}
+      \strng{authorbibnamehash}{ed0cabd783cf75498bb682d0e23f8ec9}
+      \strng{authornamehash}{ed0cabd783cf75498bb682d0e23f8ec9}
+      \strng{authorfullhash}{ed0cabd783cf75498bb682d0e23f8ec9}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Review of Economics and Statistics}
+      \field{number}{5}
+      \field{title}{Why you should never use the Hodrick--Prescott filter}
+      \field{volume}{100}
+      \field{year}{2018}
+      \field{pages}{831\bibrangedash 843}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.1162/rest_a_00706
+      \endverb
+    \endentry
+    \entry{hodges1991}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=bee363faf2e45a76129685a57fa04734}{%
+           family={Hodges},
+           familyi={H\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Boca Raton, FL}%
+      }
+      \list{publisher}{1}{%
+        {CRC Press}%
+      }
+      \strng{namehash}{bee363faf2e45a76129685a57fa04734}
+      \strng{fullhash}{bee363faf2e45a76129685a57fa04734}
+      \strng{bibnamehash}{bee363faf2e45a76129685a57fa04734}
+      \strng{authorbibnamehash}{bee363faf2e45a76129685a57fa04734}
+      \strng{authornamehash}{bee363faf2e45a76129685a57fa04734}
+      \strng{authorfullhash}{bee363faf2e45a76129685a57fa04734}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Predicting crop phenology}
+      \field{year}{1991}
+      \true{nocite}
+    \endentry
+    \entry{hsiang2016}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=3ea5cf7eb9e01013d277e8a0c5855194}{%
+           family={Hsiang},
+           familyi={H\bibinitperiod},
+           given={Solomon},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{3ea5cf7eb9e01013d277e8a0c5855194}
+      \strng{fullhash}{3ea5cf7eb9e01013d277e8a0c5855194}
+      \strng{bibnamehash}{3ea5cf7eb9e01013d277e8a0c5855194}
+      \strng{authorbibnamehash}{3ea5cf7eb9e01013d277e8a0c5855194}
+      \strng{authornamehash}{3ea5cf7eb9e01013d277e8a0c5855194}
+      \strng{authorfullhash}{3ea5cf7eb9e01013d277e8a0c5855194}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Annual Review of Resource Economics}
+      \field{title}{Climate Econometrics}
+      \field{volume}{8}
+      \field{year}{2016}
+      \field{pages}{22.1\bibrangedash 22.33}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1146/annurev-resource-100815-095343
+      \endverb
+    \endentry
+    \entry{huck2001}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=ba2116b3463c532b60e94af46e727492}{%
+           family={Huck},
+           familyi={H\bibinitperiod},
+           given={Steffen},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=568cea7d4cb2ed37dcffe01f08c87953}{%
+           family={Konrad},
+           familyi={K\bibinitperiod},
+           given={Kai\bibnamedelima A.},
+           giveni={K\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=39a1161dc01b79d75635c0d62cab9595}{%
+           family={Müller},
+           familyi={M\bibinitperiod},
+           given={Wieland},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{d13ee498d27ab917d526d940ab9ed5be}
+      \strng{fullhash}{b6435ce1851397b783913dbc54c0c9da}
+      \strng{bibnamehash}{b6435ce1851397b783913dbc54c0c9da}
+      \strng{authorbibnamehash}{b6435ce1851397b783913dbc54c0c9da}
+      \strng{authornamehash}{d13ee498d27ab917d526d940ab9ed5be}
+      \strng{authorfullhash}{b6435ce1851397b783913dbc54c0c9da}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Economics Letters}
+      \field{number}{2}
+      \field{title}{Big fish eat small fish: on merger in {Stackelberg} markets}
+      \field{volume}{73}
+      \field{year}{2001}
+      \field{pages}{213\bibrangedash 217}
+      \range{pages}{5}
+      \verb{doi}
+      \verb 10.1016/S0165-1765(01)00490-6
+      \endverb
+    \endentry
+    \entry{igami2015market}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d075fca51bbc532564cff5819bffc64a}{%
+           family={Igami},
+           familyi={I\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{d075fca51bbc532564cff5819bffc64a}
+      \strng{fullhash}{d075fca51bbc532564cff5819bffc64a}
+      \strng{bibnamehash}{d075fca51bbc532564cff5819bffc64a}
+      \strng{authorbibnamehash}{d075fca51bbc532564cff5819bffc64a}
+      \strng{authornamehash}{d075fca51bbc532564cff5819bffc64a}
+      \strng{authorfullhash}{d075fca51bbc532564cff5819bffc64a}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Journal of Industrial Economics}
+      \field{number}{2}
+      \field{title}{Market power in international commodity trade: The case of coffee}
+      \field{volume}{63}
+      \field{year}{2015}
+      \field{pages}{225\bibrangedash 248}
+      \range{pages}{24}
+      \verb{doi}
+      \verb 10.1111/joie.12076
+      \endverb
+    \endentry
+    \entry{mapspam_2020}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=55a1ba106fdd047a627693eefc3b1893}{%
+           family={Institute},
+           familyi={I\bibinitperiod},
+           given={International\bibnamedelimb Food\bibnamedelimb Policy\bibnamedelima Research},
+           giveni={I\bibinitperiod\bibinitdelim F\bibinitperiod\bibinitdelim P\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Harvard Dataverse}%
+      }
+      \strng{namehash}{55a1ba106fdd047a627693eefc3b1893}
+      \strng{fullhash}{55a1ba106fdd047a627693eefc3b1893}
+      \strng{bibnamehash}{55a1ba106fdd047a627693eefc3b1893}
+      \strng{authorbibnamehash}{55a1ba106fdd047a627693eefc3b1893}
+      \strng{authornamehash}{55a1ba106fdd047a627693eefc3b1893}
+      \strng{authorfullhash}{55a1ba106fdd047a627693eefc3b1893}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Dataset}
+      \field{title}{Global Spatially-Dissaggregated Crop Production Statistics Data}
+      \field{version}{2.0}
+      \field{year}{2024}
+      \verb{doi}
+      \verb 10.7910/DVN/SWPENT
+      \endverb
+      \verb{urlraw}
+      \verb https://www.mapspam.info/data/
+      \endverb
+      \verb{url}
+      \verb https://www.mapspam.info/data/
+      \endverb
+    \endentry
+    \entry{ICO2009ClimateCoffee}{report}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=10bd414f5b650a98ab4a1e8ea9f7d116}{%
+           family={{International Coffee Council}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {International Coffee Organization}%
+      }
+      \list{location}{1}{%
+        {London, England}%
+      }
+      \strng{namehash}{10bd414f5b650a98ab4a1e8ea9f7d116}
+      \strng{fullhash}{10bd414f5b650a98ab4a1e8ea9f7d116}
+      \strng{bibnamehash}{10bd414f5b650a98ab4a1e8ea9f7d116}
+      \strng{authorbibnamehash}{10bd414f5b650a98ab4a1e8ea9f7d116}
+      \strng{authornamehash}{10bd414f5b650a98ab4a1e8ea9f7d116}
+      \strng{authorfullhash}{10bd414f5b650a98ab4a1e8ea9f7d116}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{ICC 103-6 Rev. 1}
+      \field{title}{Climate change and coffee}
+      \field{type}{techreport}
+      \field{year}{2009}
+    \endentry
+    \entry{ico1998enso}{report}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=356fed4316ab54caaebe125cfceaec88}{%
+           family={{International Coffee Organization}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {International Coffee Organization}%
+      }
+      \list{location}{1}{%
+        {London, England}%
+      }
+      \strng{namehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{fullhash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{bibnamehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{authorbibnamehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{authornamehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{authorfullhash}{356fed4316ab54caaebe125cfceaec88}
+      \field{extraname}{1}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{EB-3657/98 (E) Rev. 1}
+      \field{title}{The {El Niño Southern Oscillation} event ({ENSO}) and its impact on coffee production}
+      \field{type}{techreport}
+      \field{year}{1998}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://www.ico.org
+      \endverb
+      \verb{url}
+      \verb https://www.ico.org
+      \endverb
+    \endentry
+    \entry{oic2013cincuenta}{report}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=356fed4316ab54caaebe125cfceaec88}{%
+           family={{International Coffee Organization}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {International Coffee Organization}%
+      }
+      \list{location}{1}{%
+        {London, United Kingdom}%
+      }
+      \strng{namehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{fullhash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{bibnamehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{authorbibnamehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{authornamehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{authorfullhash}{356fed4316ab54caaebe125cfceaec88}
+      \field{extraname}{2}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The International Coffee Organization 1963--2013: 50 years serving the world coffee community}
+      \field{year}{2013}
+      \verb{urlraw}
+      \verb https://www.ico.org
+      \endverb
+      \verb{url}
+      \verb https://www.ico.org
+      \endverb
+    \endentry
+    \entry{ICO2024}{report}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=356fed4316ab54caaebe125cfceaec88}{%
+           family={{International Coffee Organization}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {International Coffee Organization}%
+      }
+      \strng{namehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{fullhash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{bibnamehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{authorbibnamehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{authornamehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{authorfullhash}{356fed4316ab54caaebe125cfceaec88}
+      \field{extraname}{3}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradate}{1}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Beyond coffee: Towards a circular coffee economy}
+      \field{type}{Coffee Development Report}
+      \field{year}{2024}
+      \true{nocite}
+    \endentry
+    \entry{ICIP2024}{report}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=356fed4316ab54caaebe125cfceaec88}{%
+           family={{International Coffee Organization}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {International Coffee Organization}%
+      }
+      \list{location}{1}{%
+        {London, United Kingdom}%
+      }
+      \strng{namehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{fullhash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{bibnamehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{authorbibnamehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{authornamehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{authorfullhash}{356fed4316ab54caaebe125cfceaec88}
+      \field{extraname}{4}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradate}{2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{9}
+      \field{number}{JC-03/24 Rev. 1}
+      \field{title}{ICO composite and group indicator prices: Share of markets and group weightings. Calendar year averages: 2021 to 2023}
+      \field{type}{Report}
+      \field{year}{2024}
+    \endentry
+    \entry{karp1993dynamic}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=5afe6e34663869a23fb7267aaa39dcb9}{%
+           family={Karp},
+           familyi={K\bibinitperiod},
+           given={Larry\bibnamedelima S.},
+           giveni={L\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1114e5b408bcdbcd5c20f335e0baf145}{%
+           family={Perloff},
+           familyi={P\bibinitperiod},
+           given={Jeffrey\bibnamedelima M.},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9b79f9b7e7ef34f80a854bed143b1a8f}
+      \strng{fullhash}{9b79f9b7e7ef34f80a854bed143b1a8f}
+      \strng{bibnamehash}{9b79f9b7e7ef34f80a854bed143b1a8f}
+      \strng{authorbibnamehash}{9b79f9b7e7ef34f80a854bed143b1a8f}
+      \strng{authornamehash}{9b79f9b7e7ef34f80a854bed143b1a8f}
+      \strng{authorfullhash}{9b79f9b7e7ef34f80a854bed143b1a8f}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Journal of Agricultural Economics}
+      \field{month}{5}
+      \field{number}{2}
+      \field{title}{A Dynamic Model of Oligopoly in the Coffee Export Market}
+      \field{volume}{75}
+      \field{year}{1993}
+      \field{pages}{448\bibrangedash 457}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.2307/1242929
+      \endverb
+    \endentry
+    \entry{krivonos2004impact}{report}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=665fb55ea2837f207f1d34951ff6747c}{%
+           family={Krivonos},
+           familyi={K\bibinitperiod},
+           given={Ekaterina},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {World Bank}%
+      }
+      \strng{namehash}{665fb55ea2837f207f1d34951ff6747c}
+      \strng{fullhash}{665fb55ea2837f207f1d34951ff6747c}
+      \strng{bibnamehash}{665fb55ea2837f207f1d34951ff6747c}
+      \strng{authorbibnamehash}{665fb55ea2837f207f1d34951ff6747c}
+      \strng{authornamehash}{665fb55ea2837f207f1d34951ff6747c}
+      \strng{authorfullhash}{665fb55ea2837f207f1d34951ff6747c}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{3358}
+      \field{title}{The impact of coffee market reforms on producer prices and price transmission}
+      \field{type}{Policy Research Working Paper}
+      \field{year}{2004}
+      \verb{urlraw}
+      \verb http://econ.worldbank.org
+      \endverb
+      \verb{url}
+      \verb http://econ.worldbank.org
+      \endverb
+    \endentry
+    \entry{isimip2024}{misc}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=00e3dc6ab5c15a29a935423f43e8e957}{%
+           family={Lange},
+           familyi={L\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=07a1fa9ba0194302ab88dd038a7b2ce8}{%
+           family={Quesada-Chacón},
+           familyi={Q\bibinithyphendelim C\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=860b0f8fb1d3d633178388e11bf1b3cc}{%
+           family={Mengel},
+           familyi={M\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6383c9e3003936d822405e4a373d3257}{%
+           family={Treu},
+           familyi={T\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c079d22bb0d8ce26ea91d9885073d05b}{%
+           family={Büchner},
+           familyi={B\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Inter-Sectoral Impact Model Intercomparison Project}%
+      }
+      \strng{namehash}{5315fb7a6eae9d91c073c6f70e13646c}
+      \strng{fullhash}{328a1c4b49bb803c94d9251fcfba1640}
+      \strng{bibnamehash}{328a1c4b49bb803c94d9251fcfba1640}
+      \strng{authorbibnamehash}{328a1c4b49bb803c94d9251fcfba1640}
+      \strng{authornamehash}{5315fb7a6eae9d91c073c6f70e13646c}
+      \strng{authorfullhash}{328a1c4b49bb803c94d9251fcfba1640}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Dataset version 1.3}
+      \field{title}{{ISIMIP3a} atmospheric climate input data}
+      \field{version}{1.3}
+      \field{year}{2025}
+      \verb{doi}
+      \verb 10.48364/ISIMIP.982724.3
+      \endverb
+      \verb{urlraw}
+      \verb https://data.isimip.org/datasets/982724/
+      \endverb
+      \verb{url}
+      \verb https://data.isimip.org/datasets/982724/
+      \endverb
+    \endentry
+    \entry{maurice2011unraveling}{report}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=cd5cf31bbfd4de7fc954beb7fe34a830}{%
+           family={Maurice},
+           familyi={M\bibinitperiod},
+           given={N.\bibnamedelimi E.},
+           giveni={N\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=99a74e7d8216e010b1095c973bea3bae}{%
+           family={Davis},
+           familyi={D\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {UNCTAD Special Unit on Commodities}%
+      }
+      \strng{namehash}{404b799edad9f99e64364e44c9cdeb0a}
+      \strng{fullhash}{404b799edad9f99e64364e44c9cdeb0a}
+      \strng{bibnamehash}{404b799edad9f99e64364e44c9cdeb0a}
+      \strng{authorbibnamehash}{404b799edad9f99e64364e44c9cdeb0a}
+      \strng{authornamehash}{404b799edad9f99e64364e44c9cdeb0a}
+      \strng{authorfullhash}{404b799edad9f99e64364e44c9cdeb0a}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{1}
+      \field{title}{Unravelling the underlying causes of price volatility in world coffee and cocoa commodity markets}
+      \field{type}{Discussion paper}
+      \field{year}{2011}
+      \verb{urlraw}
+      \verb https://ideas.repec.org/p/pra/mprapa/43813.html
+      \endverb
+      \verb{url}
+      \verb https://ideas.repec.org/p/pra/mprapa/43813.html
+      \endverb
+    \endentry
+    \entry{mcmaster1997}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=19d7dd594552881c7992f0ec15373949}{%
+           family={McMaster},
+           familyi={M\bibinitperiod},
+           given={Gregory\bibnamedelima S.},
+           giveni={G\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=08a002d2f097c0cb4b7d3d0372247504}{%
+           family={Wilhelm},
+           familyi={W\bibinitperiod},
+           given={W.\bibnamedelimi W.},
+           giveni={W\bibinitperiod\bibinitdelim W\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{aa5f14ba2d421e24835b746599df1fd6}
+      \strng{fullhash}{aa5f14ba2d421e24835b746599df1fd6}
+      \strng{bibnamehash}{aa5f14ba2d421e24835b746599df1fd6}
+      \strng{authorbibnamehash}{aa5f14ba2d421e24835b746599df1fd6}
+      \strng{authornamehash}{aa5f14ba2d421e24835b746599df1fd6}
+      \strng{authorfullhash}{aa5f14ba2d421e24835b746599df1fd6}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Agricultural and Forest Meteorology}
+      \field{number}{4}
+      \field{title}{Growing degree-days: One equation, two interpretations}
+      \field{volume}{87}
+      \field{year}{1997}
+      \true{nocite}
+      \field{pages}{291\bibrangedash 300}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1016/S0168-1923(97)00027-0
+      \endverb
+    \endentry
+    \entry{mehta2008responding}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=80984aa798ad78fbdf6d957d2fa8fb0e}{%
+           family={Mehta},
+           familyi={M\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=642435fb4c54cee554c2397fbbf69e94}{%
+           family={Chavas},
+           familyi={C\bibinitperiod},
+           given={J.-P.},
+           giveni={J\bibinithyphendelim P\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{04c21ca66e723fd8980b8c584bc9aec7}
+      \strng{fullhash}{04c21ca66e723fd8980b8c584bc9aec7}
+      \strng{bibnamehash}{04c21ca66e723fd8980b8c584bc9aec7}
+      \strng{authorbibnamehash}{04c21ca66e723fd8980b8c584bc9aec7}
+      \strng{authornamehash}{04c21ca66e723fd8980b8c584bc9aec7}
+      \strng{authorfullhash}{04c21ca66e723fd8980b8c584bc9aec7}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Development Economics}
+      \field{number}{1}
+      \field{title}{Responding to the coffee crisis: What can we learn from price dynamics?}
+      \field{volume}{85}
+      \field{year}{2008}
+      \field{pages}{282\bibrangedash 311}
+      \range{pages}{30}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.jdeveco.2006.07.006
+      \endverb
+    \endentry
+    \entry{MendelsohnNordhausShaw1994}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=b36cc712b508b23b77b708fa8bbf458e}{%
+           family={Mendelsohn},
+           familyi={M\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=133dca9565968911af482f4a262cc74f}{%
+           family={Nordhaus},
+           familyi={N\bibinitperiod},
+           given={W.\bibnamedelimi D.},
+           giveni={W\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3b80aad1a6284de341041dec9d0cf21a}{%
+           family={Shaw},
+           familyi={S\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{62ef83f181395f84d365c67e20f4b654}
+      \strng{fullhash}{17b9a42ef1023008355b131f4e7b2168}
+      \strng{bibnamehash}{17b9a42ef1023008355b131f4e7b2168}
+      \strng{authorbibnamehash}{17b9a42ef1023008355b131f4e7b2168}
+      \strng{authornamehash}{62ef83f181395f84d365c67e20f4b654}
+      \strng{authorfullhash}{17b9a42ef1023008355b131f4e7b2168}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Economic Review}
+      \field{number}{4}
+      \field{title}{The impact of global warming on agriculture: A Ricardian analysis}
+      \field{volume}{84}
+      \field{year}{1994}
+      \true{nocite}
+      \field{pages}{753\bibrangedash 771}
+      \range{pages}{19}
+      \verb{urlraw}
+      \verb https://www.jstor.org/stable/2118029
+      \endverb
+      \verb{url}
+      \verb https://www.jstor.org/stable/2118029
+      \endverb
+    \endentry
+    \entry{MideksaKallbekken2010}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=8725627260870d7ac06a7eae8603d195}{%
+           family={Mideksa},
+           familyi={M\bibinitperiod},
+           given={T.\bibnamedelimi K.},
+           giveni={T\bibinitperiod\bibinitdelim K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8848fb6771da86bfa24f26b2e6c1b202}{%
+           family={Kallbekken},
+           familyi={K\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a9041f77eb06fc569014f4534a890d86}
+      \strng{fullhash}{a9041f77eb06fc569014f4534a890d86}
+      \strng{bibnamehash}{a9041f77eb06fc569014f4534a890d86}
+      \strng{authorbibnamehash}{a9041f77eb06fc569014f4534a890d86}
+      \strng{authornamehash}{a9041f77eb06fc569014f4534a890d86}
+      \strng{authorfullhash}{a9041f77eb06fc569014f4534a890d86}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Energy Policy}
+      \field{number}{7}
+      \field{title}{The impact of climate change on the electricity market: A review}
+      \field{volume}{38}
+      \field{year}{2010}
+      \field{pages}{3579\bibrangedash 3585}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1016/j.enpol.2010.02.035
+      \endverb
+    \endentry
+    \entry{mundlak2001production}{inbook}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d3ad9680b97dfd697a0d4f7d702bbf14}{%
+           family={Mundlak},
+           familyi={M\bibinitperiod},
+           given={Yair},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=9421847fa9fb46a2aab1fd1bc666563d}{%
+           family={Gardner},
+           familyi={G\bibinitperiod},
+           given={Bruce\bibnamedelima L.},
+           giveni={B\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=86382d41999dc7283a3975b7912263e1}{%
+           family={Rausser},
+           familyi={R\bibinitperiod},
+           given={Gordon\bibnamedelima C.},
+           giveni={G\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \list{location}{2}{%
+        {Amsterdam, London,}%
+        {New York}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier Science}%
+      }
+      \strng{namehash}{d3ad9680b97dfd697a0d4f7d702bbf14}
+      \strng{fullhash}{d3ad9680b97dfd697a0d4f7d702bbf14}
+      \strng{bibnamehash}{d3ad9680b97dfd697a0d4f7d702bbf14}
+      \strng{authorbibnamehash}{d3ad9680b97dfd697a0d4f7d702bbf14}
+      \strng{authornamehash}{d3ad9680b97dfd697a0d4f7d702bbf14}
+      \strng{authorfullhash}{d3ad9680b97dfd697a0d4f7d702bbf14}
+      \strng{editorbibnamehash}{28f21a0de996890297d059bc5603ca1a}
+      \strng{editornamehash}{28f21a0de996890297d059bc5603ca1a}
+      \strng{editorfullhash}{28f21a0de996890297d059bc5603ca1a}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Handbook of Agricultural Economics}
+      \field{title}{Production and Supply}
+      \field{volume}{1A}
+      \field{year}{2001}
+      \field{pages}{3\bibrangedash 85}
+      \range{pages}{83}
+    \endentry
+    \entry{nakamura2010accounting}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=31f26335c74ad2cd32daedefb327617b}{%
+           family={Nakamura},
+           familyi={N\bibinitperiod},
+           given={E.},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bce86fd38675f76ef25f7e4f57c93d24}{%
+           family={Zerom},
+           familyi={Z\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{5cb7efc7344b42a0d70c64eac04e1856}
+      \strng{fullhash}{5cb7efc7344b42a0d70c64eac04e1856}
+      \strng{bibnamehash}{5cb7efc7344b42a0d70c64eac04e1856}
+      \strng{authorbibnamehash}{5cb7efc7344b42a0d70c64eac04e1856}
+      \strng{authornamehash}{5cb7efc7344b42a0d70c64eac04e1856}
+      \strng{authorfullhash}{5cb7efc7344b42a0d70c64eac04e1856}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Review of Economic Studies}
+      \field{number}{3}
+      \field{title}{Accounting for incomplete pass-through}
+      \field{volume}{77}
+      \field{year}{2010}
+      \true{nocite}
+      \field{pages}{1192\bibrangedash 1230}
+      \range{pages}{39}
+      \verb{doi}
+      \verb https://doi.org/10.1111/j.1467-937X.2009.589.x
+      \endverb
+    \endentry
+    \entry{prebisch1959}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d1ee40b9a807b0a074b023cee444354a}{%
+           family={Prebisch},
+           familyi={P\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{d1ee40b9a807b0a074b023cee444354a}
+      \strng{fullhash}{d1ee40b9a807b0a074b023cee444354a}
+      \strng{bibnamehash}{d1ee40b9a807b0a074b023cee444354a}
+      \strng{authorbibnamehash}{d1ee40b9a807b0a074b023cee444354a}
+      \strng{authornamehash}{d1ee40b9a807b0a074b023cee444354a}
+      \strng{authorfullhash}{d1ee40b9a807b0a074b023cee444354a}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Economic Review}
+      \field{title}{International trade and payments in an era of coexistence: Commercial policy in the underdeveloped countries}
+      \field{volume}{49}
+      \field{year}{1959}
+      \field{pages}{251\bibrangedash 273}
+      \range{pages}{23}
+      \verb{doi}
+      \verb https://www.jstor.org/stable/1816120
+      \endverb
+    \endentry
+    \entry{roberts2013}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=09059ba9a51355295d217ab970a6fe70}{%
+           family={Roberts},
+           familyi={R\bibinitperiod},
+           given={Michael\bibnamedelima J.},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=01758524b2f1fd8df078ff9dda77f16e}{%
+           family={Schlenker},
+           familyi={S\bibinitperiod},
+           given={Wolfram},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{1e3c0fe86d3752eca5adde68730f4f43}
+      \strng{fullhash}{1e3c0fe86d3752eca5adde68730f4f43}
+      \strng{bibnamehash}{1e3c0fe86d3752eca5adde68730f4f43}
+      \strng{authorbibnamehash}{1e3c0fe86d3752eca5adde68730f4f43}
+      \strng{authornamehash}{1e3c0fe86d3752eca5adde68730f4f43}
+      \strng{authorfullhash}{1e3c0fe86d3752eca5adde68730f4f43}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Economic Review}
+      \field{number}{6}
+      \field{title}{Identifying Supply and Demand Elasticities of Agricultural Commodities: Implications for the US Ethanol Mandate}
+      \field{volume}{103}
+      \field{year}{2013}
+      \field{pages}{2265\bibrangedash 2295}
+      \range{pages}{31}
+      \verb{doi}
+      \verb 10.1257/aer.103.6.2265
+      \endverb
+    \endentry
+    \entry{schlenker2009nonlinear}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=4476897291fe821e20e4d9b88454b32b}{%
+           family={Schlenker},
+           familyi={S\bibinitperiod},
+           given={W.},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5891696d6383fb2567019d795c8ab542}{%
+           family={Roberts},
+           familyi={R\bibinitperiod},
+           given={M.\bibnamedelimi J.},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{4e2f7c28e8cc90894ad49af9d5f6cc7e}
+      \strng{fullhash}{4e2f7c28e8cc90894ad49af9d5f6cc7e}
+      \strng{bibnamehash}{4e2f7c28e8cc90894ad49af9d5f6cc7e}
+      \strng{authorbibnamehash}{4e2f7c28e8cc90894ad49af9d5f6cc7e}
+      \strng{authornamehash}{4e2f7c28e8cc90894ad49af9d5f6cc7e}
+      \strng{authorfullhash}{4e2f7c28e8cc90894ad49af9d5f6cc7e}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Proceedings of the National Academy of Sciences}
+      \field{number}{37}
+      \field{title}{Nonlinear temperature effects indicate severe damages to U.S. crop yields under climate change}
+      \field{volume}{106}
+      \field{year}{2009}
+      \field{pages}{15594\bibrangedash 15598}
+      \range{pages}{5}
+      \verb{doi}
+      \verb https://doi.org/10.1073/pnas.0906865106
+      \endverb
+    \endentry
+    \entry{singer1950}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=3b2d0b53be973411752a4dd1d5eca177}{%
+           family={Singer},
+           familyi={S\bibinitperiod},
+           given={H.\bibnamedelimi W.},
+           giveni={H\bibinitperiod\bibinitdelim W\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {American Economic Association}%
+      }
+      \strng{namehash}{3b2d0b53be973411752a4dd1d5eca177}
+      \strng{fullhash}{3b2d0b53be973411752a4dd1d5eca177}
+      \strng{bibnamehash}{3b2d0b53be973411752a4dd1d5eca177}
+      \strng{authorbibnamehash}{3b2d0b53be973411752a4dd1d5eca177}
+      \strng{authornamehash}{3b2d0b53be973411752a4dd1d5eca177}
+      \strng{authorfullhash}{3b2d0b53be973411752a4dd1d5eca177}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The American Economic Review}
+      \field{number}{2}
+      \field{title}{The Distribution of Gains between Investing and Borrowing Countries}
+      \field{volume}{40}
+      \field{year}{1950}
+      \field{pages}{473\bibrangedash 485}
+      \range{pages}{13}
+      \verb{urlraw}
+      \verb https://www.jstor.org/stable/1818065
+      \endverb
+      \verb{url}
+      \verb https://www.jstor.org/stable/1818065
+      \endverb
+    \endentry
+    \entry{slade1995empirical}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=61d0f4e65bb105ffa7e3c4ee2ad317e9}{%
+           family={Slade},
+           familyi={S\bibinitperiod},
+           given={M.\bibnamedelimi E.},
+           giveni={M\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{61d0f4e65bb105ffa7e3c4ee2ad317e9}
+      \strng{fullhash}{61d0f4e65bb105ffa7e3c4ee2ad317e9}
+      \strng{bibnamehash}{61d0f4e65bb105ffa7e3c4ee2ad317e9}
+      \strng{authorbibnamehash}{61d0f4e65bb105ffa7e3c4ee2ad317e9}
+      \strng{authornamehash}{61d0f4e65bb105ffa7e3c4ee2ad317e9}
+      \strng{authorfullhash}{61d0f4e65bb105ffa7e3c4ee2ad317e9}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Canadian Journal of Economics / Revue canadienne d'Economique}
+      \field{number}{2}
+      \field{title}{Empirical games: The oligopoly case}
+      \field{volume}{28}
+      \field{year}{1995}
+      \field{pages}{368\bibrangedash 402}
+      \range{pages}{35}
+      \verb{doi}
+      \verb https://doi.org/10.2307/136036
+      \endverb
+    \endentry
+    \entry{talbot2004grounds}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=664f8a4b7ab8c6efdf34335d2205379f}{%
+           family={Talbot},
+           familyi={T\bibinitperiod},
+           given={John\bibnamedelima M.},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Lanham, Boulder, New York, Toronto, Oxford}%
+      }
+      \list{publisher}{1}{%
+        {Rowman \& Littlefield Publishers, Inc.}%
+      }
+      \strng{namehash}{664f8a4b7ab8c6efdf34335d2205379f}
+      \strng{fullhash}{664f8a4b7ab8c6efdf34335d2205379f}
+      \strng{bibnamehash}{664f8a4b7ab8c6efdf34335d2205379f}
+      \strng{authorbibnamehash}{664f8a4b7ab8c6efdf34335d2205379f}
+      \strng{authornamehash}{664f8a4b7ab8c6efdf34335d2205379f}
+      \strng{authorfullhash}{664f8a4b7ab8c6efdf34335d2205379f}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-0-7425-2628-0}
+      \field{title}{Grounds for Agreement: The Political Economy of the Coffee Commodity Chain}
+      \field{year}{2004}
+    \endentry
+    \entry{UnionEuropea2023}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=6df64dab21ea48c1eb2bfb0352897155}{%
+           family={{Unión Europea}},
+           familyi={U\bibinitperiod}}}%
+      }
+      \strng{namehash}{6df64dab21ea48c1eb2bfb0352897155}
+      \strng{fullhash}{6df64dab21ea48c1eb2bfb0352897155}
+      \strng{bibnamehash}{6df64dab21ea48c1eb2bfb0352897155}
+      \strng{authorbibnamehash}{6df64dab21ea48c1eb2bfb0352897155}
+      \strng{authornamehash}{6df64dab21ea48c1eb2bfb0352897155}
+      \strng{authorfullhash}{6df64dab21ea48c1eb2bfb0352897155}
+      \field{sortinit}{U}
+      \field{sortinithash}{6901a00e45705986ee5e7ca9fd39adca}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://eur-lex.europa.eu/eli/reg/2023/1115/oj}}
+      \field{note}{Diario Oficial de la Unión Europea, L 150, 206-247}
+      \field{title}{Reglamento (UE) 2023/1115 del Parlamento Europeo y del Consejo, de 31 de mayo de 2023}
+      \field{year}{2023}
+      \true{nocite}
+    \endentry
+    \entry{Zhang2022}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=25bbf4047d900f3760c65b01ee899dba}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Wei},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2ee5899003dbeec1d24ef8bd372b14d1}{%
+           family={Saghaian},
+           familyi={S\bibinitperiod},
+           given={Sayed},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a3df488eb434e4eefcbaa7c9a62c89c5}{%
+           family={Reed},
+           familyi={R\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a88dfc5c55489606792d411cce65410b}
+      \strng{fullhash}{ffceb3400a9e54378287e67510cc3a99}
+      \strng{bibnamehash}{ffceb3400a9e54378287e67510cc3a99}
+      \strng{authorbibnamehash}{ffceb3400a9e54378287e67510cc3a99}
+      \strng{authornamehash}{a88dfc5c55489606792d411cce65410b}
+      \strng{authorfullhash}{ffceb3400a9e54378287e67510cc3a99}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Sustainability}
+      \field{number}{22}
+      \field{title}{Influences of Power Structure Evolution on Coffee Commodity Markets: Insights from Price Discovery and Volatility Spillovers}
+      \field{volume}{14}
+      \field{year}{2022}
+      \field{pages}{15268}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/su142215268
+      \endverb
+    \endentry
+  \enddatalist
+  \datalist[entry]{apa/global//global/global}
+    \entry{angrist2009mostly}{book}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=ee326f34eea24952d04c41cef1771bfc}{%
+           family={Angrist},
+           familyi={A\bibinitperiod},
+           given={Joshua\bibnamedelima D.},
+           giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a371aa94a6e25bcbee7d55da6003fbe6}{%
+           family={Pischke},
+           familyi={P\bibinitperiod},
+           given={Jörn-Steffen},
+           giveni={J\bibinithyphendelim S\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Princeton, NJ}%
+      }
+      \list{publisher}{1}{%
+        {Princeton University Press}%
+      }
+      \strng{namehash}{3a5c15818fc709fb8d1d7a4e9b97e05e}
+      \strng{fullhash}{3a5c15818fc709fb8d1d7a4e9b97e05e}
+      \strng{bibnamehash}{3a5c15818fc709fb8d1d7a4e9b97e05e}
+      \strng{authorbibnamehash}{3a5c15818fc709fb8d1d7a4e9b97e05e}
+      \strng{authornamehash}{3a5c15818fc709fb8d1d7a4e9b97e05e}
+      \strng{authorfullhash}{3a5c15818fc709fb8d1d7a4e9b97e05e}
+      \field{sortinit}{A}
+      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{edition}{1st}
+      \field{isbn}{9780691120355}
+      \field{title}{Mostly harmless econometrics: An empiricist's companion}
+      \field{year}{2009}
+    \endentry
+    \entry{bates1997open}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=f5fcf199ed348efd86eca401a4663e52}{%
+           family={Bates},
+           familyi={B\bibinitperiod},
+           given={Robert\bibnamedelima H.},
+           giveni={R\bibinitperiod\bibinitdelim H\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Princeton, NJ}%
+      }
+      \list{publisher}{1}{%
+        {Princeton University Press}%
+      }
+      \strng{namehash}{f5fcf199ed348efd86eca401a4663e52}
+      \strng{fullhash}{f5fcf199ed348efd86eca401a4663e52}
+      \strng{bibnamehash}{f5fcf199ed348efd86eca401a4663e52}
+      \strng{authorbibnamehash}{f5fcf199ed348efd86eca401a4663e52}
+      \strng{authornamehash}{f5fcf199ed348efd86eca401a4663e52}
+      \strng{authorfullhash}{f5fcf199ed348efd86eca401a4663e52}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9780691005195}
+      \field{title}{Open-Economy Politics: The Political Economy of the World Coffee Trade}
+      \field{year}{1997}
+      \verb{urlraw}
+      \verb https://press.princeton.edu/books/paperback/9780691005195/open-economy-politics
+      \endverb
+      \verb{url}
+      \verb https://press.princeton.edu/books/paperback/9780691005195/open-economy-politics
+      \endverb
+    \endentry
+    \entry{bettendorf2000incomplete}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=5b176f365027ee8a4c93350bbb0ee9be}{%
+           family={Bettendorf},
+           familyi={B\bibinitperiod},
+           given={L.},
+           giveni={L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bb0d81f0d40b95a91caa08337944768c}{%
+           family={Verboven},
+           familyi={V\bibinitperiod},
+           given={F.},
+           giveni={F\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{869613d98ac8a561e59e58e97dc45148}
+      \strng{fullhash}{869613d98ac8a561e59e58e97dc45148}
+      \strng{bibnamehash}{869613d98ac8a561e59e58e97dc45148}
+      \strng{authorbibnamehash}{869613d98ac8a561e59e58e97dc45148}
+      \strng{authornamehash}{869613d98ac8a561e59e58e97dc45148}
+      \strng{authorfullhash}{869613d98ac8a561e59e58e97dc45148}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{European Review of Agricultural Economics}
+      \field{number}{1}
+      \field{title}{Incomplete transmission of coffee bean prices: Evidence from the Netherlands}
+      \field{volume}{27}
+      \field{year}{2000}
+      \field{pages}{1\bibrangedash 16}
+      \range{pages}{16}
+      \verb{doi}
+      \verb 10.1093/erae/27.1.1
+      \endverb
+    \endentry
+    \entry{bilal2024macroeconomic}{report}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=229bf95376e215257a9510090546be88}{%
+           family={Bilal},
+           familyi={B\bibinitperiod},
+           given={Adrien},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a06cbc1c351bf734532b6e2ed87a694c}{%
+           family={Känzig},
+           familyi={K\bibinitperiod},
+           given={Diego\bibnamedelima R.},
+           giveni={D\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {National Bureau of Economic Research}%
+      }
+      \strng{namehash}{999c5806c45c0b3fcd8a60a19ad8445a}
+      \strng{fullhash}{999c5806c45c0b3fcd8a60a19ad8445a}
+      \strng{bibnamehash}{999c5806c45c0b3fcd8a60a19ad8445a}
+      \strng{authorbibnamehash}{999c5806c45c0b3fcd8a60a19ad8445a}
+      \strng{authornamehash}{999c5806c45c0b3fcd8a60a19ad8445a}
+      \strng{authorfullhash}{999c5806c45c0b3fcd8a60a19ad8445a}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{32450}
+      \field{title}{The macroeconomic impact of climate change: Global vs. local temperature}
+      \field{type}{Working paper}
+      \field{year}{2024}
+      \verb{urlraw}
+      \verb https://www.nber.org/papers/w32450
+      \endverb
+      \verb{url}
+      \verb https://www.nber.org/papers/w32450
+      \endverb
+    \endentry
+    \entry{bresnahan1989empirical}{inbook}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=a45e952216a4661b3c133a6742ab669a}{%
+           family={Bresnahan},
+           familyi={B\bibinitperiod},
+           given={Timothy\bibnamedelima F.},
+           giveni={T\bibinitperiod\bibinitdelim F\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=1ade2ea4a733cb78a8c7177ac5501bd5}{%
+           family={Schmalensee},
+           familyi={S\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod}}}%
+        {{hash=d11ce2633a7c18b762fa66cba5f8b651}{%
+           family={Willig},
+           familyi={W\bibinitperiod},
+           given={R.\bibnamedelimi D.},
+           giveni={R\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Amsterdam, The Netherlands}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier Science Publishers}%
+      }
+      \strng{namehash}{a45e952216a4661b3c133a6742ab669a}
+      \strng{fullhash}{a45e952216a4661b3c133a6742ab669a}
+      \strng{bibnamehash}{a45e952216a4661b3c133a6742ab669a}
+      \strng{authorbibnamehash}{a45e952216a4661b3c133a6742ab669a}
+      \strng{authornamehash}{a45e952216a4661b3c133a6742ab669a}
+      \strng{authorfullhash}{a45e952216a4661b3c133a6742ab669a}
+      \strng{editorbibnamehash}{476e52ac61fb16c7cc76be4c6ec32feb}
+      \strng{editornamehash}{476e52ac61fb16c7cc76be4c6ec32feb}
+      \strng{editorfullhash}{476e52ac61fb16c7cc76be4c6ec32feb}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Handbook of industrial organization}
+      \field{chapter}{17}
+      \field{title}{Empirical studies of industries with market power}
+      \field{volume}{2}
+      \field{year}{1989}
+      \field{pages}{1011\bibrangedash 1057}
+      \range{pages}{47}
+    \endentry
+    \entry{burke2016adaptation}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=31d4f92abc49e335bd0880284dee11a2}{%
+           family={Burke},
+           familyi={B\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c01c32d0554496719487be2926547436}{%
+           family={Emerick},
+           familyi={E\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{aaae64f24959ee947f1a8a839be6e35c}
+      \strng{fullhash}{aaae64f24959ee947f1a8a839be6e35c}
+      \strng{bibnamehash}{aaae64f24959ee947f1a8a839be6e35c}
+      \strng{authorbibnamehash}{aaae64f24959ee947f1a8a839be6e35c}
+      \strng{authornamehash}{aaae64f24959ee947f1a8a839be6e35c}
+      \strng{authorfullhash}{aaae64f24959ee947f1a8a839be6e35c}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Economic Journal: Economic Policy}
+      \field{number}{3}
+      \field{title}{Adaptation to climate change: Evidence from US agriculture}
+      \field{volume}{8}
+      \field{year}{2016}
+      \field{pages}{106\bibrangedash 140}
+      \range{pages}{35}
+      \verb{doi}
+      \verb 10.1257/pol.20130025
+      \endverb
+    \endentry
+    \entry{chen2021response}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=ed4e688b3a13c815213f1ff2acb5d92b}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3094d60c4feaff4ab1411520529c8d64}{%
+           family={Gong},
+           familyi={G\bibinitperiod},
+           given={B.},
+           giveni={B\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{69369682ebc1d786859599f3da90f7f5}
+      \strng{fullhash}{69369682ebc1d786859599f3da90f7f5}
+      \strng{bibnamehash}{69369682ebc1d786859599f3da90f7f5}
+      \strng{authorbibnamehash}{69369682ebc1d786859599f3da90f7f5}
+      \strng{authornamehash}{69369682ebc1d786859599f3da90f7f5}
+      \strng{authorfullhash}{69369682ebc1d786859599f3da90f7f5}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Development Economics}
+      \field{title}{Response and adaptation of agriculture to climate change: Evidence from China}
+      \field{volume}{148}
+      \field{year}{2021}
+      \field{pages}{102557}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.jdeveco.2020.102557
+      \endverb
+    \endentry
+    \entry{covindassamy2017sugar}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=bf4a361f85a151040f55da726d3cbedf}{%
+           family={Covindassamy},
+           familyi={C\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=99dc0debe98b595e63be0a450c048a2c}{%
+           family={Robe},
+           familyi={R\bibinitperiod},
+           given={M.\bibnamedelimi A.},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6ae26d2d436649096e1bb4b3a8e1963e}{%
+           family={Wallen},
+           familyi={W\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{407b526575e362e77dfa89c9ce4ea70e}
+      \strng{fullhash}{1fd615fa5189774ca6e9785ab6073705}
+      \strng{bibnamehash}{1fd615fa5189774ca6e9785ab6073705}
+      \strng{authorbibnamehash}{1fd615fa5189774ca6e9785ab6073705}
+      \strng{authornamehash}{407b526575e362e77dfa89c9ce4ea70e}
+      \strng{authorfullhash}{1fd615fa5189774ca6e9785ab6073705}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Futures Markets}
+      \field{number}{8}
+      \field{title}{Sugar with your coffee? Fundamentals, financials, and softs price uncertainty}
+      \field{volume}{37}
+      \field{year}{2017}
+      \field{pages}{744\bibrangedash 765}
+      \range{pages}{22}
+      \verb{doi}
+      \verb http://dx.doi.org/10.18235/0000865
+      \endverb
+    \endentry
+    \entry{silveira2017reaction}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=085fbe3d4df6e9dc0e12a2f67fdc8b00}{%
+           family={Silveira},
+           familyi={S\bibinitperiod},
+           given={R.\bibnamedelimi L.\bibnamedelimi F.},
+           giveni={R\bibinitperiod\bibinitdelim L\bibinitperiod\bibinitdelim F\bibinitperiod},
+           givenun=0,
+           prefix={da},
+           prefixi={d\bibinitperiod}}}%
+        {{un=0,uniquepart=base,hash=e6fc8880206fda21de39b90615e0e584}{%
+           family={Mattos},
+           familyi={M\bibinitperiod},
+           given={F.\bibnamedelimi L.},
+           giveni={F\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c659287d73b8eebeb4e7996a02d09e5e}{%
+           family={Saes},
+           familyi={S\bibinitperiod},
+           given={M.\bibnamedelimi S.\bibnamedelimi M.},
+           giveni={M\bibinitperiod\bibinitdelim S\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{677a14a4381e75fa19b0a5e788b7b1bd}
+      \strng{fullhash}{0daf55922423ef0cce916afa89095a32}
+      \strng{bibnamehash}{0daf55922423ef0cce916afa89095a32}
+      \strng{authorbibnamehash}{0daf55922423ef0cce916afa89095a32}
+      \strng{authornamehash}{677a14a4381e75fa19b0a5e788b7b1bd}
+      \strng{authorfullhash}{0daf55922423ef0cce916afa89095a32}
+      \field{sortinit}{d}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Emerging Markets Finance \& Trade}
+      \field{number}{10}
+      \field{title}{The reaction of coffee futures price volatility to crop reports}
+      \field{volume}{53}
+      \field{year}{2017}
+      \field{pages}{2361\bibrangedash 2374}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1080/1540496X.2016.1205976
+      \endverb
+    \endentry
+    \entry{deaton1992behaviour}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=f35d0857ca3be48507d418d575f03fe0}{%
+           family={Deaton},
+           familyi={D\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e91c46ea0811c06b1f7b4809734177c1}{%
+           family={Laroque},
+           familyi={L\bibinitperiod},
+           given={G.},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{f20a4250e0d04b57bf4f6be4d5892fed}
+      \strng{fullhash}{f20a4250e0d04b57bf4f6be4d5892fed}
+      \strng{bibnamehash}{f20a4250e0d04b57bf4f6be4d5892fed}
+      \strng{authorbibnamehash}{f20a4250e0d04b57bf4f6be4d5892fed}
+      \strng{authornamehash}{f20a4250e0d04b57bf4f6be4d5892fed}
+      \strng{authorfullhash}{f20a4250e0d04b57bf4f6be4d5892fed}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Review of Economic Studies}
+      \field{number}{1}
+      \field{title}{On the behaviour of commodity prices}
+      \field{volume}{59}
+      \field{year}{1992}
+      \field{pages}{1\bibrangedash 23}
+      \range{pages}{23}
+      \verb{doi}
+      \verb https://ideas.repec.org/p/nbr/nberwo/3439.html
+      \endverb
+    \endentry
+    \entry{dell2012temperature}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=549ac2b64b0f261f7f8a4c241d4b3ea4}{%
+           family={Dell},
+           familyi={D\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=13e47bc056213be4f05bcdc677322316}{%
+           family={Jones},
+           familyi={J\bibinitperiod},
+           given={B.\bibnamedelimi F.},
+           giveni={B\bibinitperiod\bibinitdelim F\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=813e174251e06d902738bf0d577328fc}{%
+           family={Olken},
+           familyi={O\bibinitperiod},
+           given={B.\bibnamedelimi A.},
+           giveni={B\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{4102b93c10ab9a4861253b3e119d67b3}
+      \strng{fullhash}{04bbcad80854c62302e58fcbb06c107f}
+      \strng{bibnamehash}{04bbcad80854c62302e58fcbb06c107f}
+      \strng{authorbibnamehash}{04bbcad80854c62302e58fcbb06c107f}
+      \strng{authornamehash}{4102b93c10ab9a4861253b3e119d67b3}
+      \strng{authorfullhash}{04bbcad80854c62302e58fcbb06c107f}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Economic Journal: Macroeconomics}
+      \field{number}{3}
+      \field{title}{Temperature shocks and economic growth: Evidence from the last half century}
+      \field{volume}{4}
+      \field{year}{2012}
+      \field{pages}{66\bibrangedash 95}
+      \range{pages}{30}
+      \verb{doi}
+      \verb 10.1257/mac.4.3.66
+      \endverb
+    \endentry
+    \entry{DeschenesGreenstone2007}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=b8c7569dec1c0f776485ad5c01f70645}{%
+           family={Deschênes},
+           familyi={D\bibinitperiod},
+           given={O.},
+           giveni={O\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ca83879c159db538eff7be937746977a}{%
+           family={Greenstone},
+           familyi={G\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{d9bd36c299c2cd75ce79b1b5bc0f7e72}
+      \strng{fullhash}{d9bd36c299c2cd75ce79b1b5bc0f7e72}
+      \strng{bibnamehash}{d9bd36c299c2cd75ce79b1b5bc0f7e72}
+      \strng{authorbibnamehash}{d9bd36c299c2cd75ce79b1b5bc0f7e72}
+      \strng{authornamehash}{d9bd36c299c2cd75ce79b1b5bc0f7e72}
+      \strng{authorfullhash}{d9bd36c299c2cd75ce79b1b5bc0f7e72}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Economic Review}
+      \field{number}{1}
+      \field{title}{The economic impacts of climate change: Evidence from agricultural output and random fluctuations in weather}
+      \field{volume}{97}
+      \field{year}{2007}
+      \field{pages}{354\bibrangedash 385}
+      \range{pages}{32}
+      \verb{doi}
+      \verb 10.1257/aer.97.1.354
+      \endverb
+    \endentry
+    \entry{Feenstra2015}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=cbd02be690637fa2d45b5dc642e26592}{%
+           family={Feenstra},
+           familyi={F\bibinitperiod},
+           given={R.\bibnamedelimi C.},
+           giveni={R\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2a15584a7d41ff4bf3a8988771897932}{%
+           family={Inklaar},
+           familyi={I\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=ec44e2071e6f275543d276f1bd9c3e06}{%
+           family={Timmer},
+           familyi={T\bibinitperiod},
+           given={M.\bibnamedelimi P.},
+           giveni={M\bibinitperiod\bibinitdelim P\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{227f9f855c7967c28a37eae1d3fbf72c}
+      \strng{fullhash}{9660df3e3aa919b9b9ef408294222fb0}
+      \strng{bibnamehash}{9660df3e3aa919b9b9ef408294222fb0}
+      \strng{authorbibnamehash}{9660df3e3aa919b9b9ef408294222fb0}
+      \strng{authornamehash}{227f9f855c7967c28a37eae1d3fbf72c}
+      \strng{authorfullhash}{9660df3e3aa919b9b9ef408294222fb0}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Economic Review}
+      \field{number}{10}
+      \field{title}{The next generation of the Penn World Table}
+      \field{volume}{105}
+      \field{year}{2015}
+      \field{pages}{3150\bibrangedash 3182}
+      \range{pages}{33}
+      \verb{doi}
+      \verb 10.1257/aer.20130954
+      \endverb
+    \endentry
+    \entry{figari2025climate}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=f07f82db2d7c8a53e1faf894f0b7196f}{%
+           family={Figari},
+           familyi={F\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{f07f82db2d7c8a53e1faf894f0b7196f}
+      \strng{fullhash}{f07f82db2d7c8a53e1faf894f0b7196f}
+      \strng{bibnamehash}{f07f82db2d7c8a53e1faf894f0b7196f}
+      \strng{authorbibnamehash}{f07f82db2d7c8a53e1faf894f0b7196f}
+      \strng{authornamehash}{f07f82db2d7c8a53e1faf894f0b7196f}
+      \strng{authorfullhash}{f07f82db2d7c8a53e1faf894f0b7196f}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Development Economics}
+      \field{title}{Climate change response: Input adjustment in agriculture}
+      \field{volume}{175}
+      \field{year}{2025}
+      \field{pages}{103472}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.jdeveco.2025.103472
+      \endverb
+    \endentry
+    \entry{FisherEtAl2012}{article}{}
+      \name{author}{4}{}{%
+        {{un=0,uniquepart=base,hash=d1a97d0f4291a7008f3bfc96975c5799}{%
+           family={Fisher},
+           familyi={F\bibinitperiod},
+           given={A.\bibnamedelimi C.},
+           giveni={A\bibinitperiod\bibinitdelim C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a31b177a2d014f94e60cbe80bc9affe5}{%
+           family={Hanemann},
+           familyi={H\bibinitperiod},
+           given={W.\bibnamedelimi M.},
+           giveni={W\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5891696d6383fb2567019d795c8ab542}{%
+           family={Roberts},
+           familyi={R\bibinitperiod},
+           given={M.\bibnamedelimi J.},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=4476897291fe821e20e4d9b88454b32b}{%
+           family={Schlenker},
+           familyi={S\bibinitperiod},
+           given={W.},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{e38c3d0eacb10de51cc641c370e39221}
+      \strng{fullhash}{f6ce95968e60ea5b7150e8de674935c1}
+      \strng{bibnamehash}{f6ce95968e60ea5b7150e8de674935c1}
+      \strng{authorbibnamehash}{f6ce95968e60ea5b7150e8de674935c1}
+      \strng{authornamehash}{e38c3d0eacb10de51cc641c370e39221}
+      \strng{authorfullhash}{f6ce95968e60ea5b7150e8de674935c1}
+      \field{sortinit}{F}
+      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Economic Review}
+      \field{number}{7}
+      \field{title}{The economic impacts of climate change: Evidence from agricultural output and random fluctuations in weather: Comment}
+      \field{volume}{102}
+      \field{year}{2012}
+      \field{pages}{3749\bibrangedash 3760}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1257/aer.102.7.3749
+      \endverb
+    \endentry
+    \entry{gilbert2007}{report}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=89f772f51f16555280068dc663c85183}{%
+           family={Gilbert},
+           familyi={G\bibinitperiod},
+           given={Christopher\bibnamedelima L.},
+           giveni={C\bibinitperiod\bibinitdelim L\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{2}{%
+        {GRADE (Group of Research}%
+        {Analysis on Development), Università degli Studi di Trento}%
+      }
+      \list{location}{1}{%
+        {Trento, Italy}%
+      }
+      \strng{namehash}{89f772f51f16555280068dc663c85183}
+      \strng{fullhash}{89f772f51f16555280068dc663c85183}
+      \strng{bibnamehash}{89f772f51f16555280068dc663c85183}
+      \strng{authorbibnamehash}{89f772f51f16555280068dc663c85183}
+      \strng{authornamehash}{89f772f51f16555280068dc663c85183}
+      \strng{authorfullhash}{89f772f51f16555280068dc663c85183}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{25}
+      \field{title}{Have we been mugged? Market power in the world coffee industry}
+      \field{type}{techreport}
+      \field{year}{2007}
+      \verb{urlraw}
+      \verb https://core.ac.uk/display/71301639
+      \endverb
+      \verb{url}
+      \verb https://core.ac.uk/display/71301639
+      \endverb
+    \endentry
+    \entry{gain2024}{report}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=8b95bce06ecb2d37e3da42eca32dfb8a}{%
+           family={{Global Adaptation Initiative}},
+           familyi={G\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {University of Notre Dame}%
+      }
+      \strng{namehash}{8b95bce06ecb2d37e3da42eca32dfb8a}
+      \strng{fullhash}{8b95bce06ecb2d37e3da42eca32dfb8a}
+      \strng{bibnamehash}{8b95bce06ecb2d37e3da42eca32dfb8a}
+      \strng{authorbibnamehash}{8b95bce06ecb2d37e3da42eca32dfb8a}
+      \strng{authornamehash}{8b95bce06ecb2d37e3da42eca32dfb8a}
+      \strng{authorfullhash}{8b95bce06ecb2d37e3da42eca32dfb8a}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{ND-GAIN} country index 2023}
+      \field{type}{techreport}
+      \field{year}{2023}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://gain.nd.edu/our-work/country-index/
+      \endverb
+      \verb{url}
+      \verb https://gain.nd.edu/our-work/country-index/
+      \endverb
+    \endentry
+    \entry{gouel2018nutrition}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=da68b60a0cfbad559581860111c636f0}{%
+           family={Gouel},
+           familyi={G\bibinitperiod},
+           given={Christophe},
+           giveni={C\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=90d0bf3077b988ae70789d59a0111858}{%
+           family={Guimbard},
+           familyi={G\bibinitperiod},
+           given={Houssein},
+           giveni={H\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{7399f7fe3dae66c031092822cfcbf973}
+      \strng{fullhash}{7399f7fe3dae66c031092822cfcbf973}
+      \strng{bibnamehash}{7399f7fe3dae66c031092822cfcbf973}
+      \strng{authorbibnamehash}{7399f7fe3dae66c031092822cfcbf973}
+      \strng{authornamehash}{7399f7fe3dae66c031092822cfcbf973}
+      \strng{authorfullhash}{7399f7fe3dae66c031092822cfcbf973}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Journal of Agricultural Economics}
+      \field{number}{3}
+      \field{title}{Nutrition transition and the structure of global food demand}
+      \field{volume}{100}
+      \field{year}{2018}
+      \field{pages}{1\bibrangedash 21}
+      \range{pages}{21}
+      \verb{doi}
+      \verb 10.1093/ajae/aay030
+      \endverb
+    \endentry
+    \entry{Hamilton2018}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=ed0cabd783cf75498bb682d0e23f8ec9}{%
+           family={Hamilton},
+           familyi={H\bibinitperiod},
+           given={J.\bibnamedelimi D.},
+           giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{ed0cabd783cf75498bb682d0e23f8ec9}
+      \strng{fullhash}{ed0cabd783cf75498bb682d0e23f8ec9}
+      \strng{bibnamehash}{ed0cabd783cf75498bb682d0e23f8ec9}
+      \strng{authorbibnamehash}{ed0cabd783cf75498bb682d0e23f8ec9}
+      \strng{authornamehash}{ed0cabd783cf75498bb682d0e23f8ec9}
+      \strng{authorfullhash}{ed0cabd783cf75498bb682d0e23f8ec9}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Review of Economics and Statistics}
+      \field{number}{5}
+      \field{title}{Why you should never use the Hodrick--Prescott filter}
+      \field{volume}{100}
+      \field{year}{2018}
+      \field{pages}{831\bibrangedash 843}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.1162/rest_a_00706
+      \endverb
+    \endentry
+    \entry{hodges1991}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=bee363faf2e45a76129685a57fa04734}{%
+           family={Hodges},
+           familyi={H\bibinitperiod},
+           given={T.},
+           giveni={T\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Boca Raton, FL}%
+      }
+      \list{publisher}{1}{%
+        {CRC Press}%
+      }
+      \strng{namehash}{bee363faf2e45a76129685a57fa04734}
+      \strng{fullhash}{bee363faf2e45a76129685a57fa04734}
+      \strng{bibnamehash}{bee363faf2e45a76129685a57fa04734}
+      \strng{authorbibnamehash}{bee363faf2e45a76129685a57fa04734}
+      \strng{authornamehash}{bee363faf2e45a76129685a57fa04734}
+      \strng{authorfullhash}{bee363faf2e45a76129685a57fa04734}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Predicting crop phenology}
+      \field{year}{1991}
+      \true{nocite}
+    \endentry
+    \entry{hsiang2016}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=3ea5cf7eb9e01013d277e8a0c5855194}{%
+           family={Hsiang},
+           familyi={H\bibinitperiod},
+           given={Solomon},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{3ea5cf7eb9e01013d277e8a0c5855194}
+      \strng{fullhash}{3ea5cf7eb9e01013d277e8a0c5855194}
+      \strng{bibnamehash}{3ea5cf7eb9e01013d277e8a0c5855194}
+      \strng{authorbibnamehash}{3ea5cf7eb9e01013d277e8a0c5855194}
+      \strng{authornamehash}{3ea5cf7eb9e01013d277e8a0c5855194}
+      \strng{authorfullhash}{3ea5cf7eb9e01013d277e8a0c5855194}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Annual Review of Resource Economics}
+      \field{title}{Climate Econometrics}
+      \field{volume}{8}
+      \field{year}{2016}
+      \field{pages}{22.1\bibrangedash 22.33}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.1146/annurev-resource-100815-095343
+      \endverb
+    \endentry
+    \entry{huck2001}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=ba2116b3463c532b60e94af46e727492}{%
+           family={Huck},
+           familyi={H\bibinitperiod},
+           given={Steffen},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=568cea7d4cb2ed37dcffe01f08c87953}{%
+           family={Konrad},
+           familyi={K\bibinitperiod},
+           given={Kai\bibnamedelima A.},
+           giveni={K\bibinitperiod\bibinitdelim A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=39a1161dc01b79d75635c0d62cab9595}{%
+           family={Müller},
+           familyi={M\bibinitperiod},
+           given={Wieland},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{d13ee498d27ab917d526d940ab9ed5be}
+      \strng{fullhash}{b6435ce1851397b783913dbc54c0c9da}
+      \strng{bibnamehash}{b6435ce1851397b783913dbc54c0c9da}
+      \strng{authorbibnamehash}{b6435ce1851397b783913dbc54c0c9da}
+      \strng{authornamehash}{d13ee498d27ab917d526d940ab9ed5be}
+      \strng{authorfullhash}{b6435ce1851397b783913dbc54c0c9da}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Economics Letters}
+      \field{number}{2}
+      \field{title}{Big fish eat small fish: on merger in {Stackelberg} markets}
+      \field{volume}{73}
+      \field{year}{2001}
+      \field{pages}{213\bibrangedash 217}
+      \range{pages}{5}
+      \verb{doi}
+      \verb 10.1016/S0165-1765(01)00490-6
+      \endverb
+    \endentry
+    \entry{igami2015market}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d075fca51bbc532564cff5819bffc64a}{%
+           family={Igami},
+           familyi={I\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{d075fca51bbc532564cff5819bffc64a}
+      \strng{fullhash}{d075fca51bbc532564cff5819bffc64a}
+      \strng{bibnamehash}{d075fca51bbc532564cff5819bffc64a}
+      \strng{authorbibnamehash}{d075fca51bbc532564cff5819bffc64a}
+      \strng{authornamehash}{d075fca51bbc532564cff5819bffc64a}
+      \strng{authorfullhash}{d075fca51bbc532564cff5819bffc64a}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Journal of Industrial Economics}
+      \field{number}{2}
+      \field{title}{Market power in international commodity trade: The case of coffee}
+      \field{volume}{63}
+      \field{year}{2015}
+      \field{pages}{225\bibrangedash 248}
+      \range{pages}{24}
+      \verb{doi}
+      \verb 10.1111/joie.12076
+      \endverb
+    \endentry
+    \entry{mapspam_2020}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=55a1ba106fdd047a627693eefc3b1893}{%
+           family={Institute},
+           familyi={I\bibinitperiod},
+           given={International\bibnamedelimb Food\bibnamedelimb Policy\bibnamedelima Research},
+           giveni={I\bibinitperiod\bibinitdelim F\bibinitperiod\bibinitdelim P\bibinitperiod\bibinitdelim R\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Harvard Dataverse}%
+      }
+      \strng{namehash}{55a1ba106fdd047a627693eefc3b1893}
+      \strng{fullhash}{55a1ba106fdd047a627693eefc3b1893}
+      \strng{bibnamehash}{55a1ba106fdd047a627693eefc3b1893}
+      \strng{authorbibnamehash}{55a1ba106fdd047a627693eefc3b1893}
+      \strng{authornamehash}{55a1ba106fdd047a627693eefc3b1893}
+      \strng{authorfullhash}{55a1ba106fdd047a627693eefc3b1893}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Dataset}
+      \field{title}{Global Spatially-Dissaggregated Crop Production Statistics Data}
+      \field{version}{2.0}
+      \field{year}{2024}
+      \verb{doi}
+      \verb 10.7910/DVN/SWPENT
+      \endverb
+      \verb{urlraw}
+      \verb https://www.mapspam.info/data/
+      \endverb
+      \verb{url}
+      \verb https://www.mapspam.info/data/
+      \endverb
+    \endentry
+    \entry{ICO2009ClimateCoffee}{report}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=10bd414f5b650a98ab4a1e8ea9f7d116}{%
+           family={{International Coffee Council}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {International Coffee Organization}%
+      }
+      \list{location}{1}{%
+        {London, England}%
+      }
+      \strng{namehash}{10bd414f5b650a98ab4a1e8ea9f7d116}
+      \strng{fullhash}{10bd414f5b650a98ab4a1e8ea9f7d116}
+      \strng{bibnamehash}{10bd414f5b650a98ab4a1e8ea9f7d116}
+      \strng{authorbibnamehash}{10bd414f5b650a98ab4a1e8ea9f7d116}
+      \strng{authornamehash}{10bd414f5b650a98ab4a1e8ea9f7d116}
+      \strng{authorfullhash}{10bd414f5b650a98ab4a1e8ea9f7d116}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{ICC 103-6 Rev. 1}
+      \field{title}{Climate change and coffee}
+      \field{type}{techreport}
+      \field{year}{2009}
+    \endentry
+    \entry{ico1998enso}{report}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=356fed4316ab54caaebe125cfceaec88}{%
+           family={{International Coffee Organization}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {International Coffee Organization}%
+      }
+      \list{location}{1}{%
+        {London, England}%
+      }
+      \strng{namehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{fullhash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{bibnamehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{authorbibnamehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{authornamehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{authorfullhash}{356fed4316ab54caaebe125cfceaec88}
+      \field{extraname}{1}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{EB-3657/98 (E) Rev. 1}
+      \field{title}{The {El Niño Southern Oscillation} event ({ENSO}) and its impact on coffee production}
+      \field{type}{techreport}
+      \field{year}{1998}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://www.ico.org
+      \endverb
+      \verb{url}
+      \verb https://www.ico.org
+      \endverb
+    \endentry
+    \entry{oic2013cincuenta}{report}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=356fed4316ab54caaebe125cfceaec88}{%
+           family={{International Coffee Organization}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {International Coffee Organization}%
+      }
+      \list{location}{1}{%
+        {London, United Kingdom}%
+      }
+      \strng{namehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{fullhash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{bibnamehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{authorbibnamehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{authornamehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{authorfullhash}{356fed4316ab54caaebe125cfceaec88}
+      \field{extraname}{2}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The International Coffee Organization 1963--2013: 50 years serving the world coffee community}
+      \field{year}{2013}
+      \verb{urlraw}
+      \verb https://www.ico.org
+      \endverb
+      \verb{url}
+      \verb https://www.ico.org
+      \endverb
+    \endentry
+    \entry{ICO2024}{report}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=356fed4316ab54caaebe125cfceaec88}{%
+           family={{International Coffee Organization}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {International Coffee Organization}%
+      }
+      \strng{namehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{fullhash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{bibnamehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{authorbibnamehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{authornamehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{authorfullhash}{356fed4316ab54caaebe125cfceaec88}
+      \field{extraname}{3}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradate}{1}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Beyond coffee: Towards a circular coffee economy}
+      \field{type}{Coffee Development Report}
+      \field{year}{2024}
+      \true{nocite}
+    \endentry
+    \entry{ICIP2024}{report}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=356fed4316ab54caaebe125cfceaec88}{%
+           family={{International Coffee Organization}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {International Coffee Organization}%
+      }
+      \list{location}{1}{%
+        {London, United Kingdom}%
+      }
+      \strng{namehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{fullhash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{bibnamehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{authorbibnamehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{authornamehash}{356fed4316ab54caaebe125cfceaec88}
+      \strng{authorfullhash}{356fed4316ab54caaebe125cfceaec88}
+      \field{extraname}{4}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{extradate}{2}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{month}{9}
+      \field{number}{JC-03/24 Rev. 1}
+      \field{title}{ICO composite and group indicator prices: Share of markets and group weightings. Calendar year averages: 2021 to 2023}
+      \field{type}{Report}
+      \field{year}{2024}
+    \endentry
+    \entry{karp1993dynamic}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=5afe6e34663869a23fb7267aaa39dcb9}{%
+           family={Karp},
+           familyi={K\bibinitperiod},
+           given={Larry\bibnamedelima S.},
+           giveni={L\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=1114e5b408bcdbcd5c20f335e0baf145}{%
+           family={Perloff},
+           familyi={P\bibinitperiod},
+           given={Jeffrey\bibnamedelima M.},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{9b79f9b7e7ef34f80a854bed143b1a8f}
+      \strng{fullhash}{9b79f9b7e7ef34f80a854bed143b1a8f}
+      \strng{bibnamehash}{9b79f9b7e7ef34f80a854bed143b1a8f}
+      \strng{authorbibnamehash}{9b79f9b7e7ef34f80a854bed143b1a8f}
+      \strng{authornamehash}{9b79f9b7e7ef34f80a854bed143b1a8f}
+      \strng{authorfullhash}{9b79f9b7e7ef34f80a854bed143b1a8f}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Journal of Agricultural Economics}
+      \field{month}{5}
+      \field{number}{2}
+      \field{title}{A Dynamic Model of Oligopoly in the Coffee Export Market}
+      \field{volume}{75}
+      \field{year}{1993}
+      \field{pages}{448\bibrangedash 457}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.2307/1242929
+      \endverb
+    \endentry
+    \entry{krivonos2004impact}{report}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=665fb55ea2837f207f1d34951ff6747c}{%
+           family={Krivonos},
+           familyi={K\bibinitperiod},
+           given={Ekaterina},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {World Bank}%
+      }
+      \strng{namehash}{665fb55ea2837f207f1d34951ff6747c}
+      \strng{fullhash}{665fb55ea2837f207f1d34951ff6747c}
+      \strng{bibnamehash}{665fb55ea2837f207f1d34951ff6747c}
+      \strng{authorbibnamehash}{665fb55ea2837f207f1d34951ff6747c}
+      \strng{authornamehash}{665fb55ea2837f207f1d34951ff6747c}
+      \strng{authorfullhash}{665fb55ea2837f207f1d34951ff6747c}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{3358}
+      \field{title}{The impact of coffee market reforms on producer prices and price transmission}
+      \field{type}{Policy Research Working Paper}
+      \field{year}{2004}
+      \verb{urlraw}
+      \verb http://econ.worldbank.org
+      \endverb
+      \verb{url}
+      \verb http://econ.worldbank.org
+      \endverb
+    \endentry
+    \entry{isimip2024}{misc}{}
+      \name{author}{5}{}{%
+        {{un=0,uniquepart=base,hash=00e3dc6ab5c15a29a935423f43e8e957}{%
+           family={Lange},
+           familyi={L\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=07a1fa9ba0194302ab88dd038a7b2ce8}{%
+           family={Quesada-Chacón},
+           familyi={Q\bibinithyphendelim C\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=860b0f8fb1d3d633178388e11bf1b3cc}{%
+           family={Mengel},
+           familyi={M\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=6383c9e3003936d822405e4a373d3257}{%
+           family={Treu},
+           familyi={T\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=c079d22bb0d8ce26ea91d9885073d05b}{%
+           family={Büchner},
+           familyi={B\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {Inter-Sectoral Impact Model Intercomparison Project}%
+      }
+      \strng{namehash}{5315fb7a6eae9d91c073c6f70e13646c}
+      \strng{fullhash}{328a1c4b49bb803c94d9251fcfba1640}
+      \strng{bibnamehash}{328a1c4b49bb803c94d9251fcfba1640}
+      \strng{authorbibnamehash}{328a1c4b49bb803c94d9251fcfba1640}
+      \strng{authornamehash}{5315fb7a6eae9d91c073c6f70e13646c}
+      \strng{authorfullhash}{328a1c4b49bb803c94d9251fcfba1640}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Dataset version 1.3}
+      \field{title}{{ISIMIP3a} atmospheric climate input data}
+      \field{version}{1.3}
+      \field{year}{2025}
+      \verb{doi}
+      \verb 10.48364/ISIMIP.982724.3
+      \endverb
+      \verb{urlraw}
+      \verb https://data.isimip.org/datasets/982724/
+      \endverb
+      \verb{url}
+      \verb https://data.isimip.org/datasets/982724/
+      \endverb
+    \endentry
+    \entry{maurice2011unraveling}{report}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=cd5cf31bbfd4de7fc954beb7fe34a830}{%
+           family={Maurice},
+           familyi={M\bibinitperiod},
+           given={N.\bibnamedelimi E.},
+           giveni={N\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=99a74e7d8216e010b1095c973bea3bae}{%
+           family={Davis},
+           familyi={D\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {UNCTAD Special Unit on Commodities}%
+      }
+      \strng{namehash}{404b799edad9f99e64364e44c9cdeb0a}
+      \strng{fullhash}{404b799edad9f99e64364e44c9cdeb0a}
+      \strng{bibnamehash}{404b799edad9f99e64364e44c9cdeb0a}
+      \strng{authorbibnamehash}{404b799edad9f99e64364e44c9cdeb0a}
+      \strng{authornamehash}{404b799edad9f99e64364e44c9cdeb0a}
+      \strng{authorfullhash}{404b799edad9f99e64364e44c9cdeb0a}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{1}
+      \field{title}{Unravelling the underlying causes of price volatility in world coffee and cocoa commodity markets}
+      \field{type}{Discussion paper}
+      \field{year}{2011}
+      \verb{urlraw}
+      \verb https://ideas.repec.org/p/pra/mprapa/43813.html
+      \endverb
+      \verb{url}
+      \verb https://ideas.repec.org/p/pra/mprapa/43813.html
+      \endverb
+    \endentry
+    \entry{mcmaster1997}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=19d7dd594552881c7992f0ec15373949}{%
+           family={McMaster},
+           familyi={M\bibinitperiod},
+           given={Gregory\bibnamedelima S.},
+           giveni={G\bibinitperiod\bibinitdelim S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=08a002d2f097c0cb4b7d3d0372247504}{%
+           family={Wilhelm},
+           familyi={W\bibinitperiod},
+           given={W.\bibnamedelimi W.},
+           giveni={W\bibinitperiod\bibinitdelim W\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{aa5f14ba2d421e24835b746599df1fd6}
+      \strng{fullhash}{aa5f14ba2d421e24835b746599df1fd6}
+      \strng{bibnamehash}{aa5f14ba2d421e24835b746599df1fd6}
+      \strng{authorbibnamehash}{aa5f14ba2d421e24835b746599df1fd6}
+      \strng{authornamehash}{aa5f14ba2d421e24835b746599df1fd6}
+      \strng{authorfullhash}{aa5f14ba2d421e24835b746599df1fd6}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Agricultural and Forest Meteorology}
+      \field{number}{4}
+      \field{title}{Growing degree-days: One equation, two interpretations}
+      \field{volume}{87}
+      \field{year}{1997}
+      \true{nocite}
+      \field{pages}{291\bibrangedash 300}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1016/S0168-1923(97)00027-0
+      \endverb
+    \endentry
+    \entry{mehta2008responding}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=80984aa798ad78fbdf6d957d2fa8fb0e}{%
+           family={Mehta},
+           familyi={M\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=642435fb4c54cee554c2397fbbf69e94}{%
+           family={Chavas},
+           familyi={C\bibinitperiod},
+           given={J.-P.},
+           giveni={J\bibinithyphendelim P\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{04c21ca66e723fd8980b8c584bc9aec7}
+      \strng{fullhash}{04c21ca66e723fd8980b8c584bc9aec7}
+      \strng{bibnamehash}{04c21ca66e723fd8980b8c584bc9aec7}
+      \strng{authorbibnamehash}{04c21ca66e723fd8980b8c584bc9aec7}
+      \strng{authornamehash}{04c21ca66e723fd8980b8c584bc9aec7}
+      \strng{authorfullhash}{04c21ca66e723fd8980b8c584bc9aec7}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Development Economics}
+      \field{number}{1}
+      \field{title}{Responding to the coffee crisis: What can we learn from price dynamics?}
+      \field{volume}{85}
+      \field{year}{2008}
+      \field{pages}{282\bibrangedash 311}
+      \range{pages}{30}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.jdeveco.2006.07.006
+      \endverb
+    \endentry
+    \entry{MendelsohnNordhausShaw1994}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=b36cc712b508b23b77b708fa8bbf458e}{%
+           family={Mendelsohn},
+           familyi={M\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=133dca9565968911af482f4a262cc74f}{%
+           family={Nordhaus},
+           familyi={N\bibinitperiod},
+           given={W.\bibnamedelimi D.},
+           giveni={W\bibinitperiod\bibinitdelim D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3b80aad1a6284de341041dec9d0cf21a}{%
+           family={Shaw},
+           familyi={S\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{62ef83f181395f84d365c67e20f4b654}
+      \strng{fullhash}{17b9a42ef1023008355b131f4e7b2168}
+      \strng{bibnamehash}{17b9a42ef1023008355b131f4e7b2168}
+      \strng{authorbibnamehash}{17b9a42ef1023008355b131f4e7b2168}
+      \strng{authornamehash}{62ef83f181395f84d365c67e20f4b654}
+      \strng{authorfullhash}{17b9a42ef1023008355b131f4e7b2168}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Economic Review}
+      \field{number}{4}
+      \field{title}{The impact of global warming on agriculture: A Ricardian analysis}
+      \field{volume}{84}
+      \field{year}{1994}
+      \true{nocite}
+      \field{pages}{753\bibrangedash 771}
+      \range{pages}{19}
+      \verb{urlraw}
+      \verb https://www.jstor.org/stable/2118029
+      \endverb
+      \verb{url}
+      \verb https://www.jstor.org/stable/2118029
+      \endverb
+    \endentry
+    \entry{MideksaKallbekken2010}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=8725627260870d7ac06a7eae8603d195}{%
+           family={Mideksa},
+           familyi={M\bibinitperiod},
+           given={T.\bibnamedelimi K.},
+           giveni={T\bibinitperiod\bibinitdelim K\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=8848fb6771da86bfa24f26b2e6c1b202}{%
+           family={Kallbekken},
+           familyi={K\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a9041f77eb06fc569014f4534a890d86}
+      \strng{fullhash}{a9041f77eb06fc569014f4534a890d86}
+      \strng{bibnamehash}{a9041f77eb06fc569014f4534a890d86}
+      \strng{authorbibnamehash}{a9041f77eb06fc569014f4534a890d86}
+      \strng{authornamehash}{a9041f77eb06fc569014f4534a890d86}
+      \strng{authorfullhash}{a9041f77eb06fc569014f4534a890d86}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Energy Policy}
+      \field{number}{7}
+      \field{title}{The impact of climate change on the electricity market: A review}
+      \field{volume}{38}
+      \field{year}{2010}
+      \field{pages}{3579\bibrangedash 3585}
+      \range{pages}{7}
+      \verb{doi}
+      \verb 10.1016/j.enpol.2010.02.035
+      \endverb
+    \endentry
+    \entry{mundlak2001production}{inbook}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d3ad9680b97dfd697a0d4f7d702bbf14}{%
+           family={Mundlak},
+           familyi={M\bibinitperiod},
+           given={Yair},
+           giveni={Y\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=9421847fa9fb46a2aab1fd1bc666563d}{%
+           family={Gardner},
+           familyi={G\bibinitperiod},
+           given={Bruce\bibnamedelima L.},
+           giveni={B\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=86382d41999dc7283a3975b7912263e1}{%
+           family={Rausser},
+           familyi={R\bibinitperiod},
+           given={Gordon\bibnamedelima C.},
+           giveni={G\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \list{location}{2}{%
+        {Amsterdam, London,}%
+        {New York}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier Science}%
+      }
+      \strng{namehash}{d3ad9680b97dfd697a0d4f7d702bbf14}
+      \strng{fullhash}{d3ad9680b97dfd697a0d4f7d702bbf14}
+      \strng{bibnamehash}{d3ad9680b97dfd697a0d4f7d702bbf14}
+      \strng{authorbibnamehash}{d3ad9680b97dfd697a0d4f7d702bbf14}
+      \strng{authornamehash}{d3ad9680b97dfd697a0d4f7d702bbf14}
+      \strng{authorfullhash}{d3ad9680b97dfd697a0d4f7d702bbf14}
+      \strng{editorbibnamehash}{28f21a0de996890297d059bc5603ca1a}
+      \strng{editornamehash}{28f21a0de996890297d059bc5603ca1a}
+      \strng{editorfullhash}{28f21a0de996890297d059bc5603ca1a}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Handbook of Agricultural Economics}
+      \field{title}{Production and Supply}
+      \field{volume}{1A}
+      \field{year}{2001}
+      \field{pages}{3\bibrangedash 85}
+      \range{pages}{83}
+    \endentry
+    \entry{nakamura2010accounting}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=31f26335c74ad2cd32daedefb327617b}{%
+           family={Nakamura},
+           familyi={N\bibinitperiod},
+           given={E.},
+           giveni={E\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=bce86fd38675f76ef25f7e4f57c93d24}{%
+           family={Zerom},
+           familyi={Z\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{5cb7efc7344b42a0d70c64eac04e1856}
+      \strng{fullhash}{5cb7efc7344b42a0d70c64eac04e1856}
+      \strng{bibnamehash}{5cb7efc7344b42a0d70c64eac04e1856}
+      \strng{authorbibnamehash}{5cb7efc7344b42a0d70c64eac04e1856}
+      \strng{authornamehash}{5cb7efc7344b42a0d70c64eac04e1856}
+      \strng{authorfullhash}{5cb7efc7344b42a0d70c64eac04e1856}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Review of Economic Studies}
+      \field{number}{3}
+      \field{title}{Accounting for incomplete pass-through}
+      \field{volume}{77}
+      \field{year}{2010}
+      \true{nocite}
+      \field{pages}{1192\bibrangedash 1230}
+      \range{pages}{39}
+      \verb{doi}
+      \verb https://doi.org/10.1111/j.1467-937X.2009.589.x
+      \endverb
+    \endentry
+    \entry{prebisch1959}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=d1ee40b9a807b0a074b023cee444354a}{%
+           family={Prebisch},
+           familyi={P\bibinitperiod},
+           given={R.},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{d1ee40b9a807b0a074b023cee444354a}
+      \strng{fullhash}{d1ee40b9a807b0a074b023cee444354a}
+      \strng{bibnamehash}{d1ee40b9a807b0a074b023cee444354a}
+      \strng{authorbibnamehash}{d1ee40b9a807b0a074b023cee444354a}
+      \strng{authornamehash}{d1ee40b9a807b0a074b023cee444354a}
+      \strng{authorfullhash}{d1ee40b9a807b0a074b023cee444354a}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Economic Review}
+      \field{title}{International trade and payments in an era of coexistence: Commercial policy in the underdeveloped countries}
+      \field{volume}{49}
+      \field{year}{1959}
+      \field{pages}{251\bibrangedash 273}
+      \range{pages}{23}
+      \verb{doi}
+      \verb https://www.jstor.org/stable/1816120
+      \endverb
+    \endentry
+    \entry{roberts2013}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=09059ba9a51355295d217ab970a6fe70}{%
+           family={Roberts},
+           familyi={R\bibinitperiod},
+           given={Michael\bibnamedelima J.},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=01758524b2f1fd8df078ff9dda77f16e}{%
+           family={Schlenker},
+           familyi={S\bibinitperiod},
+           given={Wolfram},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{1e3c0fe86d3752eca5adde68730f4f43}
+      \strng{fullhash}{1e3c0fe86d3752eca5adde68730f4f43}
+      \strng{bibnamehash}{1e3c0fe86d3752eca5adde68730f4f43}
+      \strng{authorbibnamehash}{1e3c0fe86d3752eca5adde68730f4f43}
+      \strng{authornamehash}{1e3c0fe86d3752eca5adde68730f4f43}
+      \strng{authorfullhash}{1e3c0fe86d3752eca5adde68730f4f43}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{American Economic Review}
+      \field{number}{6}
+      \field{title}{Identifying Supply and Demand Elasticities of Agricultural Commodities: Implications for the US Ethanol Mandate}
+      \field{volume}{103}
+      \field{year}{2013}
+      \field{pages}{2265\bibrangedash 2295}
+      \range{pages}{31}
+      \verb{doi}
+      \verb 10.1257/aer.103.6.2265
+      \endverb
+    \endentry
+    \entry{schlenker2009nonlinear}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=4476897291fe821e20e4d9b88454b32b}{%
+           family={Schlenker},
+           familyi={S\bibinitperiod},
+           given={W.},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=5891696d6383fb2567019d795c8ab542}{%
+           family={Roberts},
+           familyi={R\bibinitperiod},
+           given={M.\bibnamedelimi J.},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{4e2f7c28e8cc90894ad49af9d5f6cc7e}
+      \strng{fullhash}{4e2f7c28e8cc90894ad49af9d5f6cc7e}
+      \strng{bibnamehash}{4e2f7c28e8cc90894ad49af9d5f6cc7e}
+      \strng{authorbibnamehash}{4e2f7c28e8cc90894ad49af9d5f6cc7e}
+      \strng{authornamehash}{4e2f7c28e8cc90894ad49af9d5f6cc7e}
+      \strng{authorfullhash}{4e2f7c28e8cc90894ad49af9d5f6cc7e}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Proceedings of the National Academy of Sciences}
+      \field{number}{37}
+      \field{title}{Nonlinear temperature effects indicate severe damages to U.S. crop yields under climate change}
+      \field{volume}{106}
+      \field{year}{2009}
+      \field{pages}{15594\bibrangedash 15598}
+      \range{pages}{5}
+      \verb{doi}
+      \verb https://doi.org/10.1073/pnas.0906865106
+      \endverb
+    \endentry
+    \entry{singer1950}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=3b2d0b53be973411752a4dd1d5eca177}{%
+           family={Singer},
+           familyi={S\bibinitperiod},
+           given={H.\bibnamedelimi W.},
+           giveni={H\bibinitperiod\bibinitdelim W\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {American Economic Association}%
+      }
+      \strng{namehash}{3b2d0b53be973411752a4dd1d5eca177}
+      \strng{fullhash}{3b2d0b53be973411752a4dd1d5eca177}
+      \strng{bibnamehash}{3b2d0b53be973411752a4dd1d5eca177}
+      \strng{authorbibnamehash}{3b2d0b53be973411752a4dd1d5eca177}
+      \strng{authornamehash}{3b2d0b53be973411752a4dd1d5eca177}
+      \strng{authorfullhash}{3b2d0b53be973411752a4dd1d5eca177}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The American Economic Review}
+      \field{number}{2}
+      \field{title}{The Distribution of Gains between Investing and Borrowing Countries}
+      \field{volume}{40}
+      \field{year}{1950}
+      \field{pages}{473\bibrangedash 485}
+      \range{pages}{13}
+      \verb{urlraw}
+      \verb https://www.jstor.org/stable/1818065
+      \endverb
+      \verb{url}
+      \verb https://www.jstor.org/stable/1818065
+      \endverb
+    \endentry
+    \entry{slade1995empirical}{article}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=61d0f4e65bb105ffa7e3c4ee2ad317e9}{%
+           family={Slade},
+           familyi={S\bibinitperiod},
+           given={M.\bibnamedelimi E.},
+           giveni={M\bibinitperiod\bibinitdelim E\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{61d0f4e65bb105ffa7e3c4ee2ad317e9}
+      \strng{fullhash}{61d0f4e65bb105ffa7e3c4ee2ad317e9}
+      \strng{bibnamehash}{61d0f4e65bb105ffa7e3c4ee2ad317e9}
+      \strng{authorbibnamehash}{61d0f4e65bb105ffa7e3c4ee2ad317e9}
+      \strng{authornamehash}{61d0f4e65bb105ffa7e3c4ee2ad317e9}
+      \strng{authorfullhash}{61d0f4e65bb105ffa7e3c4ee2ad317e9}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Canadian Journal of Economics / Revue canadienne d'Economique}
+      \field{number}{2}
+      \field{title}{Empirical games: The oligopoly case}
+      \field{volume}{28}
+      \field{year}{1995}
+      \field{pages}{368\bibrangedash 402}
+      \range{pages}{35}
+      \verb{doi}
+      \verb https://doi.org/10.2307/136036
+      \endverb
+    \endentry
+    \entry{talbot2004grounds}{book}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=664f8a4b7ab8c6efdf34335d2205379f}{%
+           family={Talbot},
+           familyi={T\bibinitperiod},
+           given={John\bibnamedelima M.},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{location}{1}{%
+        {Lanham, Boulder, New York, Toronto, Oxford}%
+      }
+      \list{publisher}{1}{%
+        {Rowman \& Littlefield Publishers, Inc.}%
+      }
+      \strng{namehash}{664f8a4b7ab8c6efdf34335d2205379f}
+      \strng{fullhash}{664f8a4b7ab8c6efdf34335d2205379f}
+      \strng{bibnamehash}{664f8a4b7ab8c6efdf34335d2205379f}
+      \strng{authorbibnamehash}{664f8a4b7ab8c6efdf34335d2205379f}
+      \strng{authornamehash}{664f8a4b7ab8c6efdf34335d2205379f}
+      \strng{authorfullhash}{664f8a4b7ab8c6efdf34335d2205379f}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{978-0-7425-2628-0}
+      \field{title}{Grounds for Agreement: The Political Economy of the Coffee Commodity Chain}
+      \field{year}{2004}
+    \endentry
+    \entry{UnionEuropea2023}{misc}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=6df64dab21ea48c1eb2bfb0352897155}{%
+           family={{Unión Europea}},
+           familyi={U\bibinitperiod}}}%
+      }
+      \strng{namehash}{6df64dab21ea48c1eb2bfb0352897155}
+      \strng{fullhash}{6df64dab21ea48c1eb2bfb0352897155}
+      \strng{bibnamehash}{6df64dab21ea48c1eb2bfb0352897155}
+      \strng{authorbibnamehash}{6df64dab21ea48c1eb2bfb0352897155}
+      \strng{authornamehash}{6df64dab21ea48c1eb2bfb0352897155}
+      \strng{authorfullhash}{6df64dab21ea48c1eb2bfb0352897155}
+      \field{sortinit}{U}
+      \field{sortinithash}{6901a00e45705986ee5e7ca9fd39adca}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://eur-lex.europa.eu/eli/reg/2023/1115/oj}}
+      \field{note}{Diario Oficial de la Unión Europea, L 150, 206-247}
+      \field{title}{Reglamento (UE) 2023/1115 del Parlamento Europeo y del Consejo, de 31 de mayo de 2023}
+      \field{year}{2023}
+      \true{nocite}
+    \endentry
+    \entry{Zhang2022}{article}{}
+      \name{author}{3}{}{%
+        {{un=0,uniquepart=base,hash=25bbf4047d900f3760c65b01ee899dba}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Wei},
+           giveni={W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2ee5899003dbeec1d24ef8bd372b14d1}{%
+           family={Saghaian},
+           familyi={S\bibinitperiod},
+           given={Sayed},
+           giveni={S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=a3df488eb434e4eefcbaa7c9a62c89c5}{%
+           family={Reed},
+           familyi={R\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a88dfc5c55489606792d411cce65410b}
+      \strng{fullhash}{ffceb3400a9e54378287e67510cc3a99}
+      \strng{bibnamehash}{ffceb3400a9e54378287e67510cc3a99}
+      \strng{authorbibnamehash}{ffceb3400a9e54378287e67510cc3a99}
+      \strng{authornamehash}{a88dfc5c55489606792d411cce65410b}
+      \strng{authorfullhash}{ffceb3400a9e54378287e67510cc3a99}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Sustainability}
+      \field{number}{22}
+      \field{title}{Influences of Power Structure Evolution on Coffee Commodity Markets: Insights from Price Discovery and Volatility Spillovers}
+      \field{volume}{14}
+      \field{year}{2022}
+      \field{pages}{15268}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/su142215268
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

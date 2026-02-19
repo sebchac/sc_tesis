@@ -1,3 +1,4 @@
+% !TEX program = lualatex
 \documentclass[spanish]{umemoria}
 
 \depto{Departamento de Economía}
@@ -28,7 +29,13 @@
 \usepackage{hyperref}
 \usepackage{xcolor}
 \usepackage{booktabs}
-\usepackage[natbibapa]{apacite}
+\usepackage{csquotes}                         % required by biblatex
+\usepackage[
+  style   = apa,
+  backend = biber,
+  natbib  = true                              % keeps \citep / \citet
+]{biblatex}
+\addbibresource{bibliografia.bib}
 
 \begin{document}
 
@@ -83,9 +90,7 @@ El análisis identifica ganadores y perdedores dentro de cada grupo, destacando 
 % ver https://www.overleaf.com/learn/latex/Glossaries
 % \input{glosario.tex} % opcional
 
-\nocite{*}
-\bibliographystyle{apacite}
-\bibliography{bibliografia}
+\printbibliography
 
 % opcional ...
 %\begin{appendices}

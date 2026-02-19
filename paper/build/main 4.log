@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.8.2)  24 JAN 2026 19:42
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.8.2)  19 FEB 2026 16:59
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -427,52 +427,314 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \@thisruleclass=\count321
 \@lastruleclass=\count322
 \@thisrulewidth=\dimen258
-) (/usr/local/texlive/2024/texmf-dist/tex/latex/apacite/apacite.sty
-Package: apacite 2013/07/21 v6.03 APA citation
-\c@BibCnt=\count323
-\bibleftmargin=\skip57
-\bibindent=\skip58
-\bibparsep=\skip59
-\bibitemsep=\skip60
-\biblabelsep=\skip61
-) (/usr/local/texlive/2024/texmf-dist/tex/latex/natbib/natbib.sty
-Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip62
-\bibsep=\skip63
-LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count324
+) (/usr/local/texlive/2024/texmf-dist/tex/latex/csquotes/csquotes.sty
+Package: csquotes 2022-09-14 v5.2n context-sensitive quotations (JAW)
+\csq@reset=\count323
+\csq@gtype=\count324
+\csq@glevel=\count325
+\csq@qlevel=\count326
+\csq@maxlvl=\count327
+\csq@tshold=\count328
+\csq@ltx@everypar=\toks45
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/csquotes/csquotes.def
+File: csquotes.def 2022-09-14 v5.2n csquotes generic definitions (JAW)
 )
-LaTeX Info: Redefining \BBA on input line 32.
- (build/main.aux
-LaTeX Info: Redefining \. on input line 11.
-LaTeX Info: Redefining \% on input line 11.
+Package csquotes Info: Trying to load configuration file 'csquotes.cfg'...
+Package csquotes Info: ... configuration file loaded successfully.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/csquotes/csquotes.cfg
+File: csquotes.cfg 
+)) (/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/biblatex.sty
+Package: biblatex 2023/03/05 v3.19 programmable bibliographies (PK/MW)
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/logreq/logreq.sty
+Package: logreq 2010/08/04 v1.0 xml request logger
+\lrq@indent=\count329
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/logreq/logreq.def
+File: logreq.def 2010/08/04 v1.0 logreq spec v1.0
+)) (/usr/local/texlive/2024/texmf-dist/tex/latex/base/ifthen.sty
+Package: ifthen 2022/04/13 v1.1d Standard LaTeX ifthen package (DPC)
+)
+\c@tabx@nest=\count330
+\c@listtotal=\count331
+\c@listcount=\count332
+\c@liststart=\count333
+\c@liststop=\count334
+\c@citecount=\count335
+\c@citetotal=\count336
+\c@multicitecount=\count337
+\c@multicitetotal=\count338
+\c@instcount=\count339
+\c@maxnames=\count340
+\c@minnames=\count341
+\c@maxitems=\count342
+\c@minitems=\count343
+\c@citecounter=\count344
+\c@maxcitecounter=\count345
+\c@savedcitecounter=\count346
+\c@uniquelist=\count347
+\c@uniquename=\count348
+\c@refsection=\count349
+\c@refsegment=\count350
+\c@maxextratitle=\count351
+\c@maxextratitleyear=\count352
+\c@maxextraname=\count353
+\c@maxextradate=\count354
+\c@maxextraalpha=\count355
+\c@abbrvpenalty=\count356
+\c@highnamepenalty=\count357
+\c@lownamepenalty=\count358
+\c@maxparens=\count359
+\c@parenlevel=\count360
+\blx@tempcnta=\count361
+\blx@tempcntb=\count362
+\blx@tempcntc=\count363
+\c@blx@maxsection=\count364
+\blx@maxsegment@0=\count365
+\blx@notetype=\count366
+\blx@parenlevel@text=\count367
+\blx@parenlevel@foot=\count368
+\blx@sectionciteorder@0=\count369
+\blx@sectionciteorderinternal@0=\count370
+\blx@entrysetcounter=\count371
+\blx@biblioinstance=\count372
+\labelnumberwidth=\skip57
+\labelalphawidth=\skip58
+\biblabelsep=\skip59
+\bibitemsep=\skip60
+\bibnamesep=\skip61
+\bibinitsep=\skip62
+\bibparsep=\skip63
+\bibhang=\skip64
+\blx@bcfin=\read3
+\blx@bcfout=\write3
+\blx@langwohyphens=\language90
+\c@mincomprange=\count373
+\c@maxcomprange=\count374
+\c@mincompwidth=\count375
+Package biblatex Info: Trying to load biblatex default data model...
+Package biblatex Info: ... file 'blx-dm.def' found.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/blx-dm.def
+File: blx-dm.def 2023/03/05 v3.19 biblatex localization (PK/MW)
+)
+Package biblatex Info: Trying to load biblatex style data model...
+Package biblatex Info: ... file 'apa.dbx' found.
+ (/Users/sebastianchacon/Library/texmf/tex/latex/biblatex-apa/apa.dbx
+File: apa.dbx 2025/08/27 v9.20 APA biblatex style data model
+)
+Package biblatex Info: Trying to load biblatex custom data model...
+Package biblatex Info: ... file 'biblatex-dm.cfg' not found.
+\c@afterword=\count376
+\c@savedafterword=\count377
+\c@annotator=\count378
+\c@savedannotator=\count379
+\c@author=\count380
+\c@savedauthor=\count381
+\c@bookauthor=\count382
+\c@savedbookauthor=\count383
+\c@commentator=\count384
+\c@savedcommentator=\count385
+\c@editor=\count386
+\c@savededitor=\count387
+\c@editora=\count388
+\c@savededitora=\count389
+\c@editorb=\count390
+\c@savededitorb=\count391
+\c@editorc=\count392
+\c@savededitorc=\count393
+\c@foreword=\count394
+\c@savedforeword=\count395
+\c@holder=\count396
+\c@savedholder=\count397
+\c@introduction=\count398
+\c@savedintroduction=\count399
+\c@namea=\count400
+\c@savednamea=\count401
+\c@nameb=\count402
+\c@savednameb=\count403
+\c@namec=\count404
+\c@savednamec=\count405
+\c@translator=\count406
+\c@savedtranslator=\count407
+\c@shortauthor=\count408
+\c@savedshortauthor=\count409
+\c@shorteditor=\count410
+\c@savedshorteditor=\count411
+\c@narrator=\count412
+\c@savednarrator=\count413
+\c@execproducer=\count414
+\c@savedexecproducer=\count415
+\c@execdirector=\count416
+\c@savedexecdirector=\count417
+\c@with=\count418
+\c@savedwith=\count419
+\c@labelname=\count420
+\c@savedlabelname=\count421
+\c@institution=\count422
+\c@savedinstitution=\count423
+\c@lista=\count424
+\c@savedlista=\count425
+\c@listb=\count426
+\c@savedlistb=\count427
+\c@listc=\count428
+\c@savedlistc=\count429
+\c@listd=\count430
+\c@savedlistd=\count431
+\c@liste=\count432
+\c@savedliste=\count433
+\c@listf=\count434
+\c@savedlistf=\count435
+\c@location=\count436
+\c@savedlocation=\count437
+\c@organization=\count438
+\c@savedorganization=\count439
+\c@origlocation=\count440
+\c@savedoriglocation=\count441
+\c@origpublisher=\count442
+\c@savedorigpublisher=\count443
+\c@publisher=\count444
+\c@savedpublisher=\count445
+\c@language=\count446
+\c@savedlanguage=\count447
+\c@origlanguage=\count448
+\c@savedoriglanguage=\count449
+\c@citation=\count450
+\c@savedcitation=\count451
+\c@pageref=\count452
+\c@savedpageref=\count453
+\shorthandwidth=\skip65
+\shortjournalwidth=\skip66
+\shortserieswidth=\skip67
+\shorttitlewidth=\skip68
+\shortauthorwidth=\skip69
+\shorteditorwidth=\skip70
+\locallabelnumberwidth=\skip71
+\locallabelalphawidth=\skip72
+\localshorthandwidth=\skip73
+\localshortjournalwidth=\skip74
+\localshortserieswidth=\skip75
+\localshorttitlewidth=\skip76
+\localshortauthorwidth=\skip77
+\localshorteditorwidth=\skip78
+Package biblatex Info: Trying to load enhanced support for Unicode engines...
+Package biblatex Info: ... file 'blx-unicode.def' found.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/blx-unicode.def)
+Package biblatex Info: Trying to load compatibility code...
+Package biblatex Info: ... file 'blx-compat.def' found.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/blx-compat.def
+File: blx-compat.def 2023/03/05 v3.19 biblatex compatibility (PK/MW)
+)
+Package biblatex Info: Trying to load generic definitions...
+Package biblatex Info: ... file 'biblatex.def' found.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/biblatex.def
+File: biblatex.def 2023/03/05 v3.19 biblatex compatibility (PK/MW)
+\c@textcitecount=\count454
+\c@textcitetotal=\count455
+\c@textcitemaxnames=\count456
+\c@biburlbigbreakpenalty=\count457
+\c@biburlbreakpenalty=\count458
+\c@biburlnumpenalty=\count459
+\c@biburlucpenalty=\count460
+\c@biburllcpenalty=\count461
+\biburlbigskip=\muskip18
+\biburlnumskip=\muskip19
+\biburlucskip=\muskip20
+\biburllcskip=\muskip21
+\c@smartand=\count462
+)
+Package biblatex Info: Trying to load natbib compatibility...
+Package biblatex Info: ... file 'blx-natbib.def' found.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/blx-natbib.def
+File: blx-natbib.def 2023/03/05 v3.19 biblatex compatibility (PK/MW)
+Package biblatex Info: Delimiter 'nameyeardelim' in context '' already defined, overwriting.
+)
+Package biblatex Info: Trying to load bibliography style 'apa'...
+Package biblatex Info: ... file 'apa.bbx' found.
+ (/Users/sebastianchacon/Library/texmf/tex/latex/biblatex-apa/apa.bbx
+File: apa.bbx 2025/08/27 v9.20 APA biblatex references style
+Package biblatex Info: Trying to load bibliography style 'standard'...
+Package biblatex Info: ... file 'standard.bbx' found.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/bbx/standard.bbx
+File: standard.bbx 2023/03/05 v3.19 biblatex bibliography style (PK/MW)
+\c@bbx:relatedcount=\count463
+\c@bbx:relatedtotal=\count464
+)
+Package biblatex Info: Delimiter 'nameyeardelim' in context 'bib' already defined, overwriting.
+Package biblatex Info: Delimiter 'nameyeardelim' in context 'biblist' already defined, overwriting.
+Package biblatex Info: Delimiter 'nonameyeardelim' in context 'bib' already defined, overwriting.
+Package biblatex Info: Delimiter 'nonameyeardelim' in context 'biblist' already defined, overwriting.
+)
+Package biblatex Info: Trying to load citation style 'apa'...
+Package biblatex Info: ... file 'apa.cbx' found.
+ (/Users/sebastianchacon/Library/texmf/tex/latex/biblatex-apa/apa.cbx
+File: apa.cbx 2025/08/27 v9.20 APA biblatex citation style
+Package biblatex Info: Delimiter 'nameyeardelim' in context '' already defined, overwriting.
+Package biblatex Info: Delimiter 'andothersdelim' in context '' already defined, overwriting.
+Package biblatex Info: Redefining '\fullcite'.
+Package biblatex Info: Redefining '\citeauthor'.
+Package biblatex Info: Redefining '\citeyear'.
+Package biblatex Info: Redefining '\cite'.
+Package biblatex Info: Redefining '\cites'.
+Package biblatex Info: Redefining '\parencite'.
+Package biblatex Info: Redefining '\parencites'.
+Package biblatex Info: Redefining '\footcite'.
+Package biblatex Info: Redefining '\footcites'.
+Package biblatex Info: Redefining '\footcitetext'.
+Package biblatex Info: Redefining '\footcitetexts'.
+Package biblatex Info: Redefining '\smartcite'.
+Package biblatex Info: Redefining '\smartcites'.
+Package biblatex Info: Redefining '\textcite'.
+Package biblatex Info: Redefining '\textcites'.
+)
+Package biblatex Info: Trying to load configuration file...
+Package biblatex Info: ... file 'biblatex.cfg' found.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/biblatex.cfg
+File: biblatex.cfg 
+)
+Package biblatex Info: XeTeX detected.
+(biblatex)             Assuming input encoding 'utf8'.
+Package biblatex Info: Document encoding is UTF8 ....
+Package biblatex Info: ... and expl3
+(biblatex)             2024-02-20 L3 programming layer (loader) 
+(biblatex)             is new enough (at least 2020/04/06),
+(biblatex)             setting 'casechanger=expl3'.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/blx-case-expl3.sty (/usr/local/texlive/2024/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+Package: xparse 2024-02-18 L3 Experimental document command parser
+)
+Package: blx-case-expl3 2023/03/05 v3.19 expl3 case changing code for biblatex
+))
+Package csquotes Info: Checking for multilingual support...
+Package csquotes Info: ... found 'babel' package.
+Package csquotes Info: Adjusting default style.
+Package csquotes Info: Redefining alias 'default' -> 'spanish'.
+ (./main.aux
+LaTeX Info: Redefining \. on input line 12.
+LaTeX Info: Redefining \% on input line 12.
 )
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 33.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 33.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 40.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 40.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 33.
-LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 40.
+LaTeX Font Info:    ... okay on input line 40.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -513,27 +775,63 @@ Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Info: Redefining \. on input line 33.
-LaTeX Info: Redefining \% on input line 33.
-Package hyperref Info: Link coloring OFF on input line 33.
-(build/main.out) (build/main.out)
-\@outlinefile=\write3
-\openout3 = `main.out'.
+LaTeX Info: Redefining \. on input line 40.
+LaTeX Info: Redefining \% on input line 40.
+Package hyperref Info: Link coloring OFF on input line 40.
+(./main.out) (./main.out)
+\@outlinefile=\write4
+\openout4 = `main.out'.
 
-\c@lstlisting=\count325
-\c@maskedRefs=\count326
- (/usr/local/texlive/2024/texmf-dist/tex/latex/apacite/spanish.apc
-File: spanish.apc 2013/07/21 v6.03 apacite language file
-LaTeX Info: Redefining \BPBI on input line 138.
-LaTeX Info: Redefining \BHBI on input line 139.
+
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
+
+\c@lstlisting=\count465
+Package biblatex Info: Trying to load language 'spanish' -> 'spanish-apa'...
+Package biblatex Info: ... file 'spanish-apa.lbx' found.
+(/Users/sebastianchacon/Library/texmf/tex/latex/biblatex-apa/spanish-apa.lbx
+File: spanish-apa.lbx 2025/08/27 v9.20 APA biblatex localisation
+Package biblatex Info: Trying to load language 'spanish'...
+Package biblatex Info: ... file 'spanish.lbx' found.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/lbx/spanish.lbx
+File: spanish.lbx 2023/03/05 v3.19 biblatex localization (PK/MW)
 )
+Package biblatex Info: Trying to load language 'spanish'...
+Package biblatex Info: ... file 'spanish.lbx' found.
+ (/usr/local/texlive/2024/texmf-dist/tex/latex/biblatex/lbx/spanish.lbx
+File: spanish.lbx 2023/03/05 v3.19 biblatex localization (PK/MW)
+))
+Package biblatex Info: XeTeX detected.
+(biblatex)             Assuming input encoding 'utf8'.
+Package biblatex Info: Automatic encoding selection.
+(biblatex)             Assuming data encoding 'utf8'.
+\openout3 = `main.bcf'.
+
+Package biblatex Info: Trying to load bibliographic data...
+
+
+/Users/sebastianchacon/Desktop/sc_tesis/paper/main.tex:40: Package biblatex Error: File 'main.bbl' not created by biblatex.
+
+See the biblatex package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.40 \begin{document}
+                     ^^M
+This file was apparently not created by biblatex. Rename it or
+move it to a location were TeX will not find it. If this error
+persists, consider redefining \blxauxsuffix.See the biblatex
+manual for details.
+
+Package biblatex Info: Reference section=0 on input line 40.
+Package biblatex Info: Reference segment=0 on input line 40.
 File: figures/escudoU2014.pdf Graphic file (type pdf)
 <use figures/escudoU2014.pdf>
-LaTeX Font Info:    Trying to load font information for U+msa on input line 36.
- (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
+LaTeX Font Info:    Trying to load font information for U+msa on input line 43.
+(/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 36.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 43.
  (/usr/local/texlive/2024/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
@@ -543,14 +841,121 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 ] (./seccion1.tex
 Capítulo 1.
+
+LaTeX Warning: Citation 'bilal2024macroeconomic' on page 1 undefined on input line 3.
+
+
+LaTeX Warning: Citation 'dell2012temperature' on page 1 undefined on input line 3.
+
+
+LaTeX Warning: Citation 'chen2021response' on page 1 undefined on input line 3.
+
+
+LaTeX Warning: Citation 'figari2025climate' on page 1 undefined on input line 3.
+
+
+LaTeX Warning: Citation 'FisherEtAl2012' on page 1 undefined on input line 5.
+
+
+LaTeX Warning: Citation 'ICO2009ClimateCoffee' on page 1 undefined on input line 5.
+
+
+Overfull \hbox (6.34482pt too wide) in paragraph at lines 5--6
+\TU/lmr/m/n/12 una de las principales fuentes de ingresos para países en desarrollo ([]). 
+ []
+
+
+LaTeX Warning: Citation 'MideksaKallbekken2010' on page 1 undefined on input line 9.
+
+
+LaTeX Warning: Citation 'burke2016adaptation' on page 1 undefined on input line 11.
+
+
+LaTeX Warning: Citation 'figari2025climate' on page 1 undefined on input line 11.
+
+
+LaTeX Warning: Citation 'ICO2009ClimateCoffee' on page 1 undefined on input line 13.
+
+
+LaTeX Warning: Citation 'covindassamy2017sugar' on page 1 undefined on input line 13.
+
 [1
 
 
-] [2]) (./seccion2.tex [3]
+]
+
+LaTeX Warning: Citation 'DeschenesGreenstone2007' on page 2 undefined on input line 15.
+
+
+LaTeX Warning: Citation 'bilal2024macroeconomic' on page 2 undefined on input line 15.
+
+
+LaTeX Warning: Citation 'figari2025climate' on page 2 undefined on input line 23.
+
+
+LaTeX Warning: Citation 'hsiang2016' on page 2 undefined on input line 23.
+
+[2]) (./seccion2.tex [3]
 Capítulo 2.
+
+LaTeX Warning: Citation 'DeschenesGreenstone2007' on page 4 undefined on input line 9.
+
+
+LaTeX Warning: Citation 'mundlak2001production' on page 4 undefined on input line 9.
+
+
+LaTeX Warning: Citation 'schlenker2009nonlinear' on page 4 undefined on input line 9.
+
+
+LaTeX Warning: Citation 'burke2016adaptation' on page 4 undefined on input line 11.
+
+
+LaTeX Warning: Citation 'figari2025climate' on page 4 undefined on input line 13.
+
+
+LaTeX Warning: Citation 'burke2016adaptation' on page 4 undefined on input line 13.
+
 [4
 
-] [5] [6] (./tables/motiv.tex)
+]
+
+LaTeX Warning: Citation 'mehta2008responding' on page 5 undefined on input line 17.
+
+
+LaTeX Warning: Citation 'maurice2011unraveling' on page 5 undefined on input line 17.
+
+
+LaTeX Warning: Citation 'covindassamy2017sugar' on page 5 undefined on input line 17.
+
+
+LaTeX Warning: Citation 'silveira2017reaction' on page 5 undefined on input line 17.
+
+
+LaTeX Warning: Citation 'schlenker2009nonlinear' on page 5 undefined on input line 19.
+
+[5]
+
+LaTeX Warning: Citation 'karp1993dynamic' on page 6 undefined on input line 25.
+
+
+LaTeX Warning: Citation 'bettendorf2000incomplete' on page 6 undefined on input line 25.
+
+
+LaTeX Warning: Citation 'gilbert2007' on page 6 undefined on input line 25.
+
+
+LaTeX Warning: Citation 'igami2015market' on page 6 undefined on input line 27.
+
+
+LaTeX Warning: Citation 'bresnahan1989empirical' on page 6 undefined on input line 31.
+
+
+LaTeX Warning: Citation 'slade1995empirical' on page 6 undefined on input line 31.
+
+
+LaTeX Warning: Citation 'bettendorf2000incomplete' on page 6 undefined on input line 31.
+
+[6] (./tables/motiv.tex)
 File: figures/motiv1.png Graphic file (type bmp)
 <figures/motiv1.png>
  [7]
@@ -567,6 +972,29 @@ File: figures/plot02_03.png Graphic file (type bmp)
 <figures/plot02_03.png>
 ) (./seccion3.tex [9] [10]
 Capítulo 3.
+
+LaTeX Warning: Citation 'gouel2018nutrition' on page 11 undefined on input line 6.
+
+
+LaTeX Warning: Citation 'deaton1992behaviour' on page 11 undefined on input line 6.
+
+
+LaTeX Warning: Citation 'maurice2011unraveling' on page 11 undefined on input line 6.
+
+
+LaTeX Warning: Citation 'covindassamy2017sugar' on page 11 undefined on input line 6.
+
+
+LaTeX Warning: Citation 'mehta2008responding' on page 11 undefined on input line 6.
+
+
+LaTeX Warning: Citation 'oic2013cincuenta' on page 11 undefined on input line 6.
+
+
+Overfull \hbox (26.73811pt too wide) in paragraph at lines 6--7
+\TU/lmr/m/n/12 ción, lo que dificulta una rápida respuesta ante los cambios del mercado ([]).
+ []
+
 [11
 
 ]
@@ -574,22 +1002,89 @@ File: figures/export1960.png Graphic file (type bmp)
 <figures/export1960.png>
 File: figures/icip1960.png Graphic file (type bmp)
 <figures/icip1960.png>
- [12] [13] [14]
+
+
+LaTeX Warning: Citation 'karp1993dynamic' on page 12 undefined on input line 31.
+
+
+LaTeX Warning: Citation 'talbot2004grounds' on page 12 undefined on input line 31.
+
+
+LaTeX Warning: Citation 'ICO2009ClimateCoffee' on page 12 undefined on input line 39.
+
+[12]
+
+LaTeX Warning: Citation 'ICIP2024' on page 13 undefined on input line 49.
+
+
+LaTeX Warning: Citation 'igami2015market' on page 13 undefined on input line 51.
+
+
+LaTeX Warning: Citation 'igami2015market' on page 13 undefined on input line 53.
+
+[13]
+
+LaTeX Warning: Citation 'oic2013cincuenta' on page 14 undefined on input line 63.
+
+
+LaTeX Warning: Citation 'oic2013cincuenta' on page 14 undefined on input line 65.
+
+
+LaTeX Warning: Citation 'igami2015market' on page 14 undefined on input line 65.
+
+
+LaTeX Warning: Citation 'igami2015market' on page 14 undefined on input line 67.
+
+
+LaTeX Warning: Citation 'krivonos2004impact' on page 14 undefined on input line 69.
+
+
+LaTeX Warning: Citation 'Zhang2022' on page 14 undefined on input line 69.
+
+[14]
+
+LaTeX Warning: Citation 'igami2015market' on page 15 undefined on input line 75.
+
 File: figures/plot02_04.png Graphic file (type bmp)
 <figures/plot02_04.png>
- [15]
+[15]
 File: figures/hhi.png Graphic file (type bmp)
 <figures/hhi.png>
 File: figures/c3.png Graphic file (type bmp)
 <figures/c3.png>
+
+
+LaTeX Warning: Citation 'oic2013cincuenta' on page 16 undefined on input line 105.
+
+
+LaTeX Warning: Citation 'ICO2009ClimateCoffee' on page 16 undefined on input line 105.
+
 ) (./seccion4.tex [16]
 Capítulo 4.
+
+LaTeX Warning: Citation 'igami2015market' on page 17 undefined on input line 12.
+
 [17
 
-] (./tables/datos_demanda.tex) [18] (./tables/datos_costos.tex)
-Overfull \hbox (5.39813pt too wide) in paragraph at lines 38--39
-[]\TU/lmr/m/n/12 La base de datos del \TU/lmr/m/it/12 Inter-Sectoral Impact Model Intercomparison Project \TU/lmr/m/n/12 ([]Lange, Quesada-
- []
+]
+
+LaTeX Warning: Citation 'ICIP2024' on page 18 undefined on input line 14.
+
+
+LaTeX Warning: Citation 'Feenstra2015' on page 18 undefined on input line 16.
+
+
+LaTeX Warning: Citation 'roberts2013' on page 18 undefined on input line 20.
+
+
+LaTeX Warning: Citation 'igami2015market' on page 18 undefined on input line 20.
+
+(./tables/datos_demanda.tex) [18] (./tables/datos_costos.tex)
+
+LaTeX Warning: Citation 'isimip2024' on page 19 undefined on input line 38.
+
+
+LaTeX Warning: Citation 'mapspam_2020' on page 19 undefined on input line 40.
 
 [19] [20]
 File: figures/exp_p1.png Graphic file (type bmp)
@@ -614,22 +1109,67 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 4.
 
+
+LaTeX Warning: Citation 'huck2001' on page 23 undefined on input line 14.
+
 [23
 
 ] [24] [25]) (./seccion6.tex [26]
 Capítulo 6.
+
+LaTeX Warning: Citation 'karp1993dynamic' on page 27 undefined on input line 17.
+
+
+LaTeX Warning: Citation 'igami2015market' on page 27 undefined on input line 17.
+
 [27
 
-] (./tables/estimacion_demanda_y.tex) [28] (./tables/estimacion_demanda_test_y.tex)
+]
+
+LaTeX Warning: Citation 'igami2015market' on page 28 undefined on input line 27.
+
+
+LaTeX Warning: Citation 'bates1997open' on page 28 undefined on input line 29.
+
+
+LaTeX Warning: Citation 'deaton1992behaviour' on page 28 undefined on input line 29.
+
+
+LaTeX Warning: Citation 'prebisch1959' on page 28 undefined on input line 29.
+
+
+LaTeX Warning: Citation 'singer1950' on page 28 undefined on input line 29.
+
+(./tables/estimacion_demanda_y.tex) [28] (./tables/estimacion_demanda_test_y.tex)
 File: figures/elasticidad_iv3.png Graphic file (type bmp)
 <figures/elasticidad_iv3.png>
- [29] [30] (./tables/estimacion_costos.tex [31])
+ [29]
+
+LaTeX Warning: Citation 'igami2015market' on page 30 undefined on input line 68.
+
+[30]
+
+LaTeX Warning: Citation 'figari2025climate' on page 31 undefined on input line 70.
+
+
+LaTeX Warning: Citation 'angrist2009mostly' on page 31 undefined on input line 70.
+
+
+LaTeX Warning: Citation 'hsiang2016' on page 31 undefined on input line 70.
+
+(./tables/estimacion_costos.tex [31])
 File: figures/plot_0601.png Graphic file (type bmp)
 <figures/plot_0601.png>
 File: figures/plot_0602.png Graphic file (type bmp)
 <figures/plot_0602.png>
  [32]) (./seccion7.tex [33]
 Capítulo 7.
+
+LaTeX Warning: Citation 'Hamilton2018' on page 34 undefined on input line 8.
+
+
+LaTeX Warning: Citation 'bilal2024macroeconomic' on page 34 undefined on input line 8.
+
 [34
 
 ]
@@ -671,11 +1211,14 @@ Capítulo 10.
 Capítulo 11.
 (./tables/estimacion_costs_2.tex) [49
 
-]) (build/main.bbl [50] [51
+])
 
-] [52]) [53] (build/main.aux
-LaTeX Info: Redefining \. on input line 11.
-LaTeX Info: Redefining \% on input line 11.
+LaTeX Warning: Empty bibliography on input line 93.
+
+[50] (build/main.aux
+LaTeX Info: Redefining \sptext on input line 12.
+LaTeX Info: Redefining \. on input line 12.
+LaTeX Info: Redefining \% on input line 12.
 )
  ***********
 LaTeX2e <2023-11-01> patch level 1
@@ -685,16 +1228,27 @@ L3 programming layer <2024-02-20>
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: B700728AF33C11888CE61BB1F7F93C85;6490.
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                main
+(biblatex)                and rerun LaTeX afterwards.
+
+Package logreq Info: Writing requests to 'main.run.xml'.
+\openout1 = `main.run.xml'.
+
  ) 
 Here is how much of TeX's memory you used:
- 21922 strings out of 474773
- 380642 string characters out of 5757725
- 1945839 words of memory out of 5000000
- 43665 multiletter control sequences out of 15000+600000
+ 29477 strings out of 474773
+ 537095 string characters out of 5757725
+ 1942839 words of memory out of 5000000
+ 51162 multiletter control sequences out of 15000+600000
  566423 words of font info for 82 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 87i,16n,93p,1356b,556s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 87i,16n,93p,1387b,5027s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on build/main.pdf (55 pages).
+Output written on build/main.pdf (52 pages).

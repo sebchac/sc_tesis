@@ -394,7 +394,7 @@ ggplot(data_yc, aes(x = factor(year), y = heatExp_yc)) +
   )
   
 
-plot3 <- ggplot(data_yc, aes(factor(year), y = heatExp, fill = type)) +
+plot3 <- ggplot(data_yc, aes(factor(year), y = heatExp_yc, fill = type)) +
   geom_boxplot(
     position = position_dodge(0.8),
     width = 0.7,
