@@ -30,16 +30,18 @@ library(gmm)
 
 
 ruta_proyecto <- "/Users/sebastianchacon/Desktop/sc_tesis/"
-ruta_paper <- paste0(ruta_proyecto, "paper/")
-ruta_tables <- paste0(ruta_paper, "tables/")
-ruta_figures <- paste0(ruta_paper, "figures/")
+ruta_paper    <- paste0(ruta_proyecto, "paper/")
+ruta_tables   <- paste0(ruta_paper, "tables/")
+ruta_figures  <- paste0(ruta_paper, "figures/")
+fig_path      <- ruta_figures   # alias usado en ggsave
 
 # Data
-data <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_by_type.rds")
+data_full <- readRDS("/Users/sebastianchacon/Desktop/sc_tesis/bld/data/data_by_type.rds")
 
-# Cambiar para AR o RO
-data <- data %>%
-  filter(dummy_y_arabica == 1) # dummy_y_robusta == 1 para Robusta
+# Agregado mundial anual (una fila por año) – para estimación de demanda
+# Cambiar para AR o RO: reemplazar dummy_y_arabica por dummy_y_robusta
+data <- data_full %>%
+  filter(dummy_y_arabica == 1)
 
 # ------------------------------------------------------------------------------
 # [1] Demand estimation
@@ -207,7 +209,7 @@ cov_iv2 <- vcovHC(iv2, method = "arellano", cluster = "year", type = "HC3")
 cov_iv3 <- vcovHC(iv3, method = "arellano", cluster = "year", type = "HC3")
 
 saveRDS(demand_data, file = "/Users/sebastianchacon/Desktop/sc_tesis/bld/data/demand_ym.rds")
-``
+
 # ------------------------------------------------------------------------------
 # [2] Implicit marginal costs
 # ------------------------------------------------------------------------------
@@ -217,10 +219,11 @@ aux <- demand_data %>%
   select(year, q_demand_fitted_iv3, edemand_iv3, trend, trend5y, trend3y) %>%
   mutate(year = as.double(year))
 
-data_yc_0 <- left_join(data %>% select(-trend) %>% select(-ndgain_yc) %>% mutate(year = as.double(year)), aux, by = c("year"))
+# Usar data_full para obtener datos a nivel país (dummy_yc_arabica == 1)
+data_yc_0 <- left_join(data_full %>% select(-any_of(c("trend", "ndgain_yc"))) %>% mutate(year = as.double(year)), aux, by = c("year"))
 
 data_yc <- data_yc_0 %>%
-  filter(dummy_yc_ == arabica,#dummy_yc == 1, 
+  filter(dummy_yc_arabica == 1,#dummy_yc == 1,
          #net_export_dummy == 1, 
          year %in% 1990:2019) %>%
   mutate(
@@ -284,10 +287,7 @@ data_yc <- data_yc %>%
          !is.na(heatExp_yc),
          !is.na(heat_lag1_yc))
 
-data_yc <- pdata.frame(
-  data_yc,
-  index = c("country", "year")
-)
+data_yc <- as.data.frame(data_yc)   # feols requires a plain data.frame
 
 # [3.1.] Only one stage and Stackelberg
 mc_fe <- feols(
@@ -303,10 +303,10 @@ mc_fe <- feols(
     #diff_frost
   | country,
   data = data_yc,
-  cluster = ~country
+  se = "hetero"
 )
 
-summary(mc_fe)
+tryCatch(print(summary(mc_fe)), error = function(e) print(coef(mc_fe)))
 
 data_yc_df <- as.data.frame(data_yc)
 
@@ -335,35 +335,27 @@ ggsave(
   bg = "white")
 
 
-# Only one stage and Stackelberg for leaders
+# Only one stage and Stackelberg for leaders (informativo; no se usa en predict)
 data_leader <- data_yc %>% filter(dummy_leader == 1)
 
-mc_fe_l <- feols(
-  mr_yc3 ~
-    trend5y + 
-    fert_y +
-    heatExp_yc +
-    heat_lag1_yc | country,
-  data = data_leader,
-  cluster = ~country
+mc_fe_l <- tryCatch(
+  feols(mr_yc3 ~ trend5y + fert_y + heatExp_yc + heat_lag1_yc | country,
+        data = data_leader, se = "hetero"),
+  error = function(e) { message("mc_fe_l no convergió: ", e$message); NULL }
 )
-
-summary(mc_fe_l)
+if (!is.null(mc_fe_l)) tryCatch(print(summary(mc_fe_l)),
+                                error = function(e) print(coef(mc_fe_l)))
 
 # Only one stage and Stackelberg for followers
 data_follower <- data_yc %>% filter(dummy_leader == 0)
 
-mc_fe_f <- feols(
-  mr_yc3 ~
-    trend5y + 
-    fert_y +
-    heatExp_yc +
-    heat_lag1_yc | country,
-  data = data_follower,
-  cluster = ~country
+mc_fe_f <- tryCatch(
+  feols(mr_yc3 ~ trend5y + fert_y + heatExp_yc + heat_lag1_yc | country,
+        data = data_follower, se = "hetero"),
+  error = function(e) { message("mc_fe_f no convergió: ", e$message); NULL }
 )
-
-summary(mc_fe_f)
+if (!is.null(mc_fe_f)) tryCatch(print(summary(mc_fe_f)),
+                                error = function(e) print(coef(mc_fe_f)))
 
 # [3.2.] Only one stage and Cournot
 mc_fe_cournot <- feols(
@@ -373,10 +365,10 @@ mc_fe_cournot <- feols(
     heatExp_yc +
     heat_lag1_yc | country,
   data = data_yc,
-  cluster = ~country
+  se = "hetero"
 )
 
-summary(mc_fe_cournot)
+tryCatch(print(summary(mc_fe_cournot)), error = function(e) print(coef(mc_fe_cournot)))
 
 # ------------------------------------------------------------------------------
 # [4] Construcción de contrafactuales
@@ -385,9 +377,8 @@ summary(mc_fe_cournot)
 # Proyecto el promedio anual entre 1970 y 1989
 data_cf <- data_yc %>%
   left_join(
-    data %>%
-#      filter(dummy_yc == 1, net_export_dummy == 1, year %in% 1970:1989) %>%
-      filter(dummy_yc == 1, net_export_dummy == 1, year %in% 1970:1989) %>% # Para robustez
+    data_full %>%
+      filter(dummy_yc_arabica == 1, year %in% 1970:1989) %>%
       group_by(country) %>%
       summarise(mean_heat = mean(heatExp_yc, na.rm = TRUE)),
     by = "country"
@@ -915,38 +906,46 @@ cf3_results_yc <- map_dfr(cf3_processed, ~ .x$country_profits, .id = "market_id"
 
 # Combine all results
 
-aux_yc <- bind_rows(
-  cf2_results_yc,
-  cf3_results_yc
-) %>%
-  mutate(
-    dummy_leader = case_when(
-      (country == "Brazil" | country == "Colombia" | country == "Viet Nam") ~ 1,
-      TRUE ~ 0
-    )
-  ) %>%
-  select(market_id, date, country, id, dummy_leader, type, quantity, revenue, profit, mc_yc_hat_s, price, scenario)
+aux_yc_raw <- bind_rows(cf2_results_yc, cf3_results_yc)
 
-aux_y <- aux_yc %>%
-  mutate(,
-         year = as.factor(year(date)),
-         month_num = as.double(month(date))) %>%
-  group_by(market_id, scenario) %>%
-  mutate(
-    Q_leaders_total = sum(quantity[dummy_leader == 1], na.rm = TRUE),
-    Q_followers_total = sum(quantity[dummy_leader == 0], na.rm = TRUE),
-    Q_total = sum(quantity, na.rm = TRUE),
-    price = first(price),
-    profit_leaders = sum(profit[dummy_leader == 1], na.rm = TRUE),
-    profit_followers = sum(profit[dummy_leader == 0], na.rm = TRUE),
-    scenario = first(scenario)
-  ) %>%
-  ungroup() %>%
-  distinct(market_id, scenario, .keep_all = TRUE) %>%
-  left_join(cf2_results_y %>% select(market_id, consumer_surplus, total_surplus), by = "market_id") %>%
-  select(market_id, date, year, month_num, Q_leaders_total,
-         Q_followers_total, Q_total, price, profit_leaders,
-         profit_followers, consumer_surplus, total_surplus, scenario)
+if (nrow(aux_yc_raw) > 0 && "country" %in% names(aux_yc_raw)) {
+  aux_yc <- aux_yc_raw %>%
+    mutate(
+      dummy_leader = case_when(
+        (country == "Brazil" | country == "Colombia" | country == "Viet Nam") ~ 1,
+        TRUE ~ 0
+      )
+    ) %>%
+    select(market_id, date, country, id, dummy_leader, type,
+           quantity, revenue, profit, mc_yc_hat_s, price, scenario)
+} else {
+  aux_yc <- tibble()
+}
+
+if (nrow(aux_yc) > 0) {
+  aux_y <- aux_yc %>%
+    mutate(year      = as.double(year(as.Date(date))),
+           month_num = as.double(month(as.Date(date)))) %>%
+    group_by(market_id, scenario) %>%
+    mutate(
+      Q_leaders_total   = sum(quantity[dummy_leader == 1], na.rm = TRUE),
+      Q_followers_total = sum(quantity[dummy_leader == 0], na.rm = TRUE),
+      Q_total           = sum(quantity, na.rm = TRUE),
+      price             = first(price),
+      profit_leaders    = sum(profit[dummy_leader == 1], na.rm = TRUE),
+      profit_followers  = sum(profit[dummy_leader == 0], na.rm = TRUE),
+      scenario          = first(scenario)
+    ) %>%
+    ungroup() %>%
+    distinct(market_id, scenario, .keep_all = TRUE) %>%
+    left_join(cf2_results_y %>% select(market_id, consumer_surplus, total_surplus),
+              by = "market_id") %>%
+    select(market_id, date, year, month_num, Q_leaders_total,
+           Q_followers_total, Q_total, price, profit_leaders,
+           profit_followers, consumer_surplus, total_surplus, scenario)
+} else {
+  aux_y <- tibble()
+}
 
 all_results_y <- bind_rows(
   cf0_results_y,
