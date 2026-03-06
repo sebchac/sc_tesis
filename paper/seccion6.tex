@@ -2,10 +2,10 @@
 \label{chap:estimaciones}
 \section{Estimación de demanda con variables instrumentales}
 
-La ecuación de demanda agregada busca capturar las principales fuerzas económicas que determinan el precio y las cantidades comercialziadas en el mercado internacional del café:
+La ecuación de demanda agregada busca capturar las principales fuerzas económicas que determinan el precio y las cantidades comercializadas en el mercado internacional del café:
 
 \begin{equation}
-    Q_{t} = \alpha^{d}_{0} + \alpha^{d}_{1}P_{t} + \alpha^{d}_{2}X_{t} + \alpha^{d}_{3}Z{t} + u^{d}_{t}
+    Q_{t} = \alpha^{d}_{0} + \alpha^{d}_{1}P_{t} + \alpha^{d}_{2}X_{t} + \alpha^{d}_{3}Z_{t} + u^{d}_{t}
 \end{equation}
 
 La variable dependiente $Q_{t}$ refleja la cantidad total demandada en el mercado, mientras que $P_{t}$ representa el índice global de precios. Por otro lado, la inclusión de $X_{t}$, el Producto Interno Bruto (PIB) de los países importadores, permite medir la sensibilidad del consumo frente a cambios en el poder adquisitivo de este grupo.
@@ -17,14 +17,14 @@ Por su parte, el término error ($u^{d}_{t}$) recoge factores no observables, co
 Esta especificación sigue el enfoque de trabajos seminales en la estimación estructural de este mercado \citep{karp1993dynamic, igami2015market}. Al mantener esta estructura, los resultados obtenidos permiten comparaciones directas con los hallazgos de esos estudios, facilitando la evaluación de consistencia en las elasticidades-precio estimadas y su evolución temporal. Así también, para resolver el problema de agregación temporal entre variables mensuales y anuales, se adopta la forma funcional de la demanda inversa:
 
 \begin{equation}
-    P_{t} = \frac{1}{\alpha^{d}_{1}} \left[ Q_{t} - ( \alpha^{d}_{0} + \alpha^{d}_{2}X{t} + \alpha^{d}_{3}Z{t} + u^{d}_{t} ) \right]
+    P_{t} = \frac{1}{\alpha^{d}_{1}} \left[ Q_{t} - ( \alpha^{d}_{0} + \alpha^{d}_{2}X_{t} + \alpha^{d}_{3}Z_{t} + u^{d}_{t} ) \right]
 \end{equation}
 
 Naturalmente, la identificación causal de la relación entre la cantidad demandada y el índice global de precios requiere abordar el problema de endogeneidad mediante la aproximación de variables instrumentales. Para estos efectos, se utilizan las temperaturas máximas y mínimas en las áreas de cultivo de los países exportadores. Las condiciones climáticas en los países productores afectan directamente la oferta cafetalera, pero no inciden en las preferencias de los consumidores internacionales. Por tratarse de una estimación agregada, se sigue un promedio ponderado por la participación de cada exportador.
 
 La Tabla N°\ref{tab:estimacion_demanda_anual} presenta los resultados de la estimación de demanda a nivel mensual, tomando información desde 1965 hasta 2019. Los modelos 1, 2 y 3 solo consideran variables de control, mientras que los modelos 4, 5 y 6 incluyen las variables instrumentales discutidas en esta sección.
 
-Se obtienen resultados similares al trabajo de Igami \citeyearpar{igami2015market} aunque con algunos matices, posiblemente explicados por la diferencia en el horizonte temporal\footnote{Las estimaciones de demanda agregada de este trabajo abarca un extenso período desde 1965 hasta 2019, mientras que Igami toma un horizonte más acotado, desde 1965 hasta 2006.}.
+Se obtienen resultados similares al trabajo de Igami \citeyearpar{igami2015market} aunque con algunos matices, posiblemente explicados por la diferencia en el horizonte temporal\footnote{Las estimaciones de demanda agregada de este trabajo abarcan un extenso período desde 1965 hasta 2019, mientras que Igami toma un horizonte más acotado, desde 1965 hasta 2006.}.
 
 En concreto, la elasticidad-precio promedio de la demanda en este trabajo es de 0,21, que es exactamente el mismo valor que obtiene Igami en su estimación anual. Este resultado confirma una demanda inelástica en un rango consistente con otros resultados\footnote{Igami obtiene una elasticidad-precio de la demanda de 0,15 en su estimación mensual. Por su parte, otros trabajos han obtenido resultados de 0,2, al igual que en este caso. Ver, por ejemplo, \cite{bates1997open}.}. Además, este resultado implica que choques de oferta (como el estrés térmico) se traduzcan predominantemente en aumentos de precios, lo que es consistente con la explicación estándar para la variación de los precios de los bienes agrícolas \citep{deaton1992behaviour, prebisch1959, singer1950}. Por otro lado, por cada aumento de un millón de bolsas de 60 kg de café, el precio cae en 17,5 centavos de dólar, un tanto menor a los 24,3 obtenidos por Igami. La Figura N°\ref{fig:elast_iv3} muestra la distribución de la elasticidad-precio de la demanda en el período analizado, confirmando su inclinación inelástica, pese a un valor extremo que corresponde al año 1977 y que coincide con una caída abrupta del índice de precios.
 

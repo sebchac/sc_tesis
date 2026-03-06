@@ -688,39 +688,6 @@
       \verb https://core.ac.uk/display/71301639
       \endverb
     \endentry
-    \entry{gain2024}{report}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=8b95bce06ecb2d37e3da42eca32dfb8a}{%
-           family={{Global Adaptation Initiative}},
-           familyi={G\bibinitperiod}}}%
-      }
-      \list{institution}{1}{%
-        {University of Notre Dame}%
-      }
-      \strng{namehash}{8b95bce06ecb2d37e3da42eca32dfb8a}
-      \strng{fullhash}{8b95bce06ecb2d37e3da42eca32dfb8a}
-      \strng{bibnamehash}{8b95bce06ecb2d37e3da42eca32dfb8a}
-      \strng{authorbibnamehash}{8b95bce06ecb2d37e3da42eca32dfb8a}
-      \strng{authornamehash}{8b95bce06ecb2d37e3da42eca32dfb8a}
-      \strng{authorfullhash}{8b95bce06ecb2d37e3da42eca32dfb8a}
-      \field{sortinit}{G}
-      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{{ND-GAIN} country index 2023}
-      \field{type}{techreport}
-      \field{year}{2023}
-      \true{nocite}
-      \verb{urlraw}
-      \verb https://gain.nd.edu/our-work/country-index/
-      \endverb
-      \verb{url}
-      \verb https://gain.nd.edu/our-work/country-index/
-      \endverb
-    \endentry
     \entry{gouel2018nutrition}{article}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=da68b60a0cfbad559581860111c636f0}{%
@@ -792,38 +759,6 @@
       \verb{doi}
       \verb 10.1162/rest_a_00706
       \endverb
-    \endentry
-    \entry{hodges1991}{book}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=bee363faf2e45a76129685a57fa04734}{%
-           family={Hodges},
-           familyi={H\bibinitperiod},
-           given={T.},
-           giveni={T\bibinitperiod},
-           givenun=0}}%
-      }
-      \list{location}{1}{%
-        {Boca Raton, FL}%
-      }
-      \list{publisher}{1}{%
-        {CRC Press}%
-      }
-      \strng{namehash}{bee363faf2e45a76129685a57fa04734}
-      \strng{fullhash}{bee363faf2e45a76129685a57fa04734}
-      \strng{bibnamehash}{bee363faf2e45a76129685a57fa04734}
-      \strng{authorbibnamehash}{bee363faf2e45a76129685a57fa04734}
-      \strng{authornamehash}{bee363faf2e45a76129685a57fa04734}
-      \strng{authorfullhash}{bee363faf2e45a76129685a57fa04734}
-      \field{sortinit}{H}
-      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Predicting crop phenology}
-      \field{year}{1991}
-      \true{nocite}
     \endentry
     \entry{hsiang2016}{article}{}
       \name{author}{1}{}{%
@@ -1004,7 +939,7 @@
       \field{type}{techreport}
       \field{year}{2009}
     \endentry
-    \entry{ico1998enso}{report}{}
+    \entry{oic2013cincuenta}{report}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=356fed4316ab54caaebe125cfceaec88}{%
            family={{International Coffee Organization}},
@@ -1014,7 +949,7 @@
         {International Coffee Organization}%
       }
       \list{location}{1}{%
-        {London, England}%
+        {London, United Kingdom}%
       }
       \strng{namehash}{356fed4316ab54caaebe125cfceaec88}
       \strng{fullhash}{356fed4316ab54caaebe125cfceaec88}
@@ -1030,11 +965,8 @@
       \true{uniqueprimaryauthor}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{number}{EB-3657/98 (E) Rev. 1}
-      \field{title}{The {El Niño Southern Oscillation} event ({ENSO}) and its impact on coffee production}
-      \field{type}{techreport}
-      \field{year}{1998}
-      \true{nocite}
+      \field{title}{The International Coffee Organization 1963--2013: 50 years serving the world coffee community}
+      \field{year}{2013}
       \verb{urlraw}
       \verb https://www.ico.org
       \endverb
@@ -1042,7 +974,7 @@
       \verb https://www.ico.org
       \endverb
     \endentry
-    \entry{oic2013cincuenta}{report}{}
+    \entry{ICIP2024}{report}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=356fed4316ab54caaebe125cfceaec88}{%
            family={{International Coffee Organization}},
@@ -1063,71 +995,6 @@
       \field{extraname}{2}
       \field{sortinit}{I}
       \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{The International Coffee Organization 1963--2013: 50 years serving the world coffee community}
-      \field{year}{2013}
-      \verb{urlraw}
-      \verb https://www.ico.org
-      \endverb
-      \verb{url}
-      \verb https://www.ico.org
-      \endverb
-    \endentry
-    \entry{ICO2024}{report}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=356fed4316ab54caaebe125cfceaec88}{%
-           family={{International Coffee Organization}},
-           familyi={I\bibinitperiod}}}%
-      }
-      \list{institution}{1}{%
-        {International Coffee Organization}%
-      }
-      \strng{namehash}{356fed4316ab54caaebe125cfceaec88}
-      \strng{fullhash}{356fed4316ab54caaebe125cfceaec88}
-      \strng{bibnamehash}{356fed4316ab54caaebe125cfceaec88}
-      \strng{authorbibnamehash}{356fed4316ab54caaebe125cfceaec88}
-      \strng{authornamehash}{356fed4316ab54caaebe125cfceaec88}
-      \strng{authorfullhash}{356fed4316ab54caaebe125cfceaec88}
-      \field{extraname}{3}
-      \field{sortinit}{I}
-      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
-      \field{extradate}{1}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Beyond coffee: Towards a circular coffee economy}
-      \field{type}{Coffee Development Report}
-      \field{year}{2024}
-      \true{nocite}
-    \endentry
-    \entry{ICIP2024}{report}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=356fed4316ab54caaebe125cfceaec88}{%
-           family={{International Coffee Organization}},
-           familyi={I\bibinitperiod}}}%
-      }
-      \list{institution}{1}{%
-        {International Coffee Organization}%
-      }
-      \list{location}{1}{%
-        {London, United Kingdom}%
-      }
-      \strng{namehash}{356fed4316ab54caaebe125cfceaec88}
-      \strng{fullhash}{356fed4316ab54caaebe125cfceaec88}
-      \strng{bibnamehash}{356fed4316ab54caaebe125cfceaec88}
-      \strng{authorbibnamehash}{356fed4316ab54caaebe125cfceaec88}
-      \strng{authornamehash}{356fed4316ab54caaebe125cfceaec88}
-      \strng{authorfullhash}{356fed4316ab54caaebe125cfceaec88}
-      \field{extraname}{4}
-      \field{sortinit}{I}
-      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
-      \field{extradate}{2}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{}
       \true{uniqueprimaryauthor}
@@ -1320,46 +1187,6 @@
       \verb https://ideas.repec.org/p/pra/mprapa/43813.html
       \endverb
     \endentry
-    \entry{mcmaster1997}{article}{}
-      \name{author}{2}{}{%
-        {{un=0,uniquepart=base,hash=19d7dd594552881c7992f0ec15373949}{%
-           family={McMaster},
-           familyi={M\bibinitperiod},
-           given={Gregory\bibnamedelima S.},
-           giveni={G\bibinitperiod\bibinitdelim S\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=08a002d2f097c0cb4b7d3d0372247504}{%
-           family={Wilhelm},
-           familyi={W\bibinitperiod},
-           given={W.\bibnamedelimi W.},
-           giveni={W\bibinitperiod\bibinitdelim W\bibinitperiod},
-           givenun=0}}%
-      }
-      \strng{namehash}{aa5f14ba2d421e24835b746599df1fd6}
-      \strng{fullhash}{aa5f14ba2d421e24835b746599df1fd6}
-      \strng{bibnamehash}{aa5f14ba2d421e24835b746599df1fd6}
-      \strng{authorbibnamehash}{aa5f14ba2d421e24835b746599df1fd6}
-      \strng{authornamehash}{aa5f14ba2d421e24835b746599df1fd6}
-      \strng{authorfullhash}{aa5f14ba2d421e24835b746599df1fd6}
-      \field{sortinit}{M}
-      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Agricultural and Forest Meteorology}
-      \field{number}{4}
-      \field{title}{Growing degree-days: One equation, two interpretations}
-      \field{volume}{87}
-      \field{year}{1997}
-      \true{nocite}
-      \field{pages}{291\bibrangedash 300}
-      \range{pages}{10}
-      \verb{doi}
-      \verb 10.1016/S0168-1923(97)00027-0
-      \endverb
-    \endentry
     \entry{mehta2008responding}{article}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=80984aa798ad78fbdf6d957d2fa8fb0e}{%
@@ -1397,55 +1224,6 @@
       \range{pages}{30}
       \verb{doi}
       \verb https://doi.org/10.1016/j.jdeveco.2006.07.006
-      \endverb
-    \endentry
-    \entry{MendelsohnNordhausShaw1994}{article}{}
-      \name{author}{3}{}{%
-        {{un=0,uniquepart=base,hash=b36cc712b508b23b77b708fa8bbf458e}{%
-           family={Mendelsohn},
-           familyi={M\bibinitperiod},
-           given={R.},
-           giveni={R\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=133dca9565968911af482f4a262cc74f}{%
-           family={Nordhaus},
-           familyi={N\bibinitperiod},
-           given={W.\bibnamedelimi D.},
-           giveni={W\bibinitperiod\bibinitdelim D\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=3b80aad1a6284de341041dec9d0cf21a}{%
-           family={Shaw},
-           familyi={S\bibinitperiod},
-           given={D.},
-           giveni={D\bibinitperiod},
-           givenun=0}}%
-      }
-      \strng{namehash}{62ef83f181395f84d365c67e20f4b654}
-      \strng{fullhash}{17b9a42ef1023008355b131f4e7b2168}
-      \strng{bibnamehash}{17b9a42ef1023008355b131f4e7b2168}
-      \strng{authorbibnamehash}{17b9a42ef1023008355b131f4e7b2168}
-      \strng{authornamehash}{62ef83f181395f84d365c67e20f4b654}
-      \strng{authorfullhash}{17b9a42ef1023008355b131f4e7b2168}
-      \field{sortinit}{M}
-      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{American Economic Review}
-      \field{number}{4}
-      \field{title}{The impact of global warming on agriculture: A Ricardian analysis}
-      \field{volume}{84}
-      \field{year}{1994}
-      \true{nocite}
-      \field{pages}{753\bibrangedash 771}
-      \range{pages}{19}
-      \verb{urlraw}
-      \verb https://www.jstor.org/stable/2118029
-      \endverb
-      \verb{url}
-      \verb https://www.jstor.org/stable/2118029
       \endverb
     \endentry
     \entry{MideksaKallbekken2010}{article}{}
@@ -1537,46 +1315,6 @@
       \field{year}{2001}
       \field{pages}{3\bibrangedash 85}
       \range{pages}{83}
-    \endentry
-    \entry{nakamura2010accounting}{article}{}
-      \name{author}{2}{}{%
-        {{un=0,uniquepart=base,hash=31f26335c74ad2cd32daedefb327617b}{%
-           family={Nakamura},
-           familyi={N\bibinitperiod},
-           given={E.},
-           giveni={E\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=bce86fd38675f76ef25f7e4f57c93d24}{%
-           family={Zerom},
-           familyi={Z\bibinitperiod},
-           given={D.},
-           giveni={D\bibinitperiod},
-           givenun=0}}%
-      }
-      \strng{namehash}{5cb7efc7344b42a0d70c64eac04e1856}
-      \strng{fullhash}{5cb7efc7344b42a0d70c64eac04e1856}
-      \strng{bibnamehash}{5cb7efc7344b42a0d70c64eac04e1856}
-      \strng{authorbibnamehash}{5cb7efc7344b42a0d70c64eac04e1856}
-      \strng{authornamehash}{5cb7efc7344b42a0d70c64eac04e1856}
-      \strng{authorfullhash}{5cb7efc7344b42a0d70c64eac04e1856}
-      \field{sortinit}{N}
-      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{The Review of Economic Studies}
-      \field{number}{3}
-      \field{title}{Accounting for incomplete pass-through}
-      \field{volume}{77}
-      \field{year}{2010}
-      \true{nocite}
-      \field{pages}{1192\bibrangedash 1230}
-      \range{pages}{39}
-      \verb{doi}
-      \verb https://doi.org/10.1111/j.1467-937X.2009.589.x
-      \endverb
     \endentry
     \entry{prebisch1959}{article}{}
       \name{author}{1}{}{%
@@ -1791,31 +1529,6 @@
       \field{isbn}{978-0-7425-2628-0}
       \field{title}{Grounds for Agreement: The Political Economy of the Coffee Commodity Chain}
       \field{year}{2004}
-    \endentry
-    \entry{UnionEuropea2023}{misc}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=6df64dab21ea48c1eb2bfb0352897155}{%
-           family={{Unión Europea}},
-           familyi={U\bibinitperiod}}}%
-      }
-      \strng{namehash}{6df64dab21ea48c1eb2bfb0352897155}
-      \strng{fullhash}{6df64dab21ea48c1eb2bfb0352897155}
-      \strng{bibnamehash}{6df64dab21ea48c1eb2bfb0352897155}
-      \strng{authorbibnamehash}{6df64dab21ea48c1eb2bfb0352897155}
-      \strng{authornamehash}{6df64dab21ea48c1eb2bfb0352897155}
-      \strng{authorfullhash}{6df64dab21ea48c1eb2bfb0352897155}
-      \field{sortinit}{U}
-      \field{sortinithash}{6901a00e45705986ee5e7ca9fd39adca}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{howpublished}{\url{https://eur-lex.europa.eu/eli/reg/2023/1115/oj}}
-      \field{note}{Diario Oficial de la Unión Europea, L 150, 206-247}
-      \field{title}{Reglamento (UE) 2023/1115 del Parlamento Europeo y del Consejo, de 31 de mayo de 2023}
-      \field{year}{2023}
-      \true{nocite}
     \endentry
     \entry{Zhang2022}{article}{}
       \name{author}{3}{}{%
@@ -2533,39 +2246,6 @@
       \verb https://core.ac.uk/display/71301639
       \endverb
     \endentry
-    \entry{gain2024}{report}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=8b95bce06ecb2d37e3da42eca32dfb8a}{%
-           family={{Global Adaptation Initiative}},
-           familyi={G\bibinitperiod}}}%
-      }
-      \list{institution}{1}{%
-        {University of Notre Dame}%
-      }
-      \strng{namehash}{8b95bce06ecb2d37e3da42eca32dfb8a}
-      \strng{fullhash}{8b95bce06ecb2d37e3da42eca32dfb8a}
-      \strng{bibnamehash}{8b95bce06ecb2d37e3da42eca32dfb8a}
-      \strng{authorbibnamehash}{8b95bce06ecb2d37e3da42eca32dfb8a}
-      \strng{authornamehash}{8b95bce06ecb2d37e3da42eca32dfb8a}
-      \strng{authorfullhash}{8b95bce06ecb2d37e3da42eca32dfb8a}
-      \field{sortinit}{G}
-      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{{ND-GAIN} country index 2023}
-      \field{type}{techreport}
-      \field{year}{2023}
-      \true{nocite}
-      \verb{urlraw}
-      \verb https://gain.nd.edu/our-work/country-index/
-      \endverb
-      \verb{url}
-      \verb https://gain.nd.edu/our-work/country-index/
-      \endverb
-    \endentry
     \entry{gouel2018nutrition}{article}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=da68b60a0cfbad559581860111c636f0}{%
@@ -2637,38 +2317,6 @@
       \verb{doi}
       \verb 10.1162/rest_a_00706
       \endverb
-    \endentry
-    \entry{hodges1991}{book}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=bee363faf2e45a76129685a57fa04734}{%
-           family={Hodges},
-           familyi={H\bibinitperiod},
-           given={T.},
-           giveni={T\bibinitperiod},
-           givenun=0}}%
-      }
-      \list{location}{1}{%
-        {Boca Raton, FL}%
-      }
-      \list{publisher}{1}{%
-        {CRC Press}%
-      }
-      \strng{namehash}{bee363faf2e45a76129685a57fa04734}
-      \strng{fullhash}{bee363faf2e45a76129685a57fa04734}
-      \strng{bibnamehash}{bee363faf2e45a76129685a57fa04734}
-      \strng{authorbibnamehash}{bee363faf2e45a76129685a57fa04734}
-      \strng{authornamehash}{bee363faf2e45a76129685a57fa04734}
-      \strng{authorfullhash}{bee363faf2e45a76129685a57fa04734}
-      \field{sortinit}{H}
-      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Predicting crop phenology}
-      \field{year}{1991}
-      \true{nocite}
     \endentry
     \entry{hsiang2016}{article}{}
       \name{author}{1}{}{%
@@ -2849,7 +2497,7 @@
       \field{type}{techreport}
       \field{year}{2009}
     \endentry
-    \entry{ico1998enso}{report}{}
+    \entry{oic2013cincuenta}{report}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=356fed4316ab54caaebe125cfceaec88}{%
            family={{International Coffee Organization}},
@@ -2859,7 +2507,7 @@
         {International Coffee Organization}%
       }
       \list{location}{1}{%
-        {London, England}%
+        {London, United Kingdom}%
       }
       \strng{namehash}{356fed4316ab54caaebe125cfceaec88}
       \strng{fullhash}{356fed4316ab54caaebe125cfceaec88}
@@ -2875,11 +2523,8 @@
       \true{uniqueprimaryauthor}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{number}{EB-3657/98 (E) Rev. 1}
-      \field{title}{The {El Niño Southern Oscillation} event ({ENSO}) and its impact on coffee production}
-      \field{type}{techreport}
-      \field{year}{1998}
-      \true{nocite}
+      \field{title}{The International Coffee Organization 1963--2013: 50 years serving the world coffee community}
+      \field{year}{2013}
       \verb{urlraw}
       \verb https://www.ico.org
       \endverb
@@ -2887,7 +2532,7 @@
       \verb https://www.ico.org
       \endverb
     \endentry
-    \entry{oic2013cincuenta}{report}{}
+    \entry{ICIP2024}{report}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=356fed4316ab54caaebe125cfceaec88}{%
            family={{International Coffee Organization}},
@@ -2908,71 +2553,6 @@
       \field{extraname}{2}
       \field{sortinit}{I}
       \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{The International Coffee Organization 1963--2013: 50 years serving the world coffee community}
-      \field{year}{2013}
-      \verb{urlraw}
-      \verb https://www.ico.org
-      \endverb
-      \verb{url}
-      \verb https://www.ico.org
-      \endverb
-    \endentry
-    \entry{ICO2024}{report}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=356fed4316ab54caaebe125cfceaec88}{%
-           family={{International Coffee Organization}},
-           familyi={I\bibinitperiod}}}%
-      }
-      \list{institution}{1}{%
-        {International Coffee Organization}%
-      }
-      \strng{namehash}{356fed4316ab54caaebe125cfceaec88}
-      \strng{fullhash}{356fed4316ab54caaebe125cfceaec88}
-      \strng{bibnamehash}{356fed4316ab54caaebe125cfceaec88}
-      \strng{authorbibnamehash}{356fed4316ab54caaebe125cfceaec88}
-      \strng{authornamehash}{356fed4316ab54caaebe125cfceaec88}
-      \strng{authorfullhash}{356fed4316ab54caaebe125cfceaec88}
-      \field{extraname}{3}
-      \field{sortinit}{I}
-      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
-      \field{extradate}{1}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Beyond coffee: Towards a circular coffee economy}
-      \field{type}{Coffee Development Report}
-      \field{year}{2024}
-      \true{nocite}
-    \endentry
-    \entry{ICIP2024}{report}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=356fed4316ab54caaebe125cfceaec88}{%
-           family={{International Coffee Organization}},
-           familyi={I\bibinitperiod}}}%
-      }
-      \list{institution}{1}{%
-        {International Coffee Organization}%
-      }
-      \list{location}{1}{%
-        {London, United Kingdom}%
-      }
-      \strng{namehash}{356fed4316ab54caaebe125cfceaec88}
-      \strng{fullhash}{356fed4316ab54caaebe125cfceaec88}
-      \strng{bibnamehash}{356fed4316ab54caaebe125cfceaec88}
-      \strng{authorbibnamehash}{356fed4316ab54caaebe125cfceaec88}
-      \strng{authornamehash}{356fed4316ab54caaebe125cfceaec88}
-      \strng{authorfullhash}{356fed4316ab54caaebe125cfceaec88}
-      \field{extraname}{4}
-      \field{sortinit}{I}
-      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
-      \field{extradate}{2}
       \field{extradatescope}{labelyear}
       \field{labeldatesource}{}
       \true{uniqueprimaryauthor}
@@ -3165,46 +2745,6 @@
       \verb https://ideas.repec.org/p/pra/mprapa/43813.html
       \endverb
     \endentry
-    \entry{mcmaster1997}{article}{}
-      \name{author}{2}{}{%
-        {{un=0,uniquepart=base,hash=19d7dd594552881c7992f0ec15373949}{%
-           family={McMaster},
-           familyi={M\bibinitperiod},
-           given={Gregory\bibnamedelima S.},
-           giveni={G\bibinitperiod\bibinitdelim S\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=08a002d2f097c0cb4b7d3d0372247504}{%
-           family={Wilhelm},
-           familyi={W\bibinitperiod},
-           given={W.\bibnamedelimi W.},
-           giveni={W\bibinitperiod\bibinitdelim W\bibinitperiod},
-           givenun=0}}%
-      }
-      \strng{namehash}{aa5f14ba2d421e24835b746599df1fd6}
-      \strng{fullhash}{aa5f14ba2d421e24835b746599df1fd6}
-      \strng{bibnamehash}{aa5f14ba2d421e24835b746599df1fd6}
-      \strng{authorbibnamehash}{aa5f14ba2d421e24835b746599df1fd6}
-      \strng{authornamehash}{aa5f14ba2d421e24835b746599df1fd6}
-      \strng{authorfullhash}{aa5f14ba2d421e24835b746599df1fd6}
-      \field{sortinit}{M}
-      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Agricultural and Forest Meteorology}
-      \field{number}{4}
-      \field{title}{Growing degree-days: One equation, two interpretations}
-      \field{volume}{87}
-      \field{year}{1997}
-      \true{nocite}
-      \field{pages}{291\bibrangedash 300}
-      \range{pages}{10}
-      \verb{doi}
-      \verb 10.1016/S0168-1923(97)00027-0
-      \endverb
-    \endentry
     \entry{mehta2008responding}{article}{}
       \name{author}{2}{}{%
         {{un=0,uniquepart=base,hash=80984aa798ad78fbdf6d957d2fa8fb0e}{%
@@ -3242,55 +2782,6 @@
       \range{pages}{30}
       \verb{doi}
       \verb https://doi.org/10.1016/j.jdeveco.2006.07.006
-      \endverb
-    \endentry
-    \entry{MendelsohnNordhausShaw1994}{article}{}
-      \name{author}{3}{}{%
-        {{un=0,uniquepart=base,hash=b36cc712b508b23b77b708fa8bbf458e}{%
-           family={Mendelsohn},
-           familyi={M\bibinitperiod},
-           given={R.},
-           giveni={R\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=133dca9565968911af482f4a262cc74f}{%
-           family={Nordhaus},
-           familyi={N\bibinitperiod},
-           given={W.\bibnamedelimi D.},
-           giveni={W\bibinitperiod\bibinitdelim D\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=3b80aad1a6284de341041dec9d0cf21a}{%
-           family={Shaw},
-           familyi={S\bibinitperiod},
-           given={D.},
-           giveni={D\bibinitperiod},
-           givenun=0}}%
-      }
-      \strng{namehash}{62ef83f181395f84d365c67e20f4b654}
-      \strng{fullhash}{17b9a42ef1023008355b131f4e7b2168}
-      \strng{bibnamehash}{17b9a42ef1023008355b131f4e7b2168}
-      \strng{authorbibnamehash}{17b9a42ef1023008355b131f4e7b2168}
-      \strng{authornamehash}{62ef83f181395f84d365c67e20f4b654}
-      \strng{authorfullhash}{17b9a42ef1023008355b131f4e7b2168}
-      \field{sortinit}{M}
-      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{American Economic Review}
-      \field{number}{4}
-      \field{title}{The impact of global warming on agriculture: A Ricardian analysis}
-      \field{volume}{84}
-      \field{year}{1994}
-      \true{nocite}
-      \field{pages}{753\bibrangedash 771}
-      \range{pages}{19}
-      \verb{urlraw}
-      \verb https://www.jstor.org/stable/2118029
-      \endverb
-      \verb{url}
-      \verb https://www.jstor.org/stable/2118029
       \endverb
     \endentry
     \entry{MideksaKallbekken2010}{article}{}
@@ -3382,46 +2873,6 @@
       \field{year}{2001}
       \field{pages}{3\bibrangedash 85}
       \range{pages}{83}
-    \endentry
-    \entry{nakamura2010accounting}{article}{}
-      \name{author}{2}{}{%
-        {{un=0,uniquepart=base,hash=31f26335c74ad2cd32daedefb327617b}{%
-           family={Nakamura},
-           familyi={N\bibinitperiod},
-           given={E.},
-           giveni={E\bibinitperiod},
-           givenun=0}}%
-        {{un=0,uniquepart=base,hash=bce86fd38675f76ef25f7e4f57c93d24}{%
-           family={Zerom},
-           familyi={Z\bibinitperiod},
-           given={D.},
-           giveni={D\bibinitperiod},
-           givenun=0}}%
-      }
-      \strng{namehash}{5cb7efc7344b42a0d70c64eac04e1856}
-      \strng{fullhash}{5cb7efc7344b42a0d70c64eac04e1856}
-      \strng{bibnamehash}{5cb7efc7344b42a0d70c64eac04e1856}
-      \strng{authorbibnamehash}{5cb7efc7344b42a0d70c64eac04e1856}
-      \strng{authornamehash}{5cb7efc7344b42a0d70c64eac04e1856}
-      \strng{authorfullhash}{5cb7efc7344b42a0d70c64eac04e1856}
-      \field{sortinit}{N}
-      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{The Review of Economic Studies}
-      \field{number}{3}
-      \field{title}{Accounting for incomplete pass-through}
-      \field{volume}{77}
-      \field{year}{2010}
-      \true{nocite}
-      \field{pages}{1192\bibrangedash 1230}
-      \range{pages}{39}
-      \verb{doi}
-      \verb https://doi.org/10.1111/j.1467-937X.2009.589.x
-      \endverb
     \endentry
     \entry{prebisch1959}{article}{}
       \name{author}{1}{}{%
@@ -3636,31 +3087,6 @@
       \field{isbn}{978-0-7425-2628-0}
       \field{title}{Grounds for Agreement: The Political Economy of the Coffee Commodity Chain}
       \field{year}{2004}
-    \endentry
-    \entry{UnionEuropea2023}{misc}{}
-      \name{author}{1}{}{%
-        {{un=0,uniquepart=base,hash=6df64dab21ea48c1eb2bfb0352897155}{%
-           family={{Unión Europea}},
-           familyi={U\bibinitperiod}}}%
-      }
-      \strng{namehash}{6df64dab21ea48c1eb2bfb0352897155}
-      \strng{fullhash}{6df64dab21ea48c1eb2bfb0352897155}
-      \strng{bibnamehash}{6df64dab21ea48c1eb2bfb0352897155}
-      \strng{authorbibnamehash}{6df64dab21ea48c1eb2bfb0352897155}
-      \strng{authornamehash}{6df64dab21ea48c1eb2bfb0352897155}
-      \strng{authorfullhash}{6df64dab21ea48c1eb2bfb0352897155}
-      \field{sortinit}{U}
-      \field{sortinithash}{6901a00e45705986ee5e7ca9fd39adca}
-      \field{extradatescope}{labelyear}
-      \field{labeldatesource}{}
-      \true{uniqueprimaryauthor}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{howpublished}{\url{https://eur-lex.europa.eu/eli/reg/2023/1115/oj}}
-      \field{note}{Diario Oficial de la Unión Europea, L 150, 206-247}
-      \field{title}{Reglamento (UE) 2023/1115 del Parlamento Europeo y del Consejo, de 31 de mayo de 2023}
-      \field{year}{2023}
-      \true{nocite}
     \endentry
     \entry{Zhang2022}{article}{}
       \name{author}{3}{}{%
